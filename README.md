@@ -53,3 +53,9 @@ El reporte HTML generado (`playwright-report/`) es el artefacto verificable de c
 ## Deploy
 
 Sitio en producción: https://kana-practice-green.vercel.app
+
+Para correr la misma suite contra producción:
+
+```bash
+BASE_URL=https://kana-practice-green.vercel.app npx playwright test
+```

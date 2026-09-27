@@ -155,3 +155,12 @@ Artefacto: reporte HTML de Playwright (`npx playwright test` lo regenera), con `
 - Katakana extendido (ティ, ファ, ヴ…).
 - Vocales largas (ー) y acento tonal.
 - Cuentas de usuario o sincronización entre dispositivos.
+
+## 10. Estado (2026-09-27)
+
+Plan completado. Todas las fases entregadas:
+- Producción: https://kana-practice-green.vercel.app (Vercel, deploy automático en cada push a `main`).
+- Repo público: https://github.com/TomCardeLo/kana-practice
+- E2E: 182 tests Playwright (91 casos × 375 px y 1440 px) en verde en local y contra producción. Artefacto: `playwright-report/index.html` (`npm test`, o `BASE_URL=<url> npx playwright test`).
+- Dos revisiones de código aplicadas (0 hallazgos críticos o altos abiertos).
+- Interfaz con el design system de 2DATO (tokens de `landing_page_2dato/styles.css`; `--error` es propuesto, no del brand guide).
