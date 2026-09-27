@@ -147,7 +147,7 @@ button {
 /* --- layout general --- */
 
 .site-header {
-  padding: clamp(2.5rem, 4vw, 4rem) 16px;
+  padding: clamp(1.5rem, 2.5vw, 2.5rem) 16px;
 }
 
 .site-header__inner {
@@ -183,19 +183,23 @@ button {
   gap: 24px;
 }
 
-/* Controles + práctica van en su propio grid para que el panel sticky
-   de práctica no se desplace sobre las estadísticas. */
-.workspace {
+/* Barra superior: modo (01) + silabario (02) en una sola tarjeta, dos columnas
+   en escritorio con separador vertical sutil. */
+.top-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
-  min-width: 0;
+  gap: 32px;
 }
 
 @media (min-width: 1024px) {
-  .workspace {
-    grid-template-columns: minmax(320px, 380px) 1fr;
-    align-items: start;
+  .top-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+
+  .top-col--syllabary {
+    margin-left: -16px;
+    padding-left: 16px;
+    border-left: 1px solid var(--navy-15);
   }
 }
 
@@ -248,10 +252,6 @@ input[type='text'] {
 textarea:focus,
 input[type='text']:focus {
   border-color: var(--green);
-}
-
-.syllabary-select {
-  margin-top: 24px;
 }
 
 .segmented {
@@ -372,12 +372,38 @@ input[type='text']:focus {
   width: 100%;
 }
 
+@media (min-width: 1024px) {
+  .btn-generate {
+    width: auto;
+  }
+}
+
 /* --- práctica --- */
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .practice-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .answer-pane {
+    position: sticky;
+    top: 16px;
+    align-self: start;
+  }
+}
 
 .kana-output {
   position: relative;
   min-height: 120px;
-  max-height: min(52vh, 520px);
+  max-height: min(calc(100vh - 140px), 720px);
   overflow-y: auto;
   overscroll-behavior: contain;
   display: flex;
@@ -386,7 +412,6 @@ input[type='text']:focus {
   padding: 24px;
   background: var(--paper-2);
   border-radius: 16px;
-  margin-bottom: 20px;
 }
 
 @media (max-width: 1023px) {
@@ -428,14 +453,6 @@ input[type='text']:focus {
 
 .kana-output.is-compact .kana-line {
   gap: 10px 14px;
-}
-
-@media (min-width: 1024px) {
-  .practice {
-    position: sticky;
-    top: 16px;
-    align-self: start;
-  }
 }
 
 .kana-output__empty {
@@ -539,6 +556,12 @@ input[type='text']:focus {
 
 #input-answer {
   max-height: 30vh;
+}
+
+@media (min-width: 1024px) {
+  #input-answer {
+    max-height: 50vh;
+  }
 }
 
 .actions {

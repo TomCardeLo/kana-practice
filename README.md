@@ -32,6 +32,11 @@ español al japonés fonéticamente.
 4. Pulsa **Corregir** (o Ctrl/Cmd+Enter) para ver el resultado kana por kana, o **Mostrar
    solución** para revelar la respuesta completa sin que cuente en las estadísticas.
 
+En pantallas de escritorio, la barra superior agrupa el modo (01) y el silabario (02) en
+horizontal, y debajo la sección **Transcribe** (03) muestra el kana a la izquierda y tu
+respuesta a la derecha, lado a lado. En pantallas angostas, estos bloques se apilan uno debajo
+del otro.
+
 <table>
 <tr>
 <th>Palabras al azar</th>

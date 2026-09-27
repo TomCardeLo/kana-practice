@@ -73,7 +73,7 @@ test('texto largo: #kana-output tiene altura máxima y scroll interno', async ({
   });
   expect(m.overflowY).toBe('auto');
   expect(m.sh).toBeGreaterThan(m.ch);
-  const expectedMax = m.vw >= 1024 ? Math.min(0.52 * m.vh, 520) : 0.42 * m.vh;
+  const expectedMax = m.vw >= 1024 ? Math.min(m.vh - 140, 720) : 0.42 * m.vh;
   expect(Math.abs(m.maxH - expectedMax)).toBeLessThanOrEqual(1);
 });
 
@@ -140,23 +140,84 @@ test('tras corregir o mostrar la solución no hay celda is-current', async ({ pa
   await expect(current(page)).toHaveCount(0);
 });
 
-test('el panel de práctica no se solapa con las estadísticas al bajar hasta el final', async ({ page }) => {
+const rect = (page, sel) =>
+  page.locator(sel).first().evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    return { top: r.top, bottom: r.bottom, left: r.left, right: r.right };
+  });
+const isDesktop = (page) => page.viewportSize().width >= 1024;
+
+test('.answer-pane es sticky solo en ≥1024px y nunca se solapa con estadísticas', async ({ page }) => {
   await h.generate(page, LONG_TEXT);
   await h.answer(page, 'eru aumento deru'); // llena el panel de estadísticas
   await expect(page.getByTestId('stats-cell').first()).toBeVisible();
-  const positions = [0, 0.25, 0.5, 0.75, 1];
-  for (const p of positions) {
+  for (const p of [0, 0.25, 0.5, 0.75, 1]) {
     await page.evaluate((f) => window.scrollTo(0, f * (document.documentElement.scrollHeight - innerHeight)), p);
-    const { practiceBottom, statsTop } = await page.evaluate(() => ({
-      practiceBottom: document.querySelector('.practice').getBoundingClientRect().bottom,
-      statsTop: document.querySelector('.stats-panel').getBoundingClientRect().top,
-    }));
-    expect(practiceBottom, `scroll ${p * 100}%`).toBeLessThanOrEqual(statsTop + 0.5);
+    const answerPane = await rect(page, '.answer-pane');
+    const practice = await rect(page, '.practice');
+    const stats = await rect(page, '.stats-panel');
+    expect(answerPane.bottom, `answer-pane, scroll ${p * 100}%`).toBeLessThanOrEqual(stats.top + 0.5);
+    expect(practice.bottom, `practice, scroll ${p * 100}%`).toBeLessThanOrEqual(stats.top + 0.5);
   }
-  const position = await page.locator('.practice').evaluate((el) => getComputedStyle(el).position);
-  expect(position).toBe(page.viewportSize().width >= 1024 ? 'sticky' : 'static');
-  await expect(page.locator('.workspace .practice')).toHaveCount(1);
-  await expect(page.locator('.workspace .controls')).toHaveCount(1);
+  const pos = (sel) => page.locator(sel).evaluate((el) => getComputedStyle(el).position);
+  expect(await pos('.answer-pane')).toBe(isDesktop(page) ? 'sticky' : 'static');
+  expect(await pos('.practice')).toBe('static');
+  await expect(page.locator('.workspace')).toHaveCount(0);
+  await expect(page.locator('.practice .practice-grid .kana-pane #kana-output')).toHaveCount(1);
+  await expect(page.locator('.practice .practice-grid .answer-pane #input-answer')).toHaveCount(1);
+  await expect(page.locator('.practice .answer-pane #score')).toHaveCount(1);
+});
+
+test('kana y respuesta lado a lado en ≥1024px, apilados en <1024px', async ({ page }) => {
+  await h.generate(page, LONG_TEXT);
+  await page.locator('.practice').scrollIntoViewIfNeeded();
+  const kana = await rect(page, '#kana-output');
+  const input = await rect(page, '#input-answer');
+  if (isDesktop(page)) {
+    expect(input.left, 'respuesta a la derecha del kana').toBeGreaterThanOrEqual(kana.right);
+    expect(input.top < kana.bottom && input.bottom > kana.top, 'rangos verticales solapados').toBe(true);
+  } else {
+    expect(input.top, 'respuesta debajo del kana').toBeGreaterThanOrEqual(kana.bottom);
+  }
+  const m = await page.getByTestId('input-answer').evaluate((el) => ({
+    rows: el.rows,
+    maxH: parseFloat(getComputedStyle(el).maxHeight),
+    vh: innerHeight,
+  }));
+  expect(m.rows).toBe(6);
+  expect(Math.abs(m.maxH - (isDesktop(page) ? 0.5 : 0.3) * m.vh)).toBeLessThanOrEqual(1);
+});
+
+test('1440x900: tras ir a la sección 03 con texto largo, kana y respuesta visibles a la vez', async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await h.generate(page, LONG_TEXT);
+  await page.locator('#practice-heading').evaluate((el) => el.scrollIntoView({ block: 'start' }));
+  await page.getByTestId('input-answer').click();
+  await page.getByTestId('input-answer').pressSequentially('eru aumento');
+  await testInfo.attach('seccion-03-1440', { body: await page.screenshot(), contentType: 'image/png' });
+  const vh = 900;
+  const kana = await rect(page, '#kana-output');
+  const input = await rect(page, '#input-answer');
+  const btn = await rect(page, '[data-testid="btn-check"]');
+  expect(kana.top).toBeGreaterThanOrEqual(0);
+  expect(kana.bottom).toBeLessThanOrEqual(vh);
+  expect(input.top).toBeGreaterThanOrEqual(0);
+  expect(input.bottom).toBeLessThanOrEqual(vh);
+  expect(btn.bottom).toBeLessThanOrEqual(vh);
+  await expect(page.locator('#kana-output .kana-cell.is-current')).toBeInViewport();
+});
+
+test('top-panel: 01 (modo) y 02 (silabario) en la misma fila en ≥1024px, apilados debajo', async ({ page }) => {
+  const mode = await rect(page, '.top-panel .top-col--mode');
+  const syl = await rect(page, '.top-panel .top-col--syllabary');
+  if (isDesktop(page)) {
+    expect(syl.left).toBeGreaterThanOrEqual(mode.right - 16.5); // margin-left -16px del borde divisor
+    expect(Math.abs(syl.top - mode.top)).toBeLessThanOrEqual(1);
+  } else {
+    expect(syl.top).toBeGreaterThanOrEqual(mode.bottom);
+  }
+  await expect(page.locator('.top-panel h2', { hasText: '01' })).toBeVisible();
+  await expect(page.locator('.top-panel h2', { hasText: '02' })).toBeVisible();
 });
 
 test('pie: solo "Código en GitHub", sin mención a 2DATO', async ({ page }) => {

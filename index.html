@@ -24,46 +24,49 @@
   </header>
 
   <main class="layout">
-    <div class="workspace">
-    <section class="panel controls" aria-labelledby="controls-heading">
-      <h2 id="controls-heading"><span class="cap-num">01</span> Elige el modo</h2>
+    <section class="panel top-panel" aria-label="Configuración de la práctica">
+      <div class="top-grid">
+        <div class="top-col top-col--mode">
+          <h2><span class="cap-num">01</span> Elige el modo</h2>
 
-      <div class="segmented mode-tabs" role="tablist" aria-label="Modo de práctica">
-        <button type="button" role="tab" id="tab-random" data-testid="tab-random" class="segmented__option segmented__option--tab is-checked" aria-selected="true" aria-controls="panel-random" tabindex="0">Palabras al azar</button>
-        <button type="button" role="tab" id="tab-text" data-testid="tab-text" class="segmented__option segmented__option--tab" aria-selected="false" aria-controls="panel-text" tabindex="-1">Texto propio</button>
-      </div>
+          <div class="segmented mode-tabs" role="tablist" aria-label="Modo de práctica">
+            <button type="button" role="tab" id="tab-random" data-testid="tab-random" class="segmented__option segmented__option--tab is-checked" aria-selected="true" aria-controls="panel-random" tabindex="0">Palabras al azar</button>
+            <button type="button" role="tab" id="tab-text" data-testid="tab-text" class="segmented__option segmented__option--tab" aria-selected="false" aria-controls="panel-text" tabindex="-1">Texto propio</button>
+          </div>
 
-      <div id="panel-random" data-testid="panel-random" role="tabpanel" aria-labelledby="tab-random" class="mode-panel">
-        <p class="field-hint">Genera una ronda de 5 palabras. El español queda oculto hasta que corrijas o pidas la solución.</p>
-        <button type="button" id="btn-new-round" data-testid="btn-new-round" class="btn btn-primary btn-generate">Nueva ronda</button>
-      </div>
+          <div id="panel-random" data-testid="panel-random" role="tabpanel" aria-labelledby="tab-random" class="mode-panel">
+            <p class="field-hint">Genera una ronda de 5 palabras. El español queda oculto hasta que corrijas o pidas la solución.</p>
+            <button type="button" id="btn-new-round" data-testid="btn-new-round" class="btn btn-primary btn-generate">Nueva ronda</button>
+          </div>
 
-      <div id="panel-text" data-testid="panel-text" role="tabpanel" aria-labelledby="tab-text" class="mode-panel" hidden>
-        <div class="field">
-          <label for="input-text">Tu texto en español</label>
-          <textarea id="input-text" data-testid="input-text" rows="8" placeholder="Escribe o pega un texto en español, con los saltos de línea que quieras..."></textarea>
+          <div id="panel-text" data-testid="panel-text" role="tabpanel" aria-labelledby="tab-text" class="mode-panel" hidden>
+            <div class="field">
+              <label for="input-text">Tu texto en español</label>
+              <textarea id="input-text" data-testid="input-text" rows="4" placeholder="Escribe o pega un texto en español, con los saltos de línea que quieras..."></textarea>
+            </div>
+            <button type="button" id="btn-generate" data-testid="btn-generate" class="btn btn-primary btn-generate">Generar</button>
+          </div>
         </div>
-        <button type="button" id="btn-generate" data-testid="btn-generate" class="btn btn-primary btn-generate">Generar</button>
-      </div>
 
-      <div class="field syllabary-select">
-        <span class="field-label"><span class="cap-num">02</span> Elige el silabario</span>
-        <div class="segmented" role="radiogroup" aria-label="Silabario">
-          <label class="segmented__option">
-            <input type="radio" name="silabario" value="hiragana" data-testid="syllabary-hiragana" checked />
-            <span>Hiragana</span>
-          </label>
-          <label class="segmented__option">
-            <input type="radio" name="silabario" value="katakana" data-testid="syllabary-katakana" />
-            <span>Katakana</span>
-          </label>
+        <div class="top-col top-col--syllabary">
+          <h2><span class="cap-num">02</span> Elige el silabario</h2>
+          <div class="segmented" role="radiogroup" aria-label="Silabario">
+            <label class="segmented__option">
+              <input type="radio" name="silabario" value="hiragana" data-testid="syllabary-hiragana" checked />
+              <span>Hiragana</span>
+            </label>
+            <label class="segmented__option">
+              <input type="radio" name="silabario" value="katakana" data-testid="syllabary-katakana" />
+              <span>Katakana</span>
+            </label>
+          </div>
+
+          <details class="row-filter">
+            <summary>Filtrar por filas</summary>
+            <div id="row-chips" class="chip-grid"></div>
+          </details>
         </div>
       </div>
-
-      <details class="row-filter">
-        <summary>Filtrar por filas</summary>
-        <div id="row-chips" class="chip-grid"></div>
-      </details>
 
       <div id="message" data-testid="message" class="message" role="status" aria-live="polite"></div>
     </section>
@@ -71,25 +74,29 @@
     <section class="panel practice" aria-labelledby="practice-heading">
       <h2 id="practice-heading"><span class="cap-num">03</span> Transcribe</h2>
 
-      <div id="kana-output" data-testid="kana-output" class="kana-output" aria-live="polite">
-        <p class="kana-output__empty">Genera una práctica para ver el kana aquí.</p>
+      <div class="practice-grid">
+        <div class="kana-pane">
+          <div id="kana-output" data-testid="kana-output" class="kana-output" aria-live="polite">
+            <p class="kana-output__empty">Genera una práctica para ver el kana aquí.</p>
+          </div>
+        </div>
+
+        <div class="answer-pane">
+          <form id="answer-form" class="answer-form" autocomplete="off">
+            <div class="field">
+              <label for="input-answer">Tu transcripción en romaji</label>
+              <textarea id="input-answer" data-testid="input-answer" rows="6" autocomplete="off"></textarea>
+              <p class="field-hint">Separa las palabras con espacios. Usa n' antes de vocal o y (p. ej. kon'yu). Ctrl/Cmd+Enter corrige; Enter hace un salto de línea.</p>
+            </div>
+            <div class="actions">
+              <button type="submit" id="btn-check" data-testid="btn-check" class="btn btn-primary">Corregir</button>
+              <button type="button" id="btn-solution" data-testid="btn-solution" class="btn btn-ghost">Mostrar solución</button>
+            </div>
+          </form>
+          <p id="score" data-testid="score" class="score"></p>
+        </div>
       </div>
-
-      <form id="answer-form" class="answer-form" autocomplete="off">
-        <div class="field">
-          <label for="input-answer">Tu transcripción en romaji</label>
-          <textarea id="input-answer" data-testid="input-answer" rows="3" autocomplete="off"></textarea>
-          <p class="field-hint">Separa las palabras con espacios. Usa n' antes de vocal o y (p. ej. kon'yu). Ctrl/Cmd+Enter corrige; Enter hace un salto de línea.</p>
-        </div>
-        <div class="actions">
-          <button type="submit" id="btn-check" data-testid="btn-check" class="btn btn-primary">Corregir</button>
-          <button type="button" id="btn-solution" data-testid="btn-solution" class="btn btn-ghost">Mostrar solución</button>
-        </div>
-      </form>
-      <p id="score" data-testid="score" class="score"></p>
     </section>
-
-    </div>
 
     <section class="panel stats-panel" id="stats-panel" data-testid="stats-panel" aria-labelledby="stats-heading">
       <h2 id="stats-heading">Mis estadísticas</h2>
