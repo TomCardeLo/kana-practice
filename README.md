@@ -59,3 +59,7 @@ Para correr la misma suite contra producción:
 ```bash
 BASE_URL=https://kana-practice-green.vercel.app npx playwright test
 ```
+
+## Licencia
+
+MIT, ver [LICENSE](LICENSE). Incluye wanakana 5.3.1 (MIT) en `vendor/`.
