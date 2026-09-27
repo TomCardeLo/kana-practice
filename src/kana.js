@@ -88,3 +88,13 @@ export function rowExample(rowId, silabario) {
   if (!fila) return '';
   return silabario === 'katakana' ? wanakana.toKatakana(fila.example) : fila.example;
 }
+
+// Agrupa las sílabas romaji que usa la app por fila (para la tabla del tutorial). Reutiliza
+// SYLLABLE_ROW en vez de mantener una lista aparte, así no se puede desincronizar.
+export function syllablesByRow() {
+  const grupos = {};
+  for (const [romaji, rowId] of Object.entries(SYLLABLE_ROW)) {
+    (grupos[rowId] || (grupos[rowId] = [])).push(romaji);
+  }
+  return grupos;
+}

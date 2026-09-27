@@ -19,4 +19,19 @@ for (const syl of h.SYLLABARIES) {
     await testInfo.attach('320px', { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' });
     expect(scrollWidth, 'ancho del documento').toBeLessThanOrEqual(clientWidth);
   });
+
+  test(`${syl}: modo al azar sin overflow horizontal a 320px`, async ({ page }, testInfo) => {
+    await page.setViewportSize({ width: 320, height: 720 });
+    await h.open(page);
+    await h.selectSyllabary(page, syl);
+    await h.answer(page, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+    await expect(page.getByTestId('word-reveal')).toHaveCount(5);
+    await h.openRowFilter(page);
+    await testInfo.attach('320px-random', { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' });
+    const { scrollWidth, clientWidth } = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    }));
+    expect(scrollWidth, 'ancho del documento').toBeLessThanOrEqual(clientWidth);
+  });
 }

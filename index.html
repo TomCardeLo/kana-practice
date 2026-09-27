@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kana Practice</title>
-  <meta name="description" content="Practica la lectura de hiragana y katakana a partir de texto en español, con corrección kana por kana y estadísticas de error." />
+  <meta name="description" content="Practica la lectura de hiragana y katakana con palabras al azar o tu propio texto en español, con corrección kana por kana y estadísticas de error." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fafaf7'/%3E%3Ctext x='30' y='44' font-family='sans-serif' font-size='34' text-anchor='middle' fill='%230e1c32'%3E%E3%81%8B%3C/text%3E%3Ccircle cx='50' cy='50' r='6' fill='%2306aa78'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,21 +14,36 @@
 <body>
   <header class="site-header grid-bg">
     <div class="site-header__inner">
-      <p class="eyebrow">Práctica de kana</p>
+      <div class="site-header__top">
+        <p class="eyebrow">Práctica de kana</p>
+        <button type="button" id="btn-tutorial" data-testid="btn-tutorial" class="btn btn-ghost">Tutorial</button>
+      </div>
       <h1 class="site-title">Kana Practice<span class="punto" aria-hidden="true"></span></h1>
-      <p class="lede">Escribe un texto en español, léelo convertido a kana y transcríbelo de vuelta en romaji. Sin traducción, sin kanji: solo lectura.</p>
+      <p class="lede">Practica con palabras al azar o con tu propio texto: léelo convertido a kana y transcríbelo de vuelta en romaji. Sin traducción, sin kanji: solo lectura.</p>
     </div>
   </header>
 
   <main class="layout">
     <section class="panel controls" aria-labelledby="controls-heading">
-      <h2 id="controls-heading"><span class="cap-num">01</span> Escribe</h2>
+      <h2 id="controls-heading"><span class="cap-num">01</span> Elige el modo</h2>
 
-      <div class="field">
-        <label for="input-text">Texto en español</label>
-        <textarea id="input-text" data-testid="input-text" rows="4" placeholder="Escribe una frase o una palabra en español..."></textarea>
+      <div class="segmented mode-tabs" role="tablist" aria-label="Modo de práctica">
+        <button type="button" role="tab" id="tab-random" data-testid="tab-random" class="segmented__option segmented__option--tab is-checked" aria-selected="true" aria-controls="panel-random" tabindex="0">Palabras al azar</button>
+        <button type="button" role="tab" id="tab-text" data-testid="tab-text" class="segmented__option segmented__option--tab" aria-selected="false" aria-controls="panel-text" tabindex="-1">Texto propio</button>
       </div>
-      <button type="button" id="btn-random" data-testid="btn-random" class="btn btn-ghost">Palabra al azar</button>
+
+      <div id="panel-random" data-testid="panel-random" role="tabpanel" aria-labelledby="tab-random" class="mode-panel">
+        <p class="field-hint">Genera una ronda de 5 palabras. El español queda oculto hasta que corrijas o pidas la solución.</p>
+        <button type="button" id="btn-new-round" data-testid="btn-new-round" class="btn btn-primary btn-generate">Nueva ronda</button>
+      </div>
+
+      <div id="panel-text" data-testid="panel-text" role="tabpanel" aria-labelledby="tab-text" class="mode-panel" hidden>
+        <div class="field">
+          <label for="input-text">Tu texto en español</label>
+          <textarea id="input-text" data-testid="input-text" rows="8" placeholder="Escribe o pega un texto en español, con los saltos de línea que quieras..."></textarea>
+        </div>
+        <button type="button" id="btn-generate" data-testid="btn-generate" class="btn btn-primary btn-generate">Generar</button>
+      </div>
 
       <div class="field syllabary-select">
         <span class="field-label"><span class="cap-num">02</span> Elige el silabario</span>
@@ -49,8 +64,6 @@
         <div id="row-chips" class="chip-grid"></div>
       </details>
 
-      <button type="button" id="btn-generate" data-testid="btn-generate" class="btn btn-primary btn-generate">Generar</button>
-
       <div id="message" data-testid="message" class="message" role="status" aria-live="polite"></div>
     </section>
 
@@ -58,14 +71,14 @@
       <h2 id="practice-heading"><span class="cap-num">03</span> Transcribe</h2>
 
       <div id="kana-output" data-testid="kana-output" class="kana-output" aria-live="polite">
-        <p class="kana-output__empty">Escribe un texto y pulsa «Generar» para ver el kana aquí.</p>
+        <p class="kana-output__empty">Genera una práctica para ver el kana aquí.</p>
       </div>
 
       <form id="answer-form" class="answer-form" autocomplete="off">
         <div class="field">
           <label for="input-answer">Tu transcripción en romaji</label>
-          <input type="text" id="input-answer" data-testid="input-answer" autocomplete="off" />
-          <p class="field-hint">Separa las palabras con espacios. Usa n' antes de vocal o y (p. ej. kon'yu).</p>
+          <textarea id="input-answer" data-testid="input-answer" rows="2" autocomplete="off"></textarea>
+          <p class="field-hint">Separa las palabras con espacios. Usa n' antes de vocal o y (p. ej. kon'yu). Ctrl/Cmd+Enter corrige; Enter hace un salto de línea.</p>
         </div>
         <div class="actions">
           <button type="submit" id="btn-check" data-testid="btn-check" class="btn btn-primary">Corregir</button>
@@ -82,6 +95,44 @@
       <button type="button" id="btn-reset-stats" data-testid="btn-reset-stats" class="btn btn-ghost">Reiniciar estadísticas</button>
     </section>
   </main>
+
+  <dialog id="tutorial-dialog" data-testid="tutorial-dialog" class="tutorial-dialog" aria-labelledby="tutorial-dialog-title">
+    <div class="tutorial-dialog__header">
+      <p class="eyebrow" id="tutorial-dialog-title">Tutorial</p>
+      <button type="button" id="btn-tutorial-close" data-testid="btn-tutorial-close" class="btn btn-ghost">Cerrar</button>
+    </div>
+
+    <div class="segmented tutorial-tabs" role="tablist" aria-label="Secciones del tutorial">
+      <button type="button" role="tab" id="tutorial-tab-guide" data-testid="tutorial-tab-guide" class="segmented__option segmented__option--tab is-checked" aria-selected="true" aria-controls="tutorial-panel-guide" tabindex="0">Guía</button>
+      <button type="button" role="tab" id="tutorial-tab-table" data-testid="tutorial-tab-table" class="segmented__option segmented__option--tab" aria-selected="false" aria-controls="tutorial-panel-table" tabindex="-1">Tabla</button>
+      <button type="button" role="tab" id="tutorial-tab-rules" data-testid="tutorial-tab-rules" class="segmented__option segmented__option--tab" aria-selected="false" aria-controls="tutorial-panel-rules" tabindex="-1">Reglas</button>
+    </div>
+
+    <div id="tutorial-panel-guide" data-testid="tutorial-panel-guide" role="tabpanel" aria-labelledby="tutorial-tab-guide" class="tutorial-panel" tabindex="0">
+      <ol class="tutorial-steps">
+        <li class="tutorial-step"><span class="cap-num">01</span><div><strong>Elige modo</strong><p>Palabras al azar o texto propio, y el silabario: hiragana o katakana.</p></div></li>
+        <li class="tutorial-step"><span class="cap-num">02</span><div><strong>Lee el kana</strong><p>La app convierte el texto a kana. El romaji queda oculto hasta que corrijas.</p></div></li>
+        <li class="tutorial-step"><span class="cap-num">03</span><div><strong>Transcribe en romaji</strong><p>Se aceptan variantes: shi/si, chi/ti, tsu/tu, fu/hu, ji/zi, sha/sya, n/nn. Usa n' antes de vocal o "y" (p. ej. kon'yu).</p></div></li>
+        <li class="tutorial-step"><span class="cap-num">04</span><div><strong>Corrige y revisa</strong><p>Cada kana se marca en verde o rojo. «Mostrar solución» revela el romaji completo (y, en modo al azar, las palabras en español).</p></div></li>
+      </ol>
+    </div>
+
+    <div id="tutorial-panel-table" data-testid="tutorial-panel-table" role="tabpanel" aria-labelledby="tutorial-tab-table" class="tutorial-panel" hidden>
+      <p id="tutorial-table-warning" data-testid="tutorial-table-warning" class="message is-warning" hidden>Consultar la tabla cuenta como ayuda en esta ronda.</p>
+      <div class="segmented tutorial-table-switch" role="group" aria-label="Silabario de la tabla">
+        <button type="button" id="tutorial-table-hiragana" data-testid="tutorial-table-hiragana" class="segmented__option segmented__option--tab is-checked" aria-pressed="true">Hiragana</button>
+        <button type="button" id="tutorial-table-katakana" data-testid="tutorial-table-katakana" class="segmented__option segmented__option--tab" aria-pressed="false">Katakana</button>
+      </div>
+      <div id="tutorial-table-grid" data-testid="tutorial-table-grid" class="tutorial-table-wrap"></div>
+    </div>
+
+    <div id="tutorial-panel-rules" data-testid="tutorial-panel-rules" role="tabpanel" aria-labelledby="tutorial-tab-rules" class="tutorial-panel" tabindex="0" hidden>
+      <p class="field-hint">Resumen de las reglas de adaptación español → romaji, con ejemplos generados por la propia app.</p>
+      <div class="tutorial-table-wrap">
+        <table id="tutorial-rules-table" data-testid="tutorial-rules-table" class="rules-table"></table>
+      </div>
+    </div>
+  </dialog>
 
   <footer class="site-footer">
     <p>Hecho con el design system de 2DATO · <a href="https://github.com/TomCardeLo/kana-practice">repositorio en GitHub</a></p>

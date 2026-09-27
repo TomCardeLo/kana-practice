@@ -1,10 +1,12 @@
-// Escenarios 1, 2, 3, 6 y 7 del plan (§7) + modos de fallo de translit/check vía la UI.
+// Modo "Texto propio": escenarios 1, 2, 3, 6 y 7 del plan (§7) + modos de fallo de
+// translit/check vía la UI.
 // Referencias "FM n" = tests/e2e/failure-modes.md.
 const { test, expect } = require('@playwright/test');
 const h = require('./helpers');
 
 test.beforeEach(async ({ page }) => {
   await h.open(page);
+  await h.selectMode(page, 'text');
 });
 
 for (const syl of h.SYLLABARIES) {
@@ -105,15 +107,16 @@ for (const syl of h.SYLLABARIES) {
     });
 
     test('variante nn para ん se acepta sin marcar sobrantes (plan §4 n/nn)', async ({ page }) => {
-      test.fail(
-        true,
-        'BUG app (check.js): wanakana.toHiragana("kannto") da かんんと (cada n -> ん), así que ' +
-          'la variante nn deja un ん de más: el marcador dice "3 / 3 correctos · 1 sobrantes"; ' +
-          'antes de vocal ("pann agua") ocurre lo mismo.'
-      );
       await h.generate(page, 'canto', syl);
       await h.answer(page, 'kannto');
       await expect(page.getByTestId('score')).toHaveText('3 / 3 correctos');
+      await h.generate(page, 'canna'); // ka n na: "kanna" no debe reducirse
+      await h.expectKana(page, h.kanaFor(['か', 'ん', 'な'], syl));
+      await h.answer(page, 'kanna');
+      await expect(page.getByTestId('score')).toHaveText('3 / 3 correctos');
+      await h.generate(page, 'pan agua');
+      await h.answer(page, 'pann agua');
+      await expect(page.getByTestId('score')).toHaveText('5 / 5 correctos');
     });
 
     test('ん seguida de vocal: separar palabras con espacio basta', async ({ page }) => {
@@ -130,6 +133,36 @@ for (const syl of h.SYLLABARIES) {
       await expect(page.getByTestId('score')).toHaveText('2 / 2 correctos · 2 sobrantes');
       await h.answer(page, 'gaatok');
       await expect(page.getByTestId('score')).toHaveText('2 / 2 correctos · 2 sobrantes');
+    });
+
+    test('Enter hace salto de línea y no corrige; Control+Enter corrige', async ({ page }) => {
+      await h.generate(page, 'gato', syl);
+      const input = page.getByTestId('input-answer');
+      await input.fill('ga');
+      await input.press('Enter');
+      await input.pressSequentially('to');
+      await expect(input).toHaveValue('ga\nto');
+      await expect(page.getByTestId('score')).toBeEmpty();
+      await h.expectStates(page, ['pending', 'pending']);
+      await input.press('Control+Enter');
+      await expect(page.getByTestId('score')).toHaveText('2 / 2 correctos');
+    });
+
+    test('párrafo de varias líneas: un bloque por línea y transcripción multilínea perfecta', async ({ page }) => {
+      await h.generate(page, 'Hola amigo,\nel gato\n\nsol rojo.', syl);
+      const lines = page.locator('#kana-output .kana-line');
+      await expect(lines).toHaveCount(4); // la línea vacía se conserva como separación
+      const wordsPerLine = await lines.evaluateAll((els) => els.map((l) => l.querySelectorAll('.kana-word').length));
+      expect(wordsPerLine).toEqual([2, 2, 0, 2]);
+      await expect(lines.nth(1).locator('.kana-cell__kana')).toHaveText(h.kanaFor(['え', 'る', 'が', 'と'], syl));
+      // Los bloques de líneas distintas quedan en posiciones verticales distintas.
+      const tops = await lines.evaluateAll((els) => els.map((l) => l.getBoundingClientRect().top));
+      expect(tops[1]).toBeGreaterThan(tops[0]);
+      expect(tops[3]).toBeGreaterThan(tops[1]);
+
+      await page.getByTestId('input-answer').fill('ora amigo\neru gato\n\nsoru roho');
+      await page.getByTestId('btn-check').click();
+      await expect(page.getByTestId('score')).toHaveText('13 / 13 correctos');
     });
 
     // Escenario 6: el romaji no se ve antes de corregir o de pedir la solución.
@@ -163,14 +196,14 @@ for (const syl of h.SYLLABARIES) {
       await h.selectSyllabary(page, syl);
       for (const text of ['', '    ', '¡! 123 ...']) {
         await h.generate(page, text);
-        await expect(page.getByTestId('message')).toHaveText('Escribe un texto o pide una palabra al azar.');
+        await expect(page.getByTestId('message')).toHaveText('Escribe un texto en español para generar la práctica.');
         await expect(h.cells(page)).toHaveCount(0);
       }
     });
 
     test('respuesta vacía avisa y no corrige (FM 20)', async ({ page }) => {
       await h.answer(page, 'gato');
-      await expect(page.getByTestId('message')).toHaveText('Primero escribe un texto y pulsa «Generar».');
+      await expect(page.getByTestId('message')).toHaveText('Primero genera una práctica.');
       await h.generate(page, 'gato', syl);
       await expect(page.getByTestId('message')).toBeEmpty();
       await h.answer(page, '   ');
@@ -205,6 +238,8 @@ const TRANSLIT = [
   ['tina', ['ち', 'な']], // ti (FM 8)
   ['foto', ['ふ', 'お', 'と']], // fo (FM 8)
   ['ÁRBOL', ['あ', 'る', 'ぼ', 'る']], // mayúsculas + tildes (FM 9, 10)
+  ['pingüino', ['ぴ', 'ん', 'ぐ', 'い', 'の']], // güi: la u suena
+  ['cigüeña', ['し', 'ぐ', 'え', 'にゃ']], // güe
 ];
 
 for (const syl of h.SYLLABARIES) {

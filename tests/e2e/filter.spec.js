@@ -1,11 +1,6 @@
-// Escenario 4 (palabra al azar + filtro de filas) y FM 25-28.
+// Filtro por filas (FM 25-28). La parte de palabras al azar con filtro vive en random.spec.js.
 const { test, expect } = require('@playwright/test');
 const h = require('./helpers');
-
-// Oráculo propio: hiragana de las filas あ か さ た な ま ら わ(+ん).
-const ALLOWED_ROWS = ['a', 'ka', 'sa', 'ta', 'na', 'ma', 'ra', 'wa'];
-const ALLOWED_HIRAGANA = new Set([...'あいうえおかきくけこさしすせそたちつてとなにぬねのまみむめもらりるれろわをん']);
-const REPEATS = 12;
 
 test.beforeEach(async ({ page }) => {
   await h.open(page);
@@ -13,43 +8,24 @@ test.beforeEach(async ({ page }) => {
 
 for (const syl of h.SYLLABARIES) {
   test.describe(syl, () => {
-    test(`palabra al azar con filtro limitado usa solo kana de las filas activas (x${REPEATS})`, async ({ page }) => {
-      await h.selectSyllabary(page, syl);
-      await h.setActiveRows(page, ALLOWED_ROWS);
-      const allowed = new Set([...ALLOWED_HIRAGANA].map((k) => (syl === 'katakana' ? h.toKatakana(k) : k)));
-      const seen = new Set();
-
-      for (let i = 0; i < REPEATS; i += 1) {
-        await page.getByTestId('btn-random').click();
-        const word = await page.getByTestId('input-text').inputValue();
-        expect(word, 'el botón debe rellenar el texto').not.toBe('');
-        seen.add(word);
-        await page.getByTestId('btn-generate').click();
-        await expect(h.cells(page).first()).toBeVisible();
-        const kana = await h.cellKana(page).allTextContents();
-        for (const k of kana) expect(allowed.has(k), `"${word}" -> ${k} fuera del filtro`).toBe(true);
-        await expect(page.locator('[data-testid="kana-cell"][data-state="dimmed"]')).toHaveCount(0);
-      }
-      // Sanidad: el azar realmente varía.
-      expect(seen.size).toBeGreaterThan(1);
-    });
-
-    test('filtro vacío avisa al pedir palabra al azar y al generar (FM 28)', async ({ page }) => {
+    test('filtro vacío avisa en ambos modos y no deja práctica (FM 28)', async ({ page }) => {
       await h.selectSyllabary(page, syl);
       await h.setActiveRows(page, []);
-      await page.getByTestId('btn-random').click();
+      await page.getByTestId('btn-new-round').click();
       await expect(page.getByTestId('message')).toHaveText('Selecciona al menos una fila del silabario.');
-      await expect(page.getByTestId('input-text')).toHaveValue('');
-      await page.getByTestId('input-text').fill('gato');
-      await page.getByTestId('btn-generate').click();
+      await expect(h.cells(page)).toHaveCount(0);
+
+      await h.generate(page, 'gato');
       await expect(page.getByTestId('message')).toHaveText('Selecciona al menos una fila del silabario.');
       await expect(h.cells(page)).toHaveCount(0);
     });
 
     test('filtro sin palabras posibles avisa sin colgarse (FM 26)', async ({ page }) => {
+      await h.selectSyllabary(page, syl);
       await h.setActiveRows(page, ['ya']);
-      await page.getByTestId('btn-random').click();
+      await page.getByTestId('btn-new-round').click();
       await expect(page.getByTestId('message')).toHaveText('Ninguna palabra usa solo las filas elegidas.');
+      await expect(h.cells(page)).toHaveCount(0);
     });
 
     test('texto sin ningún kana en las filas activas avisa', async ({ page }) => {
@@ -78,6 +54,26 @@ for (const syl of h.SYLLABARIES) {
       const statKana = page.locator('[data-testid="stats-cell"] .stats-cell__kana');
       await expect(statKana).toHaveCount(2);
       expect((await statKana.allTextContents()).sort()).toEqual(h.kanaFor(['と', 'ろ'], syl).sort());
+    });
+
+    test('cambiar el filtro tras corregir recalcula, conserva la respuesta y no re-registra', async ({ page }) => {
+      await h.selectSyllabary(page, syl);
+      await h.generate(page, 'gato rojo');
+      await h.answer(page, 'gaso roho');
+      await h.expectStates(page, ['ok', 'error', 'ok', 'ok']);
+      await h.setActiveRows(page, h.ROW_IDS.filter((r) => r !== 'ga'));
+      await h.expectStates(page, ['dimmed', 'error', 'ok', 'ok']);
+      await expect(page.getByTestId('score')).toContainText('2 / 3 correctos');
+      await expect(page.getByTestId('input-answer')).toHaveValue('gaso roho');
+      await h.setActiveRows(page, h.ROW_IDS);
+      await h.expectStates(page, ['ok', 'error', 'ok', 'ok']);
+
+      // Si el cambio de filtro hubiera registrado otra vez, と tendría 2 fallos:
+      // tras un acierto en una práctica nueva quedaría en 67 % en vez de 50 %.
+      await h.generate(page, 'gato');
+      await h.answer(page, 'gato');
+      const rate = page.locator('[data-testid="stats-cell"]', { hasText: h.kanaFor(['と'], syl)[0] }).locator('.stats-cell__rate');
+      await expect(rate).toHaveText('50% error');
     });
   });
 }

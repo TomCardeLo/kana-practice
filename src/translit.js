@@ -21,6 +21,9 @@ const REWRITES = [
   [/v/g, 'b'],
   [/h/g, ''],
   [/G/g, 'g'],
+  // "ü" ya cumplió su papel (evitar que gue/gui la traten como u muda);
+  // de aquí en más se procesa como una "u" normal (gu + vocal, no colapsada).
+  [/ü/g, 'u'],
 ];
 
 // Combinaciones irregulares consonante + vocal. Si no hay entrada, se usa el patrón por
@@ -61,15 +64,22 @@ function consonanteSuelta(consonante) {
   return [`${etiqueta}u`];
 }
 
-// Minúsculas, quita tildes/diéresis, conserva la "ñ" (se protege antes de la normalización
-// NFD para que no se descomponga junto con los acentos).
+// Minúsculas, quita tildes, conserva "ñ" y "ü" (se protegen antes de la normalización
+// NFD para que no se descompongan junto con los acentos: "ü" debe seguir siendo distinta
+// de "u" para que güe/güi no se confundan con gue/gui, que sí llevan la "u" muda).
 function normalizar(texto) {
   return texto
     .toLowerCase()
+    // NFC primero: si "ñ"/"ü" llegan descompuestos (n/u + diacrítico combinante), los junta
+    // en un solo carácter precompuesto antes de protegerlos, si no el reemplazo literal de
+    // abajo no los reconoce.
+    .normalize('NFC')
     .replace(/ñ/g, '\u0001')
+    .replace(/ü/g, '\u0002')
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
-    .replace(/\u0001/g, 'ñ');
+    .replace(/\u0001/g, 'ñ')
+    .replace(/\u0002/g, 'ü');
 }
 
 function reescribir(palabra) {
@@ -113,6 +123,6 @@ function parsear(fonemico) {
 // Números, puntuación y emojis se descartan (separan palabras en vez de romperlas).
 export function toSyllables(texto) {
   const normalizado = normalizar(texto);
-  const palabras = normalizado.split(/[^a-zñ]+/).filter(Boolean);
+  const palabras = normalizado.split(/[^a-zñü]+/).filter(Boolean);
   return palabras.map((palabra) => parsear(reescribir(palabra)));
 }

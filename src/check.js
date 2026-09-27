@@ -64,6 +64,14 @@ function alinear(esperado, escrito) {
   return pares;
 }
 
+// Algunos usuarios escriben "nn" (doblada) para marcar la ん antes de consonante, en vez
+// del "n'" que espera wanakana. Sin normalizar, "kannto" produce かんんと (una ん de sobra).
+// Solo se reduce cuando "nn" no tiene una sílaba siguiente que la reclame: si va seguida de
+// vocal o "y" ("kanna" -> かんな, kan+na) se deja intacta, es una palabra distinta.
+function normalizarNN(palabra) {
+  return palabra.replace(/nn(?=[^aeiouy]|$)/g, "n'");
+}
+
 // Corrige la respuesta contra las palabras esperadas ya filtradas por fila activa
 // (array de palabras, cada una un array de unidades { romaji, kana, row }).
 // Devuelve null si la respuesta está vacía (no se corrige nada).
@@ -79,7 +87,7 @@ export function checkAnswer(expectedWords, respuesta) {
   const hiraganaEscrito = normalizada
     .split(' ')
     .filter(Boolean)
-    .map((palabra) => wanakana.toHiragana(palabra))
+    .map((palabra) => wanakana.toHiragana(normalizarNN(palabra)))
     .join('');
   const kanaEscrito = tokenizar(hiraganaEscrito);
 

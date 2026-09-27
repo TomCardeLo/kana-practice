@@ -3,6 +3,8 @@
 const { expect } = require('@playwright/test');
 
 const SYLLABARIES = ['hiragana', 'katakana'];
+const ROW_IDS = ['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa', 'ga', 'za', 'da', 'ba', 'pa',
+  'kya', 'sha', 'cha', 'nya', 'hya', 'mya', 'rya', 'gya', 'ja', 'bya', 'pya'];
 
 // Oráculo independiente de wanakana: hiragana -> katakana por desplazamiento Unicode.
 function toKatakana(hiragana) {
@@ -15,11 +17,31 @@ function kanaFor(hiraganaUnits, syllabary) {
   return syllabary === 'katakana' ? hiraganaUnits.map(toKatakana) : hiraganaUnits;
 }
 
-async function open(page) {
+const TUTORIAL_SEEN_KEY = 'kana-practice:tutorial-seen:v1';
+
+// Por defecto marca el tutorial como visto para que el <dialog> modal de primera visita
+// no bloquee la interacción. Los tests del tutorial usan { tutorialSeen: false }.
+async function open(page, { tutorialSeen = true } = {}) {
+  if (tutorialSeen) {
+    await page.addInitScript((key) => {
+      try {
+        localStorage.setItem(key, '1');
+      } catch {
+        // Sin localStorage (test FM 22): la app tampoco abre el tutorial.
+      }
+    }, TUTORIAL_SEEN_KEY);
+  }
   await page.goto('/');
-  // Los chips de filas se crean desde app.js (módulo que importa wanakana del CDN):
-  // si existen, la app terminó de cargar.
+  // Los chips de filas y la ronda inicial se crean desde app.js: si existen, la app cargó.
   await expect(page.getByTestId('row-chip-a')).toBeAttached();
+}
+
+async function selectMode(page, mode) {
+  const tab = page.getByTestId(mode === 'text' ? 'tab-text' : 'tab-random');
+  // Pulsar la pestaña activa reinicia la práctica: solo se pulsa si no lo está.
+  if ((await tab.getAttribute('aria-selected')) !== 'true') await tab.click();
+  await expect(tab).toHaveAttribute('aria-selected', 'true');
+  await expect(page.getByTestId(mode === 'text' ? 'panel-text' : 'panel-random')).toBeVisible();
 }
 
 async function selectSyllabary(page, syllabary) {
@@ -28,7 +50,9 @@ async function selectSyllabary(page, syllabary) {
   await expect(radio).toBeChecked();
 }
 
+// Modo "Texto propio": escribe el texto y pulsa Generar.
 async function generate(page, text, syllabary) {
+  await selectMode(page, 'text');
   if (syllabary) await selectSyllabary(page, syllabary);
   await page.getByTestId('input-text').fill(text);
   await page.getByTestId('btn-generate').click();
@@ -76,9 +100,12 @@ async function setActiveRows(page, activeIds) {
 
 module.exports = {
   SYLLABARIES,
+  ROW_IDS,
   toKatakana,
   kanaFor,
+  TUTORIAL_SEEN_KEY,
   open,
+  selectMode,
   selectSyllabary,
   generate,
   answer,

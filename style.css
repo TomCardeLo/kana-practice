@@ -155,6 +155,14 @@ button {
   margin: 0 auto;
 }
 
+.site-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .site-title {
   font-size: clamp(2rem, 4vw, 3rem);
   color: var(--navy);
@@ -271,6 +279,38 @@ input[type='text']:focus {
   outline-offset: 2px;
 }
 
+/* Variante de segmented para pestañas (botones role=tab en vez de radios). */
+.segmented__option--tab {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+/* Mismo estado seleccionado que .segmented__option (navy + blanco): el verde queda
+   reservado para las acciones principales (Nueva ronda, Generar, Corregir). */
+.segmented__option--tab.is-checked {
+  background: var(--navy);
+  color: #fff;
+}
+
+.mode-tabs {
+  display: flex;
+  width: 100%;
+}
+
+.mode-tabs .segmented__option--tab {
+  flex: 1;
+  text-align: center;
+}
+
+.mode-panel {
+  margin-top: 20px;
+}
+
+.mode-panel .field-hint {
+  margin: 0 0 12px;
+}
+
 .row-filter {
   margin-top: 24px;
   border-top: 1px solid var(--navy-15);
@@ -346,6 +386,25 @@ input[type='text']:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.kana-word-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kana-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+}
+
+.word-reveal {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--navy-55);
 }
 
 .kana-cell {
@@ -480,6 +539,133 @@ input[type='text']:focus {
 
 .message.is-warning {
   color: var(--error);
+}
+
+/* --- tutorial --- */
+
+.tutorial-dialog {
+  border: 1px solid var(--navy-15);
+  border-radius: 20px;
+  padding: 0;
+  width: min(640px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
+  max-height: min(80vh, 720px);
+  background: #fff;
+  color: var(--ink);
+}
+
+.tutorial-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.tutorial-dialog::backdrop {
+  background: rgba(14, 28, 50, 0.6);
+}
+
+.tutorial-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px 0;
+}
+
+.tutorial-tabs {
+  display: flex;
+  margin: 20px 28px 0;
+  width: calc(100% - 56px);
+}
+
+.tutorial-tabs .segmented__option--tab {
+  flex: 1;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.tutorial-panel {
+  padding: 20px 28px 28px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.tutorial-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tutorial-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.tutorial-step p {
+  margin: 4px 0 0;
+  color: var(--navy-75);
+  font-size: 0.92rem;
+}
+
+.tutorial-table-switch {
+  margin-bottom: 16px;
+}
+
+.tutorial-table-wrap {
+  overflow-x: auto;
+}
+
+.kana-table,
+.rules-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.88rem;
+}
+
+.kana-table th,
+.kana-table td,
+.rules-table th,
+.rules-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--navy-15);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.rules-table td:nth-child(1) {
+  white-space: normal;
+  color: var(--navy-75);
+}
+
+.kana-table th {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--navy-55);
+  text-transform: uppercase;
+}
+
+.kana-table td {
+  text-align: center;
+}
+
+.kana-table__kana,
+.kana-table__romaji {
+  display: block;
+}
+
+.kana-table__kana {
+  font-family: var(--font-jp);
+  font-size: 1.3rem;
+  color: var(--navy);
+}
+
+.kana-table__romaji {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--navy-55);
 }
 
 /* --- footer --- */
