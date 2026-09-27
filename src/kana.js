@@ -1,5 +1,5 @@
 // Convierte sílabas romaji (de translit.js) en unidades de kana usando wanakana.
-import * as wanakana from 'https://cdn.jsdelivr.net/npm/wanakana@5.3.1/+esm';
+import * as wanakana from './../vendor/wanakana-5.3.1.js';
 
 // Filas del silabario, con un kana de ejemplo (en hiragana) para mostrar en la UI de filtros.
 export const ROWS = [
@@ -31,9 +31,7 @@ export const ROWS = [
   { id: 'pya', label: 'PYA', example: 'ぴゃ' },
 ];
 
-// Romaji -> fila. "ji"/"zu" quedan del lado de だ (da), que es la única fila que los genera
-// realmente a partir del español ("dime" -> ji,me); ざ (za) queda como fila válida en la UI
-// aunque el texto en español nunca la produzca (za/ze/zo no tienen origen fonético propio).
+// Romaji -> fila.
 const SYLLABLE_ROW = {
   a: 'a', i: 'a', u: 'a', e: 'a', o: 'a',
   ka: 'ka', ki: 'ka', ku: 'ka', ke: 'ka', ko: 'ka',
@@ -47,7 +45,7 @@ const SYLLABLE_ROW = {
   wa: 'wa', wo: 'wa', n: 'wa',
   ga: 'ga', gi: 'ga', gu: 'ga', ge: 'ga', go: 'ga',
   za: 'za', ze: 'za', zo: 'za',
-  da: 'da', ji: 'da', zu: 'da', de: 'da', do: 'da',
+  da: 'da', ji: 'za', zu: 'za', de: 'da', do: 'da',
   ba: 'ba', bi: 'ba', bu: 'ba', be: 'ba', bo: 'ba',
   pa: 'pa', pi: 'pa', pu: 'pa', pe: 'pa', po: 'pa',
   kya: 'kya', kyu: 'kya', kyo: 'kya',

@@ -10,13 +10,19 @@ Web sencilla para practicar la **lectura de kana**. El usuario escribe un texto 
 
 ## 2. Flujo principal
 
-1. El usuario escribe un texto en español (o pide una palabra al azar, ver §5.1).
-2. Elige el silabario: **Hiragana** o **Katakana**.
-3. La app convierte: español → romaji (reglas propias, §3) → kana (wanakana).
-4. Se muestra **solo el kana**. El romaji intermedio queda oculto.
-5. El usuario escribe su transcripción en romaji.
-6. La app corrige **kana por kana**: verde = correcto, rojo = error (se muestra el romaji esperado en ese kana).
-7. Botón "Mostrar solución" para ver el romaji completo.
+La app tiene **dos modos de práctica**, en pestañas:
+
+**Modo A — Palabras al azar (por defecto).** La app elige una ronda de 5 palabras de `words.js` y muestra **solo el kana**. El español **no aparece en ningún momento antes de corregir**: si el usuario viera la palabra en español, adivinaría la lectura sin leer el kana. Tras "Corregir" o "Mostrar solución" se revela la palabra en español bajo cada grupo de kana. Botón "Nueva ronda".
+
+**Modo B — Texto propio.** El usuario pega o escribe un párrafo o texto largo en español; la app muestra su conversión a kana (respetando saltos de línea como separación visual) y el usuario lo transcribe.
+
+Pasos comunes:
+1. Elegir modo y silabario: **Hiragana** o **Katakana**.
+2. La app convierte: español → romaji (reglas propias, §3) → kana (wanakana).
+3. Se muestra el kana. El romaji intermedio queda oculto.
+4. El usuario escribe su transcripción en romaji.
+5. La app corrige **kana por kana**: verde = correcto, rojo = error (se muestra el romaji esperado en ese kana).
+6. Botón "Mostrar solución" para ver el romaji completo (y, en modo A, las palabras en español).
 
 ## 3. Reglas de adaptación español → romaji
 
@@ -58,9 +64,10 @@ Las reglas se aplican en ese orden de prioridad (dígrafos `ch`, `ll`, `rr`, `qu
 
 ## 5. Funcionalidades extra (incluidas en el plan)
 
-### 5.1 Modo palabra al azar
-- Botón "Palabra al azar" que elige una palabra de una lista fija en español (`words.js`, ~200 palabras comunes) y la pasa por el mismo flujo.
-- Permite practicar sin tener que inventar texto.
+### 5.1 Modo palabras al azar
+- Ronda de 5 palabras elegidas de una lista fija en español (`words.js`, ~280 palabras comunes), sin repetir dentro de la ronda.
+- El español se oculta hasta corregir o mostrar la solución (ver §2, modo A).
+- Si el filtro de filas deja menos de 5 palabras válidas, la ronda usa las que haya; si no queda ninguna, se avisa.
 
 ### 5.2 Estadísticas de errores por kana
 - Cada corrección registra aciertos y fallos por kana en `localStorage`.
@@ -70,19 +77,26 @@ Las reglas se aplican en ese orden de prioridad (dígrafos `ch`, `ll`, `rr`, `qu
 
 ### 5.3 Filtro por filas
 - Selector de filas del silabario: あ, か, さ, た, な, は, ま, や, ら, わ, + dakuten (が, ざ, だ, ば, ぱ) + combinaciones (ゃゅょ).
-- Aplica al modo palabra al azar: solo se eligen palabras cuya conversión use únicamente kana de las filas activas.
-- En modo texto libre, los kana fuera del filtro se muestran igual pero atenuados y no cuentan en la corrección ni en las estadísticas.
+- Aplica al modo palabras al azar: solo se eligen palabras cuya conversión use únicamente kana de las filas activas.
+- En modo texto propio, los kana fuera del filtro se muestran igual pero atenuados y no cuentan en la corrección ni en las estadísticas.
+
+### 5.4 Tutorial
+Botón "Tutorial" en la cabecera que abre un panel (`<dialog>` nativo) con tres pestañas:
+- **Cómo funciona:** 4 pasos cortos (elige modo → lee el kana → transcribe en romaji → corrige). Se abre solo en la primera visita (bandera en `localStorage`, con try/catch) y se puede reabrir siempre.
+- **Tabla de kana:** hiragana y katakana con su romaji (gojūon, dakuten, combinaciones ゃゅょ). Desde el propio tutorial se puede consultar en cualquier momento; si se abre con una ronda sin corregir, se muestra un aviso de que consultarla cuenta como ayuda.
+- **Reglas de adaptación:** versión resumida de la tabla §3 con ejemplos (l→r, j→h, tres→toresu, sol→soru…), para entender por qué un kana es el que es.
 
 ## 6. Arquitectura
 
 **Stack:** HTML + CSS + JavaScript (módulos ES) estáticos. Sin framework ni paso de build.
 
-**Dependencia única:** [wanakana](https://github.com/WaniKani/WanaKana) `5.3.1` (versión fija), cargada como módulo desde `cdn.jsdelivr.net`. Se usa `toHiragana` / `toKatakana` para romaji → kana.
+**Dependencia única:** [wanakana](https://github.com/WaniKani/WanaKana) `5.3.1` (versión fija), servida desde el propio repo en `vendor/wanakana-5.3.1.js` (bundle ESM descargado de jsDelivr) para no depender del CDN. Se usa `toHiragana` / `toKatakana` para romaji → kana.
 
 ```
 kana_practice/
 ├── index.html          # UI: entrada, selector de silabario, filtro, práctica, estadísticas
 ├── style.css
+├── vendor/wanakana-5.3.1.js
 ├── src/
 │   ├── app.js          # conecta UI y lógica
 │   ├── translit.js     # español → romaji (tabla §3)
@@ -130,7 +144,7 @@ Artefacto: reporte HTML de Playwright (`npx playwright test` lo regenera), con `
 1. **Base:** `git init`, repo público en GitHub, proyecto en Vercel conectado. `index.html` mínimo desplegado.
 2. **Conversión:** `translit.js` + `kana.js`; mostrar kana en hiragana/katakana.
 3. **Práctica y corrección:** `check.js`, romaji oculto, resaltado por kana, botón de solución.
-4. **Extras:** modo palabra al azar, filtro por filas, estadísticas.
+4. **Extras:** modos (palabras al azar / texto propio), filtro por filas, estadísticas, tutorial.
 5. **Pruebas E2E** y reporte.
 6. **Diseño visual** y adaptación a móvil.
 

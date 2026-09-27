@@ -50,6 +50,8 @@
       </details>
 
       <button type="button" id="btn-generate" data-testid="btn-generate" class="btn btn-primary btn-generate">Generar</button>
+
+      <div id="message" data-testid="message" class="message" role="status" aria-live="polite"></div>
     </section>
 
     <section class="panel practice" aria-labelledby="practice-heading">
@@ -63,6 +65,7 @@
         <div class="field">
           <label for="input-answer">Tu transcripción en romaji</label>
           <input type="text" id="input-answer" data-testid="input-answer" autocomplete="off" />
+          <p class="field-hint">Separa las palabras con espacios. Usa n' antes de vocal o y (p. ej. kon'yu).</p>
         </div>
         <div class="actions">
           <button type="submit" id="btn-check" data-testid="btn-check" class="btn btn-primary">Corregir</button>
@@ -71,16 +74,14 @@
       </form>
       <p id="score" data-testid="score" class="score"></p>
     </section>
+
+    <section class="panel stats-panel" id="stats-panel" data-testid="stats-panel" aria-labelledby="stats-heading">
+      <h2 id="stats-heading">Mis estadísticas</h2>
+      <p class="stats-panel__hint">Kana del silabario activo, ordenados de mayor a menor porcentaje de error.</p>
+      <div id="stats-grid" class="stats-grid"></div>
+      <button type="button" id="btn-reset-stats" data-testid="btn-reset-stats" class="btn btn-ghost">Reiniciar estadísticas</button>
+    </section>
   </main>
-
-  <section class="panel stats-panel" id="stats-panel" data-testid="stats-panel" aria-labelledby="stats-heading">
-    <h2 id="stats-heading">Mis estadísticas</h2>
-    <p class="stats-panel__hint">Kana del silabario activo, ordenados de mayor a menor porcentaje de error.</p>
-    <div id="stats-grid" class="stats-grid"></div>
-    <button type="button" id="btn-reset-stats" data-testid="btn-reset-stats" class="btn btn-ghost">Reiniciar estadísticas</button>
-  </section>
-
-  <div id="message" data-testid="message" class="message" role="status" aria-live="polite"></div>
 
   <footer class="site-footer">
     <p>Hecho con el design system de 2DATO · <a href="https://github.com/TomCardeLo/kana-practice">repositorio en GitHub</a></p>

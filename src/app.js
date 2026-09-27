@@ -39,9 +39,9 @@ const wordBank = words
   })
   .filter(Boolean);
 
-function showMessage(texto) {
+function showMessage(texto, { warning = true } = {}) {
   messageEl.textContent = texto;
-  messageEl.classList.toggle('is-warning', Boolean(texto));
+  messageEl.classList.toggle('is-warning', Boolean(texto) && warning);
 }
 
 function clearMessage() {
@@ -64,13 +64,17 @@ function renderRowChips() {
   }
 }
 
+// Solo actualiza aria-pressed del chip pulsado: reconstruir todos los chips aquí
+// perdería el foco del que se acaba de pulsar. Los chips se reconstruyen solo al
+// cambiar de silabario (los kana de ejemplo cambian).
 function toggleRow(rowId) {
   if (activeRows.has(rowId)) {
     activeRows.delete(rowId);
   } else {
     activeRows.add(rowId);
   }
-  renderRowChips();
+  const boton = rowChipsEl.querySelector(`[data-testid="row-chip-${rowId}"]`);
+  if (boton) boton.setAttribute('aria-pressed', String(activeRows.has(rowId)));
 }
 
 // --- palabra al azar ---
@@ -101,6 +105,11 @@ function generate() {
     return;
   }
   const unidades = toUnits(palabras, silabario);
+  const hayUnidadActiva = unidades.some((palabra) => palabra.some((unidad) => activeRows.has(unidad.row)));
+  if (!hayUnidadActiva) {
+    showMessage('Ningún kana del texto está en las filas elegidas.');
+    return;
+  }
   generated = {
     silabario,
     words: unidades.map((palabra) => palabra.map((unidad) => ({ ...unidad, dimmed: !activeRows.has(unidad.row) }))),
@@ -196,7 +205,8 @@ function handleCheck(evento) {
   stats.record(resultado, generated.silabario);
   clearMessage();
   renderKanaOutput();
-  scoreEl.textContent = `${resultado.correct} / ${resultado.total} correctos`;
+  const sobrantes = resultado.extra > 0 ? ` · ${resultado.extra} sobrantes` : '';
+  scoreEl.textContent = `${resultado.correct} / ${resultado.total} correctos${sobrantes}`;
   renderStats();
 }
 
@@ -219,10 +229,17 @@ function renderStats() {
     const celda = document.createElement('div');
     celda.className = 'stats-cell';
     celda.dataset.testid = 'stats-cell';
-    celda.innerHTML = `
-      <span class="stats-cell__kana">${entrada.kana}</span>
-      <span class="stats-cell__rate">${Math.round(entrada.errorRate * 100)}% error</span>
-    `;
+
+    const kanaSpan = document.createElement('span');
+    kanaSpan.className = 'stats-cell__kana';
+    kanaSpan.textContent = entrada.kana;
+    celda.appendChild(kanaSpan);
+
+    const rateSpan = document.createElement('span');
+    rateSpan.className = 'stats-cell__rate';
+    rateSpan.textContent = `${Math.round(entrada.errorRate * 100)}% error`;
+    celda.appendChild(rateSpan);
+
     statsGridEl.appendChild(celda);
   }
 }
@@ -246,7 +263,7 @@ function handleResetStatsClick() {
   resetStatsLabel('Reiniciar estadísticas');
   stats.reset();
   renderStats();
-  showMessage('Estadísticas reiniciadas.');
+  showMessage('Estadísticas reiniciadas.', { warning: false });
 }
 
 // --- silabario ---

@@ -1,7 +1,7 @@
 // Corrección kana por kana de la respuesta del usuario (en romaji) contra las unidades
 // esperadas, usando alineación por distancia de edición para no desalinear la palabra
 // completa cuando falta o sobra un kana.
-import * as wanakana from 'https://cdn.jsdelivr.net/npm/wanakana@5.3.1/+esm';
+import * as wanakana from './../vendor/wanakana-5.3.1.js';
 
 const YOON_PEQUENOS = new Set(['ゃ', 'ゅ', 'ょ']);
 
@@ -73,10 +73,19 @@ export function checkAnswer(expectedWords, respuesta) {
 
   const esperadoPlano = expectedWords.flat();
   const kanaEsperado = esperadoPlano.map((unidad) => canonizar(wanakana.toHiragana(unidad.romaji)));
-  const hiraganaEscrito = wanakana.toHiragana(normalizada.replace(/ /g, ''));
+  // Convierte cada palabra por separado (no la respuesta entera junta): así una "n" al final
+  // de una palabra no se funde con la vocal inicial de la siguiente ("pan agua" -> ぱん + あぐあ,
+  // no ぱなぐあ).
+  const hiraganaEscrito = normalizada
+    .split(' ')
+    .filter(Boolean)
+    .map((palabra) => wanakana.toHiragana(palabra))
+    .join('');
   const kanaEscrito = tokenizar(hiraganaEscrito);
 
-  const pares = alinear(kanaEsperado, kanaEscrito).filter((par) => par.esperado !== null);
+  const paresCompletos = alinear(kanaEsperado, kanaEscrito);
+  const extra = paresCompletos.filter((par) => par.esperado === null).length;
+  const pares = paresCompletos.filter((par) => par.esperado !== null);
 
   let cursor = 0;
   let correct = 0;
@@ -91,5 +100,5 @@ export function checkAnswer(expectedWords, respuesta) {
     })
   );
 
-  return { words, correct, total: esperadoPlano.length };
+  return { words, correct, total: esperadoPlano.length, extra };
 }

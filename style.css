@@ -54,7 +54,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--green-dark);
   outline-offset: 2px;
 }
 
@@ -205,6 +205,12 @@ button {
   font-weight: 500;
 }
 
+.field-hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--navy-55);
+}
+
 label {
   font-size: 0.9rem;
   color: var(--navy-75);
@@ -261,7 +267,7 @@ input[type='text']:focus {
 }
 
 .segmented__option input:focus-visible + span {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--green-dark);
   outline-offset: 2px;
 }
 
@@ -420,8 +426,7 @@ input[type='text']:focus {
 /* --- estadísticas --- */
 
 .stats-panel {
-  max-width: 1240px;
-  margin: 24px auto 0;
+  grid-column: 1 / -1;
 }
 
 .stats-panel__hint {
@@ -467,16 +472,10 @@ input[type='text']:focus {
 /* --- mensajes --- */
 
 .message {
-  max-width: 1240px;
-  margin: 16px auto 0;
-  padding: 0 16px;
+  margin-top: 16px;
   min-height: 1.4em;
   color: var(--navy-75);
   font-size: 0.9rem;
-}
-
-.message:empty {
-  display: none;
 }
 
 .message.is-warning {

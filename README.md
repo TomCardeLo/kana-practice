@@ -32,4 +32,4 @@ El reporte HTML generado (`playwright-report/`) es el artefacto verificable de c
 
 ## Deploy
 
-Sitio en producción: https://kana-practice.vercel.app
+Sitio en producción: https://kana-practice-green.vercel.app

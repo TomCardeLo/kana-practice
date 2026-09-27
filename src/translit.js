@@ -8,6 +8,7 @@ const VOWELS = new Set(['a', 'e', 'i', 'o', 'u']);
 // con la "g" blanda de ge/gi (que suena como "j").
 const REWRITES = [
   [/qu/g, 'k'],
+  [/q/g, 'k'],
   [/gu([ei])/g, 'G$1'],
   [/ch/g, 'C'],
   [/ll/g, 'y'],
