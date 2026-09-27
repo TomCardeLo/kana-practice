@@ -1,7 +1,7 @@
 // Conecta la UI con la lógica de conversión, corrección y estadísticas.
 import { toSyllables } from './translit.js';
 import { toUnits, rowOf, rowExample, ROWS, syllablesByRow } from './kana.js';
-import { checkAnswer } from './check.js';
+import { checkAnswer, countTypedUnits } from './check.js';
 import * as stats from './stats.js';
 import { words } from './words.js';
 
@@ -290,8 +290,12 @@ function recheckIfNeeded() {
 }
 
 // --- salida de kana ---
+const UNIDADES_COMPACTAS = 24; // más de esta cantidad de unidades kana activa la densidad compacta
+
 function renderKanaOutput() {
   kanaOutputEl.innerHTML = '';
+  const totalUnidades = generated ? generated.words.flat().length : 0;
+  kanaOutputEl.classList.toggle('is-compact', totalUnidades > UNIDADES_COMPACTAS);
   if (!generated) {
     const vacio = document.createElement('p');
     vacio.className = 'kana-output__empty';
@@ -330,6 +334,43 @@ function renderKanaOutput() {
       kanaOutputEl.appendChild(renderWordGroup(palabra, spanish, siguienteResultado));
     });
   }
+  updateCurrentCell();
+}
+
+// Desplaza `celda` a la vista dentro de #kana-output sin mover la página: ajusta solo el
+// scrollTop del contenedor (nunca scrollIntoView sobre el documento). Respeta
+// prefers-reduced-motion (scroll instantáneo) y verifica window.scrollY como red de
+// seguridad ante cualquier efecto lateral inesperado.
+function scrollActiveCellIntoView(celda) {
+  const contenedor = kanaOutputEl;
+  const cellTop = celda.offsetTop;
+  const cellBottom = cellTop + celda.offsetHeight;
+  const vistaSuperior = contenedor.scrollTop;
+  const vistaInferior = vistaSuperior + contenedor.clientHeight;
+  let nuevoScrollTop = null;
+  if (cellTop < vistaSuperior) nuevoScrollTop = cellTop;
+  else if (cellBottom > vistaInferior) nuevoScrollTop = cellBottom - contenedor.clientHeight;
+  if (nuevoScrollTop === null) return;
+
+  const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scrollYAntes = window.scrollY;
+  contenedor.scrollTo({ top: nuevoScrollTop, behavior: prefiereMenosMovimiento ? 'auto' : 'smooth' });
+  if (window.scrollY !== scrollYAntes) window.scrollTo({ top: scrollYAntes, behavior: 'auto' });
+}
+
+// Marca con `is-current` la celda activa (no atenuada) que corresponde a la posición que
+// el usuario lleva escrita, usando la misma tokenización que la corrección (check.js). No
+// se muestra tras corregir o pedir la solución (no debe adelantar si algo está bien o mal).
+function updateCurrentCell() {
+  const anterior = kanaOutputEl.querySelector('.kana-cell.is-current');
+  if (anterior) anterior.classList.remove('is-current');
+  if (!generated || lastCheck || solutionShown) return;
+  const activas = kanaOutputEl.querySelectorAll('.kana-cell:not(.is-dimmed)');
+  const indice = countTypedUnits(inputAnswer.value);
+  const celda = indice < activas.length ? activas[indice] : null;
+  if (!celda) return;
+  celda.classList.add('is-current');
+  scrollActiveCellIntoView(celda);
 }
 
 function renderWordGroup(palabra, spanish, siguienteResultado) {
@@ -654,6 +695,7 @@ btnNewRound.addEventListener('click', newRound);
 btnGenerate.addEventListener('click', generateFromText);
 answerForm.addEventListener('submit', handleCheck);
 inputAnswer.addEventListener('keydown', handleAnswerKeydown);
+inputAnswer.addEventListener('input', updateCurrentCell);
 btnSolution.addEventListener('click', showSolution);
 btnResetStats.addEventListener('click', handleResetStatsClick);
 for (const radio of silabarioRadios) {

@@ -72,6 +72,25 @@ function normalizarNN(palabra) {
   return palabra.replace(/nn(?=[^aeiouy]|$)/g, "n'");
 }
 
+// Cuenta cuántas unidades kana completas lleva escritas el usuario, con la misma
+// normalización/tokenización que checkAnswer (para el indicador «is-current» mientras
+// escribe). No cuenta una letra latina final incompleta (todavía sin convertir a kana):
+// wanakana deja sin tocar la última letra de una palabra en construcción ("ka" -> か,
+// pero "k" queda como "k"), así que se descarta si el fragmento final no es kana.
+export function countTypedUnits(respuesta) {
+  const normalizada = respuesta.toLowerCase().trim().replace(/\s+/g, ' ');
+  if (!normalizada) return 0;
+  const hiraganaEscrito = normalizada
+    .split(' ')
+    .filter(Boolean)
+    .map((palabra) => wanakana.toHiragana(normalizarNN(palabra)))
+    .join('');
+  if (!hiraganaEscrito) return 0;
+  const unidades = tokenizar(hiraganaEscrito);
+  const incompleta = unidades.length > 0 && !wanakana.isKana(hiraganaEscrito.slice(-1));
+  return incompleta ? unidades.length - 1 : unidades.length;
+}
+
 // Corrige la respuesta contra las palabras esperadas ya filtradas por fila activa
 // (array de palabras, cada una un array de unidades { romaji, kana, row }).
 // Devuelve null si la respuesta está vacía (no se corrige nada).

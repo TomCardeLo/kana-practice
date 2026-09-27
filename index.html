@@ -24,6 +24,7 @@
   </header>
 
   <main class="layout">
+    <div class="workspace">
     <section class="panel controls" aria-labelledby="controls-heading">
       <h2 id="controls-heading"><span class="cap-num">01</span> Elige el modo</h2>
 
@@ -77,7 +78,7 @@
       <form id="answer-form" class="answer-form" autocomplete="off">
         <div class="field">
           <label for="input-answer">Tu transcripción en romaji</label>
-          <textarea id="input-answer" data-testid="input-answer" rows="2" autocomplete="off"></textarea>
+          <textarea id="input-answer" data-testid="input-answer" rows="3" autocomplete="off"></textarea>
           <p class="field-hint">Separa las palabras con espacios. Usa n' antes de vocal o y (p. ej. kon'yu). Ctrl/Cmd+Enter corrige; Enter hace un salto de línea.</p>
         </div>
         <div class="actions">
@@ -87,6 +88,8 @@
       </form>
       <p id="score" data-testid="score" class="score"></p>
     </section>
+
+    </div>
 
     <section class="panel stats-panel" id="stats-panel" data-testid="stats-panel" aria-labelledby="stats-heading">
       <h2 id="stats-heading">Mis estadísticas</h2>
@@ -135,7 +138,7 @@
   </dialog>
 
   <footer class="site-footer">
-    <p>Hecho con el design system de 2DATO · <a href="https://github.com/TomCardeLo/kana-practice">repositorio en GitHub</a></p>
+    <p><a href="https://github.com/TomCardeLo/kana-practice">Código en GitHub</a></p>
   </footer>
 
   <script type="module" src="src/app.js"></script>
