@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kana Practice</title>
+  <meta name="description" content="Practica la lectura de hiragana y katakana a partir de texto en español, con corrección kana por kana y estadísticas de error." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fafaf7'/%3E%3Ctext x='30' y='44' font-family='sans-serif' font-size='34' text-anchor='middle' fill='%230e1c32'%3E%E3%81%8B%3C/text%3E%3Ccircle cx='50' cy='50' r='6' fill='%2306aa78'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header grid-bg">
+    <div class="site-header__inner">
+      <p class="eyebrow">Práctica de kana</p>
+      <h1 class="site-title">Kana Practice<span class="punto" aria-hidden="true"></span></h1>
+      <p class="lede">Escribe un texto en español, léelo convertido a kana y transcríbelo de vuelta en romaji. Sin traducción, sin kanji: solo lectura.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel controls" aria-labelledby="controls-heading">
+      <h2 id="controls-heading"><span class="cap-num">01</span> Escribe</h2>
+
+      <div class="field">
+        <label for="input-text">Texto en español</label>
+        <textarea id="input-text" data-testid="input-text" rows="4" placeholder="Escribe una frase o una palabra en español..."></textarea>
+      </div>
+      <button type="button" id="btn-random" data-testid="btn-random" class="btn btn-ghost">Palabra al azar</button>
+
+      <div class="field syllabary-select">
+        <span class="field-label"><span class="cap-num">02</span> Elige el silabario</span>
+        <div class="segmented" role="radiogroup" aria-label="Silabario">
+          <label class="segmented__option">
+            <input type="radio" name="silabario" value="hiragana" data-testid="syllabary-hiragana" checked />
+            <span>Hiragana</span>
+          </label>
+          <label class="segmented__option">
+            <input type="radio" name="silabario" value="katakana" data-testid="syllabary-katakana" />
+            <span>Katakana</span>
+          </label>
+        </div>
+      </div>
+
+      <details class="row-filter">
+        <summary>Filtrar por filas</summary>
+        <div id="row-chips" class="chip-grid"></div>
+      </details>
+
+      <button type="button" id="btn-generate" data-testid="btn-generate" class="btn btn-primary btn-generate">Generar</button>
+    </section>
+
+    <section class="panel practice" aria-labelledby="practice-heading">
+      <h2 id="practice-heading"><span class="cap-num">03</span> Transcribe</h2>
+
+      <div id="kana-output" data-testid="kana-output" class="kana-output" aria-live="polite">
+        <p class="kana-output__empty">Escribe un texto y pulsa «Generar» para ver el kana aquí.</p>
+      </div>
+
+      <form id="answer-form" class="answer-form" autocomplete="off">
+        <div class="field">
+          <label for="input-answer">Tu transcripción en romaji</label>
+          <input type="text" id="input-answer" data-testid="input-answer" autocomplete="off" />
+        </div>
+        <div class="actions">
+          <button type="submit" id="btn-check" data-testid="btn-check" class="btn btn-primary">Corregir</button>
+          <button type="button" id="btn-solution" data-testid="btn-solution" class="btn btn-ghost">Mostrar solución</button>
+        </div>
+      </form>
+      <p id="score" data-testid="score" class="score"></p>
+    </section>
+  </main>
+
+  <section class="panel stats-panel" id="stats-panel" data-testid="stats-panel" aria-labelledby="stats-heading">
+    <h2 id="stats-heading">Mis estadísticas</h2>
+    <p class="stats-panel__hint">Kana del silabario activo, ordenados de mayor a menor porcentaje de error.</p>
+    <div id="stats-grid" class="stats-grid"></div>
+    <button type="button" id="btn-reset-stats" data-testid="btn-reset-stats" class="btn btn-ghost">Reiniciar estadísticas</button>
+  </section>
+
+  <div id="message" data-testid="message" class="message" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <p>Hecho con el design system de 2DATO · <a href="https://github.com/TomCardeLo/kana-practice">repositorio en GitHub</a></p>
+  </footer>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
