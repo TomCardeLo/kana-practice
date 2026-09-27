@@ -85,10 +85,9 @@ export function countTypedUnits(respuesta) {
     .filter(Boolean)
     .map((palabra) => wanakana.toHiragana(normalizarNN(palabra)))
     .join('');
-  if (!hiraganaEscrito) return 0;
-  const unidades = tokenizar(hiraganaEscrito);
-  const incompleta = unidades.length > 0 && !wanakana.isKana(hiraganaEscrito.slice(-1));
-  return incompleta ? unidades.length - 1 : unidades.length;
+  // Las letras latinas del final son una sílaba a medio escribir (k, sh, ts…): no cuentan.
+  const completo = hiraganaEscrito.replace(/[^぀-ヿ]+$/, '');
+  return completo ? tokenizar(completo).length : 0;
 }
 
 // Corrige la respuesta contra las palabras esperadas ya filtradas por fila activa
