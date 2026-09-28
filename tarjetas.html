@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarjetas de kana · Kana Practice</title>
+  <meta name="description" content="Minijuego de tarjetas para memorizar hiragana y katakana: sale un kana suelto y escribes su lectura en romaji contra el reloj." />
+  <link rel="canonical" href="https://kana-practice-green.vercel.app/tarjetas.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kana-practice-green.vercel.app/tarjetas.html" />
+  <meta property="og:title" content="Tarjetas de kana · Kana Practice" />
+  <meta property="og:description" content="Minijuego de tarjetas para memorizar hiragana y katakana: sale un kana suelto y escribes su lectura en romaji contra el reloj." />
+  <meta property="og:image" content="https://kana-practice-green.vercel.app/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Hoja de fuentes sin bloquear el render: se muestra con las fuentes del sistema y se cambia al cargar.
+       La CSP de vercel.json permite este onload por su hash sha256: si cambia el texto del atributo, actualizar el hash. -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header grid-bg">
+    <div class="site-header__inner">
+      <div class="site-header__top">
+        <p class="eyebrow">Práctica de kana</p>
+        <div class="header-actions">
+          <a href="index.html" data-testid="link-reading" class="btn btn-ghost">Lectura</a>
+        </div>
+      </div>
+      <h1 class="site-title">Tarjetas de kana</h1>
+      <p class="lede">Sale un kana suelto y escribes su lectura en romaji. Tres vidas por ronda, tiempo por tarjeta y tu mejor marca guardada en este navegador.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel cards-config" id="cards-config" data-testid="cards-config" aria-label="Configuración de la ronda">
+      <h2><span class="cap-num">01</span> Configura la ronda</h2>
+
+      <div class="cards-config-grid">
+        <div class="cards-config-col">
+          <h3 class="cards-config-col__title">Silabario</h3>
+          <div class="segmented" role="radiogroup" aria-label="Silabario">
+            <label class="segmented__option is-checked">
+              <input type="radio" name="cards-silabario" value="hiragana" data-testid="cards-syllabary-hiragana" checked />
+              <span>Hiragana</span>
+            </label>
+            <label class="segmented__option">
+              <input type="radio" name="cards-silabario" value="katakana" data-testid="cards-syllabary-katakana" />
+              <span>Katakana</span>
+            </label>
+            <label class="segmented__option">
+              <input type="radio" name="cards-silabario" value="ambos" data-testid="cards-syllabary-ambos" />
+              <span>Ambos</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="cards-config-col">
+          <h3 class="cards-config-col__title">Mazo</h3>
+          <div class="segmented" role="radiogroup" aria-label="Mazo">
+            <label class="segmented__option is-checked">
+              <input type="radio" name="cards-mazo" value="basicos" data-testid="cards-deck-basicos" checked />
+              <span>Básicos (46)</span>
+            </label>
+            <label class="segmented__option">
+              <input type="radio" name="cards-mazo" value="todos" data-testid="cards-deck-todos" />
+              <span>Todos (102)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="cards-config-col">
+          <h3 class="cards-config-col__title">Tamaño de la ronda</h3>
+          <div class="segmented" role="radiogroup" aria-label="Tamaño de la ronda">
+            <label class="segmented__option">
+              <input type="radio" name="cards-size" value="5" data-testid="cards-size-5" />
+              <span>5</span>
+            </label>
+            <label class="segmented__option is-checked">
+              <input type="radio" name="cards-size" value="10" data-testid="cards-size-10" checked />
+              <span>10</span>
+            </label>
+            <label class="segmented__option">
+              <input type="radio" name="cards-size" value="20" data-testid="cards-size-20" />
+              <span>20</span>
+            </label>
+            <label class="segmented__option">
+              <input type="radio" name="cards-size" value="full" data-testid="cards-size-full" />
+              <span>Full (<span id="size-full-count">46</span>)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" id="btn-start" data-testid="btn-start" class="btn btn-primary btn-generate">Empezar</button>
+    </section>
+
+    <section class="panel cards-game" id="cards-game" data-testid="cards-game" aria-label="Ronda de tarjetas" hidden>
+      <div class="cards-game__top">
+        <p class="progress" id="progress" data-testid="progress"></p>
+        <div class="lives" id="lives" data-testid="lives" data-lives="3" role="img" aria-label="Vidas: 3 de 3"></div>
+        <p class="card-timer" id="card-timer" data-testid="card-timer">0.0 s</p>
+      </div>
+
+      <div class="card-kana" id="card-kana" data-testid="card-kana" lang="ja"></div>
+
+      <form id="card-form" class="card-form" autocomplete="off">
+        <div class="field">
+          <label for="card-input">Romaji</label>
+          <input type="text" id="card-input" data-testid="card-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+        </div>
+        <p id="card-feedback" data-testid="card-feedback" class="card-feedback" role="status" aria-live="polite"></p>
+        <div class="actions">
+          <button type="button" id="btn-skip" data-testid="btn-skip" class="btn btn-ghost">No la sé</button>
+          <button type="button" id="btn-quit" data-testid="btn-quit" class="btn btn-ghost">Abandonar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel cards-summary" id="cards-summary" data-testid="cards-summary" aria-label="Resumen de la ronda" hidden>
+      <h2 id="summary-title" tabindex="-1"></h2>
+      <p id="summary-correct" data-testid="summary-correct" class="summary-correct"></p>
+      <p>Tiempo total: <span id="summary-total-time" data-testid="summary-total-time"></span></p>
+      <p>Media por acierto: <span id="summary-avg-time" data-testid="summary-avg-time"></span></p>
+
+      <div class="summary-block">
+        <h3>Más lentas</h3>
+        <ul id="summary-slowest" data-testid="summary-slowest"></ul>
+      </div>
+
+      <div class="summary-block">
+        <h3>Errores</h3>
+        <ul id="summary-errors" data-testid="summary-errors"></ul>
+      </div>
+
+      <p id="summary-record" data-testid="summary-record" class="summary-record"></p>
+
+      <div class="actions">
+        <button type="button" id="btn-again" data-testid="btn-again" class="btn btn-primary">Otra ronda</button>
+        <button type="button" id="btn-config" data-testid="btn-config" class="btn btn-ghost">Cambiar configuración</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="https://github.com/TomCardeLo/kana-practice">Código en GitHub</a></p>
+  </footer>
+
+  <script type="module" src="src/cards.js"></script>
+</body>
+</html>

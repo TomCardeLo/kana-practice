@@ -90,6 +90,19 @@ export function countTypedUnits(respuesta) {
   return completo ? tokenizar(completo).length : 0;
 }
 
+// Corrige una sola lectura (usada por el minijuego de tarjetas): compara lo escrito contra
+// el romaji esperado con la misma normalización que checkAnswer (minúsculas, "nn" -> ん,
+// variantes kunrei/hepburn vía wanakana). Espacios internos siempre son incorrectos: una
+// tarjeta es una sola sílaba, no una frase. "n" y "nn" llegan aquí al mismo resultado (ん)
+// sin necesidad de un caso especial: normalizarNN ya reduce ambas formas antes de convertir.
+export function isCorrectReading(romaji, typed) {
+  const escrito = String(typed).toLowerCase().trim();
+  if (!escrito || /\s/.test(escrito)) return false;
+  const kanaEscrito = canonizar(wanakana.toHiragana(normalizarNN(escrito)));
+  const kanaEsperado = canonizar(wanakana.toHiragana(romaji));
+  return kanaEscrito === kanaEsperado;
+}
+
 // Corrige la respuesta contra las palabras esperadas ya filtradas por fila activa
 // (array de palabras, cada una un array de unidades { romaji, kana, row }).
 // Devuelve null si la respuesta está vacía (no se corrige nada).

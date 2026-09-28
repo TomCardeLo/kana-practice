@@ -28,6 +28,11 @@
   box-sizing: border-box;
 }
 
+/* Que ningún display de componente anule el atributo hidden. */
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -108,6 +113,7 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
   border-radius: 999px;
   padding: 12px 22px;
   font-size: 14px;
@@ -116,6 +122,13 @@ button {
   cursor: pointer;
   text-decoration: none;
   transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .btn-primary {
@@ -782,4 +795,146 @@ input[type='text']:focus {
     transition: none !important;
     animation: none !important;
   }
+}
+
+/* --- minijuego de tarjetas (tarjetas.html) --- */
+
+.cards-config-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 768px) {
+  .cards-config-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.cards-config-col__title {
+  font-size: 0.95rem;
+  margin: 0 0 12px;
+  color: var(--navy);
+}
+
+/* Estos grupos tienen más opciones que los de index.html y pueden partirse en dos líneas
+   en pantallas angostas: con border-radius de píldora completa (.segmented) una segunda
+   línea queda envuelta en una forma rara, así que aquí se usa un radio más discreto. */
+.cards-config .segmented {
+  flex-wrap: wrap;
+  border-radius: 16px;
+}
+
+.cards-config .segmented__option {
+  border-radius: 10px;
+}
+
+.cards-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cards-game__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--navy-55);
+}
+
+.lives {
+  font-size: 1.3rem;
+  letter-spacing: 4px;
+  color: var(--error);
+}
+
+.card-kana {
+  font-family: var(--font-jp);
+  font-weight: 500;
+  font-size: 4.5rem;
+  line-height: 1.1;
+  color: var(--navy);
+  margin: 32px 0;
+}
+
+@media (min-width: 768px) {
+  .card-kana {
+    font-size: 6rem;
+  }
+}
+
+.card-form {
+  width: 100%;
+  max-width: 360px;
+}
+
+.card-form .field {
+  align-items: center;
+  text-align: center;
+}
+
+#card-input {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.card-feedback {
+  min-height: 1.4em;
+  margin: 12px 0 0;
+  font-weight: 500;
+  color: var(--error);
+}
+
+.cards-summary {
+  text-align: center;
+}
+
+.summary-correct {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 4px 0;
+}
+
+.summary-block {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.summary-block h3 {
+  font-size: 0.9rem;
+  color: var(--navy-55);
+  margin: 0 0 8px;
+}
+
+.summary-block ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--navy-75);
+}
+
+.summary-record {
+  margin-top: 20px;
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.cards-summary .actions,
+.cards-game .actions {
+  justify-content: center;
+  margin-top: 24px;
 }

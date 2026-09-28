@@ -61,6 +61,19 @@ const SYLLABLE_ROW = {
   pya: 'pya', pyu: 'pya', pyo: 'pya',
 };
 
+// Filas de los kana "básicos" (a-n, sin dakuten/handakuten ni combinados きゃ...) para el
+// minijuego de tarjetas.
+const BASIC_ROWS = new Set(['a', 'ka', 'sa', 'ta', 'na', 'ha', 'ma', 'ya', 'ra', 'wa']);
+
+// Mazo de tarjetas { romaji, kana, silabario } para el minijuego de tarjetas.js, construido
+// desde SYLLABLE_ROW (sin lista nueva a mano): "basicos" son las filas a-n, "todos" el
+// silabario completo.
+export function cardDeck(silabario, mazo) {
+  return Object.entries(SYLLABLE_ROW)
+    .filter(([, rowId]) => mazo === 'todos' || BASIC_ROWS.has(rowId))
+    .map(([romaji]) => ({ romaji, kana: silabaAKana(romaji, silabario), silabario }));
+}
+
 // Fila a la que pertenece una sílaba romaji ("n" y "wo" viven en la fila わ).
 export function rowOf(romaji) {
   return SYLLABLE_ROW[romaji] || 'a';

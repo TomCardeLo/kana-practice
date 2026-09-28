@@ -48,6 +48,21 @@ del otro.
 </tr>
 </table>
 
+## Tarjetas: para quien empieza
+
+La página [**Tarjetas**](https://kana-practice-green.vercel.app/tarjetas.html) es un minijuego para
+aprender los kana sueltos, antes de leer palabras:
+
+- Sale un kana al azar y escribes su lectura en romaji; si es correcta, pasa sola a la siguiente.
+- Eliges el silabario (hiragana, katakana o ambos), el mazo (46 básicos o los 102 con dakuten y
+  combinados como きゃ) y el tamaño de la ronda (5, 10, 20 o el mazo completo).
+- Tienes 3 vidas por ronda: cada error o «No la sé» resta una y muestra la lectura correcta.
+- Se mide el tiempo de cada tarjeta; al final ves tu media por acierto, las tarjetas más lentas,
+  tus errores y tu récord para esa configuración. Los aciertos y errores también suman a «Mis
+  estadísticas».
+
+<img src="docs/screenshots/cards.png" width="560" alt="Tarjeta de katakana en juego, con el progreso, las tres vidas y el tiempo de la tarjeta">
+
 ## De español a kana
 
 La app no traduce: reescribe cada palabra en español como una secuencia de sílabas romaji
@@ -147,9 +162,11 @@ BASE_URL=https://kana-practice-green.vercel.app npx playwright test
 
 ```
 index.html          Marcado y estructura de la página
+tarjetas.html       Minijuego de tarjetas
 style.css            Estilos
 src/
   app.js             Conecta la UI con el resto de módulos
+  cards.js           UI del minijuego de tarjetas
   translit.js         Español -> sílabas romaji canónicas
   kana.js             Sílabas romaji -> unidades de kana (usa wanakana)
   check.js            Corrección kana por kana
@@ -159,6 +176,7 @@ vendor/
   wanakana-5.3.1.js    Dependencia vendorizada
 tests/e2e/           Suite Playwright
 docs/screenshots/    Capturas usadas en este README
+scripts/             Generador de favicons y og.png (npm run assets)
 ```
 
 ## Licencia

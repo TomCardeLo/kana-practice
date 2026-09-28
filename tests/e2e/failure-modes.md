@@ -37,3 +37,18 @@
 26. Ninguna palabra cumple el filtro y la app se queda colgada en un bucle.
 27. En texto libre, kana fuera del filtro cuentan en la corrección o en las estadísticas.
 28. Filtro sin filas seleccionadas no avisa.
+
+## Minijuego de tarjetas (tarjetas.html)
+29. Una tarjeta se repite dentro de la misma ronda (o «Full» no recorre el mazo completo).
+30. «Básicos» incluye dakuten o combinados, o «Todos» omite alguno de los 102 kana (ぢ/づ se fusionan con じ/ず).
+31. «Ambos» solo muestra un silabario, o una tarjeta se registra en el silabario equivocado de las estadísticas.
+32. Una variante válida (si, ti, tu, hu, zi, sya, tya, zya, nn) se marca como error en una tarjeta.
+33. Una sílaba a medio escribir (`k`, `sh`, `ky`) cuenta como error o avanza la tarjeta; `ki` se acepta ante きゃ, o `o` se acepta ante を.
+34. Un error no resta vida, resta más de una, o la ronda sigue con 0 vidas.
+35. Tras un error no se muestra el romaji correcto, o el campo acepta texto mientras se muestra y ese texto cuenta para la tarjeta siguiente.
+36. El tiempo incluye la pausa de la respuesta tras un error, o es negativo/NaN.
+37. El récord se guarda con una ronda perdida, o una ronda más lenta sobrescribe un récord mejor.
+38. Récords de combinaciones distintas (silabario, mazo, tamaño) se pisan entre sí.
+39. Enter con el campo vacío cuenta como error.
+40. Sin localStorage, el minijuego no arranca.
+41. Empezar otra ronda conserva vidas, progreso o tiempos de la anterior.

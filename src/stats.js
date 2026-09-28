@@ -3,6 +3,7 @@
 // funcionando sin guardar: toda lectura/escritura va protegida con try/catch.
 
 const KEY = 'kana-practice:stats:v1';
+const BEST_KEY = 'kana-practice:cards-best:v1';
 
 function vacio() {
   return { hiragana: {}, katakana: {} };
@@ -49,6 +50,36 @@ export function record(results, silabario) {
 
 export function reset() {
   escribir(vacio());
+}
+
+// Mejor tiempo medio por tarjeta (ms) del minijuego de tarjetas, por combinación
+// silabario+mazo+tamaño. Misma protección try/catch que el resto del módulo: sin
+// localStorage, siempre devuelve null y saveBestTime no falla.
+export function loadBestTime(clave) {
+  try {
+    const crudo = localStorage.getItem(BEST_KEY);
+    const datos = crudo ? JSON.parse(crudo) : {};
+    const valor = datos[clave];
+    return typeof valor === 'number' ? valor : null;
+  } catch {
+    return null;
+  }
+}
+
+// Guarda ms como récord de `clave` si es mejor que el anterior (o si no había ninguno).
+// Devuelve true si quedó guardado un récord nuevo.
+export function saveBestTime(clave, ms) {
+  const anterior = loadBestTime(clave);
+  if (anterior !== null && ms >= anterior) return false;
+  try {
+    const crudo = localStorage.getItem(BEST_KEY);
+    const datos = crudo ? JSON.parse(crudo) : {};
+    datos[clave] = ms;
+    localStorage.setItem(BEST_KEY, JSON.stringify(datos));
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 // Kana del silabario indicado, ordenados por porcentaje de error descendente.
