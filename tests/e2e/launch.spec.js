@@ -37,3 +37,29 @@ test('ruta inexistente responde 404 con página propia y enlace al inicio', asyn
   await page.getByTestId('link-home').click();
   await expect(page.getByTestId('row-chip-a')).toBeAttached();
 });
+
+test('cabeceras de seguridad presentes y la CSP no bloquea nada de la app', async ({ page }) => {
+  test.skip(!process.env.BASE_URL, 'Las cabeceras las pone Vercel (vercel.json), no el servidor local');
+  const violaciones = [];
+  page.on('console', (msg) => {
+    if (msg.text().includes('Content Security Policy')) violaciones.push(msg.text());
+  });
+  await page.addInitScript(() => localStorage.setItem('kana-practice:tutorial-seen:v1', '1'));
+  const res = await page.goto('/');
+  const h = res.headers();
+  expect(h['content-security-policy']).toContain("frame-ancestors 'none'");
+  expect(h['x-frame-options']).toBe('DENY');
+  expect(h['x-content-type-options']).toBe('nosniff');
+  expect(h['referrer-policy']).toBe('strict-origin-when-cross-origin');
+  expect(h['permissions-policy']).toContain('camera=()');
+
+  // El onload permitido por hash debe haber activado la hoja de Google Fonts.
+  await expect(page.locator('link[href*="fonts.googleapis.com"][rel="stylesheet"]').first()).toHaveAttribute('media', 'all');
+  await page.evaluate(() => document.fonts.ready);
+  expect(await page.evaluate(() => document.fonts.check('16px Inter'))).toBe(true);
+
+  // La app sigue funcionando: se genera una ronda de kana.
+  await page.getByTestId('btn-new-round').click();
+  await expect(page.getByTestId('kana-output').locator('.kana-output__empty')).toHaveCount(0);
+  expect(violaciones).toEqual([]);
+});
