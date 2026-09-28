@@ -2,7 +2,8 @@
   "name": "kana-practice",
   "private": true,
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "assets": "node scripts/gen-assets.js"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0"
