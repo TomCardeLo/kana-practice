@@ -102,10 +102,9 @@ const input = (page) => page.getByTestId('card-input');
 const feedback = (page) => page.getByTestId('card-feedback');
 const summary = (page) => page.getByTestId('cards-summary');
 
-// Responde una tarjeta. En ん una sola «n» espera a la segunda «n» o a Enter.
+// Responde una tarjeta: el acierto se acepta al instante, sin Enter.
 async function answerCard(page, text) {
   await input(page).fill(text);
-  if (text === 'n') await input(page).press('Enter');
 }
 
 async function readKana(page) {
@@ -487,29 +486,57 @@ async function advanceToN(page) {
   throw new Error('ん no apareció antes de la última tarjeta en 5 rondas');
 }
 
-test('ん: «nn» tecleado letra a letra acierta y la tarjeta siguiente arranca vacía (FM 32, 33, 35)', async ({ page }) => {
+test('ん: una sola «n» acierta al instante, sin Enter (FM 32)', async ({ page }) => {
   await start(page, { size: 'full' });
   const pos = await advanceToN(page);
-  // Una sola «n» todavía no cuenta: se espera la segunda o Enter.
-  await input(page).pressSequentially('n');
-  await expectUntouched(page, pos, 46);
   await input(page).pressSequentially('n');
   await expect(progress(page)).toHaveText(`${pos + 1}/46`);
   await expect(input(page)).toHaveValue('');
   await expect(input(page)).toBeEnabled();
   await expect(lives(page)).toHaveAttribute('data-lives', '3');
+  await expect(feedback(page)).toBeEmpty();
   expect((await readJson(page, STATS_KEY)).hiragana['ん']).toEqual({ ok: 1, fail: 0 });
 });
 
-test('ん: «n» + Enter también es acierto (FM 32)', async ({ page }) => {
+test('ん: con «nn» la segunda «n» cae en la tarjeta siguiente y se tolera (FM 32, 35)', async ({ page }) => {
   await start(page, { size: 'full' });
   const pos = await advanceToN(page);
-  await input(page).pressSequentially('n');
-  await input(page).press('Enter');
+  await input(page).pressSequentially('nn');
   await expect(progress(page)).toHaveText(`${pos + 1}/46`);
-  await expect(input(page)).toHaveValue('');
+  await expect(input(page)).toHaveValue('n');
+  // La «n» sobrante no avanza ni resta vida; la lectura de la tarjeta siguiente acierta igual
+  // (incluida な: «nna»).
+  const siguiente = await readKana(page);
+  await input(page).pressSequentially(hepburn(siguiente));
+  await expect(progress(page)).toHaveText(`${pos + 2}/46`);
   await expect(lives(page)).toHaveAttribute('data-lives', '3');
-  await expect(feedback(page)).toBeEmpty();
+  const hira = (await readJson(page, STATS_KEY)).hiragana;
+  expect(hira['ん']).toEqual({ ok: 1, fail: 0 });
+  expect(hira[siguiente]).toEqual({ ok: 1, fail: 0 });
+});
+
+test('la «n» sobrante solo se tolera justo después de ん (FM 33)', async ({ page }) => {
+  await start(page, { size: 'full' });
+  // Avanza (sin pasar por ん) hasta una tarjeta cuya lectura no empiece por «n».
+  let pos = 1;
+  let kana = await readKana(page);
+  while (hepburn(kana).startsWith('n')) {
+    if (kana === 'ん') {
+      // Fallar ん (en vez de acertarla) evita que la tarjeta siguiente tolere la «n».
+      await page.getByTestId('btn-skip').click();
+      await page.clock.runFor(1200);
+    } else {
+      await answerCard(page, hepburn(kana));
+    }
+    pos += 1;
+    await expect(progress(page)).toHaveText(`${pos}/46`);
+    kana = await readKana(page);
+  }
+  const vidas = String(await lives(page).getAttribute('data-lives'));
+  await input(page).pressSequentially(`n${hepburn(kana)}`);
+  await expectUntouched(page, pos, 46, Number(vidas));
+  await input(page).press('Enter');
+  await expect(lives(page)).toHaveAttribute('data-lives', String(Number(vidas) - 1));
 });
 
 test('la media y el récord cuentan solo los aciertos: un «No la sé» rápido no mejora la media (FM 36, 37)', async ({ page }) => {

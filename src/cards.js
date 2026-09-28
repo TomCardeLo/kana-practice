@@ -94,6 +94,7 @@ function buildRound(config) {
     errors: [],
     respuestas: [], // { kana, romaji, ok, ms }
     cardStartTime: 0,
+    nSobrante: false, // la tarjeta anterior fue ん (ver esLecturaCorrecta)
   };
 }
 
@@ -168,13 +169,25 @@ function goNext() {
   }
 }
 
+// ん se acepta con una sola "n". Quien escribe "nn" deja la segunda "n" en la tarjeta
+// siguiente: ahí se tolera una "n" inicial sobrante ("nka" vale para か, "nna" para な).
+// ponytail: si la siguiente es ン (modo «Ambos»), esa "n" sobrante ya la responde.
+function esLecturaCorrecta(valor) {
+  const romaji = currentCard().romaji;
+  if (isCorrectReading(romaji, valor)) return true;
+  const escrito = valor.trim();
+  return round.nSobrante && /^n/i.test(escrito) && isCorrectReading(romaji, escrito.slice(1));
+}
+
 function handleCorrect() {
+  round.nSobrante = currentCard().romaji === 'n';
   registrarRespuesta(currentCard(), true);
   round.correctCount += 1;
   goNext();
 }
 
 function handleError() {
+  round.nSobrante = false;
   const tarjeta = currentCard();
   registrarRespuesta(tarjeta, false);
   round.errors.push({ kana: tarjeta.kana, romaji: tarjeta.romaji });
@@ -198,11 +211,7 @@ function handleError() {
 // (isCorrectReading devuelve false) no hace nada.
 function handleInput() {
   if (!round || cardInput.disabled) return;
-  const tarjeta = currentCard();
-  // ん admite "n" y "nn": con una sola "n" se espera a la segunda (o a Enter); si no, la
-  // segunda "n" caería en la tarjeta siguiente.
-  if (tarjeta.romaji === 'n' && cardInput.value.trim().toLowerCase() === 'n') return;
-  if (isCorrectReading(tarjeta.romaji, cardInput.value)) {
+  if (esLecturaCorrecta(cardInput.value)) {
     handleCorrect();
   }
 }
@@ -212,7 +221,7 @@ function handleSubmit(evento) {
   if (!round || cardInput.disabled) return;
   const valor = cardInput.value.trim();
   if (!valor) return; // campo vacío: no cuenta como error
-  if (isCorrectReading(currentCard().romaji, valor)) {
+  if (esLecturaCorrecta(valor)) {
     handleCorrect();
   } else {
     handleError();
