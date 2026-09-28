@@ -4,3 +4,4 @@ test-results/
 .vercel
 .DS_Store
 plan.md
+artifacts/
