@@ -53,7 +53,7 @@ async function ogImage(browser) {
 }
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ channel: 'chrome' });
   try {
     fs.writeFileSync(path.join(ROOT, 'apple-touch-icon.png'), await icon(browser, 180));
     fs.writeFileSync(path.join(ROOT, 'favicon.ico'), pngToIco(await icon(browser, 32)));

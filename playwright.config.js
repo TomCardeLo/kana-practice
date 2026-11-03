@@ -11,6 +11,8 @@ module.exports = defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: [['html', { open: 'never' }], ['list']],
   use: {
+    // Chrome del sistema (se actualiza solo), nunca el Chromium que descarga Playwright: si falta, falla visible.
+    channel: 'chrome',
     baseURL: BASE_URL ?? `http://127.0.0.1:${PORT}`,
     trace: 'retain-on-failure',
     screenshot: 'on',

@@ -137,8 +137,7 @@ Las pruebas viven en `tests/e2e/` y usan Playwright:
 
 ```bash
 npm install
-npx playwright install chromium
-npx playwright test
+npx playwright test   # usa el Google Chrome instalado (channel: chrome)
 ```
 
 El reporte HTML generado (`playwright-report/index.html`) es el artefacto verificable de cada
