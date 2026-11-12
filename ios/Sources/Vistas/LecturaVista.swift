@@ -29,6 +29,7 @@ struct LecturaVista: View {
     }
 
     @Environment(\.modelContext) private var contexto
+    @Environment(Sincronizador.self) private var sincronizador
     @Environment(\.horizontalSizeClass) private var anchura
     @State private var modo = Modo.azar
     @State private var silabario = Silabario.hiragana
@@ -327,6 +328,7 @@ struct LecturaVista: View {
             } catch {
                 avisar("No se pudo guardar el progreso: \(error.localizedDescription)")
             }
+            Task { await sincronizador.sincronizar() }
         }
     }
 }

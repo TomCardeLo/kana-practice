@@ -20,6 +20,75 @@ final class KanaUITests: XCTestCase {
         super.tearDown()
     }
 
+    // MARK: - Sincronización con Deepy (modos de fallo Y1–Y6 de Sources/Modelo/Sincronizacion.swift)
+    // Requieren el Deepy local de ios/scripts/servidor_deepy.mjs (lo levanta e2e.sh). El iPhone sube y el
+    // iPad baja, como dos equipos reales: e2e.sh corre el iPhone antes que el iPad contra el mismo servidor.
+
+    private static let servidor = "http://127.0.0.1:3108"
+    private var esIPad: Bool { UIDevice.current.userInterfaceIdiom == .pad }
+
+    private func relanzarConServidor(_ url: String = servidor) {
+        app.terminate()
+        app.launchArguments = ["-uitest", "-uitest-conexion"]
+        app.launchEnvironment["KANA_BASE_URL"] = url
+        app.launch()
+    }
+
+    private func escribirPassword(_ password: String) {
+        let campo = el("conexion-password")
+        XCTAssertTrue(campo.waitForExistence(timeout: 10), "No apareció la hoja para conectar con Deepy")
+        campo.tap()
+        campo.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 30) + password)
+        toca("btn-conectar")
+    }
+
+    private func esperarConectado() {
+        esperar(el("conexion-password"), NSPredicate(format: "exists == false"), timeout: 20)
+    }
+
+    /// Y4 y conexión: sin servidor y con contraseña mala se avisa; con la buena conecta y sube una ronda (Y1).
+    func testSincronizacionSubeDesdeElIPhone() throws {
+        try XCTSkipIf(esIPad, "El iPhone sube; el iPad baja en testSincronizacionBajaEnElIPad")
+        relanzarConServidor("http://127.0.0.1:9")  // nadie escucha ahí
+        escribirPassword("password-de-prueba")
+        XCTAssertTrue(el("conexion-error").waitForExistence(timeout: 40))
+        XCTAssertTrue(el("conexion-error").label.hasPrefix("Sin conexión"), el("conexion-error").label)
+
+        relanzarConServidor()
+        escribirPassword("no-es-la-buena")
+        esperarLabel("conexion-error", "Contraseña incorrecta.", timeout: 15)
+        captura("conexion-contrasena-mala")
+        escribirPassword("password-de-prueba")
+        esperarConectado()
+
+        irA("Tarjetas")
+        configurarTarjetas(tamano: "5")
+        toca("btn-empezar")
+        jugarRonda(de: 5)
+        esperarLabel("resumen-titulo", "¡Ronda completada!")
+
+        irA("Progreso")
+        esperar(el("sync-estado"), NSPredicate(format: "label BEGINSWITH 'Sincronizado'"), timeout: 20)
+        XCTAssertFalse(el("sync-pendientes").exists, "Quedaron respuestas sin subir")
+        XCTAssertEqual(el("progreso-total").label, "5")
+        captura("sincronizacion-iphone")
+    }
+
+    /// Y2: el iPad baja lo que subió el iPhone, y volver a sincronizar no lo duplica.
+    func testSincronizacionBajaEnElIPad() throws {
+        try XCTSkipUnless(esIPad, "El iPad baja lo que subió el iPhone en testSincronizacionSubeDesdeElIPhone")
+        relanzarConServidor()
+        escribirPassword("password-de-prueba")
+        esperarConectado()
+        irA("Progreso")
+        esperarLabel("progreso-total", "5", timeout: 20)
+        XCTAssertEqual(el("progreso-hoy").label, "5")
+        toca("btn-sincronizar")
+        esperar(el("sync-estado"), NSPredicate(format: "label BEGINSWITH 'Sincronizado'"), timeout: 20)
+        XCTAssertEqual(el("progreso-total").label, "5", "Volver a sincronizar duplicó intentos (Y2)")
+        captura("sincronizacion-ipad")
+    }
+
     // MARK: - Tarjetas
 
     /// 29, 37, 41: ronda perfecta de 5 con récord; otra ronda más lenta no lo pisa.
@@ -270,11 +339,13 @@ final class KanaUITests: XCTestCase {
     // MARK: - Progreso
 
     /// 48, 51, 24: progreso vacío, ronda de 5, separación por silabario y borrado.
-    func testProgresoTarjetasSilabarioYBorrado() {
+    func testProgresoTarjetasYSilabario() {
         irA("Progreso")
         XCTAssertTrue(el("progreso-vacio").waitForExistence(timeout: 5))
         XCTAssertEqual(el("progreso-total").label, "0")
-        XCTAssertFalse(el("btn-borrar").isEnabled)
+        // El progreso se sincroniza con Deepy: no hay botón para borrarlo desde la app.
+        XCTAssertFalse(el("btn-borrar").exists, "No debe existir «Borrar todo el progreso»")
+        XCTAssertTrue(el("sync-estado").label.hasPrefix("Sin conectar"), el("sync-estado").label)
 
         irA("Tarjetas")
         configurarTarjetas(tamano: "5")
@@ -294,13 +365,7 @@ final class KanaUITests: XCTestCase {
         app.segmentedControls["progreso-silabario"].buttons["Hiragana"].tap()
         XCTAssertEqual(cuenta("progreso-celda"), 5)
 
-        toca("btn-borrar")
-        let borrar = app.buttons["Borrar"].firstMatch
-        XCTAssertTrue(borrar.waitForExistence(timeout: 5))
-        borrar.tap()
-        XCTAssertTrue(el("progreso-vacio").waitForExistence(timeout: 5), "Borrar no vació el progreso (24)")
-        XCTAssertEqual(el("progreso-total").label, "0")
-        captura("progreso-borrado")
+
     }
 
     /// 41, 48, 52: lo respondido se guarda en el acto al salir a mitad de ronda, y salir cancela la pausa.

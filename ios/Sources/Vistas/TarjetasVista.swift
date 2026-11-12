@@ -4,6 +4,7 @@ import SwiftUI
 /// Minijuego de tarjetas (port de tarjetas.html): sale un kana, se escribe su lectura en romaji.
 struct TarjetasVista: View {
     @Environment(\.modelContext) private var contexto
+    @Environment(Sincronizador.self) private var sincronizador
     @Environment(\.scenePhase) private var fase
     @State private var config = RondaTarjetas.Config()
     @State private var ronda: RondaTarjetas?
@@ -305,6 +306,7 @@ struct TarjetasVista: View {
 
     private func terminar(_ r: RondaTarjetas) {
         enfocado = false
+        Task { await sincronizador.sincronizar() }
         if r.resultado == .completa { recordNuevo = Progreso.guardarRecord(r.config.claveRecord, r.mediaAciertosMs) }
     }
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# E2E completo de la app iOS: paridad Swift↔JS y pruebas XCUITest en iPhone y iPad.
+# E2E completo de la app iOS: paridad Swift↔JS, enganche y XCUITest en iPhone y iPad (con sincronización
+# contra un Deepy local: el iPhone sube y luego el iPad baja, por eso el orden importa).
 # Evidencia (resultados + capturas): ios/build/e2e/iPhone.xcresult e ios/build/e2e/iPad.xcresult.
 # Ábrelos con `open ios/build/e2e/iPhone.xcresult`. Termina con error si algo falla.
 set -euo pipefail
@@ -14,6 +15,14 @@ DISPOSITIVOS=(
 )
 mkdir -p build/e2e
 fallos=0
+
+# Deepy local (Postgres embebido) para las pruebas de sincronización: el iPhone sube y el iPad baja.
+node scripts/servidor_deepy.mjs >build/e2e/servidor.log 2>&1 &
+servidor=$!
+trap 'kill "$servidor" 2>/dev/null; wait "$servidor" 2>/dev/null' EXIT
+for _ in $(seq 1 120); do grep -q "^LISTO" build/e2e/servidor.log && break; kill -0 "$servidor" 2>/dev/null || break; sleep 1; done
+grep -q "^LISTO" build/e2e/servidor.log || { echo "✗ No arrancó el Deepy local (ver build/e2e/servidor.log)"; exit 1; }
+echo "✓ Deepy local: $(grep '^LISTO' build/e2e/servidor.log)"
 
 for entrada in "${DISPOSITIVOS[@]}"; do
   read -r nombre udid <<<"$entrada"

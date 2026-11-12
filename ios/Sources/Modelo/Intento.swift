@@ -20,9 +20,22 @@ final class Intento {
     var latenciaMs: Int?
     var sincronizado: Bool
 
-    init(ejercicio: String, item: String, silabario: Silabario, correcto: Bool, respuesta: String?,
+    convenience init(ejercicio: String, item: String, silabario: Silabario, correcto: Bool, respuesta: String?,
          latenciaMs: Int?, dispositivo: String, fecha: Date = .now) {
-        id = UUID()
+        self.init(id: UUID(), ejercicio: ejercicio, item: item, silabario: silabario, correcto: correcto,
+                  respuesta: respuesta, latenciaMs: latenciaMs, dispositivo: dispositivo, fecha: fecha, sincronizado: false)
+    }
+
+    /// Intento bajado de Deepy (de otro dispositivo): conserva su id y ya está sincronizado.
+    convenience init(remoto id: UUID, fecha: Date, dispositivo: String, ejercicio: String, item: String,
+                     silabario: Silabario, correcto: Bool, respuesta: String?, latenciaMs: Int?) {
+        self.init(id: id, ejercicio: ejercicio, item: item, silabario: silabario, correcto: correcto,
+                  respuesta: respuesta, latenciaMs: latenciaMs, dispositivo: dispositivo, fecha: fecha, sincronizado: true)
+    }
+
+    private init(id: UUID, ejercicio: String, item: String, silabario: Silabario, correcto: Bool, respuesta: String?,
+                 latenciaMs: Int?, dispositivo: String, fecha: Date, sincronizado: Bool) {
+        self.id = id
         self.fecha = fecha
         self.dispositivo = dispositivo
         self.ejercicio = ejercicio
@@ -31,7 +44,7 @@ final class Intento {
         self.correcto = correcto
         self.respuesta = respuesta
         self.latenciaMs = latenciaMs
-        sincronizado = false
+        self.sincronizado = sincronizado
     }
 }
 

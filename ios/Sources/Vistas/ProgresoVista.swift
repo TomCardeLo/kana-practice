@@ -3,11 +3,10 @@ import SwiftUI
 
 /// Estadísticas por kana a partir de los intentos guardados (equivale a «Mis estadísticas» de la web).
 struct ProgresoVista: View {
-    @Environment(\.modelContext) private var contexto
+    @Environment(Sincronizador.self) private var sincronizador
     @Query(sort: \Intento.fecha, order: .reverse) private var intentos: [Intento]
     @State private var silabario = Silabario.hiragana
-    @State private var confirmarBorrado = false
-    @State private var errorBorrado: String?
+    @State private var verAjustes = false
 
     private struct Fila: Identifiable {
         let kana: String
@@ -45,10 +44,7 @@ struct ProgresoVista: View {
                             ForEach(filas) { celda($0) }
                         }
                     }
-                    Button("Borrar todo el progreso", role: .destructive) { confirmarBorrado = true }
-                        .buttonStyle(.bordered)
-                        .disabled(intentos.isEmpty)
-                        .accessibilityIdentifier("btn-borrar")
+                    estadoSincronizacion
                 }
                 .padding(20)
                 .frame(maxWidth: 900)
@@ -56,15 +52,14 @@ struct ProgresoVista: View {
             }
             .background(Color.papel)
             .navigationTitle("Progreso")
-            .confirmationDialog("¿Borrar todo el progreso de este dispositivo?", isPresented: $confirmarBorrado,
-                                titleVisibility: .visible) {
-                Button("Borrar", role: .destructive, action: borrar)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Ajustes", systemImage: "gearshape") { verAjustes = true }
+                        .accessibilityIdentifier("btn-ajustes")
+                }
             }
-            .alert("No se pudo borrar el progreso", isPresented: .constant(errorBorrado != nil)) {
-                Button("Entendido") { errorBorrado = nil }
-            } message: {
-                Text(errorBorrado ?? "")
-            }
+            .sheet(isPresented: $verAjustes) { AjustesVista() }
+            .onAppear { sincronizador.contarPendientes() }
         }
     }
 
@@ -102,14 +97,51 @@ struct ProgresoVista: View {
         .accessibilityIdentifier("progreso-celda")
     }
 
-    // ponytail: borra también lo no sincronizado; en la fase 2 decidir si el borrado se sincroniza.
-    private func borrar() {
-        do {
-            try contexto.delete(model: Intento.self)
-            try contexto.save()
-        } catch {
-            Progreso.log.error("No se pudo borrar el progreso: \(error, privacy: .public)")
-            errorBorrado = error.localizedDescription
+    /// Estado de la sincronización con Deepy: nunca falla en silencio (modo de fallo Y4).
+    private var estadoSincronizacion: some View {
+        HStack(spacing: 10) {
+            Image(systemName: icono).foregroundStyle(colorEstado)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(textoEstado).font(.subheadline).accessibilityIdentifier("sync-estado")
+                if sincronizador.pendientes > 0 {
+                    Text("\(sincronizador.pendientes) respuestas por subir").font(.caption).foregroundStyle(Color.tintaSuave)
+                        .accessibilityIdentifier("sync-pendientes")
+                }
+            }
+            Spacer()
+            if sincronizador.conectado {
+                Button("Sincronizar") { Task { await sincronizador.sincronizar() } }
+                    .disabled(sincronizador.estado == .sincronizando)
+                    .accessibilityIdentifier("btn-sincronizar")
+            }
+        }
+        .tarjetaFondo()
+    }
+
+    private var textoEstado: String {
+        switch sincronizador.estado {
+        case .sinConexion: "Sin conectar con Deepy: el progreso solo está en este equipo."
+        case .inactivo: "Conectado con Deepy."
+        case .sincronizando: "Sincronizando…"
+        case let .listo(fecha): "Sincronizado \(fecha.formatted(.relative(presentation: .named)))."
+        case let .error(mensaje): mensaje
+        }
+    }
+
+    private var icono: String {
+        switch sincronizador.estado {
+        case .sinConexion: "icloud.slash"
+        case .error: "exclamationmark.icloud"
+        case .sincronizando: "arrow.triangle.2.circlepath.icloud"
+        default: "checkmark.icloud"
+        }
+    }
+
+    private var colorEstado: Color {
+        switch sincronizador.estado {
+        case .error: .rojo
+        case .sinConexion: .tintaSuave
+        default: .verde
         }
     }
 }
