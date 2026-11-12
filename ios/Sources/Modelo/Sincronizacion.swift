@@ -10,13 +10,16 @@ import SwiftData
 /// Modos de fallo (escritos antes del código):
 /// Y1 Un lote se sube dos veces (la red se cortó tras guardar): el servidor no duplica por id; aquí solo
 ///    se marca `sincronizado` tras un 200.
-/// Y2 Se bajan los intentos propios o los mismos dos veces: se pide con `excluir` y se descartan los ids
-///    que ya existen.
+/// Y2 Se bajan los mismos intentos dos veces: se descartan los ids que ya existen. Los propios también se
+///    bajan (sin `excluir`): tras reinstalar, el equipo recupera su historial aunque conserve su identificador.
 /// Y3 Dos subidas casi simultáneas se confirman en desorden y el cursor se salta filas: se pide con un
 ///    solape de 400 (el doble del lote máximo).
 /// Y4 Sin red, token vencido o servidor caído: el estado lo dice en pantalla; nunca se pierde lo local.
 /// Y5 Dos sincronizaciones a la vez suben el mismo lote: una sola a la vez.
-/// Y6 La compilación Release habla con otro servidor que no sea producción.
+/// Y6 La compilación Release habla con otro servidor que no sea producción (y Debug, con uno que no sea local).
+/// Y7 Un intento que el servidor rechaza (422) bloquea la cola para siempre: se aparta con aviso y sigue el
+///    resto; además se baja aunque falle la subida.
+/// Y8 Una sincronización pedida mientras otra corre se pierde: se repite al terminar.
 @MainActor
 @Observable
 final class Sincronizador {
@@ -29,12 +32,12 @@ final class Sincronizador {
     }
 
     enum Fallo: LocalizedError {
-        case sinRed, noAutorizado, servidor(String), respuestaInvalida, llavero(OSStatus)
+        case sinRed, noAutorizado, servidor(String), rechazado(String), respuestaInvalida, llavero(OSStatus)
         var errorDescription: String? {
             switch self {
             case .sinRed: "Sin conexión con Deepy. Lo pendiente se subirá al volver la red."
             case .noAutorizado: "La sesión con Deepy expiró. Vuelve a conectar."
-            case let .servidor(mensaje): mensaje
+            case let .servidor(mensaje), let .rechazado(mensaje): mensaje
             case .respuestaInvalida: "Deepy respondió algo inesperado."
             case let .llavero(estado): "No se pudo guardar la sesión en el llavero (código \(estado))."
             }
@@ -48,25 +51,33 @@ final class Sincronizador {
 
     private(set) var estado: Estado = .inactivo
     private(set) var pendientes = 0
+    /// Intentos que el servidor rechazó y quedaron solo en este equipo (Y7).
+    private(set) var apartados = 0
+    private(set) var conectado = false
+    /// Se pide volver a conectar (token vencido): la raíz muestra la hoja de conexión.
+    var necesitaConexion = false
+    private var repetir = false
     private let contexto: ModelContext
     private let llavero: Llavero
     private let base: URL
     private let sesion: URLSession = {
-        let c = URLSessionConfiguration.default
+        let c = URLSessionConfiguration.ephemeral  // sin caché ni cookies
         c.timeoutIntervalForRequest = 20
         return URLSession(configuration: c)
     }()
 
-    var conectado: Bool { llavero.leer() != nil }
-
     init(contexto: ModelContext, enPrueba: Bool) {
         self.contexto = contexto
         llavero = Llavero(servicio: enPrueba ? "com.tommycardelo.kana.uitest" : "com.tommycardelo.kana")
+        // Hasta noviembre de 2026 se guardaba el token de todo Deepy en la cuenta "token": se borra y se vuelve a
+        // conectar para recibir el de Kana, que solo sirve para su progreso.
+        Llavero(servicio: llavero.servicio, cuenta: "token").borrar()
         if enPrueba {
             llavero.borrar()
             UserDefaults.standard.removeObject(forKey: Self.claveCursor)
         }
         base = Self.urlBase()
+        conectado = llavero.leer() != nil
         if !conectado { estado = .sinConexion }
     }
 
@@ -77,7 +88,10 @@ final class Sincronizador {
         guard var texto = ProcessInfo.processInfo.environment["KANA_BASE_URL"], !texto.isEmpty else { return produccion }
         while texto.hasSuffix("/") { texto.removeLast() }
         if !texto.hasSuffix("/api/v1") { texto += "/api/v1" }
-        guard let url = URL(string: texto) else { preconditionFailure("KANA_BASE_URL inválida: \(texto)") }
+        // Solo un servidor local: la contraseña real nunca debe ir a otro host (Y6).
+        guard let url = URL(string: texto), ["127.0.0.1", "localhost"].contains(url.host() ?? "") else {
+            preconditionFailure("KANA_BASE_URL debe ser local: \(texto)")
+        }
         return url
         #else
         return produccion
@@ -88,17 +102,21 @@ final class Sincronizador {
 
     /// Entra con la contraseña de Deepy y guarda el token. Lanza un error con texto para mostrar.
     func conectar(password: String) async throws {
-        struct Entrada: Encodable { let password: String }
+        // `app: "kana"`: Deepy devuelve un token que solo sirve para /api/v1/kana/*, no el de todo Deepy.
+        struct Entrada: Encodable { let password: String; var app = "kana" }
         struct Salida: Decodable { let token: String }
         let salida: Salida = try await pedir("POST", "/acceso", cuerpo: Entrada(password: password), autenticada: false)
         let estadoLlavero = llavero.guardar(salida.token)
         guard estadoLlavero == errSecSuccess else { throw Fallo.llavero(estadoLlavero) }
+        conectado = true
+        necesitaConexion = false
         estado = .inactivo
         await sincronizar()
     }
 
     func desconectar() {
         llavero.borrar()
+        conectado = false
         estado = .sinConexion
     }
 
@@ -106,24 +124,46 @@ final class Sincronizador {
 
     func sincronizar() async {
         guard conectado else { estado = .sinConexion; return }
-        guard estado != .sincronizando else { return }  // Y5
-        estado = .sincronizando
-        do {
-            try await subir()
-            try await bajar()
+        guard estado != .sincronizando else { repetir = true; return }  // Y5, Y8
+        repeat {
+            repetir = false
+            estado = .sincronizando
+            var fallo: Error?
+            do { try await subir() } catch { fallo = error }
+            // Se baja aunque la subida falle (lo del otro equipo no espera por lo de este, Y7), salvo sin sesión.
+            if (fallo as? Fallo).map(esRecuperable) ?? true {
+                do { try await bajar() } catch { fallo = fallo ?? error }
+            }
+            if let fallo {
+                terminar(con: fallo)
+                break
+            }
             estado = .listo(.now)
-        } catch Fallo.noAutorizado {
-            llavero.borrar()
-            estado = .error(Fallo.noAutorizado.localizedDescription)
-        } catch {
-            Self.log.error("Sincronización: \(error.localizedDescription, privacy: .public)")
-            estado = .error(error.localizedDescription)  // Y4
-        }
+        } while repetir
         contarPendientes()
     }
 
+    private func esRecuperable(_ f: Fallo) -> Bool {
+        if case .noAutorizado = f { return false }
+        return true
+    }
+
+    private func terminar(con error: Error) {
+        if case Fallo.noAutorizado = error {
+            llavero.borrar()
+            conectado = false
+            necesitaConexion = true
+        }
+        Self.log.error("Sincronización: \(error.localizedDescription, privacy: .public)")
+        estado = .error(error.localizedDescription)  // Y4
+    }
+
     func contarPendientes() {
-        pendientes = (try? contexto.fetchCount(FetchDescriptor<Intento>(predicate: #Predicate { !$0.sincronizado }))) ?? 0
+        do {
+            pendientes = try contexto.fetchCount(FetchDescriptor<Intento>(predicate: #Predicate { !$0.sincronizado }))
+        } catch {
+            Self.log.error("No se pudieron contar los pendientes: \(error, privacy: .public)")
+        }
     }
 
     private struct IntentoAPI: Codable {
@@ -158,10 +198,25 @@ final class Sincronizador {
                            silabario: $0.silabario, correcto: $0.correcto, respuesta: $0.respuesta,
                            latenciaMs: $0.latenciaMs)
             })
-            let _: Respuesta = try await pedir("POST", "/kana/intentos", cuerpo: cuerpo)
-            lote.forEach { $0.sincronizado = true }  // Y1: solo tras el 200
+            do {
+                let _: Respuesta = try await pedir("POST", "/kana/intentos", cuerpo: cuerpo)
+                lote.forEach { $0.sincronizado = true }  // Y1: solo tras el 200
+            } catch let Fallo.rechazado(mensaje) {
+                // Y7: el servidor dice cuál ("Intento 7: ..."). Se aparta (queda en este equipo) y sigue el resto.
+                guard let numero = Self.numeroDeIntento(mensaje), lote.indices.contains(numero - 1) else {
+                    throw Fallo.rechazado(mensaje)
+                }
+                Self.log.error("Intento apartado: \(mensaje, privacy: .public)")
+                lote[numero - 1].sincronizado = true
+                apartados += 1
+            }
             try contexto.save()
         }
+    }
+
+    private static func numeroDeIntento(_ mensaje: String) -> Int? {
+        guard let rango = mensaje.range(of: #"^Intento (\d+):"#, options: .regularExpression) else { return nil }
+        return Int(mensaje[rango].dropFirst("Intento ".count).dropLast())
     }
 
     private func bajar() async throws {
@@ -169,15 +224,18 @@ final class Sincronizador {
         var cursor = UserDefaults.standard.integer(forKey: Self.claveCursor)
         var desde = max(0, cursor - Self.solape)  // Y3
         while true {
-            let excluir = Progreso.dispositivo.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let pagina: Pagina = try await pedir("GET", "/kana/intentos?desde=\(desde)&limite=1000&excluir=\(excluir)")
+            let pagina: Pagina = try await pedir("GET", "/kana/intentos?desde=\(desde)&limite=1000")
             let ids = pagina.intentos.compactMap { UUID(uuidString: $0.id) }
             let existentes = Set(try contexto.fetch(FetchDescriptor<Intento>(predicate: #Predicate { ids.contains($0.id) })).map(\.id))
             for remoto in pagina.intentos {  // Y2
-                guard let id = UUID(uuidString: remoto.id), !existentes.contains(id),
-                      let fecha = Self.fechaISO.date(from: remoto.fecha),
+                guard let id = UUID(uuidString: remoto.id), let fecha = Self.fechaISO.date(from: remoto.fecha),
                       let silabario = Silabario(rawValue: remoto.silabario)
-                else { continue }
+                else {
+                    // Nada se descarta en silencio ni se salta con el cursor: se para y se avisa.
+                    Self.log.error("Intento remoto ilegible: \(remoto.id, privacy: .public) \(remoto.fecha, privacy: .public)")
+                    throw Fallo.respuestaInvalida
+                }
+                guard !existentes.contains(id) else { continue }
                 contexto.insert(Intento(remoto: id, fecha: fecha, dispositivo: remoto.dispositivo,
                                         ejercicio: remoto.ejercicio, item: remoto.item, silabario: silabario,
                                         correcto: remoto.correcto, respuesta: remoto.respuesta,
@@ -221,11 +279,13 @@ final class Sincronizador {
             let mensaje = (try? JSONDecoder().decode(CuerpoError.self, from: datos))?.error
             Self.log.error("HTTP \(http.statusCode) \(metodo) \(ruta, privacy: .public): \(mensaje ?? "-", privacy: .public)")
             if http.statusCode == 401 { throw autenticada ? Fallo.noAutorizado : Fallo.servidor(mensaje ?? "Contraseña incorrecta.") }
+            if http.statusCode == 422 { throw Fallo.rechazado(mensaje ?? "Deepy rechazó los datos.") }
             throw Fallo.servidor(mensaje ?? "Error del servidor (\(http.statusCode)).")
         }
         do {
             return try JSONDecoder().decode(T.self, from: datos)
         } catch {
+            Self.log.error("Respuesta ilegible de \(ruta, privacy: .public): \(error, privacy: .public)")
             throw Fallo.respuestaInvalida
         }
     }
@@ -234,9 +294,10 @@ final class Sincronizador {
 /// Token de Deepy en el llavero, solo en este dispositivo y tras el primer desbloqueo.
 struct Llavero {
     let servicio: String
+    var cuenta = "token-kana"
     private var consulta: [String: Any] {
         [kSecClass as String: kSecClassGenericPassword, kSecAttrService as String: servicio,
-         kSecAttrAccount as String: "token"]
+         kSecAttrAccount as String: cuenta]
     }
 
     func leer() -> String? {

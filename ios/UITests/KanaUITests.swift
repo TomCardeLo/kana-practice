@@ -27,9 +27,9 @@ final class KanaUITests: XCTestCase {
     private static let servidor = "http://127.0.0.1:3108"
     private var esIPad: Bool { UIDevice.current.userInterfaceIdiom == .pad }
 
-    private func relanzarConServidor(_ url: String = servidor) {
+    private func relanzarConServidor(_ url: String = servidor, extra: [String] = []) {
         app.terminate()
-        app.launchArguments = ["-uitest", "-uitest-conexion"]
+        app.launchArguments = ["-uitest", "-uitest-conexion"] + extra
         app.launchEnvironment["KANA_BASE_URL"] = url
         app.launch()
     }
@@ -70,22 +70,51 @@ final class KanaUITests: XCTestCase {
         irA("Progreso")
         esperar(el("sync-estado"), NSPredicate(format: "label BEGINSWITH 'Sincronizado'"), timeout: 20)
         XCTAssertFalse(el("sync-pendientes").exists, "Quedaron respuestas sin subir")
-        XCTAssertEqual(el("progreso-total").label, "5")
+        // 5 de la ronda + el intento válido que este iPhone subió en la prueba de Y7 y ahora recupera.
+        XCTAssertEqual(el("progreso-total").label, "6")
         captura("sincronizacion-iphone")
     }
 
-    /// Y2: el iPad baja lo que subió el iPhone, y volver a sincronizar no lo duplica.
+    /// Y7: un intento que el servidor rechaza (fecha de 2025) se aparta con aviso y no bloquea al resto.
+    /// Corre en el iPhone después de la subida: si bloqueara, la ronda nueva quedaría pendiente.
+    func testSincronizacionApartaUnIntentoRechazado() throws {
+        try XCTSkipIf(esIPad, "Solo en el iPhone, para no alterar lo que baja el iPad")
+        relanzarConServidor(extra: ["-uitest-intento-rechazado"])
+        escribirPassword("password-de-prueba")
+        esperarConectado()
+        irA("Progreso")
+        XCTAssertTrue(el("sync-apartados").waitForExistence(timeout: 20), "El intento rechazado no se apartó con aviso")
+        esperar(el("sync-estado"), NSPredicate(format: "label BEGINSWITH 'Sincronizado'"), timeout: 20)
+        XCTAssertFalse(el("sync-pendientes").exists, "Un intento rechazado bloqueó la cola (Y7)")
+        XCTAssertEqual(el("progreso-total").label, "2", "Los dos intentos siguen en este equipo")
+        captura("sincronizacion-apartado")
+    }
+
+    /// Reinstalar (almacén vacío, mismo identificador de equipo) recupera también el historial propio: la ronda
+    /// de 5 y el intento válido de la prueba de Y7, que subió este mismo iPhone. Corre después de la subida.
+    func testSincronizacionTrasReinstalarRecuperaLoPropio() throws {
+        try XCTSkipIf(esIPad, "El iPhone recupera lo que él mismo subió")
+        relanzarConServidor()
+        escribirPassword("password-de-prueba")
+        esperarConectado()
+        irA("Progreso")
+        esperarLabel("progreso-total", "6", timeout: 20)
+        captura("sincronizacion-reinstalar")
+    }
+
+    /// Y2: el iPad baja lo que subió el iPhone (la ronda de 5 y el intento válido de la prueba de Y7, no el
+    /// rechazado), y volver a sincronizar no lo duplica.
     func testSincronizacionBajaEnElIPad() throws {
         try XCTSkipUnless(esIPad, "El iPad baja lo que subió el iPhone en testSincronizacionSubeDesdeElIPhone")
         relanzarConServidor()
         escribirPassword("password-de-prueba")
         esperarConectado()
         irA("Progreso")
-        esperarLabel("progreso-total", "5", timeout: 20)
-        XCTAssertEqual(el("progreso-hoy").label, "5")
+        esperarLabel("progreso-total", "6", timeout: 20)
+        XCTAssertEqual(el("progreso-hoy").label, "6")
         toca("btn-sincronizar")
         esperar(el("sync-estado"), NSPredicate(format: "label BEGINSWITH 'Sincronizado'"), timeout: 20)
-        XCTAssertEqual(el("progreso-total").label, "5", "Volver a sincronizar duplicó intentos (Y2)")
+        XCTAssertEqual(el("progreso-total").label, "6", "Volver a sincronizar duplicó intentos (Y2)")
         captura("sincronizacion-ipad")
     }
 

@@ -103,6 +103,10 @@ struct ProgresoVista: View {
             Image(systemName: icono).foregroundStyle(colorEstado)
             VStack(alignment: .leading, spacing: 2) {
                 Text(textoEstado).font(.subheadline).accessibilityIdentifier("sync-estado")
+                if sincronizador.apartados > 0 {
+                    Text("\(sincronizador.apartados) respuestas no se pudieron subir y quedaron solo en este equipo.")
+                        .font(.caption).foregroundStyle(Color.rojo).accessibilityIdentifier("sync-apartados")
+                }
                 if sincronizador.pendientes > 0 {
                     Text("\(sincronizador.pendientes) respuestas por subir").font(.caption).foregroundStyle(Color.tintaSuave)
                         .accessibilityIdentifier("sync-pendientes")

@@ -20,6 +20,9 @@ final class Intento {
     var latenciaMs: Int?
     var sincronizado: Bool
 
+    static let respuestaMaxima = 64
+    static let latenciaMaximaMs = 3_600_000
+
     convenience init(ejercicio: String, item: String, silabario: Silabario, correcto: Bool, respuesta: String?,
          latenciaMs: Int?, dispositivo: String, fecha: Date = .now) {
         self.init(id: UUID(), ejercicio: ejercicio, item: item, silabario: silabario, correcto: correcto,
@@ -42,15 +45,25 @@ final class Intento {
         self.item = item
         self.silabario = silabario.rawValue
         self.correcto = correcto
-        self.respuesta = respuesta
-        self.latenciaMs = latenciaMs
+        // Dentro de lo que acepta el servidor (Y7): respuesta de hasta 64 caracteres y latencia de 0 a 1 h
+        // (un ajuste del reloj puede darla negativa; una tarjeta olvidada, de horas).
+        self.respuesta = respuesta.map { String(String.UnicodeScalarView($0.unicodeScalars.prefix(Self.respuestaMaxima))) }
+        self.latenciaMs = latenciaMs.map { min(max($0, 0), Self.latenciaMaximaMs) }
         self.sincronizado = sincronizado
     }
 }
 
 @MainActor
 enum Progreso {
-    static let dispositivo = UIDevice.current.identifierForVendor?.uuidString ?? "desconocido"
+    /// Identifica este equipo para no bajar sus propios intentos. Sin identifierForVendor, uno propio y fijo.
+    static let dispositivo: String = {
+        if let id = UIDevice.current.identifierForVendor?.uuidString { return id }
+        let clave = "dispositivo.id"
+        if let guardado = UserDefaults.standard.string(forKey: clave) { return guardado }
+        let nuevo = UUID().uuidString
+        UserDefaults.standard.set(nuevo, forKey: clave)
+        return nuevo
+    }()
 
     static let log = Logger(subsystem: "com.tommycardelo.kana", category: "progreso")
 

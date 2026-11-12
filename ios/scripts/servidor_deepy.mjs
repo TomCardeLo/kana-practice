@@ -46,7 +46,7 @@ for (const f of readdirSync(migraciones).filter((n) => n.endsWith(".sql")).sort(
 await admin.query(`ALTER ROLE deepy_web PASSWORD '${PASSWORD_ROL}'`);
 await admin.end();
 
-const app = spawn(process.execPath, [path.join(DEEPY_WEB, "node_modules/next/dist/bin/next"), "start", "-p", String(PUERTO)], {
+const app = spawn(process.execPath, [path.join(DEEPY_WEB, "node_modules/next/dist/bin/next"), "start", "-H", "127.0.0.1", "-p", String(PUERTO)], {
   cwd: DEEPY_WEB,
   stdio: ["ignore", "ignore", "inherit"],
   env: {
@@ -55,6 +55,7 @@ const app = spawn(process.execPath, [path.join(DEEPY_WEB, "node_modules/next/dis
     DEEPY_ACCESS_PASSWORD: "password-de-prueba",
     DEEPY_ACCESS_TOKEN: "token-de-prueba",
     DEEPY_API_TOKEN: "api-token-de-prueba",
+    DEEPY_KANA_TOKEN: "kana-token-de-prueba-0123456789abcdef",
     DEEPY_ENLACES_SECRET: "secreto-e2e-kana-enlaces-0123456789abcdef",
   },
 });
