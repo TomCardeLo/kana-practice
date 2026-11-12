@@ -21,7 +21,7 @@ struct TarjetasVista: View {
     @State private var inicioSesion = Date.now
     @State private var tutor = EstadoTutor.nada
 
-    private enum EstadoTutor: Equatable { case nada, sinConexion, pensando, listo(String), error(String) }
+    private enum EstadoTutor: Equatable { case nada, sinConexion, pensando, listo(String), error(String, reintentable: Bool) }
     @FocusState private var enfocado: Bool
 
     /// Pausa tras un error antes de pasar a la siguiente tarjeta (como la web).
@@ -53,6 +53,10 @@ struct TarjetasVista: View {
             escenaActiva = nueva == .active
             guard enJuego else { return }
             if escenaActiva { cronometro.reanudar() } else { cronometro.pausar() }
+        }
+        // Terminó sin conexión y luego se conectó: se pide el comentario de esa ronda.
+        .onChange(of: sincronizador.conectado) { _, conectado in
+            if conectado, tutor == .sinConexion { pedirTutor() }
         }
         .alert("No se pudo guardar el progreso", isPresented: .constant(errorGuardado != nil)) {
             Button("Entendido") { errorGuardado = nil }
@@ -254,9 +258,11 @@ struct TarjetasVista: View {
                     .accessibilityIdentifier("tutor-pensando")
                 case let .listo(texto):
                     Text(texto).accessibilityIdentifier("tutor-comentario")
-                case let .error(mensaje):
-                    Text(mensaje).foregroundStyle(Color.rojo).accessibilityIdentifier("tutor-error")
-                    Button("Reintentar", action: pedirTutor).buttonStyle(.bordered).accessibilityIdentifier("btn-tutor-reintentar")
+                case let .error(mensaje, reintentable):
+                    Text(mensaje).foregroundStyle(reintentable ? Color.rojo : Color.tintaSuave).accessibilityIdentifier("tutor-error")
+                    if reintentable {
+                        Button("Reintentar", action: pedirTutor).buttonStyle(.bordered).accessibilityIdentifier("btn-tutor-reintentar")
+                    }
                 }
             }
         }
@@ -378,8 +384,19 @@ struct TarjetasVista: View {
         let sesion = inicioSesion
         Task {
             let nuevo: EstadoTutor
-            do { nuevo = .listo(try await sincronizador.comentarSesion(desde: sesion)) } catch { nuevo = .error(error.localizedDescription) }
-            if inicioSesion == sesion { tutor = nuevo }
+            do {
+                guard let texto = try await sincronizador.comentarSesion(desde: sesion, vigente: { inicioSesion == sesion }) else { return }
+                nuevo = .listo(texto)
+            } catch Sincronizador.Fallo.noDisponible(let mensaje) {
+                nuevo = .error(mensaje, reintentable: false)  // tope o servidor sin clave: reintentar no sirve
+            } catch {
+                nuevo = .error(error.localizedDescription, reintentable: true)
+            }
+            guard inicioSesion == sesion else { return }
+            tutor = nuevo
+            // El resultado llega segundos después y quizá fuera de pantalla: VoiceOver lo anuncia.
+            if case let .listo(texto) = nuevo { AccessibilityNotification.Announcement("Tutor: \(texto)").post() }
+            if case let .error(mensaje, _) = nuevo { AccessibilityNotification.Announcement(mensaje).post() }
         }
     }
 

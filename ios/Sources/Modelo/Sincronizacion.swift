@@ -33,11 +33,13 @@ final class Sincronizador {
 
     enum Fallo: LocalizedError {
         case sinRed, noAutorizado, servidor(String), rechazado(String), respuestaInvalida, llavero(OSStatus)
+        /// 429 o 503: reintentar ahora no sirve (tope del tutor, servidor sin configurar).
+        case noDisponible(String)
         var errorDescription: String? {
             switch self {
             case .sinRed: "Sin conexión con Deepy. Lo pendiente se subirá al volver la red."
             case .noAutorizado: "La sesión con Deepy expiró. Vuelve a conectar."
-            case let .servidor(mensaje), let .rechazado(mensaje): mensaje
+            case let .servidor(mensaje), let .rechazado(mensaje), let .noDisponible(mensaje): mensaje
             case .respuestaInvalida: "Deepy respondió algo inesperado."
             case let .llavero(estado): "No se pudo guardar la sesión en el llavero (código \(estado))."
             }
@@ -63,6 +65,12 @@ final class Sincronizador {
     private let sesion: URLSession = {
         let c = URLSessionConfiguration.ephemeral  // sin caché ni cookies
         c.timeoutIntervalForRequest = 20
+        return URLSession(configuration: c)
+    }()
+    /// El tutor espera a Claude hasta 30 s en el servidor: el cliente no debe rendirse antes.
+    private let sesionTutor: URLSession = {
+        let c = URLSessionConfiguration.ephemeral
+        c.timeoutIntervalForRequest = 45
         return URLSession(configuration: c)
     }()
 
@@ -256,16 +264,32 @@ final class Sincronizador {
 
     /// Sube la sesión que empezó en `desde` y pide el comentario del tutor (Claude en Deepy). Cualquier fallo se
     /// lanza con su mensaje: la pantalla lo muestra con «Reintentar».
-    func comentarSesion(desde: Date) async throws -> String {
+    /// `vigente`: la pantalla sigue mostrando esta sesión. Si el usuario ya empezó otra ronda, no se gasta una
+    /// llamada a Claude en un comentario que nadie verá.
+    func comentarSesion(desde: Date, vigente: () -> Bool) async throws -> String? {
         guard conectado else { throw Fallo.noAutorizado }
         // Si ya había una sincronización en curso (al volver a primer plano, por ejemplo), se espera a que acabe:
         // el servidor solo comenta lo que ya tiene.
         while estado == .sincronizando { try await Task.sleep(for: .milliseconds(200)) }
         await sincronizar()
-        if case let .error(mensaje) = estado { throw Fallo.servidor("No se pudo subir la sesión: \(mensaje)") }
-        let r: RespuestaTutor = try await pedir("POST", "/kana/tutor", cuerpo: PeticionTutor(
-            desde: Self.fechaISO.string(from: desde), dispositivo: Progreso.dispositivo))
-        return r.comentario
+        // Se decide por los intentos de la sesión, no por el estado: si solo falló la bajada, la sesión ya subió.
+        let pendientes = (try? contexto.fetchCount(FetchDescriptor<Intento>(
+            predicate: #Predicate { $0.fecha >= desde && !$0.sincronizado }))) ?? 1
+        if pendientes > 0 {
+            let motivo = if case let .error(mensaje) = estado { mensaje } else { "quedan respuestas por subir" }
+            throw Fallo.servidor("No se pudo subir la sesión: \(motivo)")
+        }
+        guard vigente() else { return nil }
+        do {
+            let r: RespuestaTutor = try await pedir("POST", "/kana/tutor", cuerpo: PeticionTutor(
+                desde: Self.fechaISO.string(from: desde), dispositivo: Progreso.dispositivo), en: sesionTutor)
+            return r.comentario
+        } catch Fallo.sinRed {
+            throw Fallo.servidor("El tutor tardó demasiado o se cortó la red. Inténtalo en un momento.")
+        } catch Fallo.noAutorizado {
+            terminar(con: Fallo.noAutorizado)  // sesión vencida: se borra el token y se pide conectar
+            throw Fallo.noAutorizado
+        }
     }
 
     // MARK: HTTP
@@ -273,7 +297,7 @@ final class Sincronizador {
     private struct CuerpoError: Decodable { let error: String? }
 
     private func pedir<T: Decodable>(_ metodo: String, _ ruta: String, cuerpo: (some Encodable)? = Optional<String>.none,
-                                     autenticada: Bool = true) async throws -> T {
+                                     autenticada: Bool = true, en: URLSession? = nil) async throws -> T {
         guard let url = URL(string: base.absoluteString + ruta) else { throw Fallo.respuestaInvalida }
         var req = URLRequest(url: url)
         req.httpMethod = metodo
@@ -288,7 +312,7 @@ final class Sincronizador {
         }
         let datos: Data, respuesta: URLResponse
         do {
-            (datos, respuesta) = try await sesion.data(for: req)
+            (datos, respuesta) = try await (en ?? sesion).data(for: req)
         } catch {
             Self.log.error("Red \(metodo) \(ruta, privacy: .public): \(error.localizedDescription, privacy: .public)")
             throw Fallo.sinRed
@@ -299,6 +323,9 @@ final class Sincronizador {
             Self.log.error("HTTP \(http.statusCode) \(metodo) \(ruta, privacy: .public): \(mensaje ?? "-", privacy: .public)")
             if http.statusCode == 401 { throw autenticada ? Fallo.noAutorizado : Fallo.servidor(mensaje ?? "Contraseña incorrecta.") }
             if http.statusCode == 422 { throw Fallo.rechazado(mensaje ?? "Deepy rechazó los datos.") }
+            if http.statusCode == 429 || http.statusCode == 503 {
+                throw Fallo.noDisponible(mensaje ?? "Deepy no puede atender esto ahora (\(http.statusCode)).")
+            }
             throw Fallo.servidor(mensaje ?? "Error del servidor (\(http.statusCode)).")
         }
         do {
