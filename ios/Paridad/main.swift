@@ -52,5 +52,20 @@ for c in filas("checkAnswer") {
     comparar("checkAnswer", "\(c["texto"]!) ← \(c["respuesta"]!)", c["resultado"] ?? NSNull(), r.map(dic) ?? NSNull())
 }
 
+for c in filas("fsrs") {
+    var memoria: FSRS.Memoria?
+    for (paso, esperado) in zip(c["pasos"] as! [[String: Any]], c["resultado"] as! [[String: Any]]) {
+        let (m, dias) = FSRS.repasar(memoria, dias: paso["dias"] as! Int, FSRS.Nota(rawValue: paso["nota"] as! Int)!)
+        memoria = m
+        casos += 1
+        let s = esperado["s"] as! Double, d = esperado["d"] as! Double, iv = esperado["intervalo"] as! Int
+        // Tolerancia mínima: V8 y la libm de Darwin pueden diferir en el último bit de exp/pow.
+        if abs(m.estabilidad - s) > 1e-6 || abs(m.dificultad - d) > 1e-6 || dias != iv {
+            fallos += 1
+            if fallos <= 40 { print("✗ fsrs \(c["pasos"]!)\n   JS:    s=\(s) d=\(d) iv=\(iv)\n   Swift: s=\(m.estabilidad) d=\(m.dificultad) iv=\(dias)") }
+        }
+    }
+}
+
 print(fallos == 0 ? "✓ Paridad JS/Swift: \(casos) casos" : "✗ \(fallos) de \(casos) casos difieren")
 exit(fallos == 0 ? 0 : 1)

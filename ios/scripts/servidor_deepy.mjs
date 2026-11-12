@@ -4,6 +4,7 @@
 // Uso: node ios/scripts/servidor_deepy.mjs → imprime "LISTO http://127.0.0.1:3108" y sigue hasta SIGTERM.
 import { spawn } from "node:child_process";
 import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
+import { createServer } from "node:http";
 import { createRequire } from "node:module";
 import { homedir, tmpdir } from "node:os";
 import path from "node:path";
@@ -46,6 +47,27 @@ for (const f of readdirSync(migraciones).filter((n) => n.endsWith(".sql")).sort(
 await admin.query(`ALTER ROLE deepy_web PASSWORD '${PASSWORD_ROL}'`);
 await admin.end();
 
+// Claude simulado (el E2E nunca llama a la API real). POST /__fallar hace que la siguiente llamada responda 529.
+const TEXTO_TUTOR = "Comentario del tutor de prueba: vas bien con la fila de la a.";
+let fallarSiguiente = false;
+const falso = createServer((req, res) => {
+  req.resume();
+  req.on("end", () => {
+    if (req.url === "/__fallar") {
+      fallarSiguiente = true;
+      return res.end("ok");
+    }
+    if (fallarSiguiente) {
+      fallarSiguiente = false;
+      res.writeHead(529, { "content-type": "application/json" });
+      return res.end(JSON.stringify({ type: "error", error: { type: "overloaded_error", message: "Overloaded" } }));
+    }
+    res.writeHead(200, { "content-type": "application/json" });
+    res.end(JSON.stringify({ content: [{ type: "text", text: TEXTO_TUTOR }], usage: { input_tokens: 1, output_tokens: 1 } }));
+  });
+});
+await new Promise((r) => falso.listen(PUERTO + 1, "127.0.0.1", r));
+
 const app = spawn(process.execPath, [path.join(DEEPY_WEB, "node_modules/next/dist/bin/next"), "start", "-H", "127.0.0.1", "-p", String(PUERTO)], {
   cwd: DEEPY_WEB,
   stdio: ["ignore", "ignore", "inherit"],
@@ -57,6 +79,8 @@ const app = spawn(process.execPath, [path.join(DEEPY_WEB, "node_modules/next/dis
     DEEPY_API_TOKEN: "api-token-de-prueba",
     DEEPY_KANA_TOKEN: "kana-token-de-prueba-0123456789abcdef",
     DEEPY_ENLACES_SECRET: "secreto-e2e-kana-enlaces-0123456789abcdef",
+    ANTHROPIC_API_KEY: "clave-falsa-de-prueba",
+    KANA_TUTOR_API_URL: `http://127.0.0.1:${PUERTO + 1}`,
   },
 });
 
@@ -74,6 +98,7 @@ console.log(`LISTO ${url}`);
 
 const cerrar = () => {
   app.kill();
+  falso.close();
   pg.stdin.end();
   setTimeout(() => {
     pg.kill();

@@ -28,6 +28,8 @@ struct RondaTarjetas {
 
     let config: Config
     let tarjetas: [Tarjeta]
+    /// Sesión de «Hoy»: sin vidas ni récord (modo de fallo 82).
+    let repaso: Bool
     private(set) var indice = 0
     private(set) var vidas = vidasIniciales
     private(set) var respuestas: [Contestada] = []
@@ -50,6 +52,13 @@ struct RondaTarjetas {
         let cantidad = config.tamano == .completo ? pool.count : Int(config.tamano.rawValue)!
         self.config = config
         tarjetas = Array(pool.prefix(cantidad))
+        repaso = false
+    }
+
+    init(repaso tarjetas: [Tarjeta]) {
+        config = Config()
+        self.tarjetas = tarjetas
+        repaso = true
     }
 
     var actual: Tarjeta { tarjetas[indice] }
@@ -80,7 +89,7 @@ struct RondaTarjetas {
         nSobrante = false
         combo = 0
         respuestas.append(Contestada(tarjeta: actual, ok: false, ms: ms))
-        vidas -= 1
+        if !repaso { vidas -= 1 }
     }
 
     mutating func siguiente() {

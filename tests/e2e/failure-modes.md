@@ -126,3 +126,21 @@
 74. El mensaje de fin cambia mientras se mira el resumen (se vuelve a sortear en cada redibujado) o
     usa el récord ya actualizado para decir «a un paso del récord».
 75. La cabecera de racha no refleja las respuestas recién guardadas o las del otro equipo ya bajadas.
+
+## Fase 3a: repaso espaciado (FSRS) y «Hoy» (escritos antes del código)
+76. El port de FSRS a Swift se aparta de `ts-fsrs` 5.4.2 (parámetros, redondeos, orden de intervalos
+    otra vez ≤ difícil < bien < fácil): repasos en días equivocados.
+77. Respuestas con la misma fecha (una lectura las guarda todas juntas) se ordenan distinto en el
+    iPhone y en el iPad, y los dos equipos proponen repasos distintos.
+78. Muchas respuestas al mismo kana el mismo día cuentan como muchos repasos e inflan la estabilidad.
+79. Las respuestas de lectura (sin latencia) rompen el cálculo o se califican como «difícil»/«otra vez».
+80. Lo que no es una tarjeta del mazo (っ suelta, ー, signos) aparece como tarjeta o rompe el plan.
+81. Se introducen más kana nuevos al día que el tope, el tope se reinicia al reabrir la app, o el
+    orden de los nuevos es al azar en vez de seguir la tabla (hiragana básico primero).
+    (El tope limita los nuevos que propone «Hoy»; un kana visto por primera vez en una ronda libre o en
+    una lectura también cuenta como introducido ese día.)
+86. Las unidades de una lectura que no se llegaron a escribir cuentan como repasos fallidos.
+82. En el repaso, fallar quita vidas y corta la sesión, o la sesión guarda un récord de ronda libre.
+83. Al volver de la sesión, «Hoy» sigue mostrando como pendientes los kana ya repasados.
+84. El día del repaso se calcula en UTC y no en la zona local.
+85. El plan se recalcula con cada respuesta guardada durante la ronda y retrasa la tarjeta siguiente.

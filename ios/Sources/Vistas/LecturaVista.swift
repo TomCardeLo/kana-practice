@@ -329,9 +329,10 @@ struct LecturaVista: View {
             animo = Mensajes.lectura(correctas: resultado.correct, total: resultado.total)
             if resultado.total > 0, resultado.correct == resultado.total { Efectos.compartidos.reproducir(.rondaCompleta) }
             do {
+                let ahora = Date.now  // la misma fecha para toda la lectura (modo de fallo 77)
                 try Progreso.registrar(resultado.words.joined().map {
                     Intento(ejercicio: "lectura", item: $0.kana, silabario: silabario, correcto: $0.ok,
-                            respuesta: $0.typed, latenciaMs: nil, dispositivo: Progreso.dispositivo)
+                            respuesta: $0.typed, latenciaMs: nil, dispositivo: Progreso.dispositivo, fecha: ahora)
                 }, en: contexto)
             } catch {
                 avisar("No se pudo guardar el progreso: \(error.localizedDescription)")

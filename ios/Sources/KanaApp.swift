@@ -43,6 +43,28 @@ struct KanaApp: App {
                 try? contexto.save()
             }
         }
+        // E2E de «Hoy» (modos de fallo 77–84). Vencen hoy o antes: か (fallada hace 2 días), い (bien hace 5),
+        // さ (ayer, acierto y error en el mismo milisegundo: cuenta el error) y そ (bien hace 3 días a las 23:30
+        // locales). No vencen: あ (fácil ayer) y た (lectura correcta sin latencia = bien, hace 2 días). ち (lectura
+        // sin escribir) no cuenta. Plan: 4 por repasar + 10 nuevas (う え お き く け こ し す せ).
+        if Self.enPrueba, ProcessInfo.processInfo.arguments.contains("-uitest-repaso") {
+            let calendario = Calendar.current
+            let mediodia = calendario.date(bySettingHour: 12, minute: 0, second: 0, of: .now)!
+            let dia = { (d: Int) in calendario.date(byAdding: .day, value: d, to: mediodia)! }
+            let noche = calendario.date(bySettingHour: 23, minute: 30, second: 0, of: dia(-3))!
+            let semilla: [(String, String, Date, Bool, String?, Int?)] = [
+                ("tarjeta", "か", dia(-2), false, "x", 4000), ("tarjeta", "い", dia(-5), true, "i", 2500),
+                ("tarjeta", "あ", dia(-1), true, "a", 900),
+                ("tarjeta", "さ", dia(-1), true, "sa", 900), ("tarjeta", "さ", dia(-1).addingTimeInterval(0.0003), false, "x", 900),
+                ("tarjeta", "そ", noche, true, "so", 2500), ("lectura", "た", dia(-2), true, "ta", nil),
+                ("lectura", "ち", dia(-1), false, nil, nil),
+            ]
+            for (ejercicio, kana, fecha, ok, respuesta, ms) in semilla {
+                contenedor.mainContext.insert(Intento(ejercicio: ejercicio, item: kana, silabario: .hiragana, correcto: ok,
+                                                      respuesta: respuesta, latenciaMs: ms, dispositivo: Progreso.dispositivo,
+                                                      fecha: fecha))
+            }
+        }
         // E2E de la racha: 3 días anteriores con la meta y 45 respuestas hoy (hace una hora): 5 más la cumplen.
         if Self.enPrueba, ProcessInfo.processInfo.arguments.contains("-uitest-racha") {
             let calendario = Calendar.current

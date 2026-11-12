@@ -200,6 +200,62 @@ final class KanaUITests: XCTestCase {
         captura("racha-progreso")
     }
 
+    /// Tutor (fase 3b): al terminar una ronda se sube la sesión y Deepy (con Claude simulado) la comenta. Un fallo
+    /// de Claude se ve con «Reintentar». Solo en el iPad: corre después de las pruebas de sincronización de los dos
+    /// equipos, que cuentan las respuestas del servidor.
+    func testTutorComentaLaRondaYSeReintenta() throws {
+        try XCTSkipIf(!esIPad, "Corre en el iPad, después de las pruebas de sincronización")
+        relanzarConServidor()
+        escribirPassword("password-de-prueba")
+        esperarConectado()
+        // La siguiente llamada a Claude responde 529 (sobrecarga).
+        var peticion = URLRequest(url: URL(string: "http://127.0.0.1:3109/__fallar")!)
+        peticion.httpMethod = "POST"
+        let listo = expectation(description: "falso")
+        URLSession.shared.dataTask(with: peticion) { _, _, _ in listo.fulfill() }.resume()
+        wait(for: [listo], timeout: 5)
+
+        irA("Tarjetas")
+        configurarTarjetas(tamano: "5")
+        toca("btn-empezar")
+        jugarRonda(de: 5)
+        esperarLabel("resumen-titulo", "¡Ronda completada!")
+        XCTAssertTrue(el("tutor-error").waitForExistence(timeout: 20), "El fallo del tutor no se mostró")
+        XCTAssertTrue(el("tutor-error").label.contains("HTTP 529"), el("tutor-error").label)
+        captura("tutor-error")
+        toca("btn-tutor-reintentar")
+        esperarLabel("tutor-comentario", "Comentario del tutor de prueba: vas bien con la fila de la a.", timeout: 20)
+        captura("tutor-comentario")
+    }
+
+    /// 81–83: «Hoy» propone los vencidos y 10 nuevos en orden de tabla; fallar no corta la sesión ni quita vidas,
+    /// no hay récord, y al volver no queda nada pendiente (lo fallado vuelve mañana).
+    func testRepasoHoySinVidasYPlanActualizado() {
+        app.terminate()
+        app.launchArguments = ["-uitest", "-uitest-repaso"]
+        app.launch()
+        esperarLabel("hoy-plan", "4 por repasar · 10 nuevas")
+        toca("btn-repasar")
+        var vistos: [String] = []
+        for i in 1 ... 14 {
+            esperarLabel("progreso", "\(i)/14", timeout: 6)
+            let kana = el("tarjeta-kana").label
+            vistos.append(kana)
+            if i <= 3 { toca("btn-nolase") } else { el("tarjeta-input").typeText(romaji(kana)) }
+            XCTAssertFalse(el("vidas").exists, "El repaso no tiene vidas (82)")
+        }
+        XCTAssertEqual(Set(vistos), ["い", "か", "さ", "そ", "う", "え", "お", "き", "く", "け", "こ", "し", "す", "せ"])
+        esperarLabel("resumen-titulo", "¡Repaso terminado!", timeout: 6)
+        XCTAssertEqual(el("resumen-aciertos").label, "11/14")
+        XCTAssertFalse(el("resumen-record").exists, "El repaso no guarda récord (82)")
+        XCTAssertFalse(el("btn-otra").exists)
+        captura("repaso-terminado")
+        toca("btn-volver")
+        esperarLabel("hoy-plan", "0 por repasar · 0 nuevas")
+        XCTAssertTrue(el("hoy-nada").exists)
+        captura("repaso-nada-pendiente")
+    }
+
     /// 71: la meta que el otro equipo ya cumplió hoy baja justo después de una ronda aquí: no se anuncia
     /// como si la hubieran cumplido estas 5 respuestas.
     func testRachaNoAnunciaLoQueBajaDelOtroEquipo() {

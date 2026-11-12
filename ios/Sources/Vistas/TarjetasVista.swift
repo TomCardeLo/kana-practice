@@ -18,6 +18,10 @@ struct TarjetasVista: View {
     /// Se sortea una vez al terminar, no en cada redibujado (modo de fallo 74).
     @State private var mensajeFin = ""
     @State private var confeti = 0
+    @State private var inicioSesion = Date.now
+    @State private var tutor = EstadoTutor.nada
+
+    private enum EstadoTutor: Equatable { case nada, sinConexion, pensando, listo(String), error(String) }
     @FocusState private var enfocado: Bool
 
     /// Pausa tras un error antes de pasar a la siguiente tarjeta (como la web).
@@ -62,7 +66,8 @@ struct TarjetasVista: View {
     private var configuracion: some View {
         VStack(alignment: .leading, spacing: 28) {
             ResumenRacha()
-            Text("Sale un kana suelto: escribe su lectura en romaji. Si aciertas, pasa sola a la siguiente. Tienes 3 vidas.")
+            RepasoHoy(empezar: empezarRepaso)
+            Text("Ronda libre: sale un kana suelto; escribe su lectura en romaji. Si aciertas, pasa sola a la siguiente. Tienes 3 vidas.")
                 .foregroundStyle(Color.tintaSuave)
             Seccion(numero: "01", titulo: "Silabario") {
                 Segmentado(opciones: RondaTarjetas.OpcionSilabario.allCases.map { ($0, $0.nombre) },
@@ -107,10 +112,14 @@ struct TarjetasVista: View {
                 }
                 .accessibilityIdentifier("cronometro")
                 Spacer()
-                Text(String(repeating: "♥", count: ronda.vidas) + String(repeating: "♡", count: RondaTarjetas.vidasIniciales - ronda.vidas))
-                    .foregroundStyle(Color.rojo)
-                    .accessibilityLabel("Vidas: \(ronda.vidas) de 3")
-                    .accessibilityIdentifier("vidas")
+                if ronda.repaso {
+                    Text("REPASO").font(.etiqueta).accessibilityIdentifier("modo-repaso")
+                } else {
+                    Text(String(repeating: "♥", count: ronda.vidas) + String(repeating: "♡", count: RondaTarjetas.vidasIniciales - ronda.vidas))
+                        .foregroundStyle(Color.rojo)
+                        .accessibilityLabel("Vidas: \(ronda.vidas) de 3")
+                        .accessibilityIdentifier("vidas")
+                }
             }
             .foregroundStyle(Color.tintaSuave)
 
@@ -174,7 +183,7 @@ struct TarjetasVista: View {
 
     private func resumen(_ ronda: RondaTarjetas, _ resultado: RondaTarjetas.Resultado) -> some View {
         VStack(alignment: .leading, spacing: 24) {
-            Text(resultado == .completa ? "¡Ronda completada!" : "Sin vidas")
+            Text(ronda.repaso ? "¡Repaso terminado!" : resultado == .completa ? "¡Ronda completada!" : "Sin vidas")
                 .font(.largeTitle.bold())
                 .accessibilityIdentifier("resumen-titulo")
             HStack(spacing: 12) {
@@ -185,9 +194,12 @@ struct TarjetasVista: View {
             Text(mensajeFin)
                 .font(.title3)
                 .accessibilityIdentifier("resumen-mensaje")
-            Text(textoRecord(ronda, resultado))
-                .foregroundStyle(recordNuevo ? Color.verde : Color.tintaSuave)
-                .accessibilityIdentifier("resumen-record")
+            if !ronda.repaso {
+                Text(textoRecord(ronda, resultado))
+                    .foregroundStyle(recordNuevo ? Color.verde : Color.tintaSuave)
+                    .accessibilityIdentifier("resumen-record")
+            }
+            seccionTutor
             Seccion(numero: "·", titulo: "Más lentas") {
                 FlujoLayout {
                     ForEach(Array(ronda.masLentas.enumerated()), id: \.offset) { _, r in
@@ -208,14 +220,45 @@ struct TarjetasVista: View {
                 }
             }
             HStack {
-                Button("Cambiar configuración") { self.ronda = nil }
-                    .buttonStyle(.bordered)
-                Spacer()
-                Button("Otra ronda", action: empezar)
-                    .buttonStyle(.borderedProminent)
-                    .accessibilityIdentifier("btn-otra")
+                if ronda.repaso {
+                    // Al volver, «Hoy» se recalcula con lo recién respondido (modo de fallo 83).
+                    Button("Volver") { self.ronda = nil }
+                        .buttonStyle(.borderedProminent)
+                        .accessibilityIdentifier("btn-volver")
+                } else {
+                    Button("Cambiar configuración") { self.ronda = nil }
+                        .buttonStyle(.bordered)
+                    Spacer()
+                    Button("Otra ronda", action: empezar)
+                        .buttonStyle(.borderedProminent)
+                        .accessibilityIdentifier("btn-otra")
+                }
             }
             .tint(.verde)
+        }
+    }
+
+    @ViewBuilder private var seccionTutor: some View {
+        if tutor != .nada {
+            Seccion(numero: "·", titulo: "Tutor") {
+                switch tutor {
+                case .nada: EmptyView()
+                case .sinConexion:
+                    Text("Conecta con Deepy (Progreso → Ajustes) para recibir el comentario del tutor.")
+                        .foregroundStyle(Color.tintaSuave).accessibilityIdentifier("tutor-sin-conexion")
+                case .pensando:
+                    HStack(spacing: 10) {
+                        ProgressView()
+                        Text("El tutor está mirando tu sesión…").foregroundStyle(Color.tintaSuave)
+                    }
+                    .accessibilityIdentifier("tutor-pensando")
+                case let .listo(texto):
+                    Text(texto).accessibilityIdentifier("tutor-comentario")
+                case let .error(mensaje):
+                    Text(mensaje).foregroundStyle(Color.rojo).accessibilityIdentifier("tutor-error")
+                    Button("Reintentar", action: pedirTutor).buttonStyle(.bordered).accessibilityIdentifier("btn-tutor-reintentar")
+                }
+            }
         }
     }
 
@@ -255,9 +298,15 @@ struct TarjetasVista: View {
         lecturaError = nil
     }
 
-    private func empezar() {
+    private func empezar() { arrancar(RondaTarjetas(config: ronda?.config ?? config)) }
+
+    private func empezarRepaso(_ tarjetas: [Tarjeta]) { arrancar(RondaTarjetas(repaso: tarjetas.shuffled())) }
+
+    private func arrancar(_ nueva: RondaTarjetas) {
         pausa?.cancel()
-        ronda = RondaTarjetas(config: ronda?.config ?? config)
+        ronda = nueva
+        inicioSesion = .now
+        tutor = .nada
         recordNuevo = false
         lecturaError = nil
         texto = ""
@@ -322,13 +371,25 @@ struct TarjetasVista: View {
         }
     }
 
+    /// Sincroniza y pide el comentario del tutor. Una respuesta tardía de una sesión anterior no pisa la nueva.
+    private func pedirTutor() {
+        guard sincronizador.conectado else { tutor = .sinConexion; return }
+        tutor = .pensando
+        let sesion = inicioSesion
+        Task {
+            let nuevo: EstadoTutor
+            do { nuevo = .listo(try await sincronizador.comentarSesion(desde: sesion)) } catch { nuevo = .error(error.localizedDescription) }
+            if inicioSesion == sesion { tutor = nuevo }
+        }
+    }
+
     private func terminar(_ r: RondaTarjetas) {
         enfocado = false
-        Task { await sincronizador.sincronizar() }
+        pedirTutor()
         let completa = r.resultado == .completa
         // El récord anterior se lee antes de guardar el nuevo (modo de fallo 74).
-        let anterior = Progreso.record(r.config.claveRecord)
-        if completa { recordNuevo = Progreso.guardarRecord(r.config.claveRecord, r.mediaAciertosMs) }
+        let anterior = r.repaso ? nil : Progreso.record(r.config.claveRecord)
+        if completa, !r.repaso { recordNuevo = Progreso.guardarRecord(r.config.claveRecord, r.mediaAciertosMs) }
         mensajeFin = Mensajes.tarjetas(.init(completa: completa, aciertos: r.aciertos, total: r.tarjetas.count,
                                              recordNuevo: recordNuevo, mediaMs: r.mediaAciertosMs,
                                              recordAnteriorMs: anterior, mejorCombo: r.mejorCombo))

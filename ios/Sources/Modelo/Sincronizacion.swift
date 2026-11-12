@@ -249,6 +249,25 @@ final class Sincronizador {
         }
     }
 
+    // MARK: Tutor (fase 3b)
+
+    private struct PeticionTutor: Encodable { let desde: String; let dispositivo: String }
+    private struct RespuestaTutor: Decodable { let comentario: String }
+
+    /// Sube la sesión que empezó en `desde` y pide el comentario del tutor (Claude en Deepy). Cualquier fallo se
+    /// lanza con su mensaje: la pantalla lo muestra con «Reintentar».
+    func comentarSesion(desde: Date) async throws -> String {
+        guard conectado else { throw Fallo.noAutorizado }
+        // Si ya había una sincronización en curso (al volver a primer plano, por ejemplo), se espera a que acabe:
+        // el servidor solo comenta lo que ya tiene.
+        while estado == .sincronizando { try await Task.sleep(for: .milliseconds(200)) }
+        await sincronizar()
+        if case let .error(mensaje) = estado { throw Fallo.servidor("No se pudo subir la sesión: \(mensaje)") }
+        let r: RespuestaTutor = try await pedir("POST", "/kana/tutor", cuerpo: PeticionTutor(
+            desde: Self.fechaISO.string(from: desde), dispositivo: Progreso.dispositivo))
+        return r.comentario
+    }
+
     // MARK: HTTP
 
     private struct CuerpoError: Decodable { let error: String? }
