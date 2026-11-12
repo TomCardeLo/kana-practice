@@ -15,7 +15,8 @@ struct Confeti: View {
         let x: Double, retraso: Double, velocidad: Double, giro: Double, vaiven: Double, color: Color, ancho: Double
     }
 
-    private let piezas: [Pieza] = (0 ..< 70).map { _ in
+    /// En @State: si no, cada redibujado del padre las sortea de nuevo y saltan mientras caen.
+    @State private var piezas: [Pieza] = (0 ..< 70).map { _ in
         Pieza(x: .random(in: 0 ... 1), retraso: .random(in: 0 ... 0.5), velocidad: .random(in: 0.55 ... 1.0),
               giro: .random(in: 2 ... 9), vaiven: .random(in: 8 ... 30), color: colores.randomElement()!,
               ancho: .random(in: 6 ... 11))

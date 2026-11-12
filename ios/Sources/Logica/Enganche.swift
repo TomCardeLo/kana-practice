@@ -27,7 +27,8 @@ enum Rachas {
         for fecha in fechas { porDia[calendario.startOfDay(for: fecha), default: 0] += 1 }
         let cumplidos = Set(porDia.filter { $0.value >= metaDiaria }.keys)  // modo de fallo 63
         let hoy = calendario.startOfDay(for: ahora)
-        func anterior(_ dia: Date) -> Date { calendario.date(byAdding: .day, value: -1, to: dia)! }
+        // startOfDay otra vez: donde el cambio de horario salta la medianoche, el día empieza a la 01:00 (modo de fallo 61).
+        func anterior(_ dia: Date) -> Date { calendario.startOfDay(for: calendario.date(byAdding: .day, value: -1, to: dia)!) }
 
         // Si hoy aún no se cumplió, la racha sigue viva desde ayer hasta que acabe el día (modo de fallo 62).
         var dia = cumplidos.contains(hoy) ? hoy : anterior(hoy)
@@ -40,7 +41,7 @@ enum Rachas {
         var mejor = 0, seguidos = 0
         var previo: Date?
         for d in cumplidos.sorted() {
-            seguidos = previo.map { calendario.date(byAdding: .day, value: 1, to: $0) == d } == true ? seguidos + 1 : 1
+            seguidos = previo.map { calendario.startOfDay(for: calendario.date(byAdding: .day, value: 1, to: $0)!) == d } == true ? seguidos + 1 : 1
             mejor = max(mejor, seguidos)
             previo = d
         }

@@ -152,6 +152,70 @@ final class KanaUITests: XCTestCase {
         captura("tarjetas-ronda-lenta-sin-record")
     }
 
+    /// 64, 66, 67, 72–75: con 3 días de racha y 45 respuestas hoy, una ronda de 5 cumple la meta a mitad de
+    /// la última tarjeta; el aviso sale una sola vez, el combo aparece desde 3 y un error lo borra.
+    func testRachaMetaDelDiaYCombo() {
+        app.terminate()
+        app.launchArguments = ["-uitest", "-uitest-racha"]
+        app.launch()
+        esperarLabel("racha-dias", "3 días de racha")
+        XCTAssertEqual(el("racha-hoy").label, "Hoy 45/50")
+        XCTAssertFalse(el("aviso-celebracion").exists, "Lo sembrado no es de ahora: no se anuncia (71)")
+
+        configurarTarjetas(tamano: "5")
+        toca("btn-empezar")
+        jugarRonda(de: 5) { i in
+            if i <= 3 { XCTAssertFalse(self.el("combo").exists, "Combo antes de 3 aciertos (73)") }
+            if i == 4 { self.esperarLabel("combo", "Combo de 3") }
+        }
+        XCTAssertTrue(el("aviso-celebracion").waitForExistence(timeout: 5), "No se anunció la meta al llegar a 50 (64)")
+        XCTAssertEqual(el("aviso-celebracion").label, "Meta del día cumplida. Racha de 4 días.")
+        esperarLabel("resumen-titulo", "¡Ronda completada!")
+        let mensaje = el("resumen-mensaje").label
+        XCTAssertTrue(mensaje.lowercased().contains("récord"), "Primera ronda completa = récord nuevo: \(mensaje) (67)")
+        captura("racha-meta-cumplida")
+        sleep(1)
+        XCTAssertEqual(el("resumen-mensaje").label, mensaje, "El mensaje cambió al redibujar (74)")
+
+        // Otra ronda el mismo día: el aviso no se repite; un error borra el combo.
+        esperar(el("aviso-celebracion"), NSPredicate(format: "exists == false"), timeout: 8)
+        toca("btn-otra")
+        jugarRonda(de: 5, hasta: 3)
+        esperarLabel("progreso", "4/5")
+        esperarLabel("combo", "Combo de 3")
+        _ = fallarConEnter(el("tarjeta-input"), vidasRestantes: 2)
+        XCTAssertFalse(el("combo").exists, "El combo siguió tras un error (66, 73)")
+        esperarLabel("progreso", "5/5")
+        el("tarjeta-input").typeText(romaji(el("tarjeta-kana").label))
+        esperarLabel("resumen-titulo", "¡Ronda completada!")
+        XCTAssertFalse(el("resumen-mensaje").label.contains("Ronda perfecta"), "Llamó perfecta a una ronda con un error (67)")
+        XCTAssertFalse(el("aviso-celebracion").waitForExistence(timeout: 2), "La meta se anunció dos veces el mismo día (64)")
+
+        app.buttons["Cambiar configuración"].tap()
+        esperarLabel("racha-dias", "4 días de racha")
+        XCTAssertEqual(el("racha-hoy").label, "Hoy 50/50")
+        irA("Progreso")
+        esperarLabel("racha-dias", "4 días de racha")
+        XCTAssertTrue(el("progreso-sin-dominadas").exists)
+        captura("racha-progreso")
+    }
+
+    /// 71: la meta que el otro equipo ya cumplió hoy baja justo después de una ronda aquí: no se anuncia
+    /// como si la hubieran cumplido estas 5 respuestas.
+    func testRachaNoAnunciaLoQueBajaDelOtroEquipo() {
+        app.terminate()
+        app.launchArguments = ["-uitest", "-uitest-baja-tarde"]
+        app.launch()
+        configurarTarjetas(tamano: "5")
+        toca("btn-empezar")
+        jugarRonda(de: 5)
+        esperarLabel("resumen-titulo", "¡Ronda completada!")
+        app.buttons["Cambiar configuración"].tap()
+        esperarLabel("racha-hoy", "Hoy 50/50", timeout: 20)
+        XCTAssertFalse(el("aviso-celebracion").exists, "Se anunció como propia la meta que bajó del otro equipo (71)")
+        captura("racha-baja-del-otro-equipo")
+    }
+
     /// 33, 34, 35, 39: Enter vacío, sílaba a medias, error con Enter, «No la sé» y fin sin vidas.
     func testTarjetasErroresHastaQuedarseSinVidas() {
         configurarTarjetas(tamano: "10")

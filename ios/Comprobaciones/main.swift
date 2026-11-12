@@ -20,6 +20,14 @@ let ahora61 = fecha("2026-11-10 21:00")
 var e = Rachas.calcular(dia("2026-11-10", 50, hora: "19:30"), ahora: ahora61, calendario: bogota)
 comprobar(e.hoy == 50 && e.racha == 1 && e.metaCumplida, "61: el día se cuenta en la zona local (\(e))")
 
+// 61: en Santiago de Chile el 2026-09-06 el reloj salta de 23:59 a 01:00 (el día empieza a la 01:00):
+// seis días seguidos alrededor del salto son una racha de 6, no se parte en dos.
+var santiago = Calendar(identifier: .gregorian)
+santiago.timeZone = TimeZone(identifier: "America/Santiago")!
+let mediodia = { (d: Int) in santiago.date(from: DateComponents(year: 2026, month: 9, day: d, hour: 12))! }
+e = Rachas.calcular((3 ... 8).flatMap { Array(repeating: mediodia($0), count: 50) }, ahora: mediodia(8), calendario: santiago)
+comprobar(e.racha == 6 && e.mejor == 6, "61: el cambio de horario a medianoche no corta la racha (\(e))")
+
 // 62: ayer y anteayer cumplidos, hoy 10: la racha sigue en 2 y no se rompe.
 let ahora = fecha("2026-11-12 09:00")
 e = Rachas.calcular(dia("2026-11-10", 50) + dia("2026-11-11", 60) + dia("2026-11-12", 10), ahora: ahora, calendario: bogota)

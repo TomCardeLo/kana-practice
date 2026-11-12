@@ -29,6 +29,34 @@ struct KanaApp: App {
             contenedor.mainContext.insert(Intento(ejercicio: "tarjeta", item: "ア", silabario: .katakana, correcto: true,
                                                   respuesta: "a", latenciaMs: 900, dispositivo: Progreso.dispositivo))
         }
+        // E2E del modo de fallo 71: 15 s después de abrir «baja» la meta de hoy ya cumplida en otro equipo,
+        // como una sincronización lenta que termina después de responder unas tarjetas aquí.
+        if Self.enPrueba, ProcessInfo.processInfo.arguments.contains("-uitest-baja-tarde") {
+            let contexto = contenedor.mainContext
+            Task { @MainActor in
+                try? await Task.sleep(for: .seconds(15))
+                let fecha = max(Calendar.current.startOfDay(for: .now), Date.now.addingTimeInterval(-7200))
+                for _ in 0 ..< Rachas.metaDiaria {
+                    contexto.insert(Intento(remoto: UUID(), fecha: fecha, dispositivo: "otro-equipo", ejercicio: "tarjeta",
+                                            item: "ア", silabario: .katakana, correcto: true, respuesta: "a", latenciaMs: 900))
+                }
+                try? contexto.save()
+            }
+        }
+        // E2E de la racha: 3 días anteriores con la meta y 45 respuestas hoy (hace una hora): 5 más la cumplen.
+        if Self.enPrueba, ProcessInfo.processInfo.arguments.contains("-uitest-racha") {
+            let calendario = Calendar.current
+            let hace1h = Date.now.addingTimeInterval(-3600)
+            let hoy = calendario.isDateInToday(hace1h) ? hace1h : calendario.startOfDay(for: .now)
+            let fechas = (1 ... 3).flatMap { d in
+                Array(repeating: calendario.date(byAdding: .day, value: -d, to: hoy)!, count: Rachas.metaDiaria)
+            } + Array(repeating: hoy, count: Rachas.metaDiaria - 5)
+            for fecha in fechas {
+                contenedor.mainContext.insert(Intento(ejercicio: "tarjeta", item: "ア", silabario: .katakana, correcto: true,
+                                                      respuesta: "a", latenciaMs: 900, dispositivo: Progreso.dispositivo,
+                                                      fecha: fecha))
+            }
+        }
     }
 
     var body: some Scene {
@@ -53,12 +81,14 @@ struct RaizVista: View {
         }
         .tabViewStyle(.sidebarAdaptable)
         .tint(.verde)
+        .overlay(alignment: .top) { Celebraciones() }
         .sheet(isPresented: $pedirConexion) { ConexionVista() }
         // La sesión venció a mitad de una sincronización: se vuelve a pedir, no solo se dice en Progreso.
         .onChange(of: sincronizador.necesitaConexion) { _, pedir in if pedir { pedirConexion = true } }
         .task {
             // Una vez al abrir: sin sesión se pide conectar (se puede posponer; practicar no depende de la red).
             // En las pruebas E2E solo si la prueba lo pide, para no tapar las demás.
+            Efectos.compartidos.preparar()
             let argumentos = ProcessInfo.processInfo.arguments
             let silenciar = argumentos.contains("-uitest") && !argumentos.contains("-uitest-conexion")
             if !sincronizador.conectado, !silenciar { pedirConexion = true }

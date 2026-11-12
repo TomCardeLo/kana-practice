@@ -31,9 +31,11 @@ struct ProgresoVista: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
+                    ResumenRacha()
                     resumen
                     Segmentado(opciones: Silabario.allCases.map { ($0, $0.nombre) }, seleccion: $silabario,
                                identificador: "progreso-silabario")
+                    dominadas
                     let filas = ranking
                     if filas.isEmpty {
                         Text("Todavía no hay estadísticas para este silabario. Juega una ronda o corrige una lectura para empezar.")
@@ -73,9 +75,31 @@ struct ProgresoVista: View {
         }
     }
 
+    /// Filas dominadas del silabario elegido (los hitos no mezclan silabarios, modo de fallo 68).
+    private var dominadas: some View {
+        let filas = Hitos.dominadas(intentos.compactMap(\.comoRespuesta)).filter { $0.silabario == silabario }.sorted()
+        return Seccion(numero: "·", titulo: "Filas dominadas") {
+            if filas.isEmpty {
+                Text("Aún ninguna. Una fila se domina con 90 % de acierto en sus últimas respuestas y menos de 3 s por tarjeta.")
+                    .font(.subheadline).foregroundStyle(Color.tintaSuave)
+                    .accessibilityIdentifier("progreso-sin-dominadas")
+            } else {
+                FlujoLayout {
+                    ForEach(filas, id: \.clave) { h in
+                        Text(h.ejemplo).font(.kana(22))
+                            .foregroundStyle(Color.papel)
+                            .padding(.horizontal, 12).padding(.vertical, 6)
+                            .background(Color.verde, in: Capsule())
+                            .accessibilityIdentifier("progreso-dominada")
+                    }
+                }
+            }
+        }
+    }
+
     private func cifra(_ titulo: String, _ valor: String, id: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(titulo.uppercased()).font(.etiqueta).foregroundStyle(Color.tintaSuave)
+            Text(titulo.uppercased()).font(.etiqueta).foregroundStyle(Color.tintaSuave).lineLimit(1).minimumScaleFactor(0.7)
             Text(valor).font(.title2.weight(.semibold)).monospacedDigit().accessibilityIdentifier(id)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

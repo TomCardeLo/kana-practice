@@ -116,3 +116,13 @@
 
 ### Confeti
 70. Ignora «Reducir movimiento» o bloquea los toques mientras cae.
+
+### Conexión de las piezas a las pantallas (escritos antes del código)
+71. Al bajar historial (reinstalar, o respuestas del otro equipo) se anuncian de golpe la meta o hitos
+    viejos que no se lograron en este momento ni en este equipo.
+72. La meta se cumple a mitad de ronda y el aviso no aparece, aparece solo al salir, o tapa la tarjeta
+    y bloquea el campo de respuesta.
+73. El combo se muestra con menos de 3 aciertos seguidos o sigue visible después de un error.
+74. El mensaje de fin cambia mientras se mira el resumen (se vuelve a sortear en cada redibujado) o
+    usa el récord ya actualizado para decir «a un paso del récord».
+75. La cabecera de racha no refleja las respuestas recién guardadas o las del otro equipo ya bajadas.

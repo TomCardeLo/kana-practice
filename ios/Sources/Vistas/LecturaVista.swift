@@ -41,6 +41,8 @@ struct LecturaVista: View {
     @State private var registrada = false
     @State private var solucionVisible = false
     @State private var mensaje: String?
+    /// Ánimo tras la primera corrección; no cambia al recorregir (modo de fallo 74).
+    @State private var animo: String?
     @State private var verFiltro = false
     @FocusState private var tecladoAbierto: Bool
 
@@ -249,6 +251,9 @@ struct LecturaVista: View {
                     .font(.headline.monospacedDigit())
                     .accessibilityIdentifier("lectura-marcador")
             }
+            if let animo {
+                Text(animo).foregroundStyle(Color.tintaSuave).accessibilityIdentifier("lectura-animo")
+            }
         }
     }
 
@@ -294,6 +299,7 @@ struct LecturaVista: View {
         practica = nil
         respuesta = ""
         correccion = nil
+        animo = nil
         registrada = false
         solucionVisible = false
     }
@@ -320,6 +326,8 @@ struct LecturaVista: View {
         correccion = resultado
         if !registrada, !solucionVisible {
             registrada = true
+            animo = Mensajes.lectura(correctas: resultado.correct, total: resultado.total)
+            if resultado.total > 0, resultado.correct == resultado.total { Efectos.compartidos.reproducir(.rondaCompleta) }
             do {
                 try Progreso.registrar(resultado.words.joined().map {
                     Intento(ejercicio: "lectura", item: $0.kana, silabario: silabario, correcto: $0.ok,

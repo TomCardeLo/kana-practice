@@ -15,6 +15,9 @@ struct TarjetasVista: View {
     @State private var escenaActiva = true
     @State private var pausa: Task<Void, Never>?
     @State private var errorGuardado: String?
+    /// Se sortea una vez al terminar, no en cada redibujado (modo de fallo 74).
+    @State private var mensajeFin = ""
+    @State private var confeti = 0
     @FocusState private var enfocado: Bool
 
     /// Pausa tras un error antes de pasar a la siguiente tarjeta (como la web).
@@ -39,6 +42,7 @@ struct TarjetasVista: View {
             }
             .scrollDismissesKeyboard(.never)
             .background(Color.papel)
+            .overlay { Confeti(disparo: confeti) }
             .navigationTitle("Tarjetas")
         }
         .onChange(of: fase) { _, nueva in
@@ -57,6 +61,7 @@ struct TarjetasVista: View {
 
     private var configuracion: some View {
         VStack(alignment: .leading, spacing: 28) {
+            ResumenRacha()
             Text("Sale un kana suelto: escribe su lectura en romaji. Si aciertas, pasa sola a la siguiente. Tienes 3 vidas.")
                 .foregroundStyle(Color.tintaSuave)
             Seccion(numero: "01", titulo: "Silabario") {
@@ -88,6 +93,14 @@ struct TarjetasVista: View {
             HStack {
                 Text("\(ronda.indice + 1)/\(ronda.tarjetas.count)")
                     .font(.etiqueta).accessibilityIdentifier("progreso")
+                // Desde 3 aciertos seguidos; un error lo borra (modo de fallo 73).
+                if ronda.combo >= 3 {
+                    Text("×\(ronda.combo)")
+                        .font(.etiqueta.weight(.bold)).foregroundStyle(Color.verde)
+                        .accessibilityLabel("Combo de \(ronda.combo)")
+                        .accessibilityIdentifier("combo")
+                        .transition(.scale.combined(with: .opacity))
+                }
                 Spacer()
                 TimelineView(.periodic(from: .now, by: 0.1)) { contexto in
                     Text(segundos(cronometro.ms(contexto.date))).font(.etiqueta).monospacedDigit()
@@ -169,6 +182,9 @@ struct TarjetasVista: View {
                 cifra("Tiempo", segundos(ronda.tiempoTotalMs), id: "resumen-tiempo")
                 cifra("Media", segundos(ronda.mediaAciertosMs), id: "resumen-media")
             }
+            Text(mensajeFin)
+                .font(.title3)
+                .accessibilityIdentifier("resumen-mensaje")
             Text(textoRecord(ronda, resultado))
                 .foregroundStyle(recordNuevo ? Color.verde : Color.tintaSuave)
                 .accessibilityIdentifier("resumen-record")
@@ -264,7 +280,8 @@ struct TarjetasVista: View {
         let ms = cronometro.ms()
         registrar(r.actual, ok: true, ms: ms, respuesta: texto)
         r.acertar(ms: ms)
-        ronda = r
+        withAnimation(.spring(duration: 0.3)) { ronda = r }
+        if r.resultado == nil { Efectos.compartidos.reproducir(.acierto(combo: r.combo - 1)) }
         texto = ""
         cronometro.iniciar()
         if r.resultado == .completa { terminar(r) }
@@ -287,6 +304,7 @@ struct TarjetasVista: View {
         registrar(r.actual, ok: false, ms: ms, respuesta: texto)
         r.fallar(ms: ms)
         ronda = r
+        Efectos.compartidos.reproducir(r.vidas == 0 ? .sinVidas : .error)
         lecturaError = "\(r.actual.kana) se lee \(r.actual.romaji)"
         pausa = Task {
             try? await Task.sleep(for: Self.pausaError)
@@ -307,6 +325,16 @@ struct TarjetasVista: View {
     private func terminar(_ r: RondaTarjetas) {
         enfocado = false
         Task { await sincronizador.sincronizar() }
-        if r.resultado == .completa { recordNuevo = Progreso.guardarRecord(r.config.claveRecord, r.mediaAciertosMs) }
+        let completa = r.resultado == .completa
+        // El récord anterior se lee antes de guardar el nuevo (modo de fallo 74).
+        let anterior = Progreso.record(r.config.claveRecord)
+        if completa { recordNuevo = Progreso.guardarRecord(r.config.claveRecord, r.mediaAciertosMs) }
+        mensajeFin = Mensajes.tarjetas(.init(completa: completa, aciertos: r.aciertos, total: r.tarjetas.count,
+                                             recordNuevo: recordNuevo, mediaMs: r.mediaAciertosMs,
+                                             recordAnteriorMs: anterior, mejorCombo: r.mejorCombo))
+        if completa {
+            Efectos.compartidos.reproducir(recordNuevo ? .record : .rondaCompleta)
+            if recordNuevo || r.aciertos == r.tarjetas.count { confeti += 1 }
+        }
     }
 }
