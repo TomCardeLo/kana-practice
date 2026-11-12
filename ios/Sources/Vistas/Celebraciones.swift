@@ -97,30 +97,16 @@ struct Celebraciones: View {
 /// Racha y meta del día. Se calcula con todas las respuestas guardadas, también las bajadas (modo de fallo 75).
 struct ResumenRacha: View {
     @Query private var intentos: [Intento]
+    @Environment(\.dynamicTypeSize) private var tamano
 
     var body: some View {
         let estado = Rachas.calcular(intentos.map(\.fecha))
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .firstTextBaseline) {
-                Label(estado.racha == 1 ? "1 día de racha" : "\(estado.racha) días de racha", systemImage: "flame.fill")
-                    .font(.headline)
-                    .foregroundStyle(estado.racha > 0 ? Color.rojo : Color.tintaSuave)
-                    .accessibilityIdentifier("racha-dias")
-                Spacer()
-                Text("Hoy \(min(estado.hoy, Rachas.metaDiaria))/\(Rachas.metaDiaria)")
-                    .font(.subheadline.monospacedDigit())
-                    .foregroundStyle(estado.metaCumplida ? Color.verde : Color.tintaSuave)
-                    .accessibilityIdentifier("racha-hoy")
-            }
-            ProgressView(value: Double(min(estado.hoy, Rachas.metaDiaria)), total: Double(Rachas.metaDiaria))
-                .tint(estado.metaCumplida ? .verde : .rojo)
-            Text(estado.metaCumplida ? "Meta del día cumplida." : "Faltan \(estado.faltan) respuestas para la meta de hoy.")
-                .font(.caption).foregroundStyle(Color.tintaSuave)
-            if estado.mejor > estado.racha {
-                Text("Mejor racha: \(estado.mejor) días").font(.caption).foregroundStyle(Color.tintaSuave)
-                    .accessibilityIdentifier("racha-mejor")
-            }
+        // Dos bloques: el anillo de la meta y la racha en verde (dirección «Matcha»).
+        // Con texto de accesibilidad, uno sobre otro: lado a lado no caben.
+        let disposicion = tamano.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 12)) : AnyLayout(HStackLayout(spacing: 12))
+        disposicion {
+            AnilloMeta(hoy: estado.hoy, meta: Rachas.metaDiaria)
+            BloqueRacha(racha: estado.racha, mejor: estado.mejor)
         }
-        .tarjetaFondo()
     }
 }

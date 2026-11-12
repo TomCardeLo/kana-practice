@@ -649,6 +649,12 @@ final class KanaUITests: XCTestCase {
         let e = el(id)
         // waitForExistence sondea cada segundo aunque el elemento ya esté: primero se mira directo.
         XCTAssertTrue(e.exists || e.waitForExistence(timeout: 5), "No aparece \(id)", file: file, line: line)
+        // iPhone: si la barra de pestañas flotante tapa el elemento (el «Empezar» del final), se desliza la página
+        // antes, como haría una persona; si no, el toque cae en la barra.
+        let barra = app.tabBars.firstMatch
+        if !esIPad, barra.exists, e.frame.maxY > barra.frame.minY - 4 {
+            app.scrollViews.firstMatch.swipeUp(velocity: .slow)
+        }
         e.tap()
     }
 
@@ -703,7 +709,14 @@ final class KanaUITests: XCTestCase {
     }
 
     private func configurarTarjetas(silabario: String? = nil, mazo: String? = nil, tamano: String? = nil) {
-        for (id, opcion) in [("config-silabario", silabario), ("config-mazo", mazo), ("config-tamano", tamano)] {
+        // El silabario se elige con bloques (あ, ア, あア); mazo y tamaño siguen segmentados.
+        if let silabario {
+            let bloque = el("config-silabario-\(silabario)")
+            XCTAssertTrue(bloque.waitForExistence(timeout: 5), "No existe el bloque de \(silabario)")
+            bloque.tap()
+            XCTAssertTrue(bloque.isSelected)
+        }
+        for (id, opcion) in [("config-mazo", mazo), ("config-tamano", tamano)] {
             guard let opcion else { continue }
             let boton = app.segmentedControls[id].buttons[opcion]
             XCTAssertTrue(boton.waitForExistence(timeout: 5), "No existe la opción \(opcion) en \(id)")

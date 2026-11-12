@@ -14,9 +14,16 @@ extension Color {
     static let papel2 = Color(claro: 0xF3F1EA, oscuro: 0x14233A)
     static let tinta = Color(claro: 0x0E1C32, oscuro: 0xF3F1EA)
     static let tintaSuave = Color(claro: 0x5E6B7A, oscuro: 0xA3ABB5)
-    static let linea = Color(claro: 0xD5D9DE, oscuro: 0x2A3A55)
+    static let linea = Color(claro: 0xE2E5E9, oscuro: 0x2A3A55)
     static let verde = Color(claro: 0x057A56, oscuro: 0x44BF9A)
-    static let verdeFondo = Color(claro: 0xD5F2E9, oscuro: 0x0F3A30)
+    static let verdeFondo = Color(claro: 0xDDF2EA, oscuro: 0x0F3A30)
+    /// Texto sobre verdeFondo (4,5:1 en los dos temas).
+    static let verdeTinta = Color(claro: 0x04563D, oscuro: 0x8FE0C2)
+    /// Superficie elevada de los bloques (dirección «Matcha»).
+    static let superficie = Color(claro: 0xFFFFFF, oscuro: 0x14233A)
+    /// Fondo de fichas, pistas de progreso y anillos.
+    static let chip = Color(claro: 0xEEF1F4, oscuro: 0x22324D)
+    static let sombra = Color(claro: 0x0E1C32, oscuro: 0x000000).opacity(0.10)
     static let rojo = Color(claro: 0xB42318, oscuro: 0xF97066)
     static let rojoFondo = Color(claro: 0xFBE4E1, oscuro: 0x4A1A16)
 }
@@ -114,10 +121,17 @@ extension View {
             .keyboardType(.asciiCapable)
     }
 
-    func tarjetaFondo() -> some View {
-        padding(20)
-            .background(Color.papel2, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-            .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).strokeBorder(Color.linea))
+    func tarjetaFondo() -> some View { bloque(relleno: 20) }
+
+    /// Bloque blanco elevado: radio 22, sombra suave (en oscuro, un filo en vez de sombra).
+    func bloque(relleno: CGFloat = 20, radio: CGFloat = 22) -> some View {
+        padding(relleno)
+            // La sombra solo en el fondo: aplicada a todo el bloque, también la proyectaban el kana y los textos.
+            .background {
+                RoundedRectangle(cornerRadius: radio, style: .continuous).fill(Color.superficie)
+                    .shadow(color: Color.sombra, radius: 18, y: 10)
+            }
+            .overlay(RoundedRectangle(cornerRadius: radio, style: .continuous).strokeBorder(Color.linea.opacity(0.6), lineWidth: 0.5))
     }
 }
 

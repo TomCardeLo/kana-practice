@@ -47,6 +47,8 @@ struct PalabrasVista: View {
             }
             .background(Color.papel)
             .navigationTitle("Palabras")
+            // En juego, toda la altura para la pregunta y las 4 opciones.
+            .toolbarVisibility(ronda?.terminada == false ? .hidden : .automatic, for: .navigationBar)
         }
         .onChange(of: fase) { _, nueva in
             escenaActiva = nueva == .active
@@ -62,83 +64,55 @@ struct PalabrasVista: View {
 
     private func juego(_ ronda: RondaPreguntas) -> some View {
         let p = ronda.actual
-        return VStack(spacing: 20) {
-            HStack {
-                Text("\(ronda.indice + 1)/\(ronda.preguntas.count)").font(.etiqueta).accessibilityIdentifier("progreso")
-                if ronda.combo >= 3 {
-                    Text("×\(ronda.combo)").font(.etiqueta.weight(.bold)).foregroundStyle(Color.verde)
-                        .accessibilityLabel("Combo de \(ronda.combo)").accessibilityIdentifier("combo")
-                }
-                Spacer()
-                Text(p.tipo == .vocabulario ? "VOCABULARIO" : "KANJI").font(.etiqueta)
-            }
-            .foregroundStyle(Color.tintaSuave)
+        return VStack(spacing: 16) {
+            BarraJuego(indice: ronda.indice, total: ronda.preguntas.count, combo: ronda.combo, salir: salir)
 
-            VStack(spacing: 6) {
+            VStack(spacing: 2) {
+                Text(p.tipo == .vocabulario ? "VOCABULARIO N5" : "KANJI N5")
+                    .font(.caption.weight(.bold)).tracking(1.4).foregroundStyle(Color.tintaSuave)
+                    .padding(.bottom, 14)
                 if let lectura = p.lectura {
                     Text(lectura).font(.kana(22, relativeTo: .title3)).foregroundStyle(Color.tintaSuave)
                         .accessibilityIdentifier("pregunta-lectura")
                 }
                 Text(p.texto)
-                    .font(.kana(p.tipo == .kanji ? 120 : 56))
+                    .font(.kana(p.tipo == .kanji ? 108 : 72))
                     .minimumScaleFactor(0.4).lineLimit(1)
+                    .foregroundStyle(Color.tinta)
                     .accessibilityIdentifier("pregunta-texto")
                 if enPausa, let detalle = p.detalle {
                     Text(detalle).font(.kana(17, relativeTo: .body)).foregroundStyle(Color.tintaSuave)
+                        .padding(.top, 6)
                         .accessibilityIdentifier("pregunta-detalle")
                 }
             }
-            .foregroundStyle(Color.tinta)
-            .frame(maxWidth: .infinity, minHeight: 200)
-            .padding(.horizontal, 16)
-            .background(Color.papel2, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
-            .overlay(RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .strokeBorder(enPausa ? Color.rojo : Color.linea, lineWidth: enPausa ? 2 : 1))
+            .frame(maxWidth: .infinity, minHeight: 196)
+            .bloque(relleno: 18, radio: 30)
+            .overlay(RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .strokeBorder(Color.rojo, lineWidth: 2).opacity(enPausa ? 1 : 0))
+
+            Text("¿Qué significa?").font(.subheadline.weight(.bold)).foregroundStyle(Color.tintaSuave)
+                .frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 4)
 
             VStack(spacing: 10) {
-                ForEach(Array(ronda.opciones.enumerated()), id: \.offset) { i, opcion in
-                    botonOpcion(opcion, numero: i + 1, correcta: p.significado)
+                ForEach(Array(ronda.opciones.enumerated()), id: \.element) { i, opcion in
+                    BotonOpcion(texto: opcion, numero: i + 1,
+                                marca: !enPausa ? .ninguna : opcion == p.significado ? .correcta : opcion == elegida ? .elegida : .ninguna,
+                                enPausa: enPausa) { elegir(opcion) }
                 }
             }
+            .id(ronda.indice)
 
             HStack {
-                Button("Salir", role: .cancel, action: salir).accessibilityIdentifier("btn-salir")
                 Spacer()
-                Button("No la sé") { fallar(nil) }.disabled(enPausa).accessibilityIdentifier("btn-nolase")
+                Button("No la sé") { fallar(nil) }
+                    .buttonStyle(EstiloSecundario())
+                    .disabled(enPausa)
+                    .accessibilityIdentifier("btn-nolase")
             }
-            .buttonStyle(.bordered)
-            .tint(.tintaSuave)
         }
         .onAppear { if !enPausa { cronometro.reanudar() } }
         .onDisappear { cronometro.pausar() }
-    }
-
-    private func botonOpcion(_ opcion: String, numero: Int, correcta: String) -> some View {
-        let marcada = enPausa && (opcion == correcta || opcion == elegida)
-        let color: Color = enPausa && opcion == correcta ? .verde : enPausa && opcion == elegida ? .rojo : .tinta
-        return Button { elegir(opcion) } label: {
-            Text(opcion)
-                .font(.title3.weight(.medium))
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
-                .padding(.horizontal, 16)
-                .foregroundStyle(color)
-                .background(marcada ? color.opacity(0.12) : Color.papel2, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .strokeBorder(marcada ? color : Color.linea, lineWidth: 1.5))
-        }
-        .buttonStyle(EstiloOpcion())
-        .disabled(enPausa)
-        .keyboardShortcut(KeyEquivalent(Character("\(numero)")), modifiers: [])
-        .accessibilityLabel(opcion)
-        .accessibilityValue(enPausa ? (opcion == correcta ? "correcta" : opcion == elegida ? "tu elección" : "") : "")
-        .accessibilityIdentifier("opcion-\(numero)")
-    }
-
-    private struct EstiloOpcion: ButtonStyle {
-        func makeBody(configuration: Configuration) -> some View {
-            configuration.label.scaleEffect(configuration.isPressed ? 0.98 : 1)
-        }
     }
 
     // MARK: Resumen
@@ -270,15 +244,24 @@ private struct PlanPalabras: View {
         let sesion = (pendientes + nuevas).compactMap { porClave[$0] }
         let vistas = Set(pasos.map(\.clave)).intersection(porClave.keys).count
 
-        VStack(alignment: .leading, spacing: 24) {
+        VStack(alignment: .leading, spacing: 16) {
             ResumenRacha()
             Segmentado(opciones: [(Pregunta.Tipo.vocabulario, "Vocabulario"), (.kanji, "Kanji")], seleccion: $tipo,
                        identificador: "palabras-tipo")
-            Seccion(numero: "·", titulo: "Hoy") {
-                Text("\(pendientes.count) por repasar · \(nuevas.count) nuevas")
-                    .font(.headline.monospacedDigit()).accessibilityIdentifier("palabras-plan")
-                Text("\(vistas) de \(todas.count) \(tipo == .vocabulario ? "palabras" : "kanji") del N5 vistas")
-                    .font(.subheadline).foregroundStyle(Color.tintaSuave).accessibilityIdentifier("palabras-vistas")
+            VStack(alignment: .leading, spacing: 14) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Repaso de hoy").font(.title3.weight(.black))
+                    Spacer()
+                    Text("\(vistas) de \(todas.count) vistas").font(.subheadline).foregroundStyle(Color.tintaSuave)
+                        .accessibilityIdentifier("palabras-vistas")
+                }
+                HStack(spacing: 8) {
+                    Ficha(texto: "\(pendientes.count) por repasar")
+                    Ficha(texto: "\(nuevas.count) nuevas", fondo: .verdeFondo, tinta: .verdeTinta)
+                }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(pendientes.count) por repasar · \(nuevas.count) nuevas")
+                .accessibilityIdentifier("palabras-plan")
                 if sesion.isEmpty {
                     Text("Nada pendiente por hoy. Vuelve mañana.").foregroundStyle(Color.tintaSuave)
                         .accessibilityIdentifier("palabras-nada")
@@ -287,12 +270,13 @@ private struct PlanPalabras: View {
                                               : "Ves el kanji; eliges su significado entre 4. Al fallar, ves sus lecturas.")
                         .font(.subheadline).foregroundStyle(Color.tintaSuave)
                     Button { empezar(sesion) } label: {
-                        Text("Repasar ahora (\(sesion.count))").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
+                        Label("Repasar ahora (\(sesion.count))", systemImage: "arrow.right").labelStyle(TextoYIcono())
                     }
-                    .buttonStyle(.borderedProminent).tint(.verde)
+                    .buttonStyle(EstiloPrincipal())
                     .accessibilityIdentifier("btn-repasar-palabras")
                 }
             }
+            .bloque()
         }
     }
 }

@@ -47,6 +47,9 @@ struct TarjetasVista: View {
             .background(Color.papel)
             .overlay { Confeti(disparo: confeti) }
             .navigationTitle("Tarjetas")
+            // Oculta solo mientras se juega (también en la pausa de la última vida); en el resumen vuelve.
+            .toolbarVisibility(ronda != nil && (ronda?.resultado == nil || lecturaError != nil) ? .hidden : .automatic,
+                               for: .navigationBar)
         }
         .onChange(of: fase) { _, nueva in
             escenaActiva = nueva == .active
@@ -63,132 +66,90 @@ struct TarjetasVista: View {
     // MARK: Configuración
 
     private var configuracion: some View {
-        VStack(alignment: .leading, spacing: 28) {
+        VStack(alignment: .leading, spacing: 16) {
             ResumenRacha()
             RepasoHoy(empezar: empezarRepaso)
-            Text("Ronda libre: sale un kana suelto; elige su lectura entre 4. Si aciertas, pasa sola a la siguiente. Tienes 3 vidas.")
-                .foregroundStyle(Color.tintaSuave)
-            Seccion(numero: "01", titulo: "Silabario") {
-                Segmentado(opciones: RondaTarjetas.OpcionSilabario.allCases.map { ($0, $0.nombre) },
-                           seleccion: $config.silabario, identificador: "config-silabario")
-            }
-            Seccion(numero: "02", titulo: "Mazo") {
-                Segmentado(opciones: [(Kana.Mazo.basicos, "Básicos"), (.todos, "Todos")],
-                           seleccion: $config.mazo, identificador: "config-mazo")
-            }
-            Seccion(numero: "03", titulo: "Tarjetas por ronda") {
-                let total = RondaTarjetas.mazo(config.silabario, config.mazo).count
-                Segmentado(opciones: RondaTarjetas.Tamano.allCases.map { ($0, $0 == .completo ? "Todas (\(total))" : $0.rawValue) },
-                           seleccion: $config.tamano, identificador: "config-tamano")
-            }
-            Button(action: empezar) {
-                Text("Empezar").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(.verde)
-            .accessibilityIdentifier("btn-empezar")
+            RondaLibre(config: $config, empezar: empezar)
         }
     }
 
     // MARK: Juego
 
     private func juego(_ ronda: RondaTarjetas) -> some View {
-        VStack(spacing: 24) {
-            HStack {
-                Text("\(ronda.indice + 1)/\(ronda.tarjetas.count)")
-                    .font(.etiqueta).accessibilityIdentifier("progreso")
-                // Desde 3 aciertos seguidos; un error lo borra (modo de fallo 73).
-                if ronda.combo >= 3 {
-                    Text("×\(ronda.combo)")
-                        .font(.etiqueta.weight(.bold)).foregroundStyle(Color.verde)
-                        .accessibilityLabel("Combo de \(ronda.combo)")
-                        .accessibilityIdentifier("combo")
-                        .transition(.scale.combined(with: .opacity))
+        let enPausa = lecturaError != nil
+        return VStack(spacing: 18) {
+            BarraJuego(indice: ronda.indice, total: ronda.tarjetas.count, combo: ronda.combo, salir: salir)
+
+            VStack(spacing: 6) {
+                HStack {
+                    Text(ronda.repaso ? "Repaso · \(ronda.actual.silabario.nombre.lowercased())" : ronda.actual.silabario.nombre.lowercased())
+                        .font(.subheadline.weight(.bold)).foregroundStyle(Color.tintaSuave)
+                    Spacer()
+                    TimelineView(.periodic(from: .now, by: 0.1)) { contexto in
+                        Text(segundos(cronometro.ms(contexto.date))).font(.subheadline.weight(.semibold)).monospacedDigit()
+                            .foregroundStyle(Color.tintaSuave)
+                    }
+                    .accessibilityIdentifier("cronometro")
                 }
-                Spacer()
-                TimelineView(.periodic(from: .now, by: 0.1)) { contexto in
-                    Text(segundos(cronometro.ms(contexto.date))).font(.etiqueta).monospacedDigit()
-                }
-                .accessibilityIdentifier("cronometro")
-                Spacer()
-                if ronda.repaso {
-                    Text("REPASO").font(.etiqueta).accessibilityIdentifier("modo-repaso")
-                } else {
-                    Text(String(repeating: "♥", count: ronda.vidas) + String(repeating: "♡", count: RondaTarjetas.vidasIniciales - ronda.vidas))
+                Spacer(minLength: 8)
+                Text(ronda.actual.kana)
+                    .font(.kana(150))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .foregroundStyle(Color.tinta)
+                    .accessibilityIdentifier("tarjeta-kana")
+                ZStack {
+                    Text("¿Cómo se lee?").font(.body.weight(.medium)).foregroundStyle(Color.tintaSuave)
+                        .opacity(enPausa ? 0 : 1)
+                        .accessibilityHidden(true)
+                    Text(lecturaError ?? " ")
+                        .font(.title3.weight(.bold))
                         .foregroundStyle(Color.rojo)
-                        .accessibilityLabel("Vidas: \(ronda.vidas) de 3")
-                        .accessibilityIdentifier("vidas")
+                        .accessibilityIdentifier("tarjeta-feedback")
+                }
+                Spacer(minLength: 8)
+            }
+            .frame(maxWidth: .infinity, minHeight: 260)
+            .bloque(relleno: 18, radio: 30)
+            .overlay(RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .strokeBorder(Color.rojo, lineWidth: 2).opacity(enPausa ? 1 : 0))
+
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
+                ForEach(Array(ronda.opciones.enumerated()), id: \.element) { i, opcion in
+                    BotonOpcion(texto: opcion, numero: i + 1,
+                                marca: !enPausa ? .ninguna : opcion == ronda.actual.romaji ? .correcta : opcion == elegida ? .elegida : .ninguna,
+                                enPausa: enPausa, monoespaciada: true) { elegir(opcion) }
                 }
             }
-            .foregroundStyle(Color.tintaSuave)
-
-            Text(ronda.actual.kana)
-                .font(.kana(140))
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-                .foregroundStyle(Color.tinta)
-                .frame(maxWidth: .infinity, minHeight: 220)
-                .background(Color.papel2, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 28, style: .continuous)
-                    .strokeBorder(lecturaError == nil ? Color.linea : Color.rojo, lineWidth: lecturaError == nil ? 1 : 2))
-                .accessibilityIdentifier("tarjeta-kana")
-
-            Text(lecturaError ?? " ")
-                .font(.title3.weight(.semibold))
-                .foregroundStyle(Color.rojo)
-                .accessibilityIdentifier("tarjeta-feedback")
-
-            LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
-                ForEach(Array(ronda.opciones.enumerated()), id: \.offset) { i, opcion in
-                    botonOpcion(opcion, numero: i + 1, correcta: ronda.actual.romaji)
-                }
-            }
+            // Identidad por tarjeta: una opción que se repite en la siguiente no se desliza a su casilla nueva.
+            .id(ronda.indice)
 
             HStack {
-                Button("Salir", role: .cancel, action: salir)
-                    .accessibilityIdentifier("btn-salir")
+                if ronda.repaso {
+                    Text("Repaso · sin vidas").font(.subheadline.weight(.bold)).foregroundStyle(Color.tintaSuave)
+                        .accessibilityIdentifier("modo-repaso")
+                } else {
+                    HStack(spacing: 4) {
+                        ForEach(0 ..< RondaTarjetas.vidasIniciales, id: \.self) { i in
+                            Image(systemName: i < ronda.vidas ? "heart.fill" : "heart")
+                        }
+                    }
+                    .foregroundStyle(Color.rojo)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("Vidas: \(ronda.vidas) de 3")
+                    .accessibilityIdentifier("vidas")
+                }
                 Spacer()
                 Button("No la sé") { fallar(nil) }
-                    .disabled(lecturaError != nil)
+                    .buttonStyle(EstiloSecundario())
+                    .disabled(enPausa)
                     .accessibilityIdentifier("btn-nolase")
             }
-            .buttonStyle(.bordered)
-            .tint(.tintaSuave)
+            .padding(.horizontal, 4)
         }
         .onAppear { if enJuego { cronometro.reanudar() } }
         // Otra pestaña a mitad de ronda: el tiempo fuera no cuenta como latencia.
         .onDisappear { cronometro.pausar() }
-    }
-
-    /// Una opción: tras un error, la elegida en rojo y la correcta en verde; mientras tanto no se puede tocar
-    /// (modos de fallo 91 y 92). Teclas 1–4 con teclado físico (modo de fallo 93).
-    private func botonOpcion(_ opcion: String, numero: Int, correcta: String) -> some View {
-        let enPausa = lecturaError != nil
-        let color: Color = enPausa && opcion == correcta ? .verde : enPausa && opcion == elegida ? .rojo : .tinta
-        return Button { elegir(opcion) } label: {
-            Text(opcion)
-                .font(.system(.title, design: .monospaced).weight(.semibold))
-                .frame(maxWidth: .infinity, minHeight: 64)
-                .foregroundStyle(color)
-                .background(enPausa && (opcion == correcta || opcion == elegida) ? color.opacity(0.12) : Color.papel2,
-                            in: RoundedRectangle(cornerRadius: 16, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .strokeBorder(enPausa && (opcion == correcta || opcion == elegida) ? color : Color.linea, lineWidth: 1.5))
-        }
-        .buttonStyle(EstiloOpcion())
-        .disabled(enPausa)
-        .keyboardShortcut(KeyEquivalent(Character("\(numero)")), modifiers: [])
-        .accessibilityLabel(opcion)
-        // Sin depender del color (VoiceOver, daltonismo): la pausa dice cuál era la correcta y cuál se eligió.
-        .accessibilityValue(enPausa ? (opcion == correcta ? "correcta" : opcion == elegida ? "tu elección" : "") : "")
-        .accessibilityIdentifier("opcion-\(numero)")
-    }
-
-    /// Sin el atenuado de los botones desactivados: en la pausa los colores de acierto y error se ven plenos.
-    private struct EstiloOpcion: ButtonStyle {
-        func makeBody(configuration: Configuration) -> some View {
-            configuration.label.scaleEffect(configuration.isPressed ? 0.97 : 1).animation(.easeOut(duration: 0.1), value: configuration.isPressed)
-        }
     }
 
     // MARK: Resumen
@@ -365,6 +326,38 @@ struct TarjetasVista: View {
         if completa {
             Efectos.compartidos.reproducir(recordNuevo ? .record : .rondaCompleta)
             if recordNuevo || r.aciertos == r.tarjetas.count { confeti += 1 }
+        }
+    }
+}
+
+/// Ronda libre: silabario en bloques (あ, ア, あア), mazo, tamaño y «Empezar». Vista propia: elegir opciones no
+/// redibuja el resto de la pantalla.
+private struct RondaLibre: View {
+    @Binding var config: RondaTarjetas.Config
+    let empezar: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("RONDA LIBRE").font(.caption.weight(.bold)).tracking(1.4).foregroundStyle(Color.tintaSuave)
+                .padding(.top, 10).padding(.leading, 4)
+            HStack(spacing: 10) {
+                ForEach(RondaTarjetas.OpcionSilabario.allCases) { s in
+                    BloqueSilabario(muestra: s == .hiragana ? "あ" : s == .katakana ? "ア" : "あア", nombre: s.nombre,
+                                    elegido: config.silabario == s) { config.silabario = s }
+                }
+            }
+            VStack(alignment: .leading, spacing: 14) {
+                Segmentado(opciones: [(Kana.Mazo.basicos, "Básicos"), (.todos, "Todos")],
+                           seleccion: $config.mazo, identificador: "config-mazo")
+                let total = RondaTarjetas.mazo(config.silabario, config.mazo).count
+                Segmentado(opciones: RondaTarjetas.Tamano.allCases.map { ($0, $0 == .completo ? "Todas (\(total))" : $0.rawValue) },
+                           seleccion: $config.tamano, identificador: "config-tamano")
+                Text("Eliges la lectura entre 4. Tienes 3 vidas.").font(.subheadline).foregroundStyle(Color.tintaSuave)
+                Button("Empezar", action: empezar)
+                    .buttonStyle(EstiloPrincipal())
+                    .accessibilityIdentifier("btn-empezar")
+            }
+            .bloque()
         }
     }
 }
