@@ -1,0 +1,310 @@
+import SwiftData
+import SwiftUI
+
+/// Minijuego de tarjetas (port de tarjetas.html): sale un kana, se escribe su lectura en romaji.
+struct TarjetasVista: View {
+    @Environment(\.modelContext) private var contexto
+    @Environment(\.scenePhase) private var fase
+    @State private var config = RondaTarjetas.Config()
+    @State private var ronda: RondaTarjetas?
+    @State private var cronometro = Cronometro()
+    @State private var texto = ""
+    @State private var lecturaError: String?
+    @State private var recordNuevo = false
+    @State private var escenaActiva = true
+    @State private var pausa: Task<Void, Never>?
+    @State private var errorGuardado: String?
+    @FocusState private var enfocado: Bool
+
+    /// Pausa tras un error antes de pasar a la siguiente tarjeta (como la web).
+    private static let pausaError: Duration = .milliseconds(1200)
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                Group {
+                    // Con la última vida, la lectura correcta se muestra antes del resumen (modo de fallo 35).
+                    if let ronda, let resultado = ronda.resultado, lecturaError == nil {
+                        resumen(ronda, resultado)
+                    } else if let ronda {
+                        juego(ronda)
+                    } else {
+                        configuracion
+                    }
+                }
+                .frame(maxWidth: 560)
+                .frame(maxWidth: .infinity)
+                .padding(20)
+            }
+            .scrollDismissesKeyboard(.never)
+            .background(Color.papel)
+            .navigationTitle("Tarjetas")
+        }
+        .onChange(of: fase) { _, nueva in
+            escenaActiva = nueva == .active
+            guard enJuego else { return }
+            if escenaActiva { cronometro.reanudar() } else { cronometro.pausar() }
+        }
+        .alert("No se pudo guardar el progreso", isPresented: .constant(errorGuardado != nil)) {
+            Button("Entendido") { errorGuardado = nil }
+        } message: {
+            Text(errorGuardado ?? "")
+        }
+    }
+
+    // MARK: Configuración
+
+    private var configuracion: some View {
+        VStack(alignment: .leading, spacing: 28) {
+            Text("Sale un kana suelto: escribe su lectura en romaji. Si aciertas, pasa sola a la siguiente. Tienes 3 vidas.")
+                .foregroundStyle(Color.tintaSuave)
+            Seccion(numero: "01", titulo: "Silabario") {
+                Segmentado(opciones: RondaTarjetas.OpcionSilabario.allCases.map { ($0, $0.nombre) },
+                           seleccion: $config.silabario, identificador: "config-silabario")
+            }
+            Seccion(numero: "02", titulo: "Mazo") {
+                Segmentado(opciones: [(Kana.Mazo.basicos, "Básicos"), (.todos, "Todos")],
+                           seleccion: $config.mazo, identificador: "config-mazo")
+            }
+            Seccion(numero: "03", titulo: "Tarjetas por ronda") {
+                let total = RondaTarjetas.mazo(config.silabario, config.mazo).count
+                Segmentado(opciones: RondaTarjetas.Tamano.allCases.map { ($0, $0 == .completo ? "Todas (\(total))" : $0.rawValue) },
+                           seleccion: $config.tamano, identificador: "config-tamano")
+            }
+            Button(action: empezar) {
+                Text("Empezar").font(.headline).frame(maxWidth: .infinity).padding(.vertical, 6)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.verde)
+            .accessibilityIdentifier("btn-empezar")
+        }
+    }
+
+    // MARK: Juego
+
+    private func juego(_ ronda: RondaTarjetas) -> some View {
+        VStack(spacing: 24) {
+            HStack {
+                Text("\(ronda.indice + 1)/\(ronda.tarjetas.count)")
+                    .font(.etiqueta).accessibilityIdentifier("progreso")
+                Spacer()
+                TimelineView(.periodic(from: .now, by: 0.1)) { contexto in
+                    Text(segundos(cronometro.ms(contexto.date))).font(.etiqueta).monospacedDigit()
+                }
+                .accessibilityIdentifier("cronometro")
+                Spacer()
+                Text(String(repeating: "♥", count: ronda.vidas) + String(repeating: "♡", count: RondaTarjetas.vidasIniciales - ronda.vidas))
+                    .foregroundStyle(Color.rojo)
+                    .accessibilityLabel("Vidas: \(ronda.vidas) de 3")
+                    .accessibilityIdentifier("vidas")
+            }
+            .foregroundStyle(Color.tintaSuave)
+
+            Text(ronda.actual.kana)
+                .font(.kana(140))
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
+                .foregroundStyle(Color.tinta)
+                .frame(maxWidth: .infinity, minHeight: 220)
+                .background(Color.papel2, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 28, style: .continuous)
+                    .strokeBorder(lecturaError == nil ? Color.linea : Color.rojo, lineWidth: lecturaError == nil ? 1 : 2))
+                .accessibilityIdentifier("tarjeta-kana")
+
+            Text(lecturaError ?? " ")
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(Color.rojo)
+                .accessibilityIdentifier("tarjeta-feedback")
+
+            TextField("Lectura en romaji", text: $texto)
+                .campoRomaji()
+                .font(.system(.title2, design: .monospaced))
+                .multilineTextAlignment(.center)
+                .padding(14)
+                .background(Color.papel2, in: RoundedRectangle(cornerRadius: 14))
+                .focused($enfocado)
+                .submitLabel(.next)
+                .onSubmit(enviar)
+                .onChange(of: texto) { _, valor in
+                    // Durante la pausa tras un error no se acepta texto, pero el campo sigue enfocado para
+                    // que el teclado no baje y suba con cada error (modo de fallo 35).
+                    if lecturaError != nil {
+                        if !valor.isEmpty { texto = "" }
+                        return
+                    }
+                    // Acierto inmediato mientras se escribe; una sílaba a medio escribir no hace nada.
+                    if self.ronda?.esCorrecta(valor) == true { acertar() }
+                }
+                .accessibilityIdentifier("tarjeta-input")
+
+            HStack {
+                Button("Salir", role: .cancel, action: salir)
+                    .accessibilityIdentifier("btn-salir")
+                Spacer()
+                Button("No la sé", action: fallar)
+                    .disabled(lecturaError != nil)
+                    .accessibilityIdentifier("btn-nolase")
+            }
+            .buttonStyle(.bordered)
+            .tint(.tintaSuave)
+        }
+        .onAppear {
+            enfocado = true
+            if enJuego { cronometro.reanudar() }
+        }
+        // Otra pestaña a mitad de ronda: el tiempo fuera no cuenta como latencia.
+        .onDisappear { cronometro.pausar() }
+    }
+
+    // MARK: Resumen
+
+    private func resumen(_ ronda: RondaTarjetas, _ resultado: RondaTarjetas.Resultado) -> some View {
+        VStack(alignment: .leading, spacing: 24) {
+            Text(resultado == .completa ? "¡Ronda completada!" : "Sin vidas")
+                .font(.largeTitle.bold())
+                .accessibilityIdentifier("resumen-titulo")
+            HStack(spacing: 12) {
+                cifra("Aciertos", "\(ronda.aciertos)/\(ronda.tarjetas.count)", id: "resumen-aciertos")
+                cifra("Tiempo", segundos(ronda.tiempoTotalMs), id: "resumen-tiempo")
+                cifra("Media", segundos(ronda.mediaAciertosMs), id: "resumen-media")
+            }
+            Text(textoRecord(ronda, resultado))
+                .foregroundStyle(recordNuevo ? Color.verde : Color.tintaSuave)
+                .accessibilityIdentifier("resumen-record")
+            Seccion(numero: "·", titulo: "Más lentas") {
+                FlujoLayout {
+                    ForEach(Array(ronda.masLentas.enumerated()), id: \.offset) { _, r in
+                        chip("\(r.tarjeta.kana) · \(segundos(r.ms))", color: .tinta)
+                    }
+                }
+            }
+            Seccion(numero: "·", titulo: "Errores") {
+                if ronda.errores.isEmpty {
+                    Text("Sin errores").foregroundStyle(Color.verde)
+                } else {
+                    FlujoLayout {
+                        ForEach(Array(ronda.errores.enumerated()), id: \.offset) { _, t in
+                            chip("\(t.kana) → \(t.romaji)", color: .rojo)
+                        }
+                    }
+                    .accessibilityIdentifier("resumen-errores")
+                }
+            }
+            HStack {
+                Button("Cambiar configuración") { self.ronda = nil }
+                    .buttonStyle(.bordered)
+                Spacer()
+                Button("Otra ronda", action: empezar)
+                    .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("btn-otra")
+            }
+            .tint(.verde)
+        }
+    }
+
+    private func cifra(_ titulo: String, _ valor: String, id: String) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(titulo.uppercased()).font(.etiqueta).foregroundStyle(Color.tintaSuave)
+            Text(valor).font(.title2.weight(.semibold)).monospacedDigit().accessibilityIdentifier(id)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .tarjetaFondo()
+    }
+
+    private func chip(_ texto: String, color: Color) -> some View {
+        Text(texto)
+            .font(.kana(17, relativeTo: .body))
+            .foregroundStyle(color)
+            .padding(.horizontal, 12).padding(.vertical, 6)
+            .background(Color.papel2, in: Capsule())
+    }
+
+    private func textoRecord(_ ronda: RondaTarjetas, _ resultado: RondaTarjetas.Resultado) -> String {
+        if recordNuevo { return "¡Nuevo récord! \(segundos(ronda.mediaAciertosMs)) por tarjeta" }
+        if let anterior = Progreso.record(ronda.config.claveRecord) {
+            return "Récord: \(segundos(anterior)) por tarjeta"
+        }
+        return resultado == .completa ? "" : "Completa la ronda para registrar un récord."
+    }
+
+    // MARK: Acciones
+
+    /// Hay una tarjeta esperando respuesta (ni pausa tras un error ni ronda terminada).
+    private var enJuego: Bool { ronda != nil && ronda?.resultado == nil && lecturaError == nil }
+
+    private func salir() {
+        pausa?.cancel()
+        ronda = nil
+        lecturaError = nil
+    }
+
+    private func empezar() {
+        pausa?.cancel()
+        ronda = RondaTarjetas(config: ronda?.config ?? config)
+        recordNuevo = false
+        lecturaError = nil
+        texto = ""
+        cronometro.iniciar()
+        enfocado = true
+    }
+
+    private func registrar(_ tarjeta: Tarjeta, ok: Bool, ms: Int, respuesta: String) {
+        do {
+            try Progreso.registrar([Intento(ejercicio: "tarjeta", item: tarjeta.kana, silabario: tarjeta.silabario,
+                                            correcto: ok, respuesta: respuesta.isEmpty ? nil : respuesta,
+                                            latenciaMs: ms, dispositivo: Progreso.dispositivo)], en: contexto)
+        } catch {
+            errorGuardado = error.localizedDescription
+        }
+    }
+
+    private func acertar() {
+        guard var r = ronda else { return }
+        let ms = cronometro.ms()
+        registrar(r.actual, ok: true, ms: ms, respuesta: texto)
+        r.acertar(ms: ms)
+        ronda = r
+        texto = ""
+        cronometro.iniciar()
+        if r.resultado == .completa { terminar(r) }
+    }
+
+    private func enviar() {
+        guard lecturaError == nil, ronda != nil else { return }
+        // Enter con el campo vacío no cuenta como error (modo de fallo 39).
+        guard !texto.trimmingCharacters(in: .whitespaces).isEmpty else { enfocado = true; return }
+        if ronda?.esCorrecta(texto) == true { acertar() } else { fallar() }
+        // onSubmit le quita el foco al campo: se devuelve en el acto para que el teclado no baje y suba
+        // con cada error (modo de fallo 35).
+        Task { enfocado = true }
+    }
+
+    private func fallar() {
+        guard var r = ronda, lecturaError == nil else { return }
+        let ms = cronometro.ms()
+        cronometro.pausar()
+        registrar(r.actual, ok: false, ms: ms, respuesta: texto)
+        r.fallar(ms: ms)
+        ronda = r
+        lecturaError = "\(r.actual.kana) se lee \(r.actual.romaji)"
+        pausa = Task {
+            try? await Task.sleep(for: Self.pausaError)
+            // Salir o empezar otra ronda durante la pausa la cancela: no debe tocar la ronda nueva.
+            guard !Task.isCancelled, var actual = ronda else { return }
+            actual.siguiente()
+            ronda = actual
+            lecturaError = nil
+            texto = ""
+            if actual.resultado != nil { return terminar(actual) }
+            enfocado = true
+            cronometro.iniciar()
+            // La pausa pudo terminar con la app ya en segundo plano (modo de fallo 56).
+            if !escenaActiva { cronometro.pausar() }
+        }
+    }
+
+    private func terminar(_ r: RondaTarjetas) {
+        enfocado = false
+        if r.resultado == .completa { recordNuevo = Progreso.guardarRecord(r.config.claveRecord, r.mediaAciertosMs) }
+    }
+}

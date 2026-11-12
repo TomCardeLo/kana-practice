@@ -52,3 +52,67 @@
 39. Enter con el campo vacío cuenta como error.
 40. Sin localStorage, el minijuego no arranca.
 41. Empezar otra ronda conserva vidas, progreso o tiempos de la anterior.
+
+## App iOS (fase 1, escritos antes del port a Swift)
+
+### Romaji.swift (sustituye a wanakana)
+42. Las variantes kunrei/nihon-shiki (si, tu, hu, zi, di, du, sya, tya, zya, jya, cya) dan otro kana
+    que wanakana; la conversión nativa de iOS (ICU) falla justo aquí (`si` → せぃ), por eso no se usa.
+43. Una consonante suelta al final (`k`, `sh`, `ky`) se convierte en kana (ICU: `k` → く) en vez de
+    quedarse en latín, y una sílaba a medio escribir avanza la tarjeta o cuenta como unidad completa.
+44. `n` antes de vocal o `y` se convierte en ん; `n'` no separa (`kan'yu` → かにゅ); `nn` final o
+    ante consonante deja una ん de más.
+45. Consonante doble (`kka`, `tta`, `cchi`) no produce っ, o `nn` produce っん.
+46. `toRomaji` de una unidad escrita no coincide con el romaji Hepburn que muestra la web
+    (`escribiste: si` en vez de `shi`).
+
+### Paridad con la web
+47. `Translit`, `Kana` o `Check` en Swift dan un resultado distinto al JS para la misma entrada.
+    Se verifica con `ios/Paridad/paridad.json`, generado desde los módulos JS reales
+    (`npm run paridad`), y `ios/scripts/paridad.sh` lo compara contra el código Swift.
+
+### Progreso local (SwiftData)
+48. Un intento no se guarda (o se guarda dos veces) al acertar, fallar, saltar o corregir.
+49. Al recalcular una corrección (cambio de filtro o silabario) se vuelven a registrar intentos.
+50. «Mostrar solución» registra intentos.
+51. Los intentos de hiragana y katakana se mezclan en las estadísticas.
+52. Cerrar la app a mitad de una ronda pierde los intentos ya respondidos.
+53. Cada intento no lleva lo que necesitará la sincronización de la fase 2 (id único, fecha,
+    dispositivo, ejercicio, latencia, marca de sincronizado).
+
+### Interfaz
+54. El teclado autocorrige o pone mayúscula inicial y altera la respuesta.
+55. En el iPad la pantalla queda como un iPhone estirado, o algo se corta al girarlo.
+56. El temporizador de la tarjeta sigue corriendo con la app en segundo plano y se cuenta en la
+    latencia.
+
+## Enganche: sonido, rachas, mensajes e hitos (escritos antes del código)
+
+### Sonido y vibración
+57. Suena con el interruptor de silencio activado, o corta la música que el usuario está escuchando
+    (categoría de sesión de audio equivocada: debe ser `.ambient`).
+58. Suena o vibra con el ajuste correspondiente desactivado.
+59. El primer sonido llega tarde (motor sin arrancar) o respuestas muy seguidas se cortan o se pisan mal.
+60. Tras una interrupción (llamada, Siri) el motor queda detenido y no vuelve a sonar nada.
+
+### Rachas y meta diaria (meta: 50 respuestas)
+61. El cambio de día se calcula en UTC y no en la zona local: la racha se rompe a media tarde en Bogotá.
+62. Hoy todavía sin la meta rompe la racha antes de que termine el día (debe seguir viva desde ayer).
+63. Un día con menos de 50 respuestas cuenta para la racha, o un día sin práctica no la reinicia.
+64. El aviso de «meta cumplida» sale más de una vez el mismo día, o no sale al llegar justo a 50.
+65. Borrar el progreso deja rachas, récords o hitos de antes.
+
+### Combo dentro de la ronda
+66. El combo no se reinicia con un error o un «No la sé», o pasa de una ronda a la siguiente.
+
+### Mensajes al terminar
+67. El mensaje contradice el resultado (felicita al perder todas las vidas, anuncia un récord que no hubo,
+    llama «perfecta» a una ronda con errores).
+
+### Hitos (fila dominada)
+68. Un hito se anuncia más de una vez, con datos insuficientes (un solo intento), o mezclando hiragana y
+    katakana.
+69. Un kana de la fila que nunca se ha practicado no impide que la fila cuente como dominada.
+
+### Confeti
+70. Ignora «Reducir movimiento» o bloquea los toques mientras cae.
