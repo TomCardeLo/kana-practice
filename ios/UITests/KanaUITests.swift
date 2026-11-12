@@ -228,6 +228,48 @@ final class KanaUITests: XCTestCase {
         captura("tutor-comentario")
     }
 
+    /// 96–100, 102: Palabras propone los vencidos y los nuevos de vocabulario (10) y de kanji (5), cada uno con su tope;
+    /// las 4 opciones nunca repiten significado; al fallar se marca la correcta y, en kanji, se ven sus lecturas;
+    /// todo cuenta para la meta del día pero no entra en las estadísticas de kana.
+    func testPalabrasVocabularioYKanji() {
+        app.terminate()
+        app.launchArguments = ["-uitest", "-uitest-palabras"]
+        app.launch()
+        irA("Palabras")
+        esperarLabel("palabras-plan", "2 por repasar · 10 nuevas")
+        captura("palabras-plan")
+        toca("btn-repasar-palabras")
+        let vistas = jugarPreguntas(12, fallar: [1])
+        // Los 2 vencidos y exactamente las 10 primeras nuevas del orden fijo (mismo en cualquier equipo, 97).
+        XCTAssertEqual(Set(vistas), Self.primerasNuevas(sin: ["会う|あう", "青|あお"]).union(["会う", "青"]))
+        esperarLabel("resumen-titulo", "¡Repaso terminado!", timeout: 6)
+        XCTAssertEqual(el("resumen-aciertos").label, "11/12")
+        captura("palabras-resumen")
+        toca("btn-volver")
+        esperarLabel("palabras-plan", "0 por repasar · 0 nuevas")
+
+        app.segmentedControls["palabras-tipo"].buttons["Kanji"].tap()
+        esperarLabel("palabras-plan", "1 por repasar · 5 nuevas")
+        toca("btn-repasar-palabras")
+        let kanji = jugarPreguntas(6, fallar: [2]) { i in
+            if i == 2 {
+                XCTAssertTrue(self.el("pregunta-detalle").label.contains("音") || self.el("pregunta-detalle").label.contains("訓"),
+                              "Al fallar un kanji no se ven sus lecturas")
+                self.captura("kanji-error")
+            }
+        }
+        XCTAssertTrue(kanji.contains("一"))
+        esperarLabel("resumen-titulo", "¡Repaso terminado!", timeout: 6)
+        XCTAssertEqual(el("resumen-aciertos").label, "5/6")
+        toca("btn-volver")
+        esperarLabel("palabras-plan", "0 por repasar · 0 nuevas")
+
+        irA("Progreso")
+        esperarLabel("racha-hoy", "Hoy 18/50")  // cuentan para la meta (100)
+        XCTAssertTrue(el("progreso-vacio").exists, "Vocabulario o kanji se colaron en las estadísticas de kana (100)")
+        XCTAssertEqual(el("progreso-total").label, "0", "Las respuestas de vocabulario cuentan en el total de kana (100)")
+    }
+
     /// 81–83: «Hoy» propone los vencidos y 10 nuevos en orden de tabla; fallar no corta la sesión ni quita vidas,
     /// no hay récord, y al volver no queda nada pendiente (lo fallado vuelve mañana).
     func testRepasoHoySinVidasYPlanActualizado() {
@@ -667,6 +709,76 @@ final class KanaUITests: XCTestCase {
             XCTAssertTrue(boton.waitForExistence(timeout: 5), "No existe la opción \(opcion) en \(id)")
             boton.tap()
             XCTAssertTrue(boton.isSelected)
+        }
+    }
+
+    /// Oráculo de Palabras, calculado de los mismos datos que usa la app (no de la pantalla).
+    private struct Entrada { let id: String; let texto: String; let significado: String; let glosas: [String] }
+    private static let entradas: (vocabulario: [Entrada], kanji: [Entrada]) = {
+        struct P: Decodable { let id: String; let palabra: String; let lectura: String; let es: [String] }
+        struct K: Decodable { let kanji: String; let es: [String] }
+        let bundle = Bundle(for: KanaUITests.self)
+        func datos(_ nombre: String) -> Data { try! Data(contentsOf: bundle.url(forResource: nombre, withExtension: "json")!) }
+        func variantes(_ s: String) -> String { s.split(separator: ";").map { $0.trimmingCharacters(in: .whitespaces) }.joined(separator: "・") }
+        func significado(_ es: [String]) -> String { es.prefix(2).joined(separator: ", ") }
+        let v = try! JSONDecoder().decode([P].self, from: datos("vocabulario-n5")).map { p in
+            let t = variantes(p.palabra), l = variantes(p.lectura)
+            return Entrada(id: p.id, texto: "\(t)|\(l == t ? "" : l)", significado: significado(p.es), glosas: p.es)
+        }
+        let k = try! JSONDecoder().decode([K].self, from: datos("kanji-n5")).map {
+            Entrada(id: $0.kanji, texto: "\($0.kanji)|", significado: significado($0.es), glosas: $0.es)
+        }
+        return (v, k)
+    }()
+    private static let porTexto = Dictionary((entradas.vocabulario + entradas.kanji).map { ($0.texto, $0) }) { a, _ in a }
+
+    /// Las 10 primeras palabras nuevas según el orden fijo (FNV-1a de la clave), sin las ya vistas (97).
+    private static func primerasNuevas(sin vistas: Set<String>) -> Set<String> {
+        func fnv(_ s: String) -> UInt64 { s.utf8.reduce(0xcbf2_9ce4_8422_2325) { ($0 ^ UInt64($1)) &* 0x100_0000_01b3 } }
+        let orden = entradas.vocabulario.sorted { (fnv($0.id), $0.id) < (fnv($1.id), $1.id) }
+        return Set(orden.filter { !vistas.contains($0.id) }.prefix(10).map { String($0.texto.split(separator: "|")[0]) })
+    }
+
+    /// Núcleo de un significado para comparar (independiente del de la app): sin paréntesis, tildes ni artículo.
+    private static func nucleo(_ g: String) -> Set<String> {
+        let sin = g.replacingOccurrences(of: #"\([^)]*\)"#, with: " ", options: .regularExpression)
+            .folding(options: [.caseInsensitive, .diacriticInsensitive], locale: nil)
+        return Set(sin.components(separatedBy: CharacterSet.letters.inverted).filter { !$0.isEmpty && !["el", "la", "los", "las", "un", "una"].contains($0) })
+    }
+
+    private func preguntaActual(file: StaticString = #filePath, line: UInt = #line) -> Entrada? {
+        let lectura = el("pregunta-lectura")
+        let clave = "\(el("pregunta-texto").label)|\(lectura.exists ? lectura.label : "")"
+        guard let e = Self.porTexto[clave] else { XCTFail("Pregunta fuera del oráculo: \(clave)", file: file, line: line); return nil }
+        return e
+    }
+
+    /// Responde `total` preguntas; falla las de `fallar` (comprobando el marcado) y acierta las demás. Devuelve los textos.
+    @discardableResult
+    private func jugarPreguntas(_ total: Int, fallar: Set<Int> = [], tras: ((Int) -> Void)? = nil) -> [String] {
+        (1 ... total).map { i in
+            esperarLabel("progreso", "\(i)/\(total)", timeout: 6)
+            let texto = el("pregunta-texto").label
+            guard let entrada = preguntaActual() else { return texto }
+            let correcta = entrada.significado
+            let etiquetas = opciones().map(\.label)
+            XCTAssertEqual(Set(etiquetas).count, 4, "Opciones repetidas para \(texto): \(etiquetas)")
+            XCTAssertEqual(etiquetas.filter { $0 == correcta }.count, 1, "La correcta no está una vez para \(texto): \(etiquetas)")
+            // Ninguna falsa repite, sin lo accesorio, un significado de la correcta (96, 105).
+            let propias = entrada.glosas.map(Self.nucleo).filter { !$0.isEmpty }
+            for falsa in etiquetas where falsa != correcta {
+                let suyas = falsa.split(separator: ",").map { Self.nucleo(String($0)) }.filter { !$0.isEmpty }
+                XCTAssertFalse(propias.contains { p in suyas.contains { $0 == p } },
+                               "«\(falsa)» repite un significado de \(texto) (\(correcta))")
+            }
+            guard let boton = opciones().first(where: { ($0.label == correcta) != fallar.contains(i) }) else { return texto }
+            boton.tap()
+            if fallar.contains(i) {
+                let marcadas = opciones().map { ($0.label, $0.value as? String ?? "") }
+                XCTAssertEqual(marcadas.first { $0.1 == "correcta" }?.0, correcta, "No se marca la correcta: \(marcadas)")
+            }
+            tras?(i)
+            return texto
         }
     }
 

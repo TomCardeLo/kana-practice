@@ -87,7 +87,7 @@ enum Repaso {
 
     /// Opción múltiple: acierto rápido = bien, lento = difícil, error = otra vez; nunca «fácil» (modo de fallo 94).
     /// Lectura (sin latencia) correcta = bien (modo de fallo 79).
-    static func nota(correcto: Bool, latenciaMs: Int?) -> FSRS.Nota {
+    static func nota(correcto: Bool, latenciaMs: Int?, bienMs: Int = bienMs) -> FSRS.Nota {
         guard correcto else { return .otraVez }
         guard let ms = latenciaMs else { return .bien }
         return ms <= bienMs ? .bien : .dificil
@@ -101,7 +101,20 @@ enum Repaso {
 
     private static let porClave: [String: Tarjeta] = Dictionary(orden.map { ("\($0.silabario.rawValue)|\($0.kana)", $0) }) { a, _ in a }
 
-    static func plan(_ respuestas: [Respuesta], ahora: Date = .now, calendario: Calendar = .current) -> Plan {
+    /// Un repaso de cualquier mazo: kana («hiragana|か»), palabra («会う|あう») o kanji («会»).
+    struct Paso {
+        let clave: String
+        let fecha: Date
+        let correcto: Bool
+        let latenciaMs: Int?
+    }
+
+    /// Núcleo común a kana, vocabulario y kanji: vencidas (de la más atrasada a la menos, hasta `maximoPendientes`)
+    /// y nuevas en el orden de `orden`, con su propio tope diario (modo de fallo 99). Solo cuentan las claves de `orden`.
+    /// `bienMs`: hasta cuánto un acierto es «bien» y no «difícil» (un kana se reconoce antes que leer 4 significados).
+    static func planificar(_ pasos: [Paso], orden: [String], nuevasPorDia: Int, maximoPendientes: Int = maximoPendientes,
+                           bienMs: Int = bienMs, ahora: Date = .now, calendario: Calendar = .current)
+        -> (pendientes: [String], nuevas: [String]) {
         // Día local (modo de fallo 84) con el desfase de esa fecha, que ya incluye el cambio de horario. Mucho más
         // barato que Calendar por respuesta (modo de fallo 85).
         let zona = calendario.timeZone
@@ -109,32 +122,40 @@ enum Repaso {
             Int(((f.timeIntervalSince1970 + Double(zona.secondsFromGMT(for: f))) / 86400).rounded(.down))
         }
         let hoy = dia(ahora)
+        let validas = Set(orden)
 
         // Al sincronizar, la fecha viaja redondeada a milisegundos: se compara así para que el equipo que respondió
         // y el que bajó la respuesta ordenen igual. A igual instante, el error primero (modo de fallo 77).
         func ms(_ f: Date) -> Double { (f.timeIntervalSince1970 * 1000).rounded() }
-        let ordenadas = respuestas.sorted {
+        let ordenados = pasos.sorted {
             (ms($0.fecha), $0.correcto ? 1 : 0, $0.latenciaMs ?? -1) < (ms($1.fecha), $1.correcto ? 1 : 0, $1.latenciaMs ?? -1)
         }
         struct Estado { var memoria: FSRS.Memoria; var dia: Int; var vence: Int; let primerDia: Int }
         var estados: [String: Estado] = [:]
-        for r in ordenadas {
-            let clave = "\(r.silabario.rawValue)|\(r.item)"
-            guard porClave[clave] != nil else { continue }  // modo de fallo 80
-            let d = dia(r.fecha)
-            let previo = estados[clave]
-            if let previo, previo.dia == d { continue }  // un repaso por kana y día: el primero (modo de fallo 78)
+        for p in ordenados where validas.contains(p.clave) {  // modo de fallo 80
+            let d = dia(p.fecha)
+            let previo = estados[p.clave]
+            if let previo, previo.dia == d { continue }  // un repaso por clave y día: el primero (modo de fallo 78)
             let (memoria, dias) = FSRS.repasar(previo?.memoria, dias: previo.map { d - $0.dia } ?? 0,
-                                               nota(correcto: r.correcto, latenciaMs: r.latenciaMs))
-            estados[clave] = Estado(memoria: memoria, dia: d, vence: d + dias, primerDia: previo?.primerDia ?? d)
+                                               nota(correcto: p.correcto, latenciaMs: p.latenciaMs, bienMs: bienMs))
+            estados[p.clave] = Estado(memoria: memoria, dia: d, vence: d + dias, primerDia: previo?.primerDia ?? d)
         }
 
         let pendientes = estados.filter { $0.value.vence <= hoy }
             .sorted { ($0.value.vence, $0.key) < ($1.value.vence, $1.key) }
-            .prefix(maximoPendientes).compactMap { porClave[$0.key] }
+            .prefix(maximoPendientes).map(\.key)
         let nuevasHoy = estados.values.filter { $0.primerDia == hoy }.count
-        let nuevas = orden.filter { estados["\($0.silabario.rawValue)|\($0.kana)"] == nil }
-            .prefix(max(0, nuevasPorDia - nuevasHoy))
-        return Plan(pendientes: Array(pendientes), nuevas: Array(nuevas))
+        let nuevas = orden.filter { estados[$0] == nil }.prefix(max(0, nuevasPorDia - nuevasHoy))
+        return (Array(pendientes), Array(nuevas))
     }
+
+    static func plan(_ respuestas: [Respuesta], ahora: Date = .now, calendario: Calendar = .current) -> Plan {
+        let pasos = respuestas.map { Paso(clave: "\($0.silabario.rawValue)|\($0.item)", fecha: $0.fecha, correcto: $0.correcto,
+                                          latenciaMs: $0.latenciaMs) }
+        let (pendientes, nuevas) = planificar(pasos, orden: ordenClaves, nuevasPorDia: nuevasPorDia, ahora: ahora,
+                                              calendario: calendario)
+        return Plan(pendientes: pendientes.compactMap { porClave[$0] }, nuevas: nuevas.compactMap { porClave[$0] })
+    }
+
+    private static let ordenClaves = orden.map { "\($0.silabario.rawValue)|\($0.kana)" }
 }

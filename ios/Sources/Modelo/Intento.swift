@@ -10,10 +10,11 @@ final class Intento {
     @Attribute(.unique) var id: UUID
     var fecha: Date
     var dispositivo: String
-    /// "tarjeta" o "lectura".
+    /// "tarjeta" o "lectura" (kana), "vocabulario" o "kanji".
     var ejercicio: String
-    /// El kana tal como se mostró (か, キャ).
+    /// Kana: tal como se mostró (か, キャ). Vocabulario: «palabra|lectura» (会う|あう). Kanji: el kanji.
     var item: String
+    /// "hiragana" o "katakana"; "ninguno" en vocabulario y kanji (no entran en estadísticas de kana, modo de fallo 100).
     var silabario: String
     var correcto: Bool
     var respuesta: String?
@@ -23,27 +24,37 @@ final class Intento {
     static let respuestaMaxima = 64
     static let latenciaMaximaMs = 3_600_000
 
+    static let sinSilabario = "ninguno"
+
     convenience init(ejercicio: String, item: String, silabario: Silabario, correcto: Bool, respuesta: String?,
          latenciaMs: Int?, dispositivo: String, fecha: Date = .now) {
-        self.init(id: UUID(), ejercicio: ejercicio, item: item, silabario: silabario, correcto: correcto,
+        self.init(id: UUID(), ejercicio: ejercicio, item: item, silabario: silabario.rawValue, correcto: correcto,
                   respuesta: respuesta, latenciaMs: latenciaMs, dispositivo: dispositivo, fecha: fecha, sincronizado: false)
+    }
+
+    /// Respuesta de vocabulario o kanji.
+    convenience init(pregunta: Pregunta, correcto: Bool, respuesta: String?, latenciaMs: Int?, dispositivo: String,
+                     fecha: Date = .now) {
+        self.init(id: UUID(), ejercicio: pregunta.tipo.rawValue, item: pregunta.clave, silabario: Self.sinSilabario,
+                  correcto: correcto, respuesta: respuesta, latenciaMs: latenciaMs, dispositivo: dispositivo, fecha: fecha,
+                  sincronizado: false)
     }
 
     /// Intento bajado de Deepy (de otro dispositivo): conserva su id y ya está sincronizado.
     convenience init(remoto id: UUID, fecha: Date, dispositivo: String, ejercicio: String, item: String,
-                     silabario: Silabario, correcto: Bool, respuesta: String?, latenciaMs: Int?) {
+                     silabario: String, correcto: Bool, respuesta: String?, latenciaMs: Int?) {
         self.init(id: id, ejercicio: ejercicio, item: item, silabario: silabario, correcto: correcto,
                   respuesta: respuesta, latenciaMs: latenciaMs, dispositivo: dispositivo, fecha: fecha, sincronizado: true)
     }
 
-    private init(id: UUID, ejercicio: String, item: String, silabario: Silabario, correcto: Bool, respuesta: String?,
+    private init(id: UUID, ejercicio: String, item: String, silabario: String, correcto: Bool, respuesta: String?,
                  latenciaMs: Int?, dispositivo: String, fecha: Date, sincronizado: Bool) {
         self.id = id
         self.fecha = fecha
         self.dispositivo = dispositivo
         self.ejercicio = ejercicio
         self.item = item
-        self.silabario = silabario.rawValue
+        self.silabario = silabario
         self.correcto = correcto
         // Dentro de lo que acepta el servidor (Y7): respuesta de hasta 64 caracteres y latencia de 0 a 1 h
         // (un ajuste del reloj puede darla negativa; una tarjeta olvidada, de horas).

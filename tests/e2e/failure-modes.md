@@ -175,3 +175,7 @@
 102. La pregunta no deja claro qué se pregunta: la palabra con kanji sin su lectura, o la lectura no se ve tras
      responder.
 103. La atribución de JMdict/KANJIDIC2 (CC BY-SA 4.0) no aparece en la app.
+104. Al cambiar de pestaña mientras el tutor responde, el comentario queda «pensando» para siempre o se pierde
+     una llamada ya pagada.
+105. Dos opciones de vocabulario casi iguales («mañana» y «la mañana», «bien» y «estar bien»): la falsa
+     también sería correcta.

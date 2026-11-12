@@ -38,7 +38,7 @@ struct KanaApp: App {
                 let fecha = max(Calendar.current.startOfDay(for: .now), Date.now.addingTimeInterval(-7200))
                 for _ in 0 ..< Rachas.metaDiaria {
                     contexto.insert(Intento(remoto: UUID(), fecha: fecha, dispositivo: "otro-equipo", ejercicio: "tarjeta",
-                                            item: "ア", silabario: .katakana, correcto: true, respuesta: "a", latenciaMs: 900))
+                                            item: "ア", silabario: Silabario.katakana.rawValue, correcto: true, respuesta: "a", latenciaMs: 900))
                 }
                 try? contexto.save()
             }
@@ -63,6 +63,20 @@ struct KanaApp: App {
                 contenedor.mainContext.insert(Intento(ejercicio: ejercicio, item: kana, silabario: .hiragana, correcto: ok,
                                                       respuesta: respuesta, latenciaMs: ms, dispositivo: Progreso.dispositivo,
                                                       fecha: fecha))
+            }
+        }
+        // E2E de Palabras: 会う fallada hace 2 días y 青 bien hace 5 (vencen); en kanji, 一 fallado ayer (vence).
+        // Plan: vocabulario 2 por repasar + 10 nuevas; kanji 1 + 5.
+        if Self.enPrueba, ProcessInfo.processInfo.arguments.contains("-uitest-palabras") {
+            let calendario = Calendar.current
+            let mediodia = calendario.date(bySettingHour: 12, minute: 0, second: 0, of: .now)!
+            let semilla: [(Pregunta.Tipo, String, Int, Bool)] = [(.vocabulario, "会う|あう", -2, false),
+                                                                 (.vocabulario, "青|あお", -5, true), (.kanji, "一", -1, false)]
+            for (tipo, clave, dias, ok) in semilla {
+                let p = Vocabulario.todas(tipo).first { $0.clave == clave }!
+                contenedor.mainContext.insert(Intento(pregunta: p, correcto: ok, respuesta: ok ? p.significado : nil, latenciaMs: 1200,
+                                                      dispositivo: Progreso.dispositivo,
+                                                      fecha: calendario.date(byAdding: .day, value: dias, to: mediodia)!))
             }
         }
         // E2E de la racha: 3 días anteriores con la meta y 45 respuestas hoy (hace una hora): 5 más la cumplen.
@@ -98,6 +112,7 @@ struct RaizVista: View {
     var body: some View {
         TabView {
             Tab("Tarjetas", systemImage: "rectangle.on.rectangle.angled") { TarjetasVista() }
+            Tab("Palabras", systemImage: "text.book.closed") { PalabrasVista() }
             Tab("Leer", systemImage: "character.book.closed.ja") { LecturaVista() }
             Tab("Progreso", systemImage: "chart.bar.xaxis") { ProgresoVista() }
         }

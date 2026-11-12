@@ -12,6 +12,11 @@ targets:
       # El banco de palabras de la web, tal cual: una sola lista para las dos apps.
       - path: ../src/words.js
         buildPhase: resources
+      # Vocabulario y kanji N5 (fase 4): se generan con scripts/vocab/construir.mjs (ver datos/LICENCIAS.md).
+      - path: ../datos/vocabulario-n5.json
+        buildPhase: resources
+      - path: ../datos/kanji-n5.json
+        buildPhase: resources
     info:
       path: Info.plist
       properties:
@@ -38,7 +43,13 @@ targets:
   KanaUITests:
     type: bundle.ui-testing
     platform: iOS
-    sources: [UITests]
+    sources:
+      - UITests
+      # Oráculo de las pruebas de Palabras: el significado correcto de cada pregunta, leído de los mismos datos.
+      - path: ../datos/vocabulario-n5.json
+        buildPhase: resources
+      - path: ../datos/kanji-n5.json
+        buildPhase: resources
     dependencies:
       - target: Kana
     settings:

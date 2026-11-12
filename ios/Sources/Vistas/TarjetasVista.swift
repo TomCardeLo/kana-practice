@@ -20,9 +20,6 @@ struct TarjetasVista: View {
     @State private var mensajeFin = ""
     @State private var confeti = 0
     @State private var inicioSesion = Date.now
-    @State private var tutor = EstadoTutor.nada
-
-    private enum EstadoTutor: Equatable { case nada, sinConexion, pensando, listo(String), error(String, reintentable: Bool) }
 
     /// Pausa tras un error antes de pasar a la siguiente tarjeta (como la web).
     private static let pausaError: Duration = .milliseconds(1200)
@@ -55,10 +52,6 @@ struct TarjetasVista: View {
             escenaActiva = nueva == .active
             guard enJuego else { return }
             if escenaActiva { cronometro.reanudar() } else { cronometro.pausar() }
-        }
-        // Terminó sin conexión y luego se conectó: se pide el comentario de esa ronda.
-        .onChange(of: sincronizador.conectado) { _, conectado in
-            if conectado, tutor == .sinConexion { pedirTutor() }
         }
         .alert("No se pudo guardar el progreso", isPresented: .constant(errorGuardado != nil)) {
             Button("Entendido") { errorGuardado = nil }
@@ -218,7 +211,7 @@ struct TarjetasVista: View {
                     .foregroundStyle(recordNuevo ? Color.verde : Color.tintaSuave)
                     .accessibilityIdentifier("resumen-record")
             }
-            seccionTutor
+            TutorComentario(inicio: inicioSesion).id(inicioSesion)
             Seccion(numero: "·", titulo: "Más lentas") {
                 FlujoLayout {
                     ForEach(Array(ronda.masLentas.enumerated()), id: \.offset) { _, r in
@@ -254,32 +247,6 @@ struct TarjetasVista: View {
                 }
             }
             .tint(.verde)
-        }
-    }
-
-    @ViewBuilder private var seccionTutor: some View {
-        if tutor != .nada {
-            Seccion(numero: "·", titulo: "Tutor") {
-                switch tutor {
-                case .nada: EmptyView()
-                case .sinConexion:
-                    Text("Conecta con Deepy (Progreso → Ajustes) para recibir el comentario del tutor.")
-                        .foregroundStyle(Color.tintaSuave).accessibilityIdentifier("tutor-sin-conexion")
-                case .pensando:
-                    HStack(spacing: 10) {
-                        ProgressView()
-                        Text("El tutor está mirando tu sesión…").foregroundStyle(Color.tintaSuave)
-                    }
-                    .accessibilityIdentifier("tutor-pensando")
-                case let .listo(texto):
-                    Text(texto).accessibilityIdentifier("tutor-comentario")
-                case let .error(mensaje, reintentable):
-                    Text(mensaje).foregroundStyle(reintentable ? Color.rojo : Color.tintaSuave).accessibilityIdentifier("tutor-error")
-                    if reintentable {
-                        Button("Reintentar", action: pedirTutor).buttonStyle(.bordered).accessibilityIdentifier("btn-tutor-reintentar")
-                    }
-                }
-            }
         }
     }
 
@@ -327,7 +294,6 @@ struct TarjetasVista: View {
         pausa?.cancel()
         ronda = nueva
         inicioSesion = .now
-        tutor = .nada
         recordNuevo = false
         lecturaError = nil
         elegida = nil
@@ -388,31 +354,7 @@ struct TarjetasVista: View {
         }
     }
 
-    /// Sincroniza y pide el comentario del tutor. Una respuesta tardía de una sesión anterior no pisa la nueva.
-    private func pedirTutor() {
-        guard sincronizador.conectado else { tutor = .sinConexion; return }
-        tutor = .pensando
-        let sesion = inicioSesion
-        Task {
-            let nuevo: EstadoTutor
-            do {
-                guard let texto = try await sincronizador.comentarSesion(desde: sesion, vigente: { inicioSesion == sesion }) else { return }
-                nuevo = .listo(texto)
-            } catch Sincronizador.Fallo.noDisponible(let mensaje) {
-                nuevo = .error(mensaje, reintentable: false)  // tope o servidor sin clave: reintentar no sirve
-            } catch {
-                nuevo = .error(error.localizedDescription, reintentable: true)
-            }
-            guard inicioSesion == sesion else { return }
-            tutor = nuevo
-            // El resultado llega segundos después y quizá fuera de pantalla: VoiceOver lo anuncia.
-            if case let .listo(texto) = nuevo { AccessibilityNotification.Announcement("Tutor: \(texto)").post() }
-            if case let .error(mensaje, _) = nuevo { AccessibilityNotification.Announcement(mensaje).post() }
-        }
-    }
-
     private func terminar(_ r: RondaTarjetas) {
-        pedirTutor()
         let completa = r.resultado == .completa
         // El récord anterior se lee antes de guardar el nuevo (modo de fallo 74).
         let anterior = r.repaso ? nil : Progreso.record(r.config.claveRecord)

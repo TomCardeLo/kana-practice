@@ -236,8 +236,9 @@ final class Sincronizador {
             let ids = pagina.intentos.compactMap { UUID(uuidString: $0.id) }
             let existentes = Set(try contexto.fetch(FetchDescriptor<Intento>(predicate: #Predicate { ids.contains($0.id) })).map(\.id))
             for remoto in pagina.intentos {  // Y2
-                guard let id = UUID(uuidString: remoto.id), let fecha = Self.fechaISO.date(from: remoto.fecha),
-                      let silabario = Silabario(rawValue: remoto.silabario)
+                // El silabario y el ejercicio se guardan tal cual: un tipo que esta versión no conoce (vocabulario de
+                // una versión más nueva, por ejemplo) no atasca la bajada; cada pantalla lee solo los suyos (modo 101).
+                guard let id = UUID(uuidString: remoto.id), let fecha = Self.fechaISO.date(from: remoto.fecha)
                 else {
                     // Nada se descarta en silencio ni se salta con el cursor: se para y se avisa.
                     Self.log.error("Intento remoto ilegible: \(remoto.id, privacy: .public) \(remoto.fecha, privacy: .public)")
@@ -245,7 +246,7 @@ final class Sincronizador {
                 }
                 guard !existentes.contains(id) else { continue }
                 contexto.insert(Intento(remoto: id, fecha: fecha, dispositivo: remoto.dispositivo,
-                                        ejercicio: remoto.ejercicio, item: remoto.item, silabario: silabario,
+                                        ejercicio: remoto.ejercicio, item: remoto.item, silabario: remoto.silabario,
                                         correcto: remoto.correcto, respuesta: remoto.respuesta,
                                         latenciaMs: remoto.latenciaMs))
             }

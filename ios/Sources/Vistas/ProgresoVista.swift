@@ -65,7 +65,9 @@ struct ProgresoVista: View {
         }
     }
 
+    /// Solo kana: vocabulario y kanji tienen su propia pantalla (modo de fallo 100).
     private var resumen: some View {
+        let intentos = intentos.filter { $0.comoRespuesta != nil }
         let hoy = intentos.filter { Calendar.current.isDateInToday($0.fecha) }
         let aciertos = intentos.filter(\.correcto).count
         return HStack(spacing: 12) {
