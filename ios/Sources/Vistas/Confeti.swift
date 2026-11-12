@@ -23,9 +23,26 @@ struct Confeti: View {
     }
 
     var body: some View {
-        TimelineView(.animation(paused: inicio == nil)) { contexto in
+        // El reloj de animación solo existe mientras cae: en reposo no queda nada animándose (ahorra batería y deja a
+        // XCTest ver la app quieta).
+        ZStack {
+            if let inicio { lluvia(desde: inicio) }
+        }
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+        .onChange(of: disparo) {
+            guard !reducirMovimiento else { return }
+            inicio = .now
+            Task {
+                try? await Task.sleep(for: .seconds(Self.duracion))
+                inicio = nil
+            }
+        }
+    }
+
+    private func lluvia(desde inicio: Date) -> some View {
+        TimelineView(.animation) { contexto in
             Canvas { lienzo, tamano in
-                guard let inicio else { return }
                 let t = contexto.date.timeIntervalSince(inicio)
                 for p in piezas {
                     let tp = t - p.retraso
@@ -39,16 +56,6 @@ struct Confeti: View {
                     copia.rotate(by: .radians(tp * p.giro))
                     copia.fill(Path(CGRect(x: -p.ancho / 2, y: -p.ancho / 4, width: p.ancho, height: p.ancho / 2)), with: .color(p.color))
                 }
-            }
-        }
-        .allowsHitTesting(false)
-        .accessibilityHidden(true)
-        .onChange(of: disparo) {
-            guard !reducirMovimiento else { return }
-            inicio = .now
-            Task {
-                try? await Task.sleep(for: .seconds(Self.duracion))
-                inicio = nil
             }
         }
     }

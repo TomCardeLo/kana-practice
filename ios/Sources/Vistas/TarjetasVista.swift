@@ -9,7 +9,8 @@ struct TarjetasVista: View {
     @State private var config = RondaTarjetas.Config()
     @State private var ronda: RondaTarjetas?
     @State private var cronometro = Cronometro()
-    @State private var texto = ""
+    /// La opción tocada en la tarjeta actual (para marcarla tras un error, modo de fallo 92).
+    @State private var elegida: String?
     @State private var lecturaError: String?
     @State private var recordNuevo = false
     @State private var escenaActiva = true
@@ -22,10 +23,11 @@ struct TarjetasVista: View {
     @State private var tutor = EstadoTutor.nada
 
     private enum EstadoTutor: Equatable { case nada, sinConexion, pensando, listo(String), error(String, reintentable: Bool) }
-    @FocusState private var enfocado: Bool
 
     /// Pausa tras un error antes de pasar a la siguiente tarjeta (como la web).
     private static let pausaError: Duration = .milliseconds(1200)
+    /// Un toque antes de esto, desde que salió la tarjeta, es el segundo de un doble toque.
+    private static let toqueMinimoMs = 150
 
     var body: some View {
         NavigationStack {
@@ -71,7 +73,7 @@ struct TarjetasVista: View {
         VStack(alignment: .leading, spacing: 28) {
             ResumenRacha()
             RepasoHoy(empezar: empezarRepaso)
-            Text("Ronda libre: sale un kana suelto; escribe su lectura en romaji. Si aciertas, pasa sola a la siguiente. Tienes 3 vidas.")
+            Text("Ronda libre: sale un kana suelto; elige su lectura entre 4. Si aciertas, pasa sola a la siguiente. Tienes 3 vidas.")
                 .foregroundStyle(Color.tintaSuave)
             Seccion(numero: "01", titulo: "Silabario") {
                 Segmentado(opciones: RondaTarjetas.OpcionSilabario.allCases.map { ($0, $0.nombre) },
@@ -143,44 +145,57 @@ struct TarjetasVista: View {
                 .foregroundStyle(Color.rojo)
                 .accessibilityIdentifier("tarjeta-feedback")
 
-            TextField("Lectura en romaji", text: $texto)
-                .campoRomaji()
-                .font(.system(.title2, design: .monospaced))
-                .multilineTextAlignment(.center)
-                .padding(14)
-                .background(Color.papel2, in: RoundedRectangle(cornerRadius: 14))
-                .focused($enfocado)
-                .submitLabel(.next)
-                .onSubmit(enviar)
-                .onChange(of: texto) { _, valor in
-                    // Durante la pausa tras un error no se acepta texto, pero el campo sigue enfocado para
-                    // que el teclado no baje y suba con cada error (modo de fallo 35).
-                    if lecturaError != nil {
-                        if !valor.isEmpty { texto = "" }
-                        return
-                    }
-                    // Acierto inmediato mientras se escribe; una sílaba a medio escribir no hace nada.
-                    if self.ronda?.esCorrecta(valor) == true { acertar() }
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
+                ForEach(Array(ronda.opciones.enumerated()), id: \.offset) { i, opcion in
+                    botonOpcion(opcion, numero: i + 1, correcta: ronda.actual.romaji)
                 }
-                .accessibilityIdentifier("tarjeta-input")
+            }
 
             HStack {
                 Button("Salir", role: .cancel, action: salir)
                     .accessibilityIdentifier("btn-salir")
                 Spacer()
-                Button("No la sé", action: fallar)
+                Button("No la sé") { fallar(nil) }
                     .disabled(lecturaError != nil)
                     .accessibilityIdentifier("btn-nolase")
             }
             .buttonStyle(.bordered)
             .tint(.tintaSuave)
         }
-        .onAppear {
-            enfocado = true
-            if enJuego { cronometro.reanudar() }
-        }
+        .onAppear { if enJuego { cronometro.reanudar() } }
         // Otra pestaña a mitad de ronda: el tiempo fuera no cuenta como latencia.
         .onDisappear { cronometro.pausar() }
+    }
+
+    /// Una opción: tras un error, la elegida en rojo y la correcta en verde; mientras tanto no se puede tocar
+    /// (modos de fallo 91 y 92). Teclas 1–4 con teclado físico (modo de fallo 93).
+    private func botonOpcion(_ opcion: String, numero: Int, correcta: String) -> some View {
+        let enPausa = lecturaError != nil
+        let color: Color = enPausa && opcion == correcta ? .verde : enPausa && opcion == elegida ? .rojo : .tinta
+        return Button { elegir(opcion) } label: {
+            Text(opcion)
+                .font(.system(.title, design: .monospaced).weight(.semibold))
+                .frame(maxWidth: .infinity, minHeight: 64)
+                .foregroundStyle(color)
+                .background(enPausa && (opcion == correcta || opcion == elegida) ? color.opacity(0.12) : Color.papel2,
+                            in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .strokeBorder(enPausa && (opcion == correcta || opcion == elegida) ? color : Color.linea, lineWidth: 1.5))
+        }
+        .buttonStyle(EstiloOpcion())
+        .disabled(enPausa)
+        .keyboardShortcut(KeyEquivalent(Character("\(numero)")), modifiers: [])
+        .accessibilityLabel(opcion)
+        // Sin depender del color (VoiceOver, daltonismo): la pausa dice cuál era la correcta y cuál se eligió.
+        .accessibilityValue(enPausa ? (opcion == correcta ? "correcta" : opcion == elegida ? "tu elección" : "") : "")
+        .accessibilityIdentifier("opcion-\(numero)")
+    }
+
+    /// Sin el atenuado de los botones desactivados: en la pausa los colores de acierto y error se ven plenos.
+    private struct EstiloOpcion: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label.scaleEffect(configuration.isPressed ? 0.97 : 1).animation(.easeOut(duration: 0.1), value: configuration.isPressed)
+        }
     }
 
     // MARK: Resumen
@@ -315,52 +330,49 @@ struct TarjetasVista: View {
         tutor = .nada
         recordNuevo = false
         lecturaError = nil
-        texto = ""
+        elegida = nil
         cronometro.iniciar()
-        enfocado = true
     }
 
-    private func registrar(_ tarjeta: Tarjeta, ok: Bool, ms: Int, respuesta: String) {
+    private func registrar(_ tarjeta: Tarjeta, ok: Bool, ms: Int, respuesta: String?) {
         do {
             try Progreso.registrar([Intento(ejercicio: "tarjeta", item: tarjeta.kana, silabario: tarjeta.silabario,
-                                            correcto: ok, respuesta: respuesta.isEmpty ? nil : respuesta,
+                                            correcto: ok, respuesta: respuesta,
                                             latenciaMs: ms, dispositivo: Progreso.dispositivo)], en: contexto)
         } catch {
             errorGuardado = error.localizedDescription
         }
     }
 
-    private func acertar() {
+    /// Toque en una opción. Uno muy seguido del anterior (doble toque) se ignora (modo de fallo 91).
+    private func elegir(_ opcion: String) {
+        guard let r = ronda, r.resultado == nil, lecturaError == nil, cronometro.ms() >= Self.toqueMinimoMs else { return }
+        if opcion == r.actual.romaji { acertar(opcion) } else { fallar(opcion) }
+    }
+
+    private func acertar(_ opcion: String) {
         guard var r = ronda else { return }
         let ms = cronometro.ms()
-        registrar(r.actual, ok: true, ms: ms, respuesta: texto)
+        registrar(r.actual, ok: true, ms: ms, respuesta: opcion)
         r.acertar(ms: ms)
         withAnimation(.spring(duration: 0.3)) { ronda = r }
         if r.resultado == nil { Efectos.compartidos.reproducir(.acierto(combo: r.combo - 1)) }
-        texto = ""
         cronometro.iniciar()
         if r.resultado == .completa { terminar(r) }
     }
 
-    private func enviar() {
-        guard lecturaError == nil, ronda != nil else { return }
-        // Enter con el campo vacío no cuenta como error (modo de fallo 39).
-        guard !texto.trimmingCharacters(in: .whitespaces).isEmpty else { enfocado = true; return }
-        if ronda?.esCorrecta(texto) == true { acertar() } else { fallar() }
-        // onSubmit le quita el foco al campo: se devuelve en el acto para que el teclado no baje y suba
-        // con cada error (modo de fallo 35).
-        Task { enfocado = true }
-    }
-
-    private func fallar() {
+    /// Opción equivocada, o «No la sé» (`opcion` nil).
+    private func fallar(_ opcion: String?) {
         guard var r = ronda, lecturaError == nil else { return }
         let ms = cronometro.ms()
         cronometro.pausar()
-        registrar(r.actual, ok: false, ms: ms, respuesta: texto)
+        elegida = opcion
+        registrar(r.actual, ok: false, ms: ms, respuesta: opcion)
         r.fallar(ms: ms)
         ronda = r
         Efectos.compartidos.reproducir(r.vidas == 0 ? .sinVidas : .error)
         lecturaError = "\(r.actual.kana) se lee \(r.actual.romaji)"
+        AccessibilityNotification.Announcement(lecturaError!).post()
         pausa = Task {
             try? await Task.sleep(for: Self.pausaError)
             // Salir o empezar otra ronda durante la pausa la cancela: no debe tocar la ronda nueva.
@@ -368,9 +380,8 @@ struct TarjetasVista: View {
             actual.siguiente()
             ronda = actual
             lecturaError = nil
-            texto = ""
+            elegida = nil
             if actual.resultado != nil { return terminar(actual) }
-            enfocado = true
             cronometro.iniciar()
             // La pausa pudo terminar con la app ya en segundo plano (modo de fallo 56).
             if !escenaActiva { cronometro.pausar() }
@@ -401,7 +412,6 @@ struct TarjetasVista: View {
     }
 
     private func terminar(_ r: RondaTarjetas) {
-        enfocado = false
         pedirTutor()
         let completa = r.resultado == .completa
         // El récord anterior se lee antes de guardar el nuevo (modo de fallo 74).

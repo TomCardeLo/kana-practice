@@ -1,0 +1,52 @@
+{
+ "v:ああ|ああ": [
+  "¡ah!",
+  "¡oh!"
+ ],
+ "v:いいえ|いいえ": [
+  "no",
+  "para nada"
+ ],
+ "v:コート|コート": [
+  "abrigo"
+ ],
+ "v:コップ|コップ": [
+  "vaso"
+ ],
+ "v:コピーする|コピーする": [
+  "copiar",
+  "fotocopiar"
+ ],
+ "v:～中|～じゅう": [
+  "durante todo…",
+  "a lo largo de…"
+ ],
+ "v:～ずつ|～ずつ": [
+  "… cada uno",
+  "de … en …"
+ ],
+ "v:はい|はい": [
+  "sí"
+ ],
+ "v:バス|バス": [
+  "autobús"
+ ],
+ "v:ペット|ペット": [
+  "mascota"
+ ],
+ "v:マッチ|マッチ": [
+  "cerilla",
+  "fósforo"
+ ],
+ "v:～屋|～や": [
+  "tienda de…",
+  "…ería"
+ ],
+ "v:ゆっくりと|ゆっくりと": [
+  "despacio",
+  "con calma"
+ ],
+ "v:ラジオカセ|ラジオカセ": [
+  "radiocasete"
+ ]
+}

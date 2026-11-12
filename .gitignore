@@ -6,3 +6,6 @@ test-results/
 plan.md
 artifacts/
 tasks/
+
+# Fuentes descargadas por scripts/vocab (se regeneran)
+datos/fuentes/

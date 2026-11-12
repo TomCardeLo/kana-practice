@@ -1,0 +1,1676 @@
+{
+ "v:会う|あう": {
+  "problema": "«conocerse» es otro sentido",
+  "sugerencia": [
+   "encontrarse con",
+   "ver a alguien"
+  ]
+ },
+ "v:青|あお": {
+  "problema": "«verde» y «luz verde» no son el sentido principal",
+  "sugerencia": [
+   "azul"
+  ]
+ },
+ "v:青い|あおい": {
+  "problema": "«verde» no es el sentido principal",
+  "sugerencia": [
+   "azul"
+  ]
+ },
+ "v:開く|あく": {
+  "problema": "«quedarse vacío» es un sentido raro",
+  "sugerencia": [
+   "abrirse"
+  ]
+ },
+ "v:開ける|あける": {
+  "problema": "«amanecer» es un sentido raro",
+  "sugerencia": [
+   "abrir"
+  ]
+ },
+ "v:足; 脚|あし": {
+  "problema": "falta «pierna» (足; 脚 cubre ambos)",
+  "sugerencia": [
+   "pie",
+   "pierna"
+  ]
+ },
+ "v:遊ぶ|あそぶ": {
+  "problema": "«hacer una visita» es raro",
+  "sugerencia": [
+   "jugar",
+   "divertirse",
+   "pasar el rato"
+  ]
+ },
+ "v:暖かい|あたたかい": {
+  "problema": "«afable/cordial» es sentido secundario",
+  "sugerencia": [
+   "cálido",
+   "templado"
+  ]
+ },
+ "v:暑い|あつい": {
+  "problema": "«caliente» es incorrecto para el clima",
+  "sugerencia": [
+   "caluroso",
+   "de mucho calor"
+  ]
+ },
+ "v:厚い|あつい": {
+  "problema": "glosa incorrecta: significa grueso, no cordial",
+  "sugerencia": [
+   "grueso",
+   "espeso"
+  ]
+ },
+ "v:あなた|あなた": {
+  "problema": "«señorita» es incorrecto",
+  "sugerencia": [
+   "tú",
+   "usted"
+  ]
+ },
+ "v:アパート|アパート": {
+  "problema": "glosa larga y poco natural",
+  "sugerencia": [
+   "apartamento",
+   "departamento"
+  ]
+ },
+ "v:浴びる|あびる": {
+  "problema": "«gozar en el sol» es raro; falta lo principal",
+  "sugerencia": [
+   "ducharse",
+   "bañarse"
+  ]
+ },
+ "v:余り|あまり": {
+  "problema": "la lista usa el adverbio «no mucho»",
+  "sugerencia": [
+   "no mucho",
+   "resto",
+   "sobrante"
+  ]
+ },
+ "v:飴|あめ": {
+  "problema": "glosa con paréntesis y poco natural",
+  "sugerencia": [
+   "caramelo",
+   "dulce"
+  ]
+ },
+ "v:在る|ある": {
+  "problema": "«estar (objetos…);vivir» no es lo más común",
+  "sugerencia": [
+   "haber",
+   "existir",
+   "estar"
+  ]
+ },
+ "v:有る|ある": {
+  "problema": "«estar (objetos…);vivir» no es lo más común",
+  "sugerencia": [
+   "haber",
+   "tener",
+   "existir"
+  ]
+ },
+ "v:居る|いる": {
+  "problema": "glosa confusa; falta «haber»",
+  "sugerencia": [
+   "estar",
+   "haber (seres vivos)"
+  ]
+ },
+ "v:いい; よい|いい; よい": {
+  "problema": "«placentero;fino» poco comunes",
+  "sugerencia": [
+   "bueno",
+   "bien"
+  ]
+ },
+ "v:いかが|いかが": {
+  "problema": "sin tildes ni signos; glosa imprecisa",
+  "sugerencia": [
+   "¿cómo?",
+   "¿qué tal?"
+  ]
+ },
+ "v:いくつ|いくつ": {
+  "problema": "faltan tildes («cuánto»)",
+  "sugerencia": [
+   "¿cuántos?",
+   "¿cuántos años?"
+  ]
+ },
+ "v:いくら|いくら": {
+  "problema": "faltan tildes («cuánto»)",
+  "sugerencia": [
+   "¿cuánto?",
+   "¿cuánto cuesta?"
+  ]
+ },
+ "v:忙しい|いそがしい": {
+  "problema": "«irritado» es incorrecto",
+  "sugerencia": [
+   "ocupado"
+  ]
+ },
+ "v:一日|いちにち": {
+  "problema": "«primer día del mes» es otra lectura (ついたち)",
+  "sugerencia": [
+   "un día",
+   "todo el día"
+  ]
+ },
+ "v:一緒|いっしょ": {
+  "problema": "«encuentro;compañía» poco naturales",
+  "sugerencia": [
+   "juntos",
+   "lo mismo"
+  ]
+ },
+ "v:海|うみ": {
+  "problema": "«playa» no es el mismo sentido",
+  "sugerencia": [
+   "mar"
+  ]
+ },
+ "v:上着|うわぎ": {
+  "problema": "falta lo principal: chaqueta",
+  "sugerencia": [
+   "chaqueta",
+   "abrigo"
+  ]
+ },
+ "v:英語|えいご": {
+  "problema": "glosa con mayúsculas innecesarias",
+  "sugerencia": [
+   "inglés"
+  ]
+ },
+ "v:駅|えき": {
+  "problema": "«estación (ej. autobuses)» induce a error",
+  "sugerencia": [
+   "estación de tren"
+  ]
+ },
+ "v:～円|～えん": {
+  "problema": "«dinero» no es la glosa",
+  "sugerencia": [
+   "yen"
+  ]
+ },
+ "v:多い|おおい": {
+  "problema": "plural «muchos» no es adjetivo en singular",
+  "sugerencia": [
+   "abundante",
+   "haber muchos"
+  ]
+ },
+ "v:大きい|おおきい": {
+  "problema": "«largo» es incorrecto",
+  "sugerencia": [
+   "grande"
+  ]
+ },
+ "v:大きな|おおきな": {
+  "problema": "«largo» es incorrecto",
+  "sugerencia": [
+   "grande"
+  ]
+ },
+ "v:大勢|おおぜい": {
+  "problema": "glosa poco clara",
+  "sugerencia": [
+   "mucha gente",
+   "multitud"
+  ]
+ },
+ "v:起きる|おきる": {
+  "problema": "falta «despertarse» y «ocurrir»",
+  "sugerencia": [
+   "levantarse",
+   "despertarse",
+   "ocurrir"
+  ]
+ },
+ "v:お酒|おさけ": {
+  "problema": "«sake» es solo un tipo",
+  "sugerencia": [
+   "bebida alcohólica",
+   "sake"
+  ]
+ },
+ "v:伯父; 叔父さん|おじさん": {
+  "problema": "«caballero de mediana edad» poco natural",
+  "sugerencia": [
+   "tío",
+   "señor"
+  ]
+ },
+ "v:遅い|おそい": {
+  "problema": "«tarde» no es adjetivo; «lerdo» raro",
+  "sugerencia": [
+   "lento",
+   "tardío"
+  ]
+ },
+ "v:お手洗い|おてあらい": {
+  "problema": "«retrete» y «lavabo» poco naturales",
+  "sugerencia": [
+   "baño",
+   "servicio"
+  ]
+ },
+ "v:男の子|おとこのこ": {
+  "problema": "«chaval» es regionalismo de España",
+  "sugerencia": [
+   "niño",
+   "muchacho"
+  ]
+ },
+ "v:伯母さん; 叔母さん|おばさん": {
+  "problema": "«(fam)» y «mujer» confusos",
+  "sugerencia": [
+   "tía",
+   "señora"
+  ]
+ },
+ "v:お弁当|おべんとう": {
+  "problema": "«itacate» regional; glosa confusa",
+  "sugerencia": [
+   "almuerzo en caja",
+   "bento"
+  ]
+ },
+ "v:覚える|おぼえる": {
+  "problema": "«recolectar» es incorrecto",
+  "sugerencia": [
+   "memorizar",
+   "aprender",
+   "recordar"
+  ]
+ },
+ "v:おまわりさん|おまわりさん": {
+  "problema": "«esbirro» es incorrecto",
+  "sugerencia": [
+   "policía"
+  ]
+ },
+ "v:音楽|おんがく": {
+  "problema": "glosa extraña «movimiento musical»",
+  "sugerencia": [
+   "música"
+  ]
+ },
+ "v:～回|～かい": {
+  "problema": "no es una glosa corta de quiz",
+  "sugerencia": [
+   "veces (contador)"
+  ]
+ },
+ "v:～階|～かい": {
+  "problema": "piso, no solo «contador»",
+  "sugerencia": [
+   "piso (contador)",
+   "planta"
+  ]
+ },
+ "v:買い物|かいもの": {
+  "problema": "explicación entre paréntesis",
+  "sugerencia": [
+   "compras"
+  ]
+ },
+ "v:帰る|かえる": {
+  "problema": "«enviar de regreso» es incorrecto",
+  "sugerencia": [
+   "volver a casa",
+   "regresar"
+  ]
+ },
+ "v:かかる|かかる": {
+  "problema": "«tomarse» no es natural",
+  "sugerencia": [
+   "tardar",
+   "costar"
+  ]
+ },
+ "v:掛ける|かける": {
+  "problema": "«elevar;izar» incorrecto",
+  "sugerencia": [
+   "colgar",
+   "ponerse (gafas)"
+  ]
+ },
+ "v:かける|かける": {
+  "problema": "glosas copiadas de otra entrada; no coincide con la lista",
+  "sugerencia": [
+   "llamar por teléfono",
+   "sentarse",
+   "colgar"
+  ]
+ },
+ "v:傘|かさ": {
+  "problema": "«sombrilla» y «parasol» no son lo principal",
+  "sugerencia": [
+   "paraguas"
+  ]
+ },
+ "v:風邪|かぜ": {
+  "problema": "«resfrío» es rioplatense",
+  "sugerencia": [
+   "resfriado",
+   "catarro"
+  ]
+ },
+ "v:方|かた": {
+  "problema": "«dirección» no corresponde",
+  "sugerencia": [
+   "persona (honorífico)",
+   "lado",
+   "manera de"
+  ]
+ },
+ "v:～月|～がつ": {
+  "problema": "«luna» no es el sentido del sufijo",
+  "sugerencia": [
+   "mes"
+  ]
+ },
+ "v:かばん|かばん": {
+  "problema": "«mochila;cartapacio» poco precisos",
+  "sugerencia": [
+   "bolso",
+   "maletín",
+   "mochila"
+  ]
+ },
+ "v:～がる|～がる": {
+  "problema": "glosa poco clara",
+  "sugerencia": [
+   "mostrar (señales de)",
+   "dar muestras de"
+  ]
+ },
+ "v:軽い|かるい": {
+  "problema": "typo «escada» y glosa rara",
+  "sugerencia": [
+   "ligero",
+   "leve"
+  ]
+ },
+ "v:可愛い|かわいい": {
+  "problema": "«hermoso;preferido» no son el sentido",
+  "sugerencia": [
+   "lindo",
+   "tierno",
+   "adorable"
+  ]
+ },
+ "v:消える|きえる": {
+  "problema": "«desvanecer» no está en infinitivo reflexivo",
+  "sugerencia": [
+   "desaparecer",
+   "apagarse"
+  ]
+ },
+ "v:九|きゅう": {
+  "problema": "«en documentos legales;aquí;acá» incorrecto",
+  "sugerencia": [
+   "nueve"
+  ]
+ },
+ "v:九|く": {
+  "problema": "«en documentos legales;aquí;acá» incorrecto",
+  "sugerencia": [
+   "nueve"
+  ]
+ },
+ "v:嫌い|きらい": {
+  "problema": "«disgusto;odio» son sustantivos, es adjetivo-na",
+  "sugerencia": [
+   "que no gusta",
+   "detestable"
+  ]
+ },
+ "v:切る|きる": {
+  "problema": "falta «colgar» y «caer» es raro",
+  "sugerencia": [
+   "cortar",
+   "colgar (teléfono)"
+  ]
+ },
+ "v:キロ; キログラム|キロ; キログラム": {
+  "problema": "«kilo-;10^3» no es la palabra",
+  "sugerencia": [
+   "kilo",
+   "kilogramo"
+  ]
+ },
+ "v:キロ; キロメートル|キロ; キロメートル": {
+  "problema": "«kilo-;10^3» no es la palabra",
+  "sugerencia": [
+   "kilómetro"
+  ]
+ },
+ "v:～くらい; ぐらい|～くらい; ぐらい": {
+  "problema": "glosa copiada de «暗い»; error",
+  "sugerencia": [
+   "aproximadamente",
+   "más o menos"
+  ]
+ },
+ "v:来る|くる": {
+  "problema": "el sentido principal es «venir»",
+  "sugerencia": [
+   "venir",
+   "llegar"
+  ]
+ },
+ "v:警官|けいかん": {
+  "problema": "«hombre policía» poco natural",
+  "sugerencia": [
+   "policía"
+  ]
+ },
+ "v:消す|けす": {
+  "problema": "el sentido más común es «apagar»",
+  "sugerencia": [
+   "apagar",
+   "borrar"
+  ]
+ },
+ "v:結構|けっこう": {
+  "problema": "glosa larga y confusa",
+  "sugerencia": [
+   "bastante",
+   "estupendo",
+   "no, gracias"
+  ]
+ },
+ "v:元気|げんき": {
+  "problema": "«salud;vigor» son sustantivos; es adjetivo-na",
+  "sugerencia": [
+   "con buena salud",
+   "enérgico",
+   "animado"
+  ]
+ },
+ "v:～個|～こ": {
+  "problema": "glosa confusa",
+  "sugerencia": [
+   "unidad (contador)"
+  ]
+ },
+ "v:五|ご": {
+  "problema": "«cuándo» es incorrecto",
+  "sugerencia": [
+   "cinco"
+  ]
+ },
+ "v:コーヒー|コーヒー": {
+  "problema": "glosa con etimología",
+  "sugerencia": [
+   "café"
+  ]
+ },
+ "v:九つ|ここのつ": {
+  "problema": "el número no es una glosa",
+  "sugerencia": [
+   "nueve"
+  ]
+ },
+ "v:困る|こまる": {
+  "problema": "«enfurecerse» es incorrecto",
+  "sugerencia": [
+   "estar en apuros",
+   "tener un problema"
+  ]
+ },
+ "v:～ころ; ～ごろ|～ころ; ～ごろ": {
+  "problema": "glosa incorrecta",
+  "sugerencia": [
+   "alrededor de",
+   "aproximadamente"
+  ]
+ },
+ "v:～歳|～さい": {
+  "problema": "glosas incorrectas",
+  "sugerencia": [
+   "años (edad)"
+  ]
+ },
+ "v:先|さき": {
+  "problema": "glosas incorrectas o poco claras",
+  "sugerencia": [
+   "lo siguiente",
+   "anterior",
+   "punta"
+  ]
+ },
+ "v:差す|さす": {
+  "problema": "sentido poco claro",
+  "sugerencia": [
+   "abrir (paraguas)",
+   "señalar"
+  ]
+ },
+ "v:三|さん": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "tres"
+  ]
+ },
+ "v:四|し": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "cuatro"
+  ]
+ },
+ "v:七|しち": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "siete"
+  ]
+ },
+ "v:十|じゅう": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "diez"
+  ]
+ },
+ "v:二|に": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "dos"
+  ]
+ },
+ "v:八|はち": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "ocho"
+  ]
+ },
+ "v:百|ひゃく": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "cien"
+  ]
+ },
+ "v:千|せん": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "mil"
+  ]
+ },
+ "v:十|(〜を) とお": {
+  "problema": "glosa con dígito/nota legal",
+  "sugerencia": [
+   "diez"
+  ]
+ },
+ "v:二つ|ふたつ": {
+  "problema": "glosa con dígito",
+  "sugerencia": [
+   "dos"
+  ]
+ },
+ "v:三つ|みっつ": {
+  "problema": "glosa con dígito",
+  "sugerencia": [
+   "tres"
+  ]
+ },
+ "v:四つ|よっつ": {
+  "problema": "glosa con dígito",
+  "sugerencia": [
+   "cuatro"
+  ]
+ },
+ "v:六つ|むっつ": {
+  "problema": "glosa con dígito",
+  "sugerencia": [
+   "seis"
+  ]
+ },
+ "v:八つ|やっつ": {
+  "problema": "glosa con dígito",
+  "sugerencia": [
+   "ocho"
+  ]
+ },
+ "v:七つ|ななつ": {
+  "problema": "glosa con dígito",
+  "sugerencia": [
+   "siete"
+  ]
+ },
+ "v:しかし|しかし": {
+  "problema": "glosa poco natural",
+  "sugerencia": [
+   "pero",
+   "sin embargo"
+  ]
+ },
+ "v:～時間|～じかん": {
+  "problema": "falta «horas»",
+  "sugerencia": [
+   "horas (duración)"
+  ]
+ },
+ "v:静か|しずか": {
+  "problema": "glosa con paréntesis",
+  "sugerencia": [
+   "tranquilo",
+   "silencioso"
+  ]
+ },
+ "v:自分|じぶん": {
+  "problema": "glosa poco clara",
+  "sugerencia": [
+   "uno mismo",
+   "yo mismo"
+  ]
+ },
+ "v:締める|しめる": {
+  "problema": "glosa poco precisa",
+  "sugerencia": [
+   "apretar",
+   "atar (corbata)"
+  ]
+ },
+ "v:シャツ|シャツ": {
+  "problema": "glosa con «(shirt)»",
+  "sugerencia": [
+   "camisa"
+  ]
+ },
+ "v:シャワー|シャワー": {
+  "problema": "nota «(eng: shower)»",
+  "sugerencia": [
+   "ducha"
+  ]
+ },
+ "v:～週間|～しゅうかん": {
+  "problema": "duración, no «semanalmente»",
+  "sugerencia": [
+   "semanas (duración)"
+  ]
+ },
+ "v:上手|じょうず": {
+  "problema": "«nivel;destreza» sustantivos",
+  "sugerencia": [
+   "hábil",
+   "bueno en algo"
+  ]
+ },
+ "v:丈夫|じょうぶ": {
+  "problema": "falta «resistente»",
+  "sugerencia": [
+   "resistente",
+   "robusto",
+   "sano"
+  ]
+ },
+ "v:醤油|しょうゆ": {
+  "problema": "«shoyu» no es traducción",
+  "sugerencia": [
+   "salsa de soja"
+  ]
+ },
+ "v:～人|～じん": {
+  "problema": "glosa poco clara",
+  "sugerencia": [
+   "persona de (nacionalidad)"
+  ]
+ },
+ "v:好き|すき": {
+  "problema": "«gustado» incorrecto",
+  "sugerencia": [
+   "que gusta",
+   "gustar"
+  ]
+ },
+ "v:～すぎ|～すぎ": {
+  "problema": "glosa poco clara",
+  "sugerencia": [
+   "después de (hora)",
+   "demasiado"
+  ]
+ },
+ "v:少ない|すくない": {
+  "problema": "«un poco» se confunde con 少し",
+  "sugerencia": [
+   "escaso",
+   "poco"
+  ]
+ },
+ "v:少し|すこし": {
+  "problema": "«pequeña cantidad» poco natural",
+  "sugerencia": [
+   "un poco",
+   "algo"
+  ]
+ },
+ "v:ストーブ|ストーブ": {
+  "problema": "«horno» incorrecto; notas «(eng:)»",
+  "sugerencia": [
+   "estufa",
+   "calefactor"
+  ]
+ },
+ "v:スカート|スカート": {
+  "problema": "nota «(eng: skirt)»",
+  "sugerencia": [
+   "falda"
+  ]
+ },
+ "v:スプーン|スプーン": {
+  "problema": "nota «(eng: spoon)»",
+  "sugerencia": [
+   "cuchara"
+  ]
+ },
+ "v:スポーツ|スポーツ": {
+  "problema": "nota «(eng: sport)»",
+  "sugerencia": [
+   "deporte"
+  ]
+ },
+ "v:ズボン|ズボン": {
+  "problema": "nota «(fre: jupon)»",
+  "sugerencia": [
+   "pantalón"
+  ]
+ },
+ "v:生徒|せいと": {
+  "problema": "«pupilo» poco natural",
+  "sugerencia": [
+   "alumno",
+   "estudiante"
+  ]
+ },
+ "v:セーター|セーター": {
+  "problema": "notas «(eng:)» en la glosa",
+  "sugerencia": [
+   "suéter"
+  ]
+ },
+ "v:先週|せんしゅう": {
+  "problema": "«la última semana» ambiguo",
+  "sugerencia": [
+   "la semana pasada"
+  ]
+ },
+ "v:洗濯|せんたく": {
+  "problema": "«colada» es de España",
+  "sugerencia": [
+   "lavado de ropa",
+   "lavandería"
+  ]
+ },
+ "v:そう; そうです|そう; そうです": {
+  "problema": "glosa incorrecta",
+  "sugerencia": [
+   "así",
+   "sí, así es"
+  ]
+ },
+ "v:そうして; そして|そうして; そして": {
+  "problema": "«como eso» poco natural",
+  "sugerencia": [
+   "y luego",
+   "y"
+  ]
+ },
+ "v:大丈夫|だいじょうぶ": {
+  "problema": "«estar a salvo» no es lo principal",
+  "sugerencia": [
+   "estar bien",
+   "no hay problema"
+  ]
+ },
+ "v:大好き|だいすき": {
+  "problema": "«adorable» incorrecto",
+  "sugerencia": [
+   "gustar mucho",
+   "encantar"
+  ]
+ },
+ "v:大変|たいへん": {
+  "problema": "falta «difícil / terrible»",
+  "sugerencia": [
+   "difícil",
+   "terrible",
+   "muy"
+  ]
+ },
+ "v:高い|たかい": {
+  "problema": "falta «caro»",
+  "sugerencia": [
+   "alto",
+   "caro"
+  ]
+ },
+ "v:出す|だす": {
+  "problema": "«salir» incorrecto para v.t.",
+  "sugerencia": [
+   "sacar",
+   "entregar"
+  ]
+ },
+ "v:卵|たまご": {
+  "problema": "«engendro;hueva» incorrecto",
+  "sugerencia": [
+   "huevo"
+  ]
+ },
+ "v:違う|ちがう": {
+  "problema": "«discrepar;disentir» son raros",
+  "sugerencia": [
+   "ser diferente",
+   "estar equivocado"
+  ]
+ },
+ "v:地下鉄|ちかてつ": {
+  "problema": "glosa larga",
+  "sugerencia": [
+   "metro"
+  ]
+ },
+ "v:茶色|ちゃいろ": {
+  "problema": "«café claro» ambiguo",
+  "sugerencia": [
+   "marrón",
+   "café"
+  ]
+ },
+ "v:茶碗|ちゃわん": {
+  "problema": "sentido principal: tazón de arroz",
+  "sugerencia": [
+   "tazón de arroz",
+   "taza"
+  ]
+ },
+ "v:ちょっと|ちょっと": {
+  "problema": "«un momento» no es lo principal",
+  "sugerencia": [
+   "un poco",
+   "un momento"
+  ]
+ },
+ "v:使う|つかう": {
+  "problema": "glosa incorrecta",
+  "sugerencia": [
+   "usar",
+   "emplear"
+  ]
+ },
+ "v:疲れる|つかれる": {
+  "problema": "«cansar» es transitivo",
+  "sugerencia": [
+   "cansarse"
+  ]
+ },
+ "v:つける|つける": {
+  "problema": "glosa copiada de otro sentido",
+  "sugerencia": [
+   "encender",
+   "poner",
+   "pegar"
+  ]
+ },
+ "v:勤める|つとめる": {
+  "problema": "«servir» poco natural",
+  "sugerencia": [
+   "trabajar en",
+   "estar empleado"
+  ]
+ },
+ "v:つまらない|つまらない": {
+  "problema": "«aburrido» debe ir primero",
+  "sugerencia": [
+   "aburrido",
+   "insignificante"
+  ]
+ },
+ "v:冷たい|つめたい": {
+  "problema": "«fresco;congelado» imprecisos",
+  "sugerencia": [
+   "frío"
+  ]
+ },
+ "v:テープ|テープ": {
+  "problema": "«(tape)» en la glosa",
+  "sugerencia": [
+   "cinta"
+  ]
+ },
+ "v:テープレコーダー|テープレコーダー": {
+  "problema": "«videograbadora» incorrecto",
+  "sugerencia": [
+   "grabadora"
+  ]
+ },
+ "v:テーブル|テーブル": {
+  "problema": "nota «del inglés»",
+  "sugerencia": [
+   "mesa"
+  ]
+ },
+ "v:出かける|でかける": {
+  "problema": "glosa con paréntesis",
+  "sugerencia": [
+   "salir",
+   "irse"
+  ]
+ },
+ "v:できる|できる": {
+  "problema": "glosa incorrecta",
+  "sugerencia": [
+   "poder",
+   "ser capaz de"
+  ]
+ },
+ "v:デパート|デパート": {
+  "problema": "«centro comercial» es otra cosa",
+  "sugerencia": [
+   "grandes almacenes",
+   "tienda departamental"
+  ]
+ },
+ "v:出る|でる": {
+  "problema": "«aparecer» no es lo principal",
+  "sugerencia": [
+   "salir",
+   "aparecer"
+  ]
+ },
+ "v:天気|てんき": {
+  "problema": "«los elementos» arcaico",
+  "sugerencia": [
+   "tiempo",
+   "clima"
+  ]
+ },
+ "v:～度|～ど": {
+  "problema": "glosa con tilde de plural rara",
+  "sugerencia": [
+   "veces"
+  ]
+ },
+ "v:ドア|ドア": {
+  "problema": "nota «del inglés»",
+  "sugerencia": [
+   "puerta"
+  ]
+ },
+ "v:トイレ|トイレ": {
+  "problema": "notas «(eng:)(am)»",
+  "sugerencia": [
+   "baño",
+   "sanitario"
+  ]
+ },
+ "v:どう|どう": {
+  "problema": "sin signos; glosa imprecisa",
+  "sugerencia": [
+   "¿cómo?",
+   "¿qué tal?"
+  ]
+ },
+ "v:～時|～とき": {
+  "problema": "glosa incorrecta (es «cuando»)",
+  "sugerencia": [
+   "cuando",
+   "en el momento de"
+  ]
+ },
+ "v:鳥|とり": {
+  "problema": "«corral» incorrecto",
+  "sugerencia": [
+   "pájaro",
+   "ave"
+  ]
+ },
+ "v:七日|なのか": {
+  "problema": "«séptimo día del año» incorrecto",
+  "sugerencia": [
+   "siete días",
+   "día siete"
+  ]
+ },
+ "v:並ぶ|ならぶ": {
+  "problema": "«poner en fila» es transitivo",
+  "sugerencia": [
+   "hacer fila",
+   "alinearse"
+  ]
+ },
+ "v:にぎやか|にぎやか": {
+  "problema": "«ocupado» incorrecto",
+  "sugerencia": [
+   "animado",
+   "bullicioso"
+  ]
+ },
+ "v:ニュース|ニュース": {
+  "problema": "nota «(eng: news)»",
+  "sugerencia": [
+   "noticias"
+  ]
+ },
+ "v:ネクタイ|ネクタイ": {
+  "problema": "nota «(eng:)»",
+  "sugerencia": [
+   "corbata"
+  ]
+ },
+ "v:ノート|ノート": {
+  "problema": "«(notebook)» en la glosa",
+  "sugerencia": [
+   "cuaderno"
+  ]
+ },
+ "v:脱ぐ|ぬぐ": {
+  "problema": "«desvestir» es otro verbo",
+  "sugerencia": [
+   "quitarse (ropa)"
+  ]
+ },
+ "v:～年|～ねん": {
+  "problema": "«horas (de oficina)» incorrecto",
+  "sugerencia": [
+   "años"
+  ]
+ },
+ "v:登る|のぼる": {
+  "problema": "«elevar» raro",
+  "sugerencia": [
+   "subir",
+   "escalar"
+  ]
+ },
+ "v:飲む|のむ": {
+  "problema": "«tragar» no es lo principal",
+  "sugerencia": [
+   "beber",
+   "tomar"
+  ]
+ },
+ "v:パーティー|パーティー": {
+  "problema": "nota «(eng: party)»",
+  "sugerencia": [
+   "fiesta"
+  ]
+ },
+ "v:葉書|はがき": {
+  "problema": "«tarjeta» ambiguo",
+  "sugerencia": [
+   "postal",
+   "tarjeta postal"
+  ]
+ },
+ "v:はく|はく": {
+  "problema": "glosa imprecisa",
+  "sugerencia": [
+   "ponerse (zapatos, pantalón)",
+   "calzarse"
+  ]
+ },
+ "v:箸|はし": {
+  "problema": "«chinos» incorrecto",
+  "sugerencia": [
+   "palillos"
+  ]
+ },
+ "v:初めて|はじめて": {
+  "problema": "falta «por»",
+  "sugerencia": [
+   "por primera vez"
+  ]
+ },
+ "v:バター|バター": {
+  "problema": "nota «(eng: butter)»",
+  "sugerencia": [
+   "mantequilla"
+  ]
+ },
+ "v:話|はなし": {
+  "problema": "«habla» incorrecto",
+  "sugerencia": [
+   "conversación",
+   "historia"
+  ]
+ },
+ "v:早い|はやい": {
+  "problema": "glosa copiada de 速い; debe ser «temprano»",
+  "sugerencia": [
+   "temprano",
+   "pronto"
+  ]
+ },
+ "v:貼る|はる": {
+  "problema": "glosa truncada/incorrecta",
+  "sugerencia": [
+   "pegar",
+   "fijar"
+  ]
+ },
+ "v:晴れ|はれ": {
+  "problema": "glosa rara",
+  "sugerencia": [
+   "buen tiempo",
+   "despejado"
+  ]
+ },
+ "v:半|はん": {
+  "problema": "«impar» incorrecto",
+  "sugerencia": [
+   "media",
+   "mitad"
+  ]
+ },
+ "v:～番|～ばん": {
+  "problema": "glosas incorrectas",
+  "sugerencia": [
+   "número (ordinal)"
+  ]
+ },
+ "v:パン|パン": {
+  "problema": "nota «(pt)»",
+  "sugerencia": [
+   "pan"
+  ]
+ },
+ "v:ハンカチ|ハンカチ": {
+  "problema": "nota «(eng:)»",
+  "sugerencia": [
+   "pañuelo"
+  ]
+ },
+ "v:番号|ばんごう": {
+  "problema": "plural / glosa imprecisa",
+  "sugerencia": [
+   "número"
+  ]
+ },
+ "v:引く|ひく": {
+  "problema": "glosa rara",
+  "sugerencia": [
+   "jalar",
+   "tirar",
+   "restar"
+  ]
+ },
+ "v:平仮名|ひらがな": {
+  "problema": "glosa recargada",
+  "sugerencia": [
+   "hiragana"
+  ]
+ },
+ "v:フィルム|フィルム": {
+  "problema": "nota «(eng:)»",
+  "sugerencia": [
+   "película (de fotos)",
+   "rollo"
+  ]
+ },
+ "v:プール|プール": {
+  "problema": "nota «(eng:)»",
+  "sugerencia": [
+   "piscina",
+   "alberca"
+  ]
+ },
+ "v:フォーク|フォーク": {
+  "problema": "glosa errónea «amigo»",
+  "sugerencia": [
+   "tenedor"
+  ]
+ },
+ "v:太い|ふとい": {
+  "problema": "«gordo;obeso» es de personas",
+  "sugerencia": [
+   "grueso",
+   "gordo"
+  ]
+ },
+ "v:降る|ふる": {
+  "problema": "glosa rara",
+  "sugerencia": [
+   "caer (lluvia, nieve)"
+  ]
+ },
+ "v:文章|ぶんしょう": {
+  "problema": "imprecisa",
+  "sugerencia": [
+   "texto",
+   "escrito"
+  ]
+ },
+ "v:ページ|ページ": {
+  "problema": "duplicado «(eng:page)»",
+  "sugerencia": [
+   "página"
+  ]
+ },
+ "v:ベッド|ベッド": {
+  "problema": "nota «(eng: bed)»",
+  "sugerencia": [
+   "cama"
+  ]
+ },
+ "v:帽子|ぼうし": {
+  "problema": "falta «gorra»",
+  "sugerencia": [
+   "sombrero",
+   "gorra"
+  ]
+ },
+ "v:ボールペン|ボールペン": {
+  "problema": "«pluma fuente» incorrecto",
+  "sugerencia": [
+   "bolígrafo"
+  ]
+ },
+ "v:ポケット|ポケット": {
+  "problema": "glosa recargada",
+  "sugerencia": [
+   "bolsillo"
+  ]
+ },
+ "v:欲しい|ほしい": {
+  "problema": "participios imprecisos",
+  "sugerencia": [
+   "querer (algo)",
+   "desear"
+  ]
+ },
+ "v:ポスト|ポスト": {
+  "problema": "glosa confusa",
+  "sugerencia": [
+   "buzón"
+  ]
+ },
+ "v:ボタン|ボタン": {
+  "problema": "nota «(por:)»",
+  "sugerencia": [
+   "botón"
+  ]
+ },
+ "v:ホテル|ホテル": {
+  "problema": "nota «(eng:)»",
+  "sugerencia": [
+   "hotel"
+  ]
+ },
+ "v:～本|～ほん": {
+  "problema": "glosa incorrecta (libro)",
+  "sugerencia": [
+   "contador de objetos largos"
+  ]
+ },
+ "v:毎月|まいげつ; まいつき": {
+  "problema": "repetitiva",
+  "sugerencia": [
+   "cada mes",
+   "mensualmente"
+  ]
+ },
+ "v:前|まえ": {
+  "problema": "etiquetas técnicas «(n-adv…)»",
+  "sugerencia": [
+   "antes",
+   "delante"
+  ]
+ },
+ "v:～前|～まえ": {
+  "problema": "etiquetas técnicas «(n-adv…)»",
+  "sugerencia": [
+   "antes",
+   "delante de"
+  ]
+ },
+ "v:まずい|まずい": {
+  "problema": "glosa truncada",
+  "sugerencia": [
+   "malo (de sabor)",
+   "desagradable"
+  ]
+ },
+ "v:町|まち": {
+  "problema": "falta «ciudad»",
+  "sugerencia": [
+   "ciudad",
+   "pueblo"
+  ]
+ },
+ "v:待つ|まつ": {
+  "problema": "glosa incorrecta",
+  "sugerencia": [
+   "esperar"
+  ]
+ },
+ "v:磨く|みがく": {
+  "problema": "falta el sentido «cepillarse»",
+  "sugerencia": [
+   "cepillarse (los dientes)",
+   "pulir"
+  ]
+ },
+ "v:眼鏡|めがね": {
+  "problema": "«gafas» es de España",
+  "sugerencia": [
+   "lentes",
+   "anteojos",
+   "gafas"
+  ]
+ },
+ "v:休み|やすみ": {
+  "problema": "falta «día libre/vacaciones»",
+  "sugerencia": [
+   "día libre",
+   "vacaciones",
+   "descanso"
+  ]
+ },
+ "v:やる|やる": {
+  "problema": "glosa inapropiada",
+  "sugerencia": [
+   "hacer",
+   "dar (a inferiores)"
+  ]
+ },
+ "v:夕方|ゆうがた": {
+  "problema": "«noche» incorrecto",
+  "sugerencia": [
+   "atardecer",
+   "tarde"
+  ]
+ },
+ "v:よく|よく": {
+  "problema": "falta «a menudo»",
+  "sugerencia": [
+   "a menudo",
+   "bien"
+  ]
+ },
+ "v:横|よこ": {
+  "problema": "«junto» imprecisa",
+  "sugerencia": [
+   "lado",
+   "al lado",
+   "ancho"
+  ]
+ },
+ "v:呼ぶ|よぶ": {
+  "problema": "glosa rara",
+  "sugerencia": [
+   "llamar",
+   "invitar"
+  ]
+ },
+ "v:夜|よる": {
+  "problema": "«tarde» incorrecto",
+  "sugerencia": [
+   "noche"
+  ]
+ },
+ "v:ラジオ|ラジオ": {
+  "problema": "nota «(eng:)»",
+  "sugerencia": [
+   "radio"
+  ]
+ },
+ "v:留学生|りゅうがくせい": {
+  "problema": "ambigua",
+  "sugerencia": [
+   "estudiante extranjero",
+   "estudiante de intercambio"
+  ]
+ },
+ "v:旅行|りょこう": {
+  "problema": "«viajar» es verbo",
+  "sugerencia": [
+   "viaje",
+   "viajar"
+  ]
+ },
+ "v:レコード|レコード": {
+  "problema": "glosa recargada",
+  "sugerencia": [
+   "disco",
+   "registro"
+  ]
+ },
+ "v:レストラン|レストラン": {
+  "problema": "nota «(fr:)»",
+  "sugerencia": [
+   "restaurante"
+  ]
+ },
+ "v:廊下|ろうか": {
+  "problema": "«corredor» poco claro",
+  "sugerencia": [
+   "pasillo"
+  ]
+ },
+ "v:ワイシャツ|ワイシャツ": {
+  "problema": "«camisetas» incorrecto",
+  "sugerencia": [
+   "camisa de vestir",
+   "camisa"
+  ]
+ },
+ "v:渡す|わたす": {
+  "problema": "«vadear» incorrecto",
+  "sugerencia": [
+   "entregar",
+   "pasar"
+  ]
+ },
+ "v:渡る|わたる": {
+  "problema": "«durar;abarcar» incorrecto",
+  "sugerencia": [
+   "cruzar",
+   "atravesar"
+  ]
+ },
+ "k:円": {
+  "problema": "«circular» primero; lo más común en N5 es yen",
+  "sugerencia": [
+   "yen",
+   "círculo",
+   "redondo"
+  ]
+ },
+ "k:会": {
+  "problema": "«asociación» no es lo principal",
+  "sugerencia": [
+   "reunión",
+   "encontrarse",
+   "reunirse"
+  ]
+ },
+ "k:間": {
+  "problema": "«habitación» poco común",
+  "sugerencia": [
+   "intervalo",
+   "entre",
+   "espacio"
+  ]
+ },
+ "k:気": {
+  "problema": "«espíritu» ambiguo",
+  "sugerencia": [
+   "ánimo",
+   "energía",
+   "aire"
+  ]
+ },
+ "k:金": {
+  "problema": "en N5 sobresale «dinero»",
+  "sugerencia": [
+   "dinero",
+   "oro",
+   "metal"
+  ]
+ },
+ "k:見": {
+  "problema": "«vista;esperanza» no es lo principal",
+  "sugerencia": [
+   "ver",
+   "mirar"
+  ]
+ },
+ "k:言": {
+  "problema": "«palabras» no es lo principal",
+  "sugerencia": [
+   "decir",
+   "palabra"
+  ]
+ },
+ "k:子": {
+  "problema": "«chiquillo» regional/poco neutro",
+  "sugerencia": [
+   "niño",
+   "hijo"
+  ]
+ },
+ "k:車": {
+  "problema": "«coche» es de España",
+  "sugerencia": [
+   "auto",
+   "vehículo",
+   "rueda"
+  ]
+ },
+ "k:書": {
+  "problema": "verbo primero",
+  "sugerencia": [
+   "escribir",
+   "escritura"
+  ]
+ },
+ "k:女": {
+  "problema": "«femenino» adjetivo",
+  "sugerencia": [
+   "mujer"
+  ]
+ },
+ "k:男": {
+  "problema": "«masculino» adjetivo",
+  "sugerencia": [
+   "hombre"
+  ]
+ },
+ "k:小": {
+  "problema": "«poco» no es lo principal",
+  "sugerencia": [
+   "pequeño",
+   "poco"
+  ]
+ },
+ "k:食": {
+  "problema": "«eclipse» incorrecto",
+  "sugerencia": [
+   "comer",
+   "comida"
+  ]
+ },
+ "k:西": {
+  "problema": "mayúscula innecesaria o glosas incorrectas (España/huir/Turquía)",
+  "sugerencia": [
+   "oeste"
+  ]
+ },
+ "k:東": {
+  "problema": "mayúscula innecesaria o glosas incorrectas (España/huir/Turquía)",
+  "sugerencia": [
+   "este"
+  ]
+ },
+ "k:南": {
+  "problema": "mayúscula innecesaria o glosas incorrectas (España/huir/Turquía)",
+  "sugerencia": [
+   "sur"
+  ]
+ },
+ "k:北": {
+  "problema": "mayúscula innecesaria o glosas incorrectas (España/huir/Turquía)",
+  "sugerencia": [
+   "norte"
+  ]
+ },
+ "k:足": {
+  "problema": "falta «pie»",
+  "sugerencia": [
+   "pie",
+   "pierna",
+   "suficiente"
+  ]
+ },
+ "k:天": {
+  "problema": "«paraíso» menos común",
+  "sugerencia": [
+   "cielo",
+   "paraíso"
+  ]
+ },
+ "k:土": {
+  "problema": "«Turquía» incorrecto",
+  "sugerencia": [
+   "tierra",
+   "suelo"
+  ]
+ },
+ "k:日": {
+  "problema": "«solar» poco claro",
+  "sugerencia": [
+   "día",
+   "sol"
+  ]
+ },
+ "k:分": {
+  "problema": "falta «minuto»",
+  "sugerencia": [
+   "minuto",
+   "parte",
+   "dividir"
+  ]
+ },
+ "k:聞": {
+  "problema": "falta «oír»",
+  "sugerencia": [
+   "oír",
+   "escuchar",
+   "preguntar"
+  ]
+ },
+ "k:母": {
+  "problema": "«base;cimientos» incorrecto",
+  "sugerencia": [
+   "madre"
+  ]
+ },
+ "k:毎": {
+  "problema": "«siempre» incorrecto",
+  "sugerencia": [
+   "cada"
+  ]
+ },
+ "k:話": {
+  "problema": "verbo primero",
+  "sugerencia": [
+   "hablar",
+   "conversación",
+   "cuento"
+  ]
+ }
+}

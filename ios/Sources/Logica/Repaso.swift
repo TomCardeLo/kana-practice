@@ -75,8 +75,8 @@ enum FSRS {
 enum Repaso {
     static let nuevasPorDia = 10
     static let maximoPendientes = 40
-    static let facilMs = 1500
-    static let bienMs = 3500
+    /// Con opción múltiple se acierta al azar 1 de cada 4: nunca «fácil»; un acierto lento es «difícil».
+    static let bienMs = 2000
 
     struct Plan: Equatable {
         /// Vencidas, de la más atrasada a la menos.
@@ -85,11 +85,12 @@ enum Repaso {
         var sesion: [Tarjeta] { pendientes + nuevas }
     }
 
-    /// Tarjeta con latencia: rápido = fácil. Lectura (sin latencia) correcta = bien (modo de fallo 79).
+    /// Opción múltiple: acierto rápido = bien, lento = difícil, error = otra vez; nunca «fácil» (modo de fallo 94).
+    /// Lectura (sin latencia) correcta = bien (modo de fallo 79).
     static func nota(correcto: Bool, latenciaMs: Int?) -> FSRS.Nota {
         guard correcto else { return .otraVez }
         guard let ms = latenciaMs else { return .bien }
-        return ms <= facilMs ? .facil : ms <= bienMs ? .bien : .dificil
+        return ms <= bienMs ? .bien : .dificil
     }
 
     /// Orden de introducción de los nuevos: tabla de hiragana (básicos primero), luego katakana (modo de fallo 81).

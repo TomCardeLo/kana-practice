@@ -45,7 +45,7 @@ struct KanaApp: App {
         }
         // E2E de «Hoy» (modos de fallo 77–84). Vencen hoy o antes: か (fallada hace 2 días), い (bien hace 5),
         // さ (ayer, acierto y error en el mismo milisegundo: cuenta el error) y そ (bien hace 3 días a las 23:30
-        // locales). No vencen: あ (fácil ayer) y た (lectura correcta sin latencia = bien, hace 2 días). ち (lectura
+        // locales). No vencen: あ (bien ayer: acierto rápido) y た (lectura correcta sin latencia = bien, hace 2 días). ち (lectura
         // sin escribir) no cuenta. Plan: 4 por repasar + 10 nuevas (う え お き く け こ し す せ).
         if Self.enPrueba, ProcessInfo.processInfo.arguments.contains("-uitest-repaso") {
             let calendario = Calendar.current

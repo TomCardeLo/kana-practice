@@ -1,0 +1,9553 @@
+[
+ {
+  "id": "ああ|ああ",
+  "palabra": "ああ",
+  "lectura": "ああ",
+  "es": [
+   "¡ah!",
+   "¡oh!"
+  ],
+  "origenEs": "claude",
+  "en": "Ah!, Oh!",
+  "jmdict": 1565440
+ },
+ {
+  "id": "会う|あう",
+  "palabra": "会う",
+  "lectura": "あう",
+  "es": [
+   "encontrarse con",
+   "ver a alguien"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "conocerse",
+   "encontrarse con"
+  ],
+  "problema": "«conocerse» es otro sentido",
+  "en": "to meet, to see",
+  "jmdict": 1198180
+ },
+ {
+  "id": "青|あお",
+  "palabra": "青",
+  "lectura": "あお",
+  "es": [
+   "azul"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "azul",
+   "verde",
+   "luz verde"
+  ],
+  "problema": "«verde» y «luz verde» no son el sentido principal",
+  "en": "blue",
+  "jmdict": 1381380
+ },
+ {
+  "id": "青い|あおい",
+  "palabra": "青い",
+  "lectura": "あおい",
+  "es": [
+   "azul"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "azul",
+   "verde"
+  ],
+  "problema": "«verde» no es el sentido principal",
+  "en": "blue",
+  "jmdict": 1381390
+ },
+ {
+  "id": "赤|あか",
+  "palabra": "赤",
+  "lectura": "あか",
+  "es": [
+   "rojo"
+  ],
+  "origenEs": "jmdict",
+  "en": "red",
+  "jmdict": 2013900
+ },
+ {
+  "id": "赤い|あかい",
+  "palabra": "赤い",
+  "lectura": "あかい",
+  "es": [
+   "rojo"
+  ],
+  "origenEs": "jmdict",
+  "en": "red",
+  "jmdict": 1383240
+ },
+ {
+  "id": "明るい|あかるい",
+  "palabra": "明るい",
+  "lectura": "あかるい",
+  "es": [
+   "claro",
+   "luminoso",
+   "brillante"
+  ],
+  "origenEs": "jmdict",
+  "en": "bright (in reference to personality or weather); cheerful",
+  "jmdict": 1532350
+ },
+ {
+  "id": "秋|あき",
+  "palabra": "秋",
+  "lectura": "あき",
+  "es": [
+   "otoño"
+  ],
+  "origenEs": "jmdict",
+  "en": "fall (season)",
+  "jmdict": 1332650
+ },
+ {
+  "id": "開く|あく",
+  "palabra": "開く",
+  "lectura": "あく",
+  "es": [
+   "abrirse"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "abrirse",
+   "quedarse abierto",
+   "quedarse vacío"
+  ],
+  "problema": "«quedarse vacío» es un sentido raro",
+  "en": "to open, to become open",
+  "jmdict": 1586270
+ },
+ {
+  "id": "開ける|あける",
+  "palabra": "開ける",
+  "lectura": "あける",
+  "es": [
+   "abrir"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "abrir",
+   "amanecer",
+   "hacerse de día"
+  ],
+  "problema": "«amanecer» es un sentido raro",
+  "en": "to open (v.t.)",
+  "jmdict": 1202450
+ },
+ {
+  "id": "上げる|あげる",
+  "palabra": "上げる",
+  "lectura": "あげる",
+  "es": [
+   "elevar",
+   "levantar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to raise, to lift",
+  "jmdict": 1352320
+ },
+ {
+  "id": "朝|あさ",
+  "palabra": "朝",
+  "lectura": "あさ",
+  "es": [
+   "la mañana"
+  ],
+  "origenEs": "jmdict",
+  "en": "morning",
+  "jmdict": 1428280
+ },
+ {
+  "id": "朝御飯|あさごはん",
+  "palabra": "朝御飯",
+  "lectura": "あさごはん",
+  "es": [
+   "desayuno"
+  ],
+  "origenEs": "jmdict",
+  "en": "breakfast",
+  "jmdict": 1586330
+ },
+ {
+  "id": "明後日|あさって",
+  "palabra": "明後日",
+  "lectura": "あさって",
+  "es": [
+   "pasado mañana"
+  ],
+  "origenEs": "jmdict",
+  "en": "day after tomorrow",
+  "jmdict": 1584640
+ },
+ {
+  "id": "足; 脚|あし",
+  "palabra": "足; 脚",
+  "lectura": "あし",
+  "es": [
+   "pie",
+   "pierna"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pie"
+  ],
+  "problema": "falta «pierna» (足; 脚 cubre ambos)",
+  "en": "foot; leg",
+  "jmdict": 1404630
+ },
+ {
+  "id": "明日|あした",
+  "palabra": "明日",
+  "lectura": "あした",
+  "es": [
+   "mañana"
+  ],
+  "origenEs": "jmdict",
+  "en": "tomorrow",
+  "jmdict": 1584660
+ },
+ {
+  "id": "あそこ|あそこ",
+  "palabra": "あそこ",
+  "lectura": "あそこ",
+  "es": [
+   "allá",
+   "allí",
+   "aquel lugar"
+  ],
+  "origenEs": "jmdict",
+  "en": "there, over there, that place",
+  "jmdict": 1000320
+ },
+ {
+  "id": "遊ぶ|あそぶ",
+  "palabra": "遊ぶ",
+  "lectura": "あそぶ",
+  "es": [
+   "jugar",
+   "divertirse",
+   "pasar el rato"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "jugar",
+   "hacer una visita (esp. por placer)"
+  ],
+  "problema": "«hacer una visita» es raro",
+  "en": "to play; to spend time pleasantly; to hang out",
+  "jmdict": 1542160
+ },
+ {
+  "id": "暖かい|あたたかい",
+  "palabra": "暖かい",
+  "lectura": "あたたかい",
+  "es": [
+   "cálido",
+   "templado"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cálido",
+   "afable",
+   "cordial"
+  ],
+  "problema": "«afable/cordial» es sentido secundario",
+  "en": "warm",
+  "jmdict": 1586420
+ },
+ {
+  "id": "頭|あたま",
+  "palabra": "頭",
+  "lectura": "あたま",
+  "es": [
+   "cabeza"
+  ],
+  "origenEs": "jmdict",
+  "en": "head",
+  "jmdict": 1582310
+ },
+ {
+  "id": "新しい|あたらしい",
+  "palabra": "新しい",
+  "lectura": "あたらしい",
+  "es": [
+   "nuevo"
+  ],
+  "origenEs": "jmdict",
+  "en": "new",
+  "jmdict": 1361490
+ },
+ {
+  "id": "あちら|あちら",
+  "palabra": "あちら",
+  "lectura": "あちら",
+  "es": [
+   "por allí",
+   "por allá",
+   "allí"
+  ],
+  "origenEs": "jmdict",
+  "en": "this way (polite)",
+  "jmdict": 1483185
+ },
+ {
+  "id": "暑い|あつい",
+  "palabra": "暑い",
+  "lectura": "あつい",
+  "es": [
+   "caluroso",
+   "de mucho calor"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "caliente",
+   "cálido (clima)"
+  ],
+  "problema": "«caliente» es incorrecto para el clima",
+  "en": "hot (in reference to weather), warm",
+  "jmdict": 1343460
+ },
+ {
+  "id": "熱い|あつい",
+  "palabra": "熱い",
+  "lectura": "あつい",
+  "es": [
+   "caliente (cosas)"
+  ],
+  "origenEs": "jmdict",
+  "en": "hot (objects)",
+  "jmdict": 1467720
+ },
+ {
+  "id": "厚い|あつい",
+  "palabra": "厚い",
+  "lectura": "あつい",
+  "es": [
+   "grueso",
+   "espeso"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cordial",
+   "bueno",
+   "cálido (corazón)"
+  ],
+  "problema": "glosa incorrecta: significa grueso, no cordial",
+  "en": "kind, warm(hearted), thick, deep",
+  "jmdict": 1275320
+ },
+ {
+  "id": "あっち|あっち",
+  "palabra": "あっち",
+  "lectura": "あっち",
+  "es": [
+   "por allí",
+   "por allá",
+   "allí"
+  ],
+  "origenEs": "jmdict",
+  "en": "over there",
+  "jmdict": 1483185
+ },
+ {
+  "id": "後|あと",
+  "palabra": "後",
+  "lectura": "あと",
+  "es": [
+   "después",
+   "luego"
+  ],
+  "origenEs": "jmdict",
+  "en": "afterwards (later); in the future; the rest; since then",
+  "jmdict": 1269320
+ },
+ {
+  "id": "あなた|あなた",
+  "palabra": "あなた",
+  "lectura": "あなた",
+  "es": [
+   "tú",
+   "usted"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tú",
+   "señorita",
+   "usted"
+  ],
+  "problema": "«señorita» es incorrecto",
+  "en": "you",
+  "jmdict": 1223615
+ },
+ {
+  "id": "兄|あに",
+  "palabra": "兄",
+  "lectura": "あに",
+  "es": [
+   "hermano mayor"
+  ],
+  "origenEs": "jmdict",
+  "en": "(my) older brother (humble)",
+  "jmdict": 1249900
+ },
+ {
+  "id": "姉|あね",
+  "palabra": "姉",
+  "lectura": "あね",
+  "es": [
+   "hermana mayor"
+  ],
+  "origenEs": "jmdict",
+  "en": "(my) older sister (humble)",
+  "jmdict": 1307630
+ },
+ {
+  "id": "アパート|アパート",
+  "palabra": "アパート",
+  "lectura": "アパート",
+  "es": [
+   "apartamento",
+   "departamento"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "edificio de apartamentos",
+   "bloque de apartamentos"
+  ],
+  "problema": "glosa larga y poco natural",
+  "en": "apartment (abbr.)",
+  "jmdict": 1017760
+ },
+ {
+  "id": "あの|あの",
+  "palabra": "あの",
+  "lectura": "あの",
+  "es": [
+   "aquel",
+   "aquella",
+   "aquellos"
+  ],
+  "origenEs": "jmdict",
+  "en": "that over there; like that, that way; um...",
+  "jmdict": 1000420
+ },
+ {
+  "id": "浴びる|あびる",
+  "palabra": "浴びる",
+  "lectura": "あびる",
+  "es": [
+   "ducharse",
+   "bañarse"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "bañarse",
+   "gozar en el sol",
+   "ducharse"
+  ],
+  "problema": "«gozar en el sol» es raro; falta lo principal",
+  "en": "to bathe, to shower",
+  "jmdict": 1547450
+ },
+ {
+  "id": "危ない|あぶない",
+  "palabra": "危ない",
+  "lectura": "あぶない",
+  "es": [
+   "peligroso",
+   "crítico",
+   "grave"
+  ],
+  "origenEs": "jmdict",
+  "en": "dangerous, critical",
+  "jmdict": 1218380
+ },
+ {
+  "id": "甘い|あまい",
+  "palabra": "甘い",
+  "lectura": "あまい",
+  "es": [
+   "dulce",
+   "dulzón",
+   "suave"
+  ],
+  "origenEs": "jmdict",
+  "en": "generous, sweet",
+  "jmdict": 1213400
+ },
+ {
+  "id": "余り|あまり",
+  "palabra": "余り",
+  "lectura": "あまり",
+  "es": [
+   "no mucho",
+   "resto",
+   "sobrante"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "resto",
+   "restos",
+   "residuo"
+  ],
+  "problema": "la lista usa el adverbio «no mucho»",
+  "en": "not very; surplus",
+  "jmdict": 1584930
+ },
+ {
+  "id": "雨|あめ",
+  "palabra": "雨",
+  "lectura": "あめ",
+  "es": [
+   "lluvia"
+  ],
+  "origenEs": "jmdict",
+  "en": "rain",
+  "jmdict": 1171900
+ },
+ {
+  "id": "飴|あめ",
+  "palabra": "飴",
+  "lectura": "あめ",
+  "es": [
+   "caramelo",
+   "dulce"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "(comida) caramelos (duros)",
+   "dulces",
+   "toffee"
+  ],
+  "problema": "glosa con paréntesis y poco natural",
+  "en": "(hard) candy",
+  "jmdict": 1153520
+ },
+ {
+  "id": "洗う|あらう",
+  "palabra": "洗う",
+  "lectura": "あらう",
+  "es": [
+   "lavar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to wash",
+  "jmdict": 1390930
+ },
+ {
+  "id": "在る|ある",
+  "palabra": "在る",
+  "lectura": "ある",
+  "es": [
+   "haber",
+   "existir",
+   "estar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "estar (objetos inanimados y plantas)",
+   "vivir",
+   "existir"
+  ],
+  "problema": "«estar (objetos…);vivir» no es lo más común",
+  "en": "to be, to have",
+  "jmdict": 1296400
+ },
+ {
+  "id": "有る|ある",
+  "palabra": "有る",
+  "lectura": "ある",
+  "es": [
+   "haber",
+   "tener",
+   "existir"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "estar (objetos inanimados y plantas)",
+   "vivir",
+   "existir"
+  ],
+  "problema": "«estar (objetos…);vivir» no es lo más común",
+  "en": "to be, to have",
+  "jmdict": 1296400
+ },
+ {
+  "id": "歩く|あるく",
+  "palabra": "歩く",
+  "lectura": "あるく",
+  "es": [
+   "caminar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to walk",
+  "jmdict": 1514320
+ },
+ {
+  "id": "あれ|あれ",
+  "palabra": "あれ",
+  "lectura": "あれ",
+  "es": [
+   "aquello",
+   "aquél",
+   "aquella"
+  ],
+  "origenEs": "jmdict",
+  "en": "that one (over there)",
+  "jmdict": 1000580
+ },
+ {
+  "id": "いい; よい|いい; よい",
+  "palabra": "いい; よい",
+  "lectura": "いい; よい",
+  "es": [
+   "bueno",
+   "bien"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "bueno",
+   "placentero",
+   "fino"
+  ],
+  "problema": "«placentero;fino» poco comunes",
+  "en": "good",
+  "jmdict": 1605820
+ },
+ {
+  "id": "いいえ|いいえ",
+  "palabra": "いいえ",
+  "lectura": "いいえ",
+  "es": [
+   "no",
+   "para nada"
+  ],
+  "origenEs": "claude",
+  "en": "no, not at all",
+  "jmdict": 1583250
+ },
+ {
+  "id": "言う|いう",
+  "palabra": "言う",
+  "lectura": "いう",
+  "es": [
+   "decir",
+   "contar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to say",
+  "jmdict": 1587040
+ },
+ {
+  "id": "家|いえ",
+  "palabra": "家",
+  "lectura": "いえ",
+  "es": [
+   "casa"
+  ],
+  "origenEs": "jmdict",
+  "en": "house, home",
+  "jmdict": 1191730
+ },
+ {
+  "id": "いかが|いかが",
+  "palabra": "いかが",
+  "lectura": "いかが",
+  "es": [
+   "¿cómo?",
+   "¿qué tal?"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "como",
+   "en que forma",
+   "qué acerca de"
+  ],
+  "problema": "sin tildes ni signos; glosa imprecisa",
+  "en": "how, in what way",
+  "jmdict": 2845606
+ },
+ {
+  "id": "行く|いく; ゆく",
+  "palabra": "行く",
+  "lectura": "いく; ゆく",
+  "es": [
+   "ir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to go",
+  "jmdict": 1578850
+ },
+ {
+  "id": "いくつ|いくつ",
+  "palabra": "いくつ",
+  "lectura": "いくつ",
+  "es": [
+   "¿cuántos?",
+   "¿cuántos años?"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "¿cuanto?",
+   "¿cuantos?",
+   "¿cuantos años?"
+  ],
+  "problema": "faltan tildes («cuánto»)",
+  "en": "how many, how old",
+  "jmdict": 1219960
+ },
+ {
+  "id": "いくら|いくら",
+  "palabra": "いくら",
+  "lectura": "いくら",
+  "es": [
+   "¿cuánto?",
+   "¿cuánto cuesta?"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "¿cuanto?",
+   "¿cuantos?"
+  ],
+  "problema": "faltan tildes («cuánto»)",
+  "en": "how much, how many",
+  "jmdict": 1219980
+ },
+ {
+  "id": "池|いけ",
+  "palabra": "池",
+  "lectura": "いけ",
+  "es": [
+   "estanque"
+  ],
+  "origenEs": "jmdict",
+  "en": "pond",
+  "jmdict": 1421700
+ },
+ {
+  "id": "医者|いしゃ",
+  "palabra": "医者",
+  "lectura": "いしゃ",
+  "es": [
+   "doctor",
+   "médico",
+   "facultativo"
+  ],
+  "origenEs": "jmdict",
+  "en": "doctor; physician",
+  "jmdict": 1159980
+ },
+ {
+  "id": "椅子|いす",
+  "palabra": "椅子",
+  "lectura": "いす",
+  "es": [
+   "silla"
+  ],
+  "origenEs": "jmdict",
+  "en": "chair",
+  "jmdict": 1157070
+ },
+ {
+  "id": "忙しい|いそがしい",
+  "palabra": "忙しい",
+  "lectura": "いそがしい",
+  "es": [
+   "ocupado"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "ocupado",
+   "irritado"
+  ],
+  "problema": "«irritado» es incorrecto",
+  "en": "busy (people, days)",
+  "jmdict": 1519290
+ },
+ {
+  "id": "痛い|いたい",
+  "palabra": "痛い",
+  "lectura": "いたい",
+  "es": [
+   "doloroso",
+   "me duele"
+  ],
+  "origenEs": "jmdict",
+  "en": "hurt; painful; sore",
+  "jmdict": 1432680
+ },
+ {
+  "id": "一|いち",
+  "palabra": "一",
+  "lectura": "いち",
+  "es": [
+   "uno"
+  ],
+  "origenEs": "jmdict",
+  "en": "one",
+  "jmdict": 1160790
+ },
+ {
+  "id": "一日|いちにち",
+  "palabra": "一日",
+  "lectura": "いちにち",
+  "es": [
+   "un día",
+   "todo el día"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "primer día del mes"
+  ],
+  "problema": "«primer día del mes» es otra lectura (ついたち)",
+  "en": "one day (duration)",
+  "jmdict": 1576260
+ },
+ {
+  "id": "一番|いちばん",
+  "palabra": "一番",
+  "lectura": "いちばん",
+  "es": [
+   "(el) mejor",
+   "(el) número uno"
+  ],
+  "origenEs": "jmdict",
+  "en": "best (most), first, number one",
+  "jmdict": 1165970
+ },
+ {
+  "id": "いつ|いつ",
+  "palabra": "いつ",
+  "lectura": "いつ",
+  "es": [
+   "cuándo"
+  ],
+  "origenEs": "jmdict",
+  "en": "when",
+  "jmdict": 1188760
+ },
+ {
+  "id": "五日|いつか",
+  "palabra": "五日",
+  "lectura": "いつか",
+  "es": [
+   "quinto día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "five days; fifth day of the month",
+  "jmdict": 1268570
+ },
+ {
+  "id": "一緒|いっしょ",
+  "palabra": "一緒",
+  "lectura": "いっしょ",
+  "es": [
+   "juntos",
+   "lo mismo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "juntos",
+   "encuentro",
+   "compañía"
+  ],
+  "problema": "«encuentro;compañía» poco naturales",
+  "en": "together",
+  "jmdict": 1163400
+ },
+ {
+  "id": "五つ|いつつ",
+  "palabra": "五つ",
+  "lectura": "いつつ",
+  "es": [
+   "cinco"
+  ],
+  "origenEs": "jmdict",
+  "en": "five things",
+  "jmdict": 1268070
+ },
+ {
+  "id": "いつも|いつも",
+  "palabra": "いつも",
+  "lectura": "いつも",
+  "es": [
+   "siempre",
+   "normalmente",
+   "cada vez"
+  ],
+  "origenEs": "jmdict",
+  "en": "always, usually, every time, never (with neg. verb)",
+  "jmdict": 1188890
+ },
+ {
+  "id": "犬|いぬ",
+  "palabra": "犬",
+  "lectura": "いぬ",
+  "es": [
+   "perro"
+  ],
+  "origenEs": "jmdict",
+  "en": "dog",
+  "jmdict": 1258330
+ },
+ {
+  "id": "今|いま",
+  "palabra": "今",
+  "lectura": "いま",
+  "es": [
+   "ahora",
+   "ya (tiempo)",
+   "tiempo presente"
+  ],
+  "origenEs": "jmdict",
+  "en": "now",
+  "jmdict": 1288850
+ },
+ {
+  "id": "意味|いみ",
+  "palabra": "意味",
+  "lectura": "いみ",
+  "es": [
+   "significado"
+  ],
+  "origenEs": "jmdict",
+  "en": "meaning, significance",
+  "jmdict": 1156800
+ },
+ {
+  "id": "妹|いもうと",
+  "palabra": "妹",
+  "lectura": "いもうと",
+  "es": [
+   "hermana menor"
+  ],
+  "origenEs": "jmdict",
+  "en": "younger sister (humble)",
+  "jmdict": 1524590
+ },
+ {
+  "id": "嫌|いや",
+  "palabra": "嫌",
+  "lectura": "いや",
+  "es": [
+   "desagradable",
+   "detestable",
+   "antipático"
+  ],
+  "origenEs": "jmdict",
+  "en": "disagreeable, detestable, unpleasant",
+  "jmdict": 1587610
+ },
+ {
+  "id": "入口|いりぐち",
+  "palabra": "入口",
+  "lectura": "いりぐち",
+  "es": [
+   "entrada",
+   "puerta",
+   "acceso"
+  ],
+  "origenEs": "jmdict",
+  "en": "entrance",
+  "jmdict": 1582820
+ },
+ {
+  "id": "居る|いる",
+  "palabra": "居る",
+  "lectura": "いる",
+  "es": [
+   "estar",
+   "haber (seres vivos)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "estar (objetos animados)",
+   "existir"
+  ],
+  "problema": "glosa confusa; falta «haber»",
+  "en": "(humble) to be (animate), to exist",
+  "jmdict": 1577980
+ },
+ {
+  "id": "要る|いる",
+  "palabra": "要る",
+  "lectura": "いる",
+  "es": [
+   "necesitar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to need",
+  "jmdict": 1546640
+ },
+ {
+  "id": "入れる|いれる",
+  "palabra": "入れる",
+  "lectura": "いれる",
+  "es": [
+   "meter",
+   "dejar entrar",
+   "admitir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to put in",
+  "jmdict": 1465610
+ },
+ {
+  "id": "色|いろ",
+  "palabra": "色",
+  "lectura": "いろ",
+  "es": [
+   "color"
+  ],
+  "origenEs": "jmdict",
+  "en": "color",
+  "jmdict": 1357600
+ },
+ {
+  "id": "色々|いろいろ",
+  "palabra": "色々",
+  "lectura": "いろいろ",
+  "es": [
+   "diversos",
+   "varios"
+  ],
+  "origenEs": "jmdict",
+  "en": "various",
+  "jmdict": 1587850
+ },
+ {
+  "id": "上|うえ",
+  "palabra": "上",
+  "lectura": "うえ",
+  "es": [
+   "encima",
+   "arriba"
+  ],
+  "origenEs": "jmdict",
+  "en": "above (up, top, etc.), over, on top of",
+  "jmdict": 1352130
+ },
+ {
+  "id": "後ろ|うしろ",
+  "palabra": "後ろ",
+  "lectura": "うしろ",
+  "es": [
+   "detrás",
+   "atrás",
+   "parte trasera"
+  ],
+  "origenEs": "jmdict",
+  "en": "back, behind, rear",
+  "jmdict": 1269410
+ },
+ {
+  "id": "薄い|うすい",
+  "palabra": "薄い",
+  "lectura": "うすい",
+  "es": [
+   "delgado",
+   "ligero",
+   "fino"
+  ],
+  "origenEs": "jmdict",
+  "en": "thin, weak",
+  "jmdict": 1475480
+ },
+ {
+  "id": "歌|うた",
+  "palabra": "歌",
+  "lectura": "うた",
+  "es": [
+   "canción"
+  ],
+  "origenEs": "jmdict",
+  "en": "a song",
+  "jmdict": 1193180
+ },
+ {
+  "id": "歌う|うたう",
+  "palabra": "歌う",
+  "lectura": "うたう",
+  "es": [
+   "cantar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to sing",
+  "jmdict": 1588120
+ },
+ {
+  "id": "うち|うち",
+  "palabra": "うち",
+  "lectura": "うち",
+  "es": [
+   "casa",
+   "hogar"
+  ],
+  "origenEs": "jmdict",
+  "en": "home; house; my place",
+  "jmdict": 1191740
+ },
+ {
+  "id": "生まれる|うまれる",
+  "palabra": "生まれる",
+  "lectura": "うまれる",
+  "es": [
+   "nacer"
+  ],
+  "origenEs": "jmdict",
+  "en": "to be born",
+  "jmdict": 1378690
+ },
+ {
+  "id": "海|うみ",
+  "palabra": "海",
+  "lectura": "うみ",
+  "es": [
+   "mar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "mar",
+   "playa"
+  ],
+  "problema": "«playa» no es el mismo sentido",
+  "en": "sea, beach",
+  "jmdict": 1201190
+ },
+ {
+  "id": "売る|うる",
+  "palabra": "売る",
+  "lectura": "うる",
+  "es": [
+   "vender"
+  ],
+  "origenEs": "jmdict",
+  "en": "to sell (v.t.)",
+  "jmdict": 1473950
+ },
+ {
+  "id": "うるさい|うるさい",
+  "palabra": "うるさい",
+  "lectura": "うるさい",
+  "es": [
+   "ruidoso",
+   "molesto",
+   "impertinente"
+  ],
+  "origenEs": "jmdict",
+  "en": "noisy; annoying",
+  "jmdict": 1481920
+ },
+ {
+  "id": "上着|うわぎ",
+  "palabra": "上着",
+  "lectura": "うわぎ",
+  "es": [
+   "chaqueta",
+   "abrigo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "abrigo",
+   "túnica",
+   "chaqueta"
+  ],
+  "problema": "falta lo principal: chaqueta",
+  "en": "coat, jacket",
+  "jmdict": 1580340
+ },
+ {
+  "id": "絵|え",
+  "palabra": "絵",
+  "lectura": "え",
+  "es": [
+   "pintura",
+   "dibujo",
+   "ilustración"
+  ],
+  "origenEs": "jmdict",
+  "en": "a painting; a picture; a drawing",
+  "jmdict": 1202270
+ },
+ {
+  "id": "映画|えいが",
+  "palabra": "映画",
+  "lectura": "えいが",
+  "es": [
+   "cine",
+   "película",
+   "film"
+  ],
+  "origenEs": "jmdict",
+  "en": "movie, film",
+  "jmdict": 1173720
+ },
+ {
+  "id": "映画館|えいがかん",
+  "palabra": "映画館",
+  "lectura": "えいがかん",
+  "es": [
+   "(sala de) cine"
+  ],
+  "origenEs": "jmdict",
+  "en": "movie theater, cinema",
+  "jmdict": 1173750
+ },
+ {
+  "id": "英語|えいご",
+  "palabra": "英語",
+  "lectura": "えいご",
+  "es": [
+   "inglés"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "Idioma Inglés",
+   "lengua inglesa"
+  ],
+  "problema": "glosa con mayúsculas innecesarias",
+  "en": "English (language)",
+  "jmdict": 1174420
+ },
+ {
+  "id": "ええ|ええ",
+  "palabra": "ええ",
+  "lectura": "ええ",
+  "es": [
+   "sí"
+  ],
+  "origenEs": "jmdict",
+  "en": "yes",
+  "jmdict": 1001140
+ },
+ {
+  "id": "駅|えき",
+  "palabra": "駅",
+  "lectura": "えき",
+  "es": [
+   "estación de tren"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "estación (ej. autobuses)"
+  ],
+  "problema": "«estación (ej. autobuses)» induce a error",
+  "en": "station",
+  "jmdict": 1175140
+ },
+ {
+  "id": "エレベーター|エレベーター",
+  "palabra": "エレベーター",
+  "lectura": "エレベーター",
+  "es": [
+   "ascensor",
+   "elevador"
+  ],
+  "origenEs": "jmdict",
+  "en": "elevator",
+  "jmdict": 1030630
+ },
+ {
+  "id": "～円|～えん",
+  "palabra": "～円",
+  "lectura": "～えん",
+  "es": [
+   "yen"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "Yen",
+   "Yenes",
+   "dinero"
+  ],
+  "problema": "«dinero» no es la glosa",
+  "en": "Yen",
+  "jmdict": 1175570
+ },
+ {
+  "id": "鉛筆|えんぴつ",
+  "palabra": "鉛筆",
+  "lectura": "えんぴつ",
+  "es": [
+   "lápiz"
+  ],
+  "origenEs": "jmdict",
+  "en": "pencil",
+  "jmdict": 1178590
+ },
+ {
+  "id": "お～|お～",
+  "palabra": "お～",
+  "lectura": "お～",
+  "es": [
+   "prefijo honorífico",
+   "honorable"
+  ],
+  "origenEs": "jmdict",
+  "en": "honorable ~ (honorific)",
+  "jmdict": 2826528
+ },
+ {
+  "id": "美味しい|おいしい",
+  "palabra": "美味しい",
+  "lectura": "おいしい",
+  "es": [
+   "delicioso",
+   "sabroso",
+   "rico"
+  ],
+  "origenEs": "jmdict",
+  "en": "delicious, tasty",
+  "jmdict": 1486650
+ },
+ {
+  "id": "多い|おおい",
+  "palabra": "多い",
+  "lectura": "おおい",
+  "es": [
+   "abundante",
+   "haber muchos"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "muchos",
+   "numeroso"
+  ],
+  "problema": "plural «muchos» no es adjetivo en singular",
+  "en": "many; there are a lot",
+  "jmdict": 1407460
+ },
+ {
+  "id": "大きい|おおきい",
+  "palabra": "大きい",
+  "lectura": "おおきい",
+  "es": [
+   "grande"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "grande",
+   "largo"
+  ],
+  "problema": "«largo» es incorrecto",
+  "en": "big, large",
+  "jmdict": 1588880
+ },
+ {
+  "id": "大きな|おおきな",
+  "palabra": "大きな",
+  "lectura": "おおきな",
+  "es": [
+   "grande"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "grande",
+   "gran",
+   "largo"
+  ],
+  "problema": "«largo» es incorrecto",
+  "en": "big",
+  "jmdict": 1412890
+ },
+ {
+  "id": "大勢|おおぜい",
+  "palabra": "大勢",
+  "lectura": "おおぜい",
+  "es": [
+   "mucha gente",
+   "multitud"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "muchos",
+   "numerosos",
+   "multitud"
+  ],
+  "problema": "glosa poco clara",
+  "en": "great number of people",
+  "jmdict": 1414220
+ },
+ {
+  "id": "お母さん|おかあさん",
+  "palabra": "お母さん",
+  "lectura": "おかあさん",
+  "es": [
+   "madre"
+  ],
+  "origenEs": "jmdict",
+  "en": "mother (formal)",
+  "jmdict": 1002650
+ },
+ {
+  "id": "お菓子|おかし",
+  "palabra": "お菓子",
+  "lectura": "おかし",
+  "es": [
+   "dulces",
+   "golosinas",
+   "caramelos"
+  ],
+  "origenEs": "jmdict",
+  "en": "confections, sweets, snack",
+  "jmdict": 1001710
+ },
+ {
+  "id": "お金|おかね",
+  "palabra": "お金",
+  "lectura": "おかね",
+  "es": [
+   "dinero"
+  ],
+  "origenEs": "jmdict",
+  "en": "money",
+  "jmdict": 1001820
+ },
+ {
+  "id": "起きる|おきる",
+  "palabra": "起きる",
+  "lectura": "おきる",
+  "es": [
+   "levantarse",
+   "despertarse",
+   "ocurrir"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "levantarse"
+  ],
+  "problema": "falta «despertarse» y «ocurrir»",
+  "en": "to get up (e.g., from sleeping); to happen",
+  "jmdict": 1223640
+ },
+ {
+  "id": "置く|おく",
+  "palabra": "置く",
+  "lectura": "おく",
+  "es": [
+   "poner",
+   "colocar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to put; to lay; to place",
+  "jmdict": 1421850
+ },
+ {
+  "id": "奥さん|おくさん",
+  "palabra": "奥さん",
+  "lectura": "おくさん",
+  "es": [
+   "esposa",
+   "señora"
+  ],
+  "origenEs": "jmdict",
+  "en": "(someone else's) wife (hon.)",
+  "jmdict": 1179330
+ },
+ {
+  "id": "お酒|おさけ",
+  "palabra": "お酒",
+  "lectura": "おさけ",
+  "es": [
+   "bebida alcohólica",
+   "sake"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "sake"
+  ],
+  "problema": "«sake» es solo un tipo",
+  "en": "sake; alcohol",
+  "jmdict": 1329015
+ },
+ {
+  "id": "お皿|おさら",
+  "palabra": "お皿",
+  "lectura": "おさら",
+  "es": [
+   "plato",
+   "platillo"
+  ],
+  "origenEs": "jmdict",
+  "en": "plate, dish",
+  "jmdict": 1299685
+ },
+ {
+  "id": "伯父; 叔父さん|おじさん",
+  "palabra": "伯父; 叔父さん",
+  "lectura": "おじさん",
+  "es": [
+   "tío",
+   "señor"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "caballero de mediana edad",
+   "tío"
+  ],
+  "problema": "«caballero de mediana edad» poco natural",
+  "en": "uncle, middle-aged man",
+  "jmdict": 2261490
+ },
+ {
+  "id": "おじいさん|おじいさん",
+  "palabra": "おじいさん",
+  "lectura": "おじいさん",
+  "es": [
+   "abuelo",
+   "anciano"
+  ],
+  "origenEs": "jmdict",
+  "en": "grandfather, male senior citizen",
+  "jmdict": 1002320
+ },
+ {
+  "id": "教える|おしえる",
+  "palabra": "教える",
+  "lectura": "おしえる",
+  "es": [
+   "enseñar",
+   "informar",
+   "instruir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to teach, to inform, to instruct",
+  "jmdict": 1236900
+ },
+ {
+  "id": "押す|おす",
+  "palabra": "押す",
+  "lectura": "おす",
+  "es": [
+   "empujar",
+   "presionar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to push, to press, to stamp (e.g., a passport)",
+  "jmdict": 1180470
+ },
+ {
+  "id": "遅い|おそい",
+  "palabra": "遅い",
+  "lectura": "おそい",
+  "es": [
+   "lento",
+   "tardío"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tarde",
+   "lento",
+   "lerdo"
+  ],
+  "problema": "«tarde» no es adjetivo; «lerdo» raro",
+  "en": "slow; (to be) late",
+  "jmdict": 1421970
+ },
+ {
+  "id": "お茶|おちゃ",
+  "palabra": "お茶",
+  "lectura": "おちゃ",
+  "es": [
+   "té (verde)"
+  ],
+  "origenEs": "jmdict",
+  "en": "(green) tea",
+  "jmdict": 1002430
+ },
+ {
+  "id": "お手洗い|おてあらい",
+  "palabra": "お手洗い",
+  "lectura": "おてあらい",
+  "es": [
+   "baño",
+   "servicio"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "retrete",
+   "baño",
+   "lavabo"
+  ],
+  "problema": "«retrete» y «lavabo» poco naturales",
+  "en": "toilet, restroom, bathroom (lit., a place to wash one's hands)",
+  "jmdict": 1002100
+ },
+ {
+  "id": "お父さん|おとうさん",
+  "palabra": "お父さん",
+  "lectura": "おとうさん",
+  "es": [
+   "padre"
+  ],
+  "origenEs": "jmdict",
+  "en": "father (formal)",
+  "jmdict": 1002590
+ },
+ {
+  "id": "弟|おとうと",
+  "palabra": "弟",
+  "lectura": "おとうと",
+  "es": [
+   "hermano menor"
+  ],
+  "origenEs": "jmdict",
+  "en": "younger brother",
+  "jmdict": 1581930
+ },
+ {
+  "id": "男|おとこ",
+  "palabra": "男",
+  "lectura": "おとこ",
+  "es": [
+   "hombre",
+   "varón"
+  ],
+  "origenEs": "jmdict",
+  "en": "man, male",
+  "jmdict": 1419990
+ },
+ {
+  "id": "男の子|おとこのこ",
+  "palabra": "男の子",
+  "lectura": "おとこのこ",
+  "es": [
+   "niño",
+   "muchacho"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "chico",
+   "chaval",
+   "niño (varón)"
+  ],
+  "problema": "«chaval» es regionalismo de España",
+  "en": "boy",
+  "jmdict": 1420010
+ },
+ {
+  "id": "一昨日|おととい",
+  "palabra": "一昨日",
+  "lectura": "おととい",
+  "es": [
+   "anteayer",
+   "antier"
+  ],
+  "origenEs": "jmdict",
+  "en": "the day before yesterday",
+  "jmdict": 1576050
+ },
+ {
+  "id": "おととし|おととし",
+  "palabra": "おととし",
+  "lectura": "おととし",
+  "es": [
+   "año antepasado"
+  ],
+  "origenEs": "jmdict",
+  "en": "year before last",
+  "jmdict": 1576060
+ },
+ {
+  "id": "大人|おとな",
+  "palabra": "大人",
+  "lectura": "おとな",
+  "es": [
+   "adulto",
+   "persona mayor"
+  ],
+  "origenEs": "jmdict",
+  "en": "adult",
+  "jmdict": 1414170
+ },
+ {
+  "id": "お腹|おなか",
+  "palabra": "お腹",
+  "lectura": "おなか",
+  "es": [
+   "estómago",
+   "vientre"
+  ],
+  "origenEs": "jmdict",
+  "en": "stomach",
+  "jmdict": 1002610
+ },
+ {
+  "id": "同じ|おなじ",
+  "palabra": "同じ",
+  "lectura": "おなじ",
+  "es": [
+   "el mismo",
+   "igual",
+   "idéntico"
+  ],
+  "origenEs": "jmdict",
+  "en": "same, identical",
+  "jmdict": 1451750
+ },
+ {
+  "id": "お兄さん|おにいさん",
+  "palabra": "お兄さん",
+  "lectura": "おにいさん",
+  "es": [
+   "hermano mayor",
+   "(vocativo) joven",
+   "chico"
+  ],
+  "origenEs": "jmdict",
+  "en": "(someone else's) older brother (formal)",
+  "jmdict": 1001830
+ },
+ {
+  "id": "お姉さん|おねえさん",
+  "palabra": "お姉さん",
+  "lectura": "おねえさん",
+  "es": [
+   "hermana mayor"
+  ],
+  "origenEs": "jmdict",
+  "en": "older sister (formal)",
+  "jmdict": 1001990
+ },
+ {
+  "id": "伯母さん; 叔母さん|おばさん",
+  "palabra": "伯母さん; 叔母さん",
+  "lectura": "おばさん",
+  "es": [
+   "tía",
+   "señora"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "(fam) tía",
+   "señora de mediana edad",
+   "mujer"
+  ],
+  "problema": "«(fam)» y «mujer» confusos",
+  "en": "aunt",
+  "jmdict": 2261500
+ },
+ {
+  "id": "おばあさん|おばあさん",
+  "palabra": "おばあさん",
+  "lectura": "おばあさん",
+  "es": [
+   "abuela",
+   "anciana"
+  ],
+  "origenEs": "jmdict",
+  "en": "grandmother, female senior-citizen",
+  "jmdict": 1002330
+ },
+ {
+  "id": "お風呂|おふろ",
+  "palabra": "お風呂",
+  "lectura": "おふろ",
+  "es": [
+   "baño"
+  ],
+  "origenEs": "jmdict",
+  "en": "a bath",
+  "jmdict": 2220600
+ },
+ {
+  "id": "お弁当|おべんとう",
+  "palabra": "お弁当",
+  "lectura": "おべんとう",
+  "es": [
+   "almuerzo en caja",
+   "bento"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "o-bento",
+   "almuerzo portátil",
+   "(am) itacate"
+  ],
+  "problema": "«itacate» regional; glosa confusa",
+  "en": "a boxed lunch",
+  "jmdict": 1513065
+ },
+ {
+  "id": "覚える|おぼえる",
+  "palabra": "覚える",
+  "lectura": "おぼえる",
+  "es": [
+   "memorizar",
+   "aprender",
+   "recordar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "recordar",
+   "recolectar",
+   "memorizar"
+  ],
+  "problema": "«recolectar» es incorrecto",
+  "en": "to learn, to commit to memory, to remember, to memorize",
+  "jmdict": 1206050
+ },
+ {
+  "id": "おまわりさん|おまわりさん",
+  "palabra": "おまわりさん",
+  "lectura": "おまわりさん",
+  "es": [
+   "policía"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "agente policíaco",
+   "esbirro"
+  ],
+  "problema": "«esbirro» es incorrecto",
+  "en": "policeman (friendly term)",
+  "jmdict": 1002120
+ },
+ {
+  "id": "重い|おもい",
+  "palabra": "重い",
+  "lectura": "おもい",
+  "es": [
+   "pesado"
+  ],
+  "origenEs": "jmdict",
+  "en": "heavy; serious",
+  "jmdict": 1335750
+ },
+ {
+  "id": "面白い|おもしろい",
+  "palabra": "面白い",
+  "lectura": "おもしろい",
+  "es": [
+   "interesante",
+   "entretenido"
+  ],
+  "origenEs": "jmdict",
+  "en": "interesting, amusing",
+  "jmdict": 1533580
+ },
+ {
+  "id": "泳ぐ|およぐ",
+  "palabra": "泳ぐ",
+  "lectura": "およぐ",
+  "es": [
+   "nadar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to swim",
+  "jmdict": 1174340
+ },
+ {
+  "id": "降りる|おりる",
+  "palabra": "降りる",
+  "lectura": "おりる",
+  "es": [
+   "bajarse de un vehículo",
+   "salir",
+   "apearse"
+  ],
+  "origenEs": "jmdict",
+  "en": "to get off",
+  "jmdict": 1589500
+ },
+ {
+  "id": "終る|おわる",
+  "palabra": "終る",
+  "lectura": "おわる",
+  "es": [
+   "terminar",
+   "acabar",
+   "concluir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to finish, to close",
+  "jmdict": 1589600
+ },
+ {
+  "id": "音楽|おんがく",
+  "palabra": "音楽",
+  "lectura": "おんがく",
+  "es": [
+   "música"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "música",
+   "movimiento musical"
+  ],
+  "problema": "glosa extraña «movimiento musical»",
+  "en": "Music",
+  "jmdict": 1183720
+ },
+ {
+  "id": "女|おんな",
+  "palabra": "女",
+  "lectura": "おんな",
+  "es": [
+   "mujer"
+  ],
+  "origenEs": "jmdict",
+  "en": "woman, female",
+  "jmdict": 1344930
+ },
+ {
+  "id": "女の子|おんなのこ",
+  "palabra": "女の子",
+  "lectura": "おんなのこ",
+  "es": [
+   "chica",
+   "muchacha",
+   "jovencita"
+  ],
+  "origenEs": "jmdict",
+  "en": "girl",
+  "jmdict": 1344970
+ },
+ {
+  "id": "～回|～かい",
+  "palabra": "～回",
+  "lectura": "～かい",
+  "es": [
+   "veces (contador)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "contador para número de veces que ocurre una cosa"
+  ],
+  "problema": "no es una glosa corta de quiz",
+  "en": "counter for occurrences (~ times)",
+  "jmdict": 1199330
+ },
+ {
+  "id": "～階|～かい",
+  "palabra": "～階",
+  "lectura": "～かい",
+  "es": [
+   "piso (contador)",
+   "planta"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "piso",
+   "planta",
+   "contador para pisos de un edificio"
+  ],
+  "problema": "piso, no solo «contador»",
+  "en": "counter for stories (floors) of a building",
+  "jmdict": 1203020
+ },
+ {
+  "id": "外国|がいこく",
+  "palabra": "外国",
+  "lectura": "がいこく",
+  "es": [
+   "país extranjero"
+  ],
+  "origenEs": "jmdict",
+  "en": "foreign country; abroad",
+  "jmdict": 1203620
+ },
+ {
+  "id": "外国人|がいこくじん",
+  "palabra": "外国人",
+  "lectura": "がいこくじん",
+  "es": [
+   "extranjero"
+  ],
+  "origenEs": "jmdict",
+  "en": "foreigner",
+  "jmdict": 1203650
+ },
+ {
+  "id": "会社|かいしゃ",
+  "palabra": "会社",
+  "lectura": "かいしゃ",
+  "es": [
+   "empresa",
+   "compañía",
+   "corporación"
+  ],
+  "origenEs": "jmdict",
+  "en": "company, corporation",
+  "jmdict": 1198550
+ },
+ {
+  "id": "階段|かいだん",
+  "palabra": "階段",
+  "lectura": "かいだん",
+  "es": [
+   "escaleras"
+  ],
+  "origenEs": "jmdict",
+  "en": "stairs",
+  "jmdict": 1203090
+ },
+ {
+  "id": "買い物|かいもの",
+  "palabra": "買い物",
+  "lectura": "かいもの",
+  "es": [
+   "compras"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "(las) compras (lit. cosas compradas)"
+  ],
+  "problema": "explicación entre paréntesis",
+  "en": "shopping",
+  "jmdict": 1589730
+ },
+ {
+  "id": "買う|かう",
+  "palabra": "買う",
+  "lectura": "かう",
+  "es": [
+   "comprar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to buy",
+  "jmdict": 1473740
+ },
+ {
+  "id": "返す|かえす",
+  "palabra": "返す",
+  "lectura": "かえす",
+  "es": [
+   "devolver (algo)",
+   "restituir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to return something",
+  "jmdict": 1512130
+ },
+ {
+  "id": "帰る|かえる",
+  "palabra": "帰る",
+  "lectura": "かえる",
+  "es": [
+   "volver a casa",
+   "regresar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "regresar",
+   "enviar de regreso",
+   "irse a casa"
+  ],
+  "problema": "«enviar de regreso» es incorrecto",
+  "en": "to go back, to go home, to return",
+  "jmdict": 1221270
+ },
+ {
+  "id": "顔|かお",
+  "palabra": "顔",
+  "lectura": "かお",
+  "es": [
+   "cara (de una persona)",
+   "rostro"
+  ],
+  "origenEs": "jmdict",
+  "en": "face (body part)",
+  "jmdict": 1217730
+ },
+ {
+  "id": "かかる|かかる",
+  "palabra": "かかる",
+  "lectura": "かかる",
+  "es": [
+   "tardar",
+   "costar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tomarse (tiempo",
+   "dinero)"
+  ],
+  "problema": "«tomarse» no es natural",
+  "en": "it takes (amount of time, money) (v.i.)",
+  "jmdict": 1207590
+ },
+ {
+  "id": "鍵|かぎ",
+  "palabra": "鍵",
+  "lectura": "かぎ",
+  "es": [
+   "llave"
+  ],
+  "origenEs": "jmdict",
+  "en": "a lock; a key",
+  "jmdict": 1260490
+ },
+ {
+  "id": "書く|かく",
+  "palabra": "書く",
+  "lectura": "かく",
+  "es": [
+   "escribir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to write",
+  "jmdict": 1343950
+ },
+ {
+  "id": "学生|がくせい",
+  "palabra": "学生",
+  "lectura": "がくせい",
+  "es": [
+   "estudiante",
+   "alumno"
+  ],
+  "origenEs": "jmdict",
+  "en": "student",
+  "jmdict": 1206900
+ },
+ {
+  "id": "～か月|～かげつ",
+  "palabra": "～か月",
+  "lectura": "～かげつ",
+  "es": [
+   "(número de) meses"
+  ],
+  "origenEs": "jmdict",
+  "en": "(number of) months",
+  "jmdict": 1194480
+ },
+ {
+  "id": "掛ける|かける",
+  "palabra": "掛ける",
+  "lectura": "かける",
+  "es": [
+   "colgar",
+   "ponerse (gafas)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "colgar",
+   "elevar",
+   "izar"
+  ],
+  "problema": "«elevar;izar» incorrecto",
+  "en": "to put on (e.g., glasses); to hang (e.g., on a wall)",
+  "jmdict": 1207610
+ },
+ {
+  "id": "かける|かける",
+  "palabra": "かける",
+  "lectura": "かける",
+  "es": [
+   "llamar por teléfono",
+   "sentarse",
+   "colgar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "colgar",
+   "elevar",
+   "izar"
+  ],
+  "problema": "glosas copiadas de otra entrada; no coincide con la lista",
+  "en": "to dial/call (e.g., phone); to sit down",
+  "jmdict": 1207610
+ },
+ {
+  "id": "傘|かさ",
+  "palabra": "傘",
+  "lectura": "かさ",
+  "es": [
+   "paraguas"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "sombrilla",
+   "paraguas",
+   "parasol"
+  ],
+  "problema": "«sombrilla» y «parasol» no son lo principal",
+  "en": "umbrella, parasol",
+  "jmdict": 1301940
+ },
+ {
+  "id": "貸す|かす",
+  "palabra": "貸す",
+  "lectura": "かす",
+  "es": [
+   "prestar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to lend",
+  "jmdict": 1411160
+ },
+ {
+  "id": "風|かぜ",
+  "palabra": "風",
+  "lectura": "かぜ",
+  "es": [
+   "viento",
+   "brisa"
+  ],
+  "origenEs": "jmdict",
+  "en": "wind, breeze",
+  "jmdict": 1499720
+ },
+ {
+  "id": "風邪|かぜ",
+  "palabra": "風邪",
+  "lectura": "かぜ",
+  "es": [
+   "resfriado",
+   "catarro"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "resfrío",
+   "resfriado común",
+   "catarro"
+  ],
+  "problema": "«resfrío» es rioplatense",
+  "en": "cold, flu",
+  "jmdict": 1583720
+ },
+ {
+  "id": "方|かた",
+  "palabra": "方",
+  "lectura": "かた",
+  "es": [
+   "persona (honorífico)",
+   "lado",
+   "manera de"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "dirección"
+  ],
+  "problema": "«dirección» no corresponde",
+  "en": "-- honorific form for 人 (ひと) --; way of doing",
+  "jmdict": 1516925
+ },
+ {
+  "id": "家族|かぞく",
+  "palabra": "家族",
+  "lectura": "かぞく",
+  "es": [
+   "familia",
+   "miembros de la familia"
+  ],
+  "origenEs": "jmdict",
+  "en": "family, members of a family",
+  "jmdict": 1192150
+ },
+ {
+  "id": "片仮名|かたかな",
+  "palabra": "片仮名",
+  "lectura": "かたかな",
+  "es": [
+   "katakana"
+  ],
+  "origenEs": "jmdict",
+  "en": "katakana",
+  "jmdict": 1511600
+ },
+ {
+  "id": "～月|～がつ",
+  "palabra": "～月",
+  "lectura": "～がつ",
+  "es": [
+   "mes"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "luna"
+  ],
+  "problema": "«luna» no es el sentido del sufijo",
+  "en": "month of year",
+  "jmdict": 2871532
+ },
+ {
+  "id": "学校|がっこう",
+  "palabra": "学校",
+  "lectura": "がっこう",
+  "es": [
+   "escuela"
+  ],
+  "origenEs": "jmdict",
+  "en": "a school",
+  "jmdict": 1206730
+ },
+ {
+  "id": "カップ|カップ",
+  "palabra": "カップ",
+  "lectura": "カップ",
+  "es": [
+   "taza",
+   "vaso"
+  ],
+  "origenEs": "jmdict",
+  "en": "cup",
+  "jmdict": 1037670
+ },
+ {
+  "id": "家庭|かてい",
+  "palabra": "家庭",
+  "lectura": "かてい",
+  "es": [
+   "hogar",
+   "familia",
+   "casa"
+  ],
+  "origenEs": "jmdict",
+  "en": "home; family",
+  "jmdict": 1192280
+ },
+ {
+  "id": "角|かど",
+  "palabra": "角",
+  "lectura": "かど",
+  "es": [
+   "esquina"
+  ],
+  "origenEs": "jmdict",
+  "en": "corner (e.g., desk, pavement)",
+  "jmdict": 1206110
+ },
+ {
+  "id": "かばん|かばん",
+  "palabra": "かばん",
+  "lectura": "かばん",
+  "es": [
+   "bolso",
+   "maletín",
+   "mochila"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "mochila",
+   "cartapacio",
+   "portafolio"
+  ],
+  "problema": "«mochila;cartapacio» poco precisos",
+  "en": "bag, basket",
+  "jmdict": 1208910
+ },
+ {
+  "id": "花瓶|かびん",
+  "palabra": "花瓶",
+  "lectura": "かびん",
+  "es": [
+   "florero"
+  ],
+  "origenEs": "jmdict",
+  "en": "(flower) vase",
+  "jmdict": 1194870
+ },
+ {
+  "id": "かぶる|かぶる",
+  "palabra": "かぶる",
+  "lectura": "かぶる",
+  "es": [
+   "ponerse (en la cabeza)",
+   "llevar puesto",
+   "cubrir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to wear, to put on (e.g., a hat on the head)",
+  "jmdict": 1484330
+ },
+ {
+  "id": "紙|かみ",
+  "palabra": "紙",
+  "lectura": "かみ",
+  "es": [
+   "papel"
+  ],
+  "origenEs": "jmdict",
+  "en": "paper",
+  "jmdict": 1311530
+ },
+ {
+  "id": "カメラ|カメラ",
+  "palabra": "カメラ",
+  "lectura": "カメラ",
+  "es": [
+   "cámara (fotos, video)"
+  ],
+  "origenEs": "jmdict",
+  "en": "camera",
+  "jmdict": 1038350
+ },
+ {
+  "id": "火曜日|かようび",
+  "palabra": "火曜日",
+  "lectura": "かようび",
+  "es": [
+   "Martes"
+  ],
+  "origenEs": "jmdict",
+  "en": "Tuesday",
+  "jmdict": 1194290
+ },
+ {
+  "id": "辛い|からい",
+  "palabra": "辛い",
+  "lectura": "からい",
+  "es": [
+   "picante"
+  ],
+  "origenEs": "jmdict",
+  "en": "hot and spicy; salty",
+  "jmdict": 1365850
+ },
+ {
+  "id": "体|からだ",
+  "palabra": "体",
+  "lectura": "からだ",
+  "es": [
+   "cuerpo"
+  ],
+  "origenEs": "jmdict",
+  "en": "body; health",
+  "jmdict": 1409140
+ },
+ {
+  "id": "借りる|かりる",
+  "palabra": "借りる",
+  "lectura": "かりる",
+  "es": [
+   "tomar prestado",
+   "rentar",
+   "alquilar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to borrow, to owe",
+  "jmdict": 1323560
+ },
+ {
+  "id": "～がる|～がる",
+  "palabra": "～がる",
+  "lectura": "～がる",
+  "es": [
+   "mostrar (señales de)",
+   "dar muestras de"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "al parecer"
+  ],
+  "problema": "glosa poco clara",
+  "en": "feel",
+  "jmdict": 1631750
+ },
+ {
+  "id": "軽い|かるい",
+  "palabra": "軽い",
+  "lectura": "かるい",
+  "es": [
+   "ligero",
+   "leve"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "ligero",
+   "leve",
+   "de escada importancia"
+  ],
+  "problema": "typo «escada» y glosa rara",
+  "en": "light, non-serious, minor",
+  "jmdict": 1252560
+ },
+ {
+  "id": "カレー|カレー",
+  "palabra": "カレー",
+  "lectura": "カレー",
+  "es": [
+   "curry"
+  ],
+  "origenEs": "jmdict",
+  "en": "curry (abbr. for curry and rice)",
+  "jmdict": 1039140
+ },
+ {
+  "id": "カレンダー|カレンダー",
+  "palabra": "カレンダー",
+  "lectura": "カレンダー",
+  "es": [
+   "agenda",
+   "calendario"
+  ],
+  "origenEs": "jmdict",
+  "en": "calendar",
+  "jmdict": 1039220
+ },
+ {
+  "id": "川; 河|かわ",
+  "palabra": "川; 河",
+  "lectura": "かわ",
+  "es": [
+   "río",
+   "arroyo",
+   "el río ... (sufijo usado para nombres de ríos)"
+  ],
+  "origenEs": "jmdict",
+  "en": "river",
+  "jmdict": 1390020
+ },
+ {
+  "id": "～側|～がわ",
+  "palabra": "～側",
+  "lectura": "～がわ",
+  "es": [
+   "lado",
+   "parte"
+  ],
+  "origenEs": "jmdict",
+  "en": "~ side",
+  "jmdict": 1581310
+ },
+ {
+  "id": "可愛い|かわいい",
+  "palabra": "可愛い",
+  "lectura": "かわいい",
+  "es": [
+   "lindo",
+   "tierno",
+   "adorable"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "bonito",
+   "hermoso",
+   "preferido"
+  ],
+  "problema": "«hermoso;preferido» no son el sentido",
+  "en": "cute, adorable",
+  "jmdict": 1577200
+ },
+ {
+  "id": "漢字|かんじ",
+  "palabra": "漢字",
+  "lectura": "かんじ",
+  "es": [
+   "caracteres chinos",
+   "kanji"
+  ],
+  "origenEs": "jmdict",
+  "en": "kanji; Chinese character",
+  "jmdict": 1213170
+ },
+ {
+  "id": "木|き",
+  "palabra": "木",
+  "lectura": "き",
+  "es": [
+   "árbol",
+   "madera"
+  ],
+  "origenEs": "jmdict",
+  "en": "tree, wood, timber",
+  "jmdict": 1534520
+ },
+ {
+  "id": "黄色|きいろ",
+  "palabra": "黄色",
+  "lectura": "きいろ",
+  "es": [
+   "amarillo",
+   "ámbar"
+  ],
+  "origenEs": "jmdict",
+  "en": "yellow",
+  "jmdict": 1576760
+ },
+ {
+  "id": "黄色い|きいろい",
+  "palabra": "黄色い",
+  "lectura": "きいろい",
+  "es": [
+   "amarillo"
+  ],
+  "origenEs": "jmdict",
+  "en": "yellow",
+  "jmdict": 1182030
+ },
+ {
+  "id": "消える|きえる",
+  "palabra": "消える",
+  "lectura": "きえる",
+  "es": [
+   "desaparecer",
+   "apagarse"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "apagarse",
+   "desvanecer",
+   "desaparecer"
+  ],
+  "problema": "«desvanecer» no está en infinitivo reflexivo",
+  "en": "to vanish, to disappear",
+  "jmdict": 1350040
+ },
+ {
+  "id": "聞く|きく",
+  "palabra": "聞く",
+  "lectura": "きく",
+  "es": [
+   "oír",
+   "escuchar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to hear, to listen, to ask",
+  "jmdict": 1591110
+ },
+ {
+  "id": "北|きた",
+  "palabra": "北",
+  "lectura": "きた",
+  "es": [
+   "norte"
+  ],
+  "origenEs": "jmdict",
+  "en": "north",
+  "jmdict": 1520670
+ },
+ {
+  "id": "ギター|ギター",
+  "palabra": "ギター",
+  "lectura": "ギター",
+  "es": [
+   "guitarra"
+  ],
+  "origenEs": "jmdict",
+  "en": "guitar",
+  "jmdict": 1042820
+ },
+ {
+  "id": "汚い|きたない",
+  "palabra": "汚い",
+  "lectura": "きたない",
+  "es": [
+   "sucio",
+   "manchado"
+  ],
+  "origenEs": "jmdict",
+  "en": "dirty, unclean, filthy",
+  "jmdict": 1178940
+ },
+ {
+  "id": "喫茶店|きっさてん",
+  "palabra": "喫茶店",
+  "lectura": "きっさてん",
+  "es": [
+   "cafetería"
+  ],
+  "origenEs": "jmdict",
+  "en": "café",
+  "jmdict": 1226440
+ },
+ {
+  "id": "切手|きって",
+  "palabra": "切手",
+  "lectura": "きって",
+  "es": [
+   "sello"
+  ],
+  "origenEs": "jmdict",
+  "en": "postal (postage) stamps",
+  "jmdict": 1385070
+ },
+ {
+  "id": "切符|きっぷ",
+  "palabra": "切符",
+  "lectura": "きっぷ",
+  "es": [
+   "boleto",
+   "billete",
+   "ticket"
+  ],
+  "origenEs": "jmdict",
+  "en": "a ticket",
+  "jmdict": 1385170
+ },
+ {
+  "id": "昨日|きのう",
+  "palabra": "昨日",
+  "lectura": "きのう",
+  "es": [
+   "ayer"
+  ],
+  "origenEs": "jmdict",
+  "en": "yesterday",
+  "jmdict": 1579260
+ },
+ {
+  "id": "九|きゅう",
+  "palabra": "九",
+  "lectura": "きゅう",
+  "es": [
+   "nueve"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "nueve (en documentos legales)",
+   "aquí",
+   "acá"
+  ],
+  "problema": "«en documentos legales;aquí;acá» incorrecto",
+  "en": "nine",
+  "jmdict": 1578150
+ },
+ {
+  "id": "牛肉|ぎゅうにく",
+  "palabra": "牛肉",
+  "lectura": "ぎゅうにく",
+  "es": [
+   "carne de res (vaca, ternera)"
+  ],
+  "origenEs": "jmdict",
+  "en": "beef",
+  "jmdict": 1231580
+ },
+ {
+  "id": "牛乳|ぎゅうにゅう",
+  "palabra": "牛乳",
+  "lectura": "ぎゅうにゅう",
+  "es": [
+   "leche (de vaca)"
+  ],
+  "origenEs": "jmdict",
+  "en": "milk",
+  "jmdict": 1231590
+ },
+ {
+  "id": "今日|きょう",
+  "palabra": "今日",
+  "lectura": "きょう",
+  "es": [
+   "hoy",
+   "este día"
+  ],
+  "origenEs": "jmdict",
+  "en": "today, this day",
+  "jmdict": 1579110
+ },
+ {
+  "id": "教室|きょうしつ",
+  "palabra": "教室",
+  "lectura": "きょうしつ",
+  "es": [
+   "aula",
+   "clase"
+  ],
+  "origenEs": "jmdict",
+  "en": "classroom",
+  "jmdict": 1237150
+ },
+ {
+  "id": "兄弟|きょうだい",
+  "palabra": "兄弟",
+  "lectura": "きょうだい",
+  "es": [
+   "hermanos",
+   "hermanos y hermanas"
+  ],
+  "origenEs": "jmdict",
+  "en": "siblings (humble), brothers and sisters",
+  "jmdict": 1249960
+ },
+ {
+  "id": "去年|きょねん",
+  "palabra": "去年",
+  "lectura": "きょねん",
+  "es": [
+   "(el) año pasado"
+  ],
+  "origenEs": "jmdict",
+  "en": "last year",
+  "jmdict": 1231690
+ },
+ {
+  "id": "嫌い|きらい",
+  "palabra": "嫌い",
+  "lectura": "きらい",
+  "es": [
+   "que no gusta",
+   "detestable"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "disgusto",
+   "odio"
+  ],
+  "problema": "«disgusto;odio» son sustantivos, es adjetivo-na",
+  "en": "dislike",
+  "jmdict": 1257240
+ },
+ {
+  "id": "切る|きる",
+  "palabra": "切る",
+  "lectura": "きる",
+  "es": [
+   "cortar",
+   "colgar (teléfono)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cortar",
+   "caer",
+   "desconectar"
+  ],
+  "problema": "falta «colgar» y «caer» es raro",
+  "en": "to cut; to hang up (a phone)",
+  "jmdict": 1384830
+ },
+ {
+  "id": "着る|きる",
+  "palabra": "着る",
+  "lectura": "きる",
+  "es": [
+   "vestir",
+   "ponerse",
+   "llevar puesto (ropa en el torso)"
+  ],
+  "origenEs": "jmdict",
+  "en": "to put on (clothes above your waist); to wear",
+  "jmdict": 1423000
+ },
+ {
+  "id": "綺麗|きれい",
+  "palabra": "綺麗",
+  "lectura": "きれい",
+  "es": [
+   "bonito",
+   "bello",
+   "limpio"
+  ],
+  "origenEs": "jmdict",
+  "en": "pretty, clean, tidy",
+  "jmdict": 1591900
+ },
+ {
+  "id": "キロ; キログラム|キロ; キログラム",
+  "palabra": "キロ; キログラム",
+  "lectura": "キロ; キログラム",
+  "es": [
+   "kilo",
+   "kilogramo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "kilo-",
+   "10^3"
+  ],
+  "problema": "«kilo-;10^3» no es la palabra",
+  "en": "(abbr.) kilo (kilogram)",
+  "jmdict": 1042610
+ },
+ {
+  "id": "キロ; キロメートル|キロ; キロメートル",
+  "palabra": "キロ; キロメートル",
+  "lectura": "キロ; キロメートル",
+  "es": [
+   "kilómetro"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "kilo-",
+   "10^3"
+  ],
+  "problema": "«kilo-;10^3» no es la palabra",
+  "en": "(abbr.) kilo (kilometer)",
+  "jmdict": 1042610
+ },
+ {
+  "id": "銀行|ぎんこう",
+  "palabra": "銀行",
+  "lectura": "ぎんこう",
+  "es": [
+   "banco"
+  ],
+  "origenEs": "jmdict",
+  "en": "bank",
+  "jmdict": 1243490
+ },
+ {
+  "id": "金曜日|きんようび",
+  "palabra": "金曜日",
+  "lectura": "きんようび",
+  "es": [
+   "viernes"
+  ],
+  "origenEs": "jmdict",
+  "en": "Friday",
+  "jmdict": 1243320
+ },
+ {
+  "id": "九|く",
+  "palabra": "九",
+  "lectura": "く",
+  "es": [
+   "nueve"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "nueve (en documentos legales)",
+   "aquí",
+   "acá"
+  ],
+  "problema": "«en documentos legales;aquí;acá» incorrecto",
+  "en": "nine",
+  "jmdict": 1578150
+ },
+ {
+  "id": "薬|くすり",
+  "palabra": "薬",
+  "lectura": "くすり",
+  "es": [
+   "medicina",
+   "productos farmacéuticos"
+  ],
+  "origenEs": "jmdict",
+  "en": "medicine",
+  "jmdict": 1538160
+ },
+ {
+  "id": "下さい|ください",
+  "palabra": "下さい",
+  "lectura": "ください",
+  "es": [
+   "por favor"
+  ],
+  "origenEs": "jmdict",
+  "en": "(with te-form verb) please do for me",
+  "jmdict": 1184270
+ },
+ {
+  "id": "果物|くだもの",
+  "palabra": "果物",
+  "lectura": "くだもの",
+  "es": [
+   "fruta"
+  ],
+  "origenEs": "jmdict",
+  "en": "fruit",
+  "jmdict": 1193060
+ },
+ {
+  "id": "口|くち",
+  "palabra": "口",
+  "lectura": "くち",
+  "es": [
+   "boca",
+   "orificio",
+   "apertura"
+  ],
+  "origenEs": "jmdict",
+  "en": "job opening; mouth",
+  "jmdict": 1275640
+ },
+ {
+  "id": "靴|くつ",
+  "palabra": "靴",
+  "lectura": "くつ",
+  "es": [
+   "zapatos",
+   "calzado"
+  ],
+  "origenEs": "jmdict",
+  "en": "shoes, footwear",
+  "jmdict": 1246700
+ },
+ {
+  "id": "靴下|くつした",
+  "palabra": "靴下",
+  "lectura": "くつした",
+  "es": [
+   "calcetines",
+   "medias"
+  ],
+  "origenEs": "jmdict",
+  "en": "socks",
+  "jmdict": 1246740
+ },
+ {
+  "id": "国|くに",
+  "palabra": "国",
+  "lectura": "くに",
+  "es": [
+   "país"
+  ],
+  "origenEs": "jmdict",
+  "en": "country; place of origin",
+  "jmdict": 1592250
+ },
+ {
+  "id": "曇り|くもり",
+  "palabra": "曇り",
+  "lectura": "くもり",
+  "es": [
+   "nublado"
+  ],
+  "origenEs": "jmdict",
+  "en": "cloudiness, cloudy weather",
+  "jmdict": 1592340
+ },
+ {
+  "id": "曇る|くもる",
+  "palabra": "曇る",
+  "lectura": "くもる",
+  "es": [
+   "nublarse"
+  ],
+  "origenEs": "jmdict",
+  "en": "to become cloudy, to become dim",
+  "jmdict": 1457560
+ },
+ {
+  "id": "暗い|くらい",
+  "palabra": "暗い",
+  "lectura": "くらい",
+  "es": [
+   "sombrío",
+   "oscuro",
+   "falto de luz"
+  ],
+  "origenEs": "jmdict",
+  "en": "dark, gloomy",
+  "jmdict": 1154330
+ },
+ {
+  "id": "～くらい; ぐらい|～くらい; ぐらい",
+  "palabra": "～くらい; ぐらい",
+  "lectura": "～くらい; ぐらい",
+  "es": [
+   "aproximadamente",
+   "más o menos"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "sombrío",
+   "oscuro",
+   "falto de luz"
+  ],
+  "problema": "glosa copiada de «暗い»; error",
+  "en": "approximate (quantity)",
+  "jmdict": 1154330
+ },
+ {
+  "id": "クラス|クラス",
+  "palabra": "クラス",
+  "lectura": "クラス",
+  "es": [
+   "clase"
+  ],
+  "origenEs": "jmdict",
+  "en": "a class",
+  "jmdict": 1044070
+ },
+ {
+  "id": "グラム|グラム",
+  "palabra": "グラム",
+  "lectura": "グラム",
+  "es": [
+   "gramo"
+  ],
+  "origenEs": "jmdict",
+  "en": "gram",
+  "jmdict": 1046810
+ },
+ {
+  "id": "来る|くる",
+  "palabra": "来る",
+  "lectura": "くる",
+  "es": [
+   "venir",
+   "llegar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "llegar",
+   "venir"
+  ],
+  "problema": "el sentido principal es «venir»",
+  "en": "to come",
+  "jmdict": 1547720
+ },
+ {
+  "id": "車|くるま",
+  "palabra": "車",
+  "lectura": "くるま",
+  "es": [
+   "automóvil",
+   "coche",
+   "vehículo"
+  ],
+  "origenEs": "jmdict",
+  "en": "car, vehicle",
+  "jmdict": 1323080
+ },
+ {
+  "id": "黒|くろ",
+  "palabra": "黒",
+  "lectura": "くろ",
+  "es": [
+   "negro"
+  ],
+  "origenEs": "jmdict",
+  "en": "black",
+  "jmdict": 1287410
+ },
+ {
+  "id": "黒い|くろい",
+  "palabra": "黒い",
+  "lectura": "くろい",
+  "es": [
+   "negro"
+  ],
+  "origenEs": "jmdict",
+  "en": "black; dark",
+  "jmdict": 1287420
+ },
+ {
+  "id": "警官|けいかん",
+  "palabra": "警官",
+  "lectura": "けいかん",
+  "es": [
+   "policía"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "hombre policía"
+  ],
+  "problema": "«hombre policía» poco natural",
+  "en": "police officer",
+  "jmdict": 1252330
+ },
+ {
+  "id": "今朝|けさ",
+  "palabra": "今朝",
+  "lectura": "けさ",
+  "es": [
+   "esta mañana"
+  ],
+  "origenEs": "jmdict",
+  "en": "this morning",
+  "jmdict": 1579100
+ },
+ {
+  "id": "消す|けす",
+  "palabra": "消す",
+  "lectura": "けす",
+  "es": [
+   "apagar",
+   "borrar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "borrar"
+  ],
+  "problema": "el sentido más común es «apagar»",
+  "en": "to erase, to delete, to turn off power",
+  "jmdict": 1350110
+ },
+ {
+  "id": "結構|けっこう",
+  "palabra": "結構",
+  "lectura": "けっこう",
+  "es": [
+   "bastante",
+   "estupendo",
+   "no, gracias"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "que está bien así como está",
+   "mucho ~"
+  ],
+  "problema": "glosa larga y confusa",
+  "en": "splendid; enough, tolerably",
+  "jmdict": 1254760
+ },
+ {
+  "id": "結婚|けっこん (する)",
+  "palabra": "結婚",
+  "lectura": "けっこん (する)",
+  "es": [
+   "matrimonio"
+  ],
+  "origenEs": "jmdict",
+  "en": "marriage (get married)",
+  "jmdict": 1254790
+ },
+ {
+  "id": "月曜日|げつようび",
+  "palabra": "月曜日",
+  "lectura": "げつようび",
+  "es": [
+   "lunes"
+  ],
+  "origenEs": "jmdict",
+  "en": "Monday",
+  "jmdict": 1255890
+ },
+ {
+  "id": "玄関|げんかん",
+  "palabra": "玄関",
+  "lectura": "げんかん",
+  "es": [
+   "recibidor",
+   "hall de entrada"
+  ],
+  "origenEs": "jmdict",
+  "en": "entrance (to a house or a building)",
+  "jmdict": 1263400
+ },
+ {
+  "id": "元気|げんき",
+  "palabra": "元気",
+  "lectura": "げんき",
+  "es": [
+   "con buena salud",
+   "enérgico",
+   "animado"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "salud",
+   "saludable",
+   "vigor"
+  ],
+  "problema": "«salud;vigor» son sustantivos; es adjetivo-na",
+  "en": "health(y), energetic",
+  "jmdict": 1260720
+ },
+ {
+  "id": "～個|～こ",
+  "palabra": "～個",
+  "lectura": "～こ",
+  "es": [
+   "unidad (contador)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "(contador para huevos",
+   "etc)",
+   "contador para artículos"
+  ],
+  "problema": "glosa confusa",
+  "en": "counter for small items (e.g., fruits, cups)",
+  "jmdict": 1264740
+ },
+ {
+  "id": "五|ご",
+  "palabra": "五",
+  "lectura": "ご",
+  "es": [
+   "cinco"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cuándo",
+   "cinco"
+  ],
+  "problema": "«cuándo» es incorrecto",
+  "en": "five",
+  "jmdict": 1268060
+ },
+ {
+  "id": "～語|～ご",
+  "palabra": "～語",
+  "lectura": "～ご",
+  "es": [
+   "idioma",
+   "lengua",
+   "lenguaje"
+  ],
+  "origenEs": "jmdict",
+  "en": "word, language",
+  "jmdict": 1270910
+ },
+ {
+  "id": "公園|こうえん",
+  "palabra": "公園",
+  "lectura": "こうえん",
+  "es": [
+   "parque (público)"
+  ],
+  "origenEs": "jmdict",
+  "en": "a park",
+  "jmdict": 1273270
+ },
+ {
+  "id": "交差点|こうさてん",
+  "palabra": "交差点",
+  "lectura": "こうさてん",
+  "es": [
+   "cruce"
+  ],
+  "origenEs": "jmdict",
+  "en": "intersection",
+  "jmdict": 1592970
+ },
+ {
+  "id": "紅茶|こうちゃ",
+  "palabra": "紅茶",
+  "lectura": "こうちゃ",
+  "es": [
+   "té negro"
+  ],
+  "origenEs": "jmdict",
+  "en": "black tea",
+  "jmdict": 1280770
+ },
+ {
+  "id": "交番|こうばん",
+  "palabra": "交番",
+  "lectura": "こうばん",
+  "es": [
+   "puesto de policía"
+  ],
+  "origenEs": "jmdict",
+  "en": "police box",
+  "jmdict": 1272500
+ },
+ {
+  "id": "声|こえ",
+  "palabra": "声",
+  "lectura": "こえ",
+  "es": [
+   "voz"
+  ],
+  "origenEs": "jmdict",
+  "en": "voice",
+  "jmdict": 1380440
+ },
+ {
+  "id": "コート|コート",
+  "palabra": "コート",
+  "lectura": "コート",
+  "es": [
+   "abrigo"
+  ],
+  "origenEs": "claude",
+  "en": "coat; court (e.g., tennis)",
+  "jmdict": 2842174
+ },
+ {
+  "id": "コーヒー|コーヒー",
+  "palabra": "コーヒー",
+  "lectura": "コーヒー",
+  "es": [
+   "café"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "café (bebida)",
+   "café"
+  ],
+  "problema": "glosa con etimología",
+  "en": "coffee",
+  "jmdict": 1049180
+ },
+ {
+  "id": "ここ|ここ",
+  "palabra": "ここ",
+  "lectura": "ここ",
+  "es": [
+   "aquí",
+   "este lugar",
+   "este sitio"
+  ],
+  "origenEs": "jmdict",
+  "en": "here, this place",
+  "jmdict": 1288810
+ },
+ {
+  "id": "午後|ごご",
+  "palabra": "午後",
+  "lectura": "ごご",
+  "es": [
+   "la tarde",
+   "p.m",
+   "P.M."
+  ],
+  "origenEs": "jmdict",
+  "en": "afternoon, P.M.",
+  "jmdict": 1268990
+ },
+ {
+  "id": "九日|ここのか",
+  "palabra": "九日",
+  "lectura": "ここのか",
+  "es": [
+   "noveno día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "nine days; ninth day of the month",
+  "jmdict": 1243850
+ },
+ {
+  "id": "九つ|ここのつ",
+  "palabra": "九つ",
+  "lectura": "ここのつ",
+  "es": [
+   "nueve"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "9",
+   "nueve"
+  ],
+  "problema": "el número no es una glosa",
+  "en": "nine things",
+  "jmdict": 1243600
+ },
+ {
+  "id": "午前|ごぜん",
+  "palabra": "午前",
+  "lectura": "ごぜん",
+  "es": [
+   "la mañana",
+   "A.M."
+  ],
+  "origenEs": "jmdict",
+  "en": "morning, A.M.",
+  "jmdict": 1269060
+ },
+ {
+  "id": "答える|こたえる",
+  "palabra": "答える",
+  "lectura": "こたえる",
+  "es": [
+   "responder",
+   "contestar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to answer, to reply",
+  "jmdict": 1449540
+ },
+ {
+  "id": "こちら|こちら",
+  "palabra": "こちら",
+  "lectura": "こちら",
+  "es": [
+   "por aquí",
+   "(en) esta dirección"
+  ],
+  "origenEs": "jmdict",
+  "en": "this person (polite); this way (polite)",
+  "jmdict": 1004500
+ },
+ {
+  "id": "こっち|こっち",
+  "palabra": "こっち",
+  "lectura": "こっち",
+  "es": [
+   "por aquí",
+   "(en) esta dirección"
+  ],
+  "origenEs": "jmdict",
+  "en": "this person; this direction; this side",
+  "jmdict": 1004500
+ },
+ {
+  "id": "コップ|コップ",
+  "palabra": "コップ",
+  "lectura": "コップ",
+  "es": [
+   "vaso"
+  ],
+  "origenEs": "claude",
+  "en": "a tumbler; a glass",
+  "jmdict": 1050390
+ },
+ {
+  "id": "今年|ことし",
+  "palabra": "今年",
+  "lectura": "ことし",
+  "es": [
+   "este año"
+  ],
+  "origenEs": "jmdict",
+  "en": "this year",
+  "jmdict": 1579130
+ },
+ {
+  "id": "言葉|ことば",
+  "palabra": "言葉",
+  "lectura": "ことば",
+  "es": [
+   "palabra",
+   "idioma",
+   "lengua"
+  ],
+  "origenEs": "jmdict",
+  "en": "language; word(s); expression(s)",
+  "jmdict": 1264540
+ },
+ {
+  "id": "子供|こども",
+  "palabra": "子供",
+  "lectura": "こども",
+  "es": [
+   "niño",
+   "niños"
+  ],
+  "origenEs": "jmdict",
+  "en": "child(ren)",
+  "jmdict": 1307850
+ },
+ {
+  "id": "この|この",
+  "palabra": "この",
+  "lectura": "この",
+  "es": [
+   "este"
+  ],
+  "origenEs": "jmdict",
+  "en": "this",
+  "jmdict": 1582920
+ },
+ {
+  "id": "御飯|ごはん",
+  "palabra": "御飯",
+  "lectura": "ごはん",
+  "es": [
+   "arroz (cocinado)",
+   "platillo",
+   "comida"
+  ],
+  "origenEs": "jmdict",
+  "en": "rice (cooked); meal",
+  "jmdict": 1270590
+ },
+ {
+  "id": "コピーする|コピーする",
+  "palabra": "コピーする",
+  "lectura": "コピーする",
+  "es": [
+   "copiar",
+   "fotocopiar"
+  ],
+  "origenEs": "claude",
+  "en": "to copy",
+  "jmdict": null
+ },
+ {
+  "id": "困る|こまる",
+  "palabra": "困る",
+  "lectura": "こまる",
+  "es": [
+   "estar en apuros",
+   "tener un problema"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "enfurecerse",
+   "preocuparse"
+  ],
+  "problema": "«enfurecerse» es incorrecto",
+  "en": "to be bothered, to have difficulty",
+  "jmdict": 1289590
+ },
+ {
+  "id": "これ|これ",
+  "palabra": "これ",
+  "lectura": "これ",
+  "es": [
+   "esto",
+   "éste",
+   "ésta"
+  ],
+  "origenEs": "jmdict",
+  "en": "this one",
+  "jmdict": 1628530
+ },
+ {
+  "id": "～ころ; ～ごろ|～ころ; ～ごろ",
+  "palabra": "～ころ; ～ごろ",
+  "lectura": "～ころ; ～ごろ",
+  "es": [
+   "alrededor de",
+   "aproximadamente"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "vez",
+   "ocasión",
+   "tiempo"
+  ],
+  "problema": "glosa incorrecta",
+  "en": "about, toward, approximately (time)",
+  "jmdict": 1579080
+ },
+ {
+  "id": "今月|こんげつ",
+  "palabra": "今月",
+  "lectura": "こんげつ",
+  "es": [
+   "este mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "this month",
+  "jmdict": 1289100
+ },
+ {
+  "id": "今週|こんしゅう",
+  "palabra": "今週",
+  "lectura": "こんしゅう",
+  "es": [
+   "esta semana"
+  ],
+  "origenEs": "jmdict",
+  "en": "this week",
+  "jmdict": 1289220
+ },
+ {
+  "id": "こんな|こんな",
+  "palabra": "こんな",
+  "lectura": "こんな",
+  "es": [
+   "tal",
+   "así (como esto)",
+   "este tipo de"
+  ],
+  "origenEs": "jmdict",
+  "en": "such, like this",
+  "jmdict": 1004880
+ },
+ {
+  "id": "今晩|こんばん",
+  "palabra": "今晩",
+  "lectura": "こんばん",
+  "es": [
+   "esta noche",
+   "hoy en la noche"
+  ],
+  "origenEs": "jmdict",
+  "en": "tonight, this evening",
+  "jmdict": 1289470
+ },
+ {
+  "id": "さあ|さあ",
+  "palabra": "さあ",
+  "lectura": "さあ",
+  "es": [
+   "vamos",
+   "ven",
+   "ven ahora"
+  ],
+  "origenEs": "jmdict",
+  "en": "come now, well",
+  "jmdict": 1005110
+ },
+ {
+  "id": "～歳|～さい",
+  "palabra": "～歳",
+  "lectura": "～さい",
+  "es": [
+   "años (edad)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "habilidad",
+   "regalo",
+   "talento"
+  ],
+  "problema": "glosas incorrectas",
+  "en": "~ years old",
+  "jmdict": 1294940
+ },
+ {
+  "id": "財布|さいふ",
+  "palabra": "財布",
+  "lectura": "さいふ",
+  "es": [
+   "billetera",
+   "cartera"
+  ],
+  "origenEs": "jmdict",
+  "en": "wallet",
+  "jmdict": 1296970
+ },
+ {
+  "id": "魚|さかな",
+  "palabra": "魚",
+  "lectura": "さかな",
+  "es": [
+   "pez",
+   "pescado"
+  ],
+  "origenEs": "jmdict",
+  "en": "fish",
+  "jmdict": 1578010
+ },
+ {
+  "id": "先|さき",
+  "palabra": "先",
+  "lectura": "さき",
+  "es": [
+   "lo siguiente",
+   "anterior",
+   "punta"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "previo",
+   "ex-"
+  ],
+  "problema": "glosas incorrectas o poco claras",
+  "en": "future; recent, previous",
+  "jmdict": 1387210
+ },
+ {
+  "id": "咲く|さく",
+  "palabra": "咲く",
+  "lectura": "さく",
+  "es": [
+   "florecer"
+  ],
+  "origenEs": "jmdict",
+  "en": "to bloom",
+  "jmdict": 1297210
+ },
+ {
+  "id": "作文|さくぶん",
+  "palabra": "作文",
+  "lectura": "さくぶん",
+  "es": [
+   "composición",
+   "escritura"
+  ],
+  "origenEs": "jmdict",
+  "en": "essay; composition",
+  "jmdict": 1297960
+ },
+ {
+  "id": "差す|さす",
+  "palabra": "差す",
+  "lectura": "さす",
+  "es": [
+   "abrir (paraguas)",
+   "señalar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "extender la mano",
+   "abrir el paraguas"
+  ],
+  "problema": "sentido poco claro",
+  "en": "to raise (stretch out) hands, to raise (e.g., umbrella)",
+  "jmdict": 1291330
+ },
+ {
+  "id": "～冊|～さつ",
+  "palabra": "～冊",
+  "lectura": "～さつ",
+  "es": [
+   "contador para libros",
+   "tomos",
+   "volúmenes"
+  ],
+  "origenEs": "jmdict",
+  "en": "counter for books",
+  "jmdict": 1298520
+ },
+ {
+  "id": "雑誌|ざっし",
+  "palabra": "雑誌",
+  "lectura": "ざっし",
+  "es": [
+   "revista"
+  ],
+  "origenEs": "jmdict",
+  "en": "magazine, journal",
+  "jmdict": 1299400
+ },
+ {
+  "id": "砂糖|さとう",
+  "palabra": "砂糖",
+  "lectura": "さとう",
+  "es": [
+   "azúcar"
+  ],
+  "origenEs": "jmdict",
+  "en": "sugar",
+  "jmdict": 1291600
+ },
+ {
+  "id": "寒い|さむい",
+  "palabra": "寒い",
+  "lectura": "さむい",
+  "es": [
+   "frío (ej. clima)"
+  ],
+  "origenEs": "jmdict",
+  "en": "cold (in reference to weather)",
+  "jmdict": 1210360
+ },
+ {
+  "id": "さ来年|さらいねん",
+  "palabra": "さ来年",
+  "lectura": "さらいねん",
+  "es": [
+   "dentro de dos años",
+   "el año que sigue al que viene"
+  ],
+  "origenEs": "jmdict",
+  "en": "year after next",
+  "jmdict": 1293660
+ },
+ {
+  "id": "～さん|～さん",
+  "palabra": "～さん",
+  "lectura": "～さん",
+  "es": [
+   "señor",
+   "señorita (sufijo de cortesía)"
+  ],
+  "origenEs": "jmdict",
+  "en": "Mr. ~, Ms. ~",
+  "jmdict": 1005340
+ },
+ {
+  "id": "三|さん",
+  "palabra": "三",
+  "lectura": "さん",
+  "es": [
+   "tres"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "3",
+   "tres"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "three",
+  "jmdict": 1579350
+ },
+ {
+  "id": "散歩|さんぽ (する)",
+  "palabra": "散歩",
+  "lectura": "さんぽ (する)",
+  "es": [
+   "paseo"
+  ],
+  "origenEs": "jmdict",
+  "en": "walk, stroll",
+  "jmdict": 1303620
+ },
+ {
+  "id": "四|し",
+  "palabra": "四",
+  "lectura": "し",
+  "es": [
+   "cuatro"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cuatro"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "four",
+  "jmdict": 1579470
+ },
+ {
+  "id": "～時|～じ",
+  "palabra": "～時",
+  "lectura": "～じ",
+  "es": [
+   "hora"
+  ],
+  "origenEs": "jmdict",
+  "en": "~ o'clock (time)",
+  "jmdict": 2020680
+ },
+ {
+  "id": "塩|しお",
+  "palabra": "塩",
+  "lectura": "しお",
+  "es": [
+   "sal"
+  ],
+  "origenEs": "jmdict",
+  "en": "salt",
+  "jmdict": 1576630
+ },
+ {
+  "id": "しかし|しかし",
+  "palabra": "しかし",
+  "lectura": "しかし",
+  "es": [
+   "pero",
+   "sin embargo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "de cualquier modo",
+   "como quiera que",
+   "pero"
+  ],
+  "problema": "glosa poco natural",
+  "en": "however; but",
+  "jmdict": 1505990
+ },
+ {
+  "id": "時間|じかん",
+  "palabra": "時間",
+  "lectura": "じかん",
+  "es": [
+   "tiempo"
+  ],
+  "origenEs": "jmdict",
+  "en": "time",
+  "jmdict": 1315920
+ },
+ {
+  "id": "～時間|～じかん",
+  "palabra": "～時間",
+  "lectura": "～じかん",
+  "es": [
+   "horas (duración)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tiempo"
+  ],
+  "problema": "falta «horas»",
+  "en": "~ hours",
+  "jmdict": 1315920
+ },
+ {
+  "id": "仕事|しごと",
+  "palabra": "仕事",
+  "lectura": "しごと",
+  "es": [
+   "trabajo",
+   "empleo",
+   "ocupación"
+  ],
+  "origenEs": "jmdict",
+  "en": "work, job, occupation, employment",
+  "jmdict": 1304970
+ },
+ {
+  "id": "辞書|じしょ",
+  "palabra": "辞書",
+  "lectura": "じしょ",
+  "es": [
+   "diccionario",
+   "léxico"
+  ],
+  "origenEs": "jmdict",
+  "en": "dictionary",
+  "jmdict": 1318970
+ },
+ {
+  "id": "静か|しずか",
+  "palabra": "静か",
+  "lectura": "しずか",
+  "es": [
+   "tranquilo",
+   "silencioso"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "calmado (tranquilo",
+   "sereno)"
+  ],
+  "problema": "glosa con paréntesis",
+  "en": "quiet, calm",
+  "jmdict": 1381820
+ },
+ {
+  "id": "下|した",
+  "palabra": "下",
+  "lectura": "した",
+  "es": [
+   "debajo"
+  ],
+  "origenEs": "jmdict",
+  "en": "under, below, beneath",
+  "jmdict": 1184140
+ },
+ {
+  "id": "七|しち",
+  "palabra": "七",
+  "lectura": "しち",
+  "es": [
+   "siete"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "siete"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "seven",
+  "jmdict": 1319210
+ },
+ {
+  "id": "質問|しつもん",
+  "palabra": "質問",
+  "lectura": "しつもん",
+  "es": [
+   "pregunta"
+  ],
+  "origenEs": "jmdict",
+  "en": "question, inquiry",
+  "jmdict": 1320760
+ },
+ {
+  "id": "自転車|じてんしゃ",
+  "palabra": "自転車",
+  "lectura": "じてんしゃ",
+  "es": [
+   "bicicleta"
+  ],
+  "origenEs": "jmdict",
+  "en": "bicycle",
+  "jmdict": 1318290
+ },
+ {
+  "id": "自動車|じどうしゃ",
+  "palabra": "自動車",
+  "lectura": "じどうしゃ",
+  "es": [
+   "automóvil"
+  ],
+  "origenEs": "jmdict",
+  "en": "automobile",
+  "jmdict": 1318400
+ },
+ {
+  "id": "死ぬ|しぬ",
+  "palabra": "死ぬ",
+  "lectura": "しぬ",
+  "es": [
+   "morir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to die",
+  "jmdict": 1310730
+ },
+ {
+  "id": "字引|じびき",
+  "palabra": "字引",
+  "lectura": "じびき",
+  "es": [
+   "diccionario"
+  ],
+  "origenEs": "jmdict",
+  "en": "dictionary",
+  "jmdict": 1315140
+ },
+ {
+  "id": "自分|じぶん",
+  "palabra": "自分",
+  "lectura": "じぶん",
+  "es": [
+   "uno mismo",
+   "yo mismo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "mismo",
+   "propio"
+  ],
+  "problema": "glosa poco clara",
+  "en": "myself, oneself",
+  "jmdict": 1318610
+ },
+ {
+  "id": "閉まる|しまる",
+  "palabra": "閉まる",
+  "lectura": "しまる",
+  "es": [
+   "cerrarse",
+   "estar cerrado"
+  ],
+  "origenEs": "jmdict",
+  "en": "to close, to be closed",
+  "jmdict": 1436560
+ },
+ {
+  "id": "閉める|しめる",
+  "palabra": "閉める",
+  "lectura": "しめる",
+  "es": [
+   "cerrar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to close, to shut",
+  "jmdict": 1508590
+ },
+ {
+  "id": "締める|しめる",
+  "palabra": "締める",
+  "lectura": "しめる",
+  "es": [
+   "apretar",
+   "atar (corbata)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "atar",
+   "sujetar"
+  ],
+  "problema": "glosa poco precisa",
+  "en": "to tie, to fasten, to tighten",
+  "jmdict": 1436570
+ },
+ {
+  "id": "じゃ; じゃあ|じゃ; じゃあ",
+  "palabra": "じゃ; じゃあ",
+  "lectura": "じゃ; じゃあ",
+  "es": [
+   "bueno...",
+   "bueno, entonces..."
+  ],
+  "origenEs": "jmdict",
+  "en": "well, well then",
+  "jmdict": 1005900
+ },
+ {
+  "id": "写真|しゃしん",
+  "palabra": "写真",
+  "lectura": "しゃしん",
+  "es": [
+   "fotografía"
+  ],
+  "origenEs": "jmdict",
+  "en": "a picture; a photograph",
+  "jmdict": 1321900
+ },
+ {
+  "id": "シャツ|シャツ",
+  "palabra": "シャツ",
+  "lectura": "シャツ",
+  "es": [
+   "camisa"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "camisa",
+   "(shirt)"
+  ],
+  "problema": "glosa con «(shirt)»",
+  "en": "shirt",
+  "jmdict": 1061520
+ },
+ {
+  "id": "シャワー|シャワー",
+  "palabra": "シャワー",
+  "lectura": "シャワー",
+  "es": [
+   "ducha"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "ducha"
+  ],
+  "problema": "nota «(eng: shower)»",
+  "en": "shower",
+  "jmdict": 1061820
+ },
+ {
+  "id": "十|じゅう",
+  "palabra": "十",
+  "lectura": "じゅう",
+  "es": [
+   "diez"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "10",
+   "diez"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "ten",
+  "jmdict": 1579840
+ },
+ {
+  "id": "～中|～じゅう",
+  "palabra": "～中",
+  "lectura": "～じゅう",
+  "es": [
+   "durante todo…",
+   "a lo largo de…"
+  ],
+  "origenEs": "claude",
+  "en": "during, while",
+  "jmdict": 2083570
+ },
+ {
+  "id": "～週間|～しゅうかん",
+  "palabra": "～週間",
+  "lectura": "～しゅうかん",
+  "es": [
+   "semanas (duración)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "semana",
+   "semanalmente"
+  ],
+  "problema": "duración, no «semanalmente»",
+  "en": "~ weeks",
+  "jmdict": 1333500
+ },
+ {
+  "id": "授業|じゅぎょう",
+  "palabra": "授業",
+  "lectura": "じゅぎょう",
+  "es": [
+   "clase",
+   "lección"
+  ],
+  "origenEs": "jmdict",
+  "en": "a class (of school)",
+  "jmdict": 1330290
+ },
+ {
+  "id": "宿題|しゅくだい",
+  "palabra": "宿題",
+  "lectura": "しゅくだい",
+  "es": [
+   "deberes",
+   "tareas escolares"
+  ],
+  "origenEs": "jmdict",
+  "en": "homework",
+  "jmdict": 1337270
+ },
+ {
+  "id": "上手|じょうず",
+  "palabra": "上手",
+  "lectura": "じょうず",
+  "es": [
+   "hábil",
+   "bueno en algo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "nivel",
+   "hábil",
+   "destreza"
+  ],
+  "problema": "«nivel;destreza» sustantivos",
+  "en": "be good at, skillful",
+  "jmdict": 1353320
+ },
+ {
+  "id": "丈夫|じょうぶ",
+  "palabra": "丈夫",
+  "lectura": "じょうぶ",
+  "es": [
+   "resistente",
+   "robusto",
+   "sano"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "saludable",
+   "fuerte"
+  ],
+  "problema": "falta «resistente»",
+  "en": "strong, solid, durable",
+  "jmdict": 1580480
+ },
+ {
+  "id": "醤油|しょうゆ",
+  "palabra": "醤油",
+  "lectura": "しょうゆ",
+  "es": [
+   "salsa de soja"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "shoyu (un tipo de salsa de soja Japonesa)"
+  ],
+  "problema": "«shoyu» no es traducción",
+  "en": "soy sauce",
+  "jmdict": 1595020
+ },
+ {
+  "id": "食堂|しょくどう",
+  "palabra": "食堂",
+  "lectura": "しょくどう",
+  "es": [
+   "comedor"
+  ],
+  "origenEs": "jmdict",
+  "en": "cafeteria, dining hall",
+  "jmdict": 1358550
+ },
+ {
+  "id": "知る|しる",
+  "palabra": "知る",
+  "lectura": "しる",
+  "es": [
+   "saber",
+   "entender",
+   "estar al corriente de"
+  ],
+  "origenEs": "jmdict",
+  "en": "to know, to understand",
+  "jmdict": 1420470
+ },
+ {
+  "id": "白|しろ",
+  "palabra": "白",
+  "lectura": "しろ",
+  "es": [
+   "blanco"
+  ],
+  "origenEs": "jmdict",
+  "en": "white",
+  "jmdict": 1474900
+ },
+ {
+  "id": "白い|しろい",
+  "palabra": "白い",
+  "lectura": "しろい",
+  "es": [
+   "blanco"
+  ],
+  "origenEs": "jmdict",
+  "en": "white",
+  "jmdict": 1474910
+ },
+ {
+  "id": "～人|～じん",
+  "palabra": "～人",
+  "lectura": "～じん",
+  "es": [
+   "persona de (nacionalidad)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "-és (sufijo para adjetivo gentilicio)"
+  ],
+  "problema": "glosa poco clara",
+  "en": "counter for people",
+  "jmdict": 1366410
+ },
+ {
+  "id": "新聞|しんぶん",
+  "palabra": "新聞",
+  "lectura": "しんぶん",
+  "es": [
+   "periódico",
+   "rotativo",
+   "diario"
+  ],
+  "origenEs": "jmdict",
+  "en": "newspaper",
+  "jmdict": 1362360
+ },
+ {
+  "id": "水曜日|すいようび",
+  "palabra": "水曜日",
+  "lectura": "すいようび",
+  "es": [
+   "miércoles"
+  ],
+  "origenEs": "jmdict",
+  "en": "Wednesday",
+  "jmdict": 1372190
+ },
+ {
+  "id": "吸う|すう",
+  "palabra": "吸う",
+  "lectura": "すう",
+  "es": [
+   "fumar",
+   "aspirar",
+   "inhalar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to breathe in, to suck",
+  "jmdict": 1228260
+ },
+ {
+  "id": "スカート|スカート",
+  "palabra": "スカート",
+  "lectura": "スカート",
+  "es": [
+   "falda"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "falda"
+  ],
+  "problema": "nota «(eng: skirt)»",
+  "en": "skirt",
+  "jmdict": 1067470
+ },
+ {
+  "id": "好き|すき",
+  "palabra": "好き",
+  "lectura": "すき",
+  "es": [
+   "que gusta",
+   "gustar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "gustar",
+   "gustado"
+  ],
+  "problema": "«gustado» incorrecto",
+  "en": "liking, fondness, love",
+  "jmdict": 1277450
+ },
+ {
+  "id": "～すぎ|～すぎ",
+  "palabra": "～すぎ",
+  "lectura": "～すぎ",
+  "es": [
+   "después de (hora)",
+   "demasiado"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "sufijo: que supera, que pasa, que sobrepasa",
+   "sufijo: demasiado, excesivo, que se pasa de"
+  ],
+  "problema": "glosa poco clara",
+  "en": "past; to exceed, ~ too much",
+  "jmdict": 1195960
+ },
+ {
+  "id": "少ない|すくない",
+  "palabra": "少ない",
+  "lectura": "すくない",
+  "es": [
+   "escaso",
+   "poco"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "poco",
+   "un poco",
+   "escaso"
+  ],
+  "problema": "«un poco» se confunde con 少し",
+  "en": "a little; a few",
+  "jmdict": 1348910
+ },
+ {
+  "id": "すぐに|すぐに",
+  "palabra": "すぐに",
+  "lectura": "すぐに",
+  "es": [
+   "al instante",
+   "inmediatamente"
+  ],
+  "origenEs": "jmdict",
+  "en": "immediately, soon",
+  "jmdict": 1430620
+ },
+ {
+  "id": "少し|すこし",
+  "palabra": "少し",
+  "lectura": "すこし",
+  "es": [
+   "un poco",
+   "algo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pequeña cantidad",
+   "poco",
+   "pocos"
+  ],
+  "problema": "«pequeña cantidad» poco natural",
+  "en": "little, few",
+  "jmdict": 1348870
+ },
+ {
+  "id": "涼しい|すずしい",
+  "palabra": "涼しい",
+  "lectura": "すずしい",
+  "es": [
+   "fresco",
+   "refrescante"
+  ],
+  "origenEs": "jmdict",
+  "en": "cool, refreshing (in reference to weather)",
+  "jmdict": 1554370
+ },
+ {
+  "id": "～ずつ|～ずつ",
+  "palabra": "～ずつ",
+  "lectura": "～ずつ",
+  "es": [
+   "… cada uno",
+   "de … en …"
+  ],
+  "origenEs": "claude",
+  "en": "at a time",
+  "jmdict": 2006560
+ },
+ {
+  "id": "ストーブ|ストーブ",
+  "palabra": "ストーブ",
+  "lectura": "ストーブ",
+  "es": [
+   "estufa",
+   "calefactor"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "calentador",
+   "calefactor",
+   "horno"
+  ],
+  "problema": "«horno» incorrecto; notas «(eng:)»",
+  "en": "heater (lit: stove)",
+  "jmdict": 1070790
+ },
+ {
+  "id": "スプーン|スプーン",
+  "palabra": "スプーン",
+  "lectura": "スプーン",
+  "es": [
+   "cuchara"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cuchara"
+  ],
+  "problema": "nota «(eng: spoon)»",
+  "en": "spoon",
+  "jmdict": 1072590
+ },
+ {
+  "id": "スポーツ|スポーツ",
+  "palabra": "スポーツ",
+  "lectura": "スポーツ",
+  "es": [
+   "deporte"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "deporte"
+  ],
+  "problema": "nota «(eng: sport)»",
+  "en": "sport(s)",
+  "jmdict": 1073210
+ },
+ {
+  "id": "ズボン|ズボン",
+  "palabra": "ズボン",
+  "lectura": "ズボン",
+  "es": [
+   "pantalón"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pantalón (fre: jupon)",
+   "pantalones"
+  ],
+  "problema": "nota «(fre: jupon)»",
+  "en": "trousers",
+  "jmdict": 1074260
+ },
+ {
+  "id": "住む|すむ",
+  "palabra": "住む",
+  "lectura": "すむ",
+  "es": [
+   "residir",
+   "vivir en",
+   "morar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to reside, to live in",
+  "jmdict": 1334040
+ },
+ {
+  "id": "する|する",
+  "palabra": "する",
+  "lectura": "する",
+  "es": [
+   "hacer",
+   "intentar",
+   "ejecutar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+  "jmdict": 1157170
+ },
+ {
+  "id": "座る|すわる",
+  "palabra": "座る",
+  "lectura": "すわる",
+  "es": [
+   "sentarse",
+   "ponerse en cuclillas"
+  ],
+  "origenEs": "jmdict",
+  "en": "to sit",
+  "jmdict": 1291800
+ },
+ {
+  "id": "背|せい",
+  "palabra": "背",
+  "lectura": "せい",
+  "es": [
+   "estatura",
+   "altura"
+  ],
+  "origenEs": "jmdict",
+  "en": "(one's) height, stature",
+  "jmdict": 1472650
+ },
+ {
+  "id": "生徒|せいと",
+  "palabra": "生徒",
+  "lectura": "せいと",
+  "es": [
+   "alumno",
+   "estudiante"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pupilo"
+  ],
+  "problema": "«pupilo» poco natural",
+  "en": "student; pupil",
+  "jmdict": 1379380
+ },
+ {
+  "id": "セーター|セーター",
+  "palabra": "セーター",
+  "lectura": "セーター",
+  "es": [
+   "suéter"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "suéter"
+  ],
+  "problema": "notas «(eng:)» en la glosa",
+  "en": "sweater",
+  "jmdict": 1074270
+ },
+ {
+  "id": "石鹸|せっけん",
+  "palabra": "石鹸",
+  "lectura": "せっけん",
+  "es": [
+   "jabón"
+  ],
+  "origenEs": "jmdict",
+  "en": "soap",
+  "jmdict": 1382590
+ },
+ {
+  "id": "背広|せびろ",
+  "palabra": "背広",
+  "lectura": "せびろ",
+  "es": [
+   "traje de negocios"
+  ],
+  "origenEs": "jmdict",
+  "en": "men's suit",
+  "jmdict": 1472740
+ },
+ {
+  "id": "狭い|せまい",
+  "palabra": "狭い",
+  "lectura": "せまい",
+  "es": [
+   "estrecho"
+  ],
+  "origenEs": "jmdict",
+  "en": "narrow; not spacious",
+  "jmdict": 1237680
+ },
+ {
+  "id": "ゼロ|ゼロ",
+  "palabra": "ゼロ",
+  "lectura": "ゼロ",
+  "es": [
+   "Cero"
+  ],
+  "origenEs": "jmdict",
+  "en": "zero",
+  "jmdict": 2839962
+ },
+ {
+  "id": "千|せん",
+  "palabra": "千",
+  "lectura": "せん",
+  "es": [
+   "mil"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "1.000",
+   "mil"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "thousand",
+  "jmdict": 1388740
+ },
+ {
+  "id": "先月|せんげつ",
+  "palabra": "先月",
+  "lectura": "せんげつ",
+  "es": [
+   "el mes pasado"
+  ],
+  "origenEs": "jmdict",
+  "en": "last month",
+  "jmdict": 1387500
+ },
+ {
+  "id": "先週|せんしゅう",
+  "palabra": "先週",
+  "lectura": "せんしゅう",
+  "es": [
+   "la semana pasada"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "la última semana",
+   "la semana anterior"
+  ],
+  "problema": "«la última semana» ambiguo",
+  "en": "last week",
+  "jmdict": 1387870
+ },
+ {
+  "id": "先生|せんせい",
+  "palabra": "先生",
+  "lectura": "せんせい",
+  "es": [
+   "maestro",
+   "profesor",
+   "doctor"
+  ],
+  "origenEs": "jmdict",
+  "en": "teacher, professor; master; doctor",
+  "jmdict": 1387990
+ },
+ {
+  "id": "洗濯|せんたく",
+  "palabra": "洗濯",
+  "lectura": "せんたく",
+  "es": [
+   "lavado de ropa",
+   "lavandería"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "lavar la ropa",
+   "hacer la colada",
+   "lavado"
+  ],
+  "problema": "«colada» es de España",
+  "en": "washing, laundry",
+  "jmdict": 1390980
+ },
+ {
+  "id": "全部|ぜんぶ",
+  "palabra": "全部",
+  "lectura": "ぜんぶ",
+  "es": [
+   "todo",
+   "entero",
+   "enteramente"
+  ],
+  "origenEs": "jmdict",
+  "en": "all, entire, whole",
+  "jmdict": 1396130
+ },
+ {
+  "id": "そう; そうです|そう; そうです",
+  "palabra": "そう; そうです",
+  "lectura": "そう; そうです",
+  "es": [
+   "así",
+   "sí, así es"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "acoplarse",
+   "ajustarse",
+   "satisfacer"
+  ],
+  "problema": "glosa incorrecta",
+  "en": "yes; appears, to be the case",
+  "jmdict": 1440810
+ },
+ {
+  "id": "掃除|そうじ (する)",
+  "palabra": "掃除",
+  "lectura": "そうじ (する)",
+  "es": [
+   "limpieza",
+   "hacer la limpieza",
+   "limpiar"
+  ],
+  "origenEs": "jmdict",
+  "en": "cleaning, sweeping",
+  "jmdict": 1399790
+ },
+ {
+  "id": "そうして; そして|そうして; そして",
+  "palabra": "そうして; そして",
+  "lectura": "そうして; そして",
+  "es": [
+   "y luego",
+   "y"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "y",
+   "como eso"
+  ],
+  "problema": "«como eso» poco natural",
+  "en": "and, like that",
+  "jmdict": 1612860
+ },
+ {
+  "id": "そこ|そこ",
+  "palabra": "そこ",
+  "lectura": "そこ",
+  "es": [
+   "ahí",
+   "ese lugar"
+  ],
+  "origenEs": "jmdict",
+  "en": "that place, there; bottom, sole",
+  "jmdict": 1006670
+ },
+ {
+  "id": "そちら|そちら",
+  "palabra": "そちら",
+  "lectura": "そちら",
+  "es": [
+   "por ahí",
+   "el otro"
+  ],
+  "origenEs": "jmdict",
+  "en": "over there",
+  "jmdict": 1006780
+ },
+ {
+  "id": "そっち|そっち",
+  "palabra": "そっち",
+  "lectura": "そっち",
+  "es": [
+   "por ahí",
+   "el otro"
+  ],
+  "origenEs": "jmdict",
+  "en": "over there",
+  "jmdict": 1006780
+ },
+ {
+  "id": "外|そと",
+  "palabra": "外",
+  "lectura": "そと",
+  "es": [
+   "afuera",
+   "exterior"
+  ],
+  "origenEs": "jmdict",
+  "en": "outside, exterior",
+  "jmdict": 1203250
+ },
+ {
+  "id": "その|その",
+  "palabra": "その",
+  "lectura": "その",
+  "es": [
+   "ese"
+  ],
+  "origenEs": "jmdict",
+  "en": "that",
+  "jmdict": 1006830
+ },
+ {
+  "id": "そば|そば",
+  "palabra": "そば",
+  "lectura": "そば",
+  "es": [
+   "al lado",
+   "junto a",
+   "cerca"
+  ],
+  "origenEs": "jmdict",
+  "en": "near, close, beside; Japanese traditional buckwheat noodle",
+  "jmdict": 1403830
+ },
+ {
+  "id": "空|そら",
+  "palabra": "空",
+  "lectura": "そら",
+  "es": [
+   "cielo",
+   "los cielos"
+  ],
+  "origenEs": "jmdict",
+  "en": "sky",
+  "jmdict": 1245290
+ },
+ {
+  "id": "それ|それ",
+  "palabra": "それ",
+  "lectura": "それ",
+  "es": [
+   "eso",
+   "ello",
+   "ése"
+  ],
+  "origenEs": "jmdict",
+  "en": "that one",
+  "jmdict": 1006970
+ },
+ {
+  "id": "それから|それから",
+  "palabra": "それから",
+  "lectura": "それから",
+  "es": [
+   "y entonces",
+   "después de eso"
+  ],
+  "origenEs": "jmdict",
+  "en": "and then, after that",
+  "jmdict": 1006980
+ },
+ {
+  "id": "それでは|それでは",
+  "palabra": "それでは",
+  "lectura": "それでは",
+  "es": [
+   "bueno, entonces..."
+  ],
+  "origenEs": "jmdict",
+  "en": "in that situation, well then...",
+  "jmdict": 1406050
+ },
+ {
+  "id": "～台|～だい",
+  "palabra": "～台",
+  "lectura": "～だい",
+  "es": [
+   "contador para máquinas"
+  ],
+  "origenEs": "jmdict",
+  "en": "counter for vehicles; machines",
+  "jmdict": 1412560
+ },
+ {
+  "id": "大学|だいがく",
+  "palabra": "大学",
+  "lectura": "だいがく",
+  "es": [
+   "universidad"
+  ],
+  "origenEs": "jmdict",
+  "en": "college; university",
+  "jmdict": 1413240
+ },
+ {
+  "id": "大使館|たいしかん",
+  "palabra": "大使館",
+  "lectura": "たいしかん",
+  "es": [
+   "embajada"
+  ],
+  "origenEs": "jmdict",
+  "en": "embassy",
+  "jmdict": 1413890
+ },
+ {
+  "id": "大丈夫|だいじょうぶ",
+  "palabra": "大丈夫",
+  "lectura": "だいじょうぶ",
+  "es": [
+   "estar bien",
+   "no hay problema"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "estar a salvo",
+   "estar bien",
+   "OK"
+  ],
+  "problema": "«estar a salvo» no es lo principal",
+  "en": "It's ok (all right); No need to worry; Everything is under control",
+  "jmdict": 1414150
+ },
+ {
+  "id": "大好き|だいすき",
+  "palabra": "大好き",
+  "lectura": "だいすき",
+  "es": [
+   "gustar mucho",
+   "encantar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "adorable",
+   "muy agradable",
+   "que gusta mucho"
+  ],
+  "problema": "«adorable» incorrecto",
+  "en": "very like-able, like very much",
+  "jmdict": 1413660
+ },
+ {
+  "id": "大切|たいせつ",
+  "palabra": "大切",
+  "lectura": "たいせつ",
+  "es": [
+   "importante",
+   "valioso",
+   "digno de cuidado"
+  ],
+  "origenEs": "jmdict",
+  "en": "important",
+  "jmdict": 1414340
+ },
+ {
+  "id": "台所|だいどころ",
+  "palabra": "台所",
+  "lectura": "だいどころ",
+  "es": [
+   "cocina"
+  ],
+  "origenEs": "jmdict",
+  "en": "kitchen",
+  "jmdict": 1412640
+ },
+ {
+  "id": "大変|たいへん",
+  "palabra": "大変",
+  "lectura": "たいへん",
+  "es": [
+   "difícil",
+   "terrible",
+   "muy"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "muy"
+  ],
+  "problema": "falta «difícil / terrible»",
+  "en": "very; difficult, hard",
+  "jmdict": 1415000
+ },
+ {
+  "id": "高い|たかい",
+  "palabra": "高い",
+  "lectura": "たかい",
+  "es": [
+   "alto",
+   "caro"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "alto",
+   "elevado"
+  ],
+  "problema": "falta «caro»",
+  "en": "tall, high; expensive",
+  "jmdict": 1283190
+ },
+ {
+  "id": "～だけ|～だけ",
+  "palabra": "～だけ",
+  "lectura": "～だけ",
+  "es": [
+   "solo",
+   "solamente"
+  ],
+  "origenEs": "jmdict",
+  "en": "only ~, just ~, as ~",
+  "jmdict": 1007340
+ },
+ {
+  "id": "沢山|たくさん",
+  "palabra": "沢山",
+  "lectura": "たくさん",
+  "es": [
+   "muchos",
+   "abundantes"
+  ],
+  "origenEs": "jmdict",
+  "en": "many, much",
+  "jmdict": 1415870
+ },
+ {
+  "id": "タクシー|タクシー",
+  "palabra": "タクシー",
+  "lectura": "タクシー",
+  "es": [
+   "taxi"
+  ],
+  "origenEs": "jmdict",
+  "en": "taxi",
+  "jmdict": 1076190
+ },
+ {
+  "id": "出す|だす",
+  "palabra": "出す",
+  "lectura": "だす",
+  "es": [
+   "sacar",
+   "entregar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "salir",
+   "sacar"
+  ],
+  "problema": "«salir» incorrecto para v.t.",
+  "en": "to take (something) out; to hand in (something)",
+  "jmdict": 1338180
+ },
+ {
+  "id": "～たち|～たち",
+  "palabra": "～たち",
+  "lectura": "～たち",
+  "es": [
+   "-s (marca el plural para palabras referentes a personas)",
+   "y sus amigos"
+  ],
+  "origenEs": "jmdict",
+  "en": "plural suffix",
+  "jmdict": 1416220
+ },
+ {
+  "id": "立つ|たつ",
+  "palabra": "立つ",
+  "lectura": "たつ",
+  "es": [
+   "estar de pie",
+   "ponerse de pie"
+  ],
+  "origenEs": "jmdict",
+  "en": "to stand up",
+  "jmdict": 1597040
+ },
+ {
+  "id": "たて|たて",
+  "palabra": "たて",
+  "lectura": "たて",
+  "es": [
+   "longitud",
+   "altura",
+   "verticalidad"
+  ],
+  "origenEs": "jmdict",
+  "en": "length, height",
+  "jmdict": 1335640
+ },
+ {
+  "id": "建物|たてもの",
+  "palabra": "建物",
+  "lectura": "たてもの",
+  "es": [
+   "edificio"
+  ],
+  "origenEs": "jmdict",
+  "en": "building",
+  "jmdict": 1257540
+ },
+ {
+  "id": "楽しい|たのしい",
+  "palabra": "楽しい",
+  "lectura": "たのしい",
+  "es": [
+   "divertido"
+  ],
+  "origenEs": "jmdict",
+  "en": "enjoyable, fun",
+  "jmdict": 1207240
+ },
+ {
+  "id": "頼む|たのむ",
+  "palabra": "頼む",
+  "lectura": "たのむ",
+  "es": [
+   "solicitar",
+   "pedir",
+   "rogar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to request, to ask (a favor)",
+  "jmdict": 1548370
+ },
+ {
+  "id": "たばこ|たばこ",
+  "palabra": "たばこ",
+  "lectura": "たばこ",
+  "es": [
+   "tabaco",
+   "cigarrillos"
+  ],
+  "origenEs": "jmdict",
+  "en": "tobacco, cigarettes",
+  "jmdict": 1597150
+ },
+ {
+  "id": "多分|たぶん",
+  "palabra": "多分",
+  "lectura": "たぶん",
+  "es": [
+   "tal vez",
+   "quizás",
+   "probablemente"
+  ],
+  "origenEs": "jmdict",
+  "en": "perhaps, probably, maybe",
+  "jmdict": 1407980
+ },
+ {
+  "id": "食べ物|たべもの",
+  "palabra": "食べ物",
+  "lectura": "たべもの",
+  "es": [
+   "comida"
+  ],
+  "origenEs": "jmdict",
+  "en": "food",
+  "jmdict": 1358340
+ },
+ {
+  "id": "食べる|たべる",
+  "palabra": "食べる",
+  "lectura": "たべる",
+  "es": [
+   "comer"
+  ],
+  "origenEs": "jmdict",
+  "en": "to eat",
+  "jmdict": 1358280
+ },
+ {
+  "id": "卵|たまご",
+  "palabra": "卵",
+  "lectura": "たまご",
+  "es": [
+   "huevo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "engendro",
+   "hueva"
+  ],
+  "problema": "«engendro;hueva» incorrecto",
+  "en": "egg",
+  "jmdict": 1549140
+ },
+ {
+  "id": "誰|だれ",
+  "palabra": "誰",
+  "lectura": "だれ",
+  "es": [
+   "quién"
+  ],
+  "origenEs": "jmdict",
+  "en": "who",
+  "jmdict": 1416830
+ },
+ {
+  "id": "誰か|だれか",
+  "palabra": "誰か",
+  "lectura": "だれか",
+  "es": [
+   "alguien"
+  ],
+  "origenEs": "jmdict",
+  "en": "someone",
+  "jmdict": 1416840
+ },
+ {
+  "id": "誕生日|たんじょうび",
+  "palabra": "誕生日",
+  "lectura": "たんじょうび",
+  "es": [
+   "cumpleaños"
+  ],
+  "origenEs": "jmdict",
+  "en": "birthday",
+  "jmdict": 1419110
+ },
+ {
+  "id": "段々|だんだん",
+  "palabra": "段々",
+  "lectura": "だんだん",
+  "es": [
+   "gradualmente"
+  ],
+  "origenEs": "jmdict",
+  "en": "gradually, by degrees",
+  "jmdict": 1597350
+ },
+ {
+  "id": "小さい|ちいさい",
+  "palabra": "小さい",
+  "lectura": "ちいさい",
+  "es": [
+   "pequeño"
+  ],
+  "origenEs": "jmdict",
+  "en": "small, little",
+  "jmdict": 1347750
+ },
+ {
+  "id": "小さな|ちいさな",
+  "palabra": "小さな",
+  "lectura": "ちいさな",
+  "es": [
+   "pequeño"
+  ],
+  "origenEs": "jmdict",
+  "en": "small, little",
+  "jmdict": 2136180
+ },
+ {
+  "id": "近い|ちかい",
+  "palabra": "近い",
+  "lectura": "ちかい",
+  "es": [
+   "cerca"
+  ],
+  "origenEs": "jmdict",
+  "en": "near, close by, short",
+  "jmdict": 1242130
+ },
+ {
+  "id": "違う|ちがう",
+  "palabra": "違う",
+  "lectura": "ちがう",
+  "es": [
+   "ser diferente",
+   "estar equivocado"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "discrepar",
+   "diferir",
+   "disentir (con)"
+  ],
+  "problema": "«discrepar;disentir» son raros",
+  "en": "to be different; to differ; wrong",
+  "jmdict": 1158880
+ },
+ {
+  "id": "近く|ちかく",
+  "palabra": "近く",
+  "lectura": "ちかく",
+  "es": [
+   "cerca",
+   "vecindario"
+  ],
+  "origenEs": "jmdict",
+  "en": "nearby; in the neighborhood",
+  "jmdict": 1242160
+ },
+ {
+  "id": "地下鉄|ちかてつ",
+  "palabra": "地下鉄",
+  "lectura": "ちかてつ",
+  "es": [
+   "metro"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tren subterráneo",
+   "metro subterráneo"
+  ],
+  "problema": "glosa larga",
+  "en": "underground train, subway",
+  "jmdict": 1420900
+ },
+ {
+  "id": "地図|ちず",
+  "palabra": "地図",
+  "lectura": "ちず",
+  "es": [
+   "mapa"
+  ],
+  "origenEs": "jmdict",
+  "en": "a map",
+  "jmdict": 1421290
+ },
+ {
+  "id": "父|ちち",
+  "palabra": "父",
+  "lectura": "ちち",
+  "es": [
+   "padre"
+  ],
+  "origenEs": "jmdict",
+  "en": "(my) father",
+  "jmdict": 1497610
+ },
+ {
+  "id": "茶色|ちゃいろ",
+  "palabra": "茶色",
+  "lectura": "ちゃいろ",
+  "es": [
+   "marrón",
+   "café"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "café (castaño, marrón) claro"
+  ],
+  "problema": "«café claro» ambiguo",
+  "en": "brown",
+  "jmdict": 1422720
+ },
+ {
+  "id": "茶碗|ちゃわん",
+  "palabra": "茶碗",
+  "lectura": "ちゃわん",
+  "es": [
+   "tazón de arroz",
+   "taza"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "taza",
+   "tazón",
+   "tazón (lit tazón de té)"
+  ],
+  "problema": "sentido principal: tazón de arroz",
+  "en": "rice bowl",
+  "jmdict": 1597530
+ },
+ {
+  "id": "～中|～ちゅう",
+  "palabra": "～中",
+  "lectura": "～ちゅう",
+  "es": [
+   "durante todo ~"
+  ],
+  "origenEs": "jmdict",
+  "en": "during, while ~ing",
+  "jmdict": 1620400
+ },
+ {
+  "id": "丁度|ちょうど",
+  "palabra": "丁度",
+  "lectura": "ちょうど",
+  "es": [
+   "exactamente",
+   "precisamente",
+   "justamente"
+  ],
+  "origenEs": "jmdict",
+  "en": "just, right, exactly",
+  "jmdict": 1427340
+ },
+ {
+  "id": "ちょっと|ちょっと",
+  "palabra": "ちょっと",
+  "lectura": "ちょっと",
+  "es": [
+   "un poco",
+   "un momento"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "un momento"
+  ],
+  "problema": "«un momento» no es lo principal",
+  "en": "a little, somewhat; just a little, somewhat",
+  "jmdict": 1163940
+ },
+ {
+  "id": "一日|ついたち",
+  "palabra": "一日",
+  "lectura": "ついたち",
+  "es": [
+   "primer día del mes",
+   "día uno"
+  ],
+  "origenEs": "jmdict",
+  "en": "one day; first day of the month",
+  "jmdict": 2225040
+ },
+ {
+  "id": "使う|つかう",
+  "palabra": "使う",
+  "lectura": "つかう",
+  "es": [
+   "usar",
+   "emplear"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "despachar",
+   "enviar",
+   "donar"
+  ],
+  "problema": "glosa incorrecta",
+  "en": "to use",
+  "jmdict": 1305990
+ },
+ {
+  "id": "疲れる|つかれる",
+  "palabra": "疲れる",
+  "lectura": "つかれる",
+  "es": [
+   "cansarse"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cansar",
+   "cansarse de"
+  ],
+  "problema": "«cansar» es transitivo",
+  "en": "to get (become) tired; to become fatigued",
+  "jmdict": 1483740
+ },
+ {
+  "id": "次|つぎ",
+  "palabra": "次",
+  "lectura": "つぎ",
+  "es": [
+   "siguiente",
+   "próximo",
+   "subsiguiente"
+  ],
+  "origenEs": "jmdict",
+  "en": "next",
+  "jmdict": 1316380
+ },
+ {
+  "id": "着く|つく",
+  "palabra": "着く",
+  "lectura": "つく",
+  "es": [
+   "llegar a",
+   "alcanzar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to arrive at, to reach",
+  "jmdict": 1422970
+ },
+ {
+  "id": "机|つくえ",
+  "palabra": "机",
+  "lectura": "つくえ",
+  "es": [
+   "escritorio"
+  ],
+  "origenEs": "jmdict",
+  "en": "desk",
+  "jmdict": 1220210
+ },
+ {
+  "id": "作る|つくる",
+  "palabra": "作る",
+  "lectura": "つくる",
+  "es": [
+   "hacer",
+   "crear",
+   "fabricar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to make, to create",
+  "jmdict": 1597890
+ },
+ {
+  "id": "つける|つける",
+  "palabra": "つける",
+  "lectura": "つける",
+  "es": [
+   "encender",
+   "poner",
+   "pegar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "adherir",
+   "pegar",
+   "añadir"
+  ],
+  "problema": "glosa copiada de otro sentido",
+  "en": "to turn on (e.g., a light); to take",
+  "jmdict": 1495770
+ },
+ {
+  "id": "勤める|つとめる",
+  "palabra": "勤める",
+  "lectura": "つとめる",
+  "es": [
+   "trabajar en",
+   "estar empleado"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "servir",
+   "estar empleado"
+  ],
+  "problema": "«servir» poco natural",
+  "en": "to work (for)",
+  "jmdict": 1240825
+ },
+ {
+  "id": "つまらない|つまらない",
+  "palabra": "つまらない",
+  "lectura": "つまらない",
+  "es": [
+   "aburrido",
+   "insignificante"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "insignificante",
+   "aburrido",
+   "frívolo"
+  ],
+  "problema": "«aburrido» debe ir primero",
+  "en": "boring, dull; insignificant",
+  "jmdict": 1008190
+ },
+ {
+  "id": "冷たい|つめたい",
+  "palabra": "冷たい",
+  "lectura": "つめたい",
+  "es": [
+   "frío"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "fresco",
+   "frío",
+   "congelado"
+  ],
+  "problema": "«fresco;congelado» imprecisos",
+  "en": "cold (things, people)",
+  "jmdict": 1556730
+ },
+ {
+  "id": "強い|つよい",
+  "palabra": "強い",
+  "lectura": "つよい",
+  "es": [
+   "fuerte",
+   "poderoso",
+   "potente"
+  ],
+  "origenEs": "jmdict",
+  "en": "strong, powerful",
+  "jmdict": 1236070
+ },
+ {
+  "id": "手|て",
+  "palabra": "手",
+  "lectura": "て",
+  "es": [
+   "mano"
+  ],
+  "origenEs": "jmdict",
+  "en": "hand",
+  "jmdict": 1327190
+ },
+ {
+  "id": "テープ|テープ",
+  "palabra": "テープ",
+  "lectura": "テープ",
+  "es": [
+   "cinta"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cinta",
+   "(tape)"
+  ],
+  "problema": "«(tape)» en la glosa",
+  "en": "tape",
+  "jmdict": 1078750
+ },
+ {
+  "id": "テープレコーダー|テープレコーダー",
+  "palabra": "テープレコーダー",
+  "lectura": "テープレコーダー",
+  "es": [
+   "grabadora"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "videograbadora",
+   "(tape recorder)"
+  ],
+  "problema": "«videograbadora» incorrecto",
+  "en": "tape recorder",
+  "jmdict": 1078810
+ },
+ {
+  "id": "テーブル|テーブル",
+  "palabra": "テーブル",
+  "lectura": "テーブル",
+  "es": [
+   "mesa"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "mesa (del inglés \"table\")"
+  ],
+  "problema": "nota «del inglés»",
+  "en": "table",
+  "jmdict": 1078630
+ },
+ {
+  "id": "出かける|でかける",
+  "palabra": "出かける",
+  "lectura": "でかける",
+  "es": [
+   "salir",
+   "irse"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "partir",
+   "salir (e.g. afuera, de excursión)",
+   "ponerse en marcha"
+  ],
+  "problema": "glosa con paréntesis",
+  "en": "to go out; to depart",
+  "jmdict": 1598550
+ },
+ {
+  "id": "手紙|てがみ",
+  "palabra": "手紙",
+  "lectura": "てがみ",
+  "es": [
+   "carta"
+  ],
+  "origenEs": "jmdict",
+  "en": "letter",
+  "jmdict": 1327720
+ },
+ {
+  "id": "できる|できる",
+  "palabra": "できる",
+  "lectura": "できる",
+  "es": [
+   "poder",
+   "ser capaz de"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "estar libre (en posición) para hacer algo",
+   "estar al corriente de la tarea"
+  ],
+  "problema": "glosa incorrecta",
+  "en": "to be able to (to accomplish)",
+  "jmdict": 1340450
+ },
+ {
+  "id": "出口|でぐち",
+  "palabra": "出口",
+  "lectura": "でぐち",
+  "es": [
+   "salida"
+  ],
+  "origenEs": "jmdict",
+  "en": "an exit",
+  "jmdict": 1338850
+ },
+ {
+  "id": "テスト|テスト",
+  "palabra": "テスト",
+  "lectura": "テスト",
+  "es": [
+   "test",
+   "examen"
+  ],
+  "origenEs": "jmdict",
+  "en": "test",
+  "jmdict": 1079760
+ },
+ {
+  "id": "では|では",
+  "palabra": "では",
+  "lectura": "では",
+  "es": [
+   "Entonces",
+   "Pues bien"
+  ],
+  "origenEs": "jmdict",
+  "en": "then, well, so",
+  "jmdict": 1008450
+ },
+ {
+  "id": "デパート|デパート",
+  "palabra": "デパート",
+  "lectura": "デパート",
+  "es": [
+   "grandes almacenes",
+   "tienda departamental"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "centro comercial",
+   "grandes almacenes"
+  ],
+  "problema": "«centro comercial» es otra cosa",
+  "en": "(abbr.) department store",
+  "jmdict": 1083590
+ },
+ {
+  "id": "でも|でも",
+  "palabra": "でも",
+  "lectura": "でも",
+  "es": [
+   "pero",
+   "sin embargo",
+   "todavía"
+  ],
+  "origenEs": "jmdict",
+  "en": "but, however",
+  "jmdict": 1008460
+ },
+ {
+  "id": "出る|でる",
+  "palabra": "出る",
+  "lectura": "でる",
+  "es": [
+   "salir",
+   "aparecer"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "aparecer"
+  ],
+  "problema": "«aparecer» no es lo principal",
+  "en": "to appear, to leave",
+  "jmdict": 1338240
+ },
+ {
+  "id": "テレビ|テレビ",
+  "palabra": "テレビ",
+  "lectura": "テレビ",
+  "es": [
+   "televisión",
+   "TV"
+  ],
+  "origenEs": "jmdict",
+  "en": "television, TV",
+  "jmdict": 1080510
+ },
+ {
+  "id": "天気|てんき",
+  "palabra": "天気",
+  "lectura": "てんき",
+  "es": [
+   "tiempo",
+   "clima"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "clima",
+   "los elementos"
+  ],
+  "problema": "«los elementos» arcaico",
+  "en": "weather",
+  "jmdict": 1438690
+ },
+ {
+  "id": "電気|でんき",
+  "palabra": "電気",
+  "lectura": "でんき",
+  "es": [
+   "electricidad"
+  ],
+  "origenEs": "jmdict",
+  "en": "electricity, (electric) light",
+  "jmdict": 1443000
+ },
+ {
+  "id": "電車|でんしゃ",
+  "palabra": "電車",
+  "lectura": "でんしゃ",
+  "es": [
+   "tren (eléctrico)"
+  ],
+  "origenEs": "jmdict",
+  "en": "electric train",
+  "jmdict": 1443530
+ },
+ {
+  "id": "電話|でんわ",
+  "palabra": "電話",
+  "lectura": "でんわ",
+  "es": [
+   "teléfono"
+  ],
+  "origenEs": "jmdict",
+  "en": "a telephone",
+  "jmdict": 1443840
+ },
+ {
+  "id": "戸|と",
+  "palabra": "戸",
+  "lectura": "と",
+  "es": [
+   "puerta"
+  ],
+  "origenEs": "jmdict",
+  "en": "door (Japanese style)",
+  "jmdict": 1266970
+ },
+ {
+  "id": "～度|～ど",
+  "palabra": "～度",
+  "lectura": "～ど",
+  "es": [
+   "veces"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "~ vez",
+   "ces"
+  ],
+  "problema": "glosa con tilde de plural rara",
+  "en": "counter for occurrences; ~ degree; ~ point",
+  "jmdict": 1445160
+ },
+ {
+  "id": "ドア|ドア",
+  "palabra": "ドア",
+  "lectura": "ドア",
+  "es": [
+   "puerta"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "puerta estilo occidental (del inglés \"door\")"
+  ],
+  "problema": "nota «del inglés»",
+  "en": "door (Western style)",
+  "jmdict": 1087820
+ },
+ {
+  "id": "トイレ|トイレ",
+  "palabra": "トイレ",
+  "lectura": "トイレ",
+  "es": [
+   "baño",
+   "sanitario"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "sanitario",
+   "(am) baño",
+   "aseo"
+  ],
+  "problema": "notas «(eng:)(am)»",
+  "en": "bathroom; toilet",
+  "jmdict": 1084810
+ },
+ {
+  "id": "どう|どう",
+  "palabra": "どう",
+  "lectura": "どう",
+  "es": [
+   "¿cómo?",
+   "¿qué tal?"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "como",
+   "en que forma",
+   "qué acerca de"
+  ],
+  "problema": "sin signos; glosa imprecisa",
+  "en": "how, in what way",
+  "jmdict": 1008910
+ },
+ {
+  "id": "どうして|どうして",
+  "palabra": "どうして",
+  "lectura": "どうして",
+  "es": [
+   "¿por qué?",
+   "por qué razón",
+   "cómo"
+  ],
+  "origenEs": "jmdict",
+  "en": "why, for what reason",
+  "jmdict": 1466940
+ },
+ {
+  "id": "どうぞ|どうぞ",
+  "palabra": "どうぞ",
+  "lectura": "どうぞ",
+  "es": [
+   "adelante",
+   "con confianza"
+  ],
+  "origenEs": "jmdict",
+  "en": "please, kindly, by all means",
+  "jmdict": 1189130
+ },
+ {
+  "id": "動物|どうぶつ",
+  "palabra": "動物",
+  "lectura": "どうぶつ",
+  "es": [
+   "animal"
+  ],
+  "origenEs": "jmdict",
+  "en": "animal",
+  "jmdict": 1451470
+ },
+ {
+  "id": "どうも|どうも",
+  "palabra": "どうも",
+  "lectura": "どうも",
+  "es": [
+   "¡gracias!"
+  ],
+  "origenEs": "jmdict",
+  "en": "Thank you; somehow; no matter how hard one may try",
+  "jmdict": 1009000
+ },
+ {
+  "id": "十|(〜を) とお",
+  "palabra": "十",
+  "lectura": "(〜を) とお",
+  "es": [
+   "diez"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "10",
+   "diez"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "ten (~)",
+  "jmdict": 1579840
+ },
+ {
+  "id": "遠い|とおい",
+  "palabra": "遠い",
+  "lectura": "とおい",
+  "es": [
+   "lejos",
+   "distante"
+  ],
+  "origenEs": "jmdict",
+  "en": "far (away), distant",
+  "jmdict": 1177800
+ },
+ {
+  "id": "十日|とおか",
+  "palabra": "十日",
+  "lectura": "とおか",
+  "es": [
+   "décimo día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "ten days; tenth day of the month",
+  "jmdict": 1335000
+ },
+ {
+  "id": "～時|～とき",
+  "palabra": "～時",
+  "lectura": "～とき",
+  "es": [
+   "cuando",
+   "en el momento de"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tiempo",
+   "hora"
+  ],
+  "problema": "glosa incorrecta (es «cuando»)",
+  "en": "at the time of ~",
+  "jmdict": 1315840
+ },
+ {
+  "id": "時々|ときどき",
+  "palabra": "時々",
+  "lectura": "ときどき",
+  "es": [
+   "a veces"
+  ],
+  "origenEs": "jmdict",
+  "en": "sometimes",
+  "jmdict": 1598680
+ },
+ {
+  "id": "時計|とけい",
+  "palabra": "時計",
+  "lectura": "とけい",
+  "es": [
+   "reloj",
+   "reloj de mano"
+  ],
+  "origenEs": "jmdict",
+  "en": "a watch; a clock",
+  "jmdict": 1316140
+ },
+ {
+  "id": "どこ|どこ",
+  "palabra": "どこ",
+  "lectura": "どこ",
+  "es": [
+   "dónde",
+   "en que lugar",
+   "donde"
+  ],
+  "origenEs": "jmdict",
+  "en": "where, what place",
+  "jmdict": 1577140
+ },
+ {
+  "id": "所|ところ",
+  "palabra": "所",
+  "lectura": "ところ",
+  "es": [
+   "lugar",
+   "sitio",
+   "escenario"
+  ],
+  "origenEs": "jmdict",
+  "en": "place",
+  "jmdict": 1343100
+ },
+ {
+  "id": "年|とし",
+  "palabra": "年",
+  "lectura": "とし",
+  "es": [
+   "año",
+   "edad"
+  ],
+  "origenEs": "jmdict",
+  "en": "year, age",
+  "jmdict": 1468060
+ },
+ {
+  "id": "図書館|としょかん",
+  "palabra": "図書館",
+  "lectura": "としょかん",
+  "es": [
+   "biblioteca"
+  ],
+  "origenEs": "jmdict",
+  "en": "library",
+  "jmdict": 1370420
+ },
+ {
+  "id": "どちら|どちら",
+  "palabra": "どちら",
+  "lectura": "どちら",
+  "es": [
+   "cuál (de dos)",
+   "quién",
+   "¿cuál?"
+  ],
+  "origenEs": "jmdict",
+  "en": "which (one) (way); where (polite)",
+  "jmdict": 1189360
+ },
+ {
+  "id": "どっち|どっち",
+  "palabra": "どっち",
+  "lectura": "どっち",
+  "es": [
+   "cuál (de dos)",
+   "quién",
+   "¿cuál?"
+  ],
+  "origenEs": "jmdict",
+  "en": "which one, which way",
+  "jmdict": 1189360
+ },
+ {
+  "id": "とても|とても",
+  "palabra": "とても",
+  "lectura": "とても",
+  "es": [
+   "mucho",
+   "muchísimo",
+   "extremadamente"
+  ],
+  "origenEs": "jmdict",
+  "en": "very (much), greatly, exceedingly",
+  "jmdict": 1008630
+ },
+ {
+  "id": "どなた|どなた",
+  "palabra": "どなた",
+  "lectura": "どなた",
+  "es": [
+   "quién"
+  ],
+  "origenEs": "jmdict",
+  "en": "who",
+  "jmdict": 1189370
+ },
+ {
+  "id": "隣|となり",
+  "palabra": "隣",
+  "lectura": "となり",
+  "es": [
+   "vecino",
+   "al lado (esp. viviendo en la casa de a lado)"
+  ],
+  "origenEs": "jmdict",
+  "en": "next to, next door to",
+  "jmdict": 1555830
+ },
+ {
+  "id": "どの|どの",
+  "palabra": "どの",
+  "lectura": "どの",
+  "es": [
+   "cuál"
+  ],
+  "origenEs": "jmdict",
+  "en": "which",
+  "jmdict": 1920240
+ },
+ {
+  "id": "飛ぶ|とぶ",
+  "palabra": "飛ぶ",
+  "lectura": "とぶ",
+  "es": [
+   "volar",
+   "saltar",
+   "rebotar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to fly, to hop",
+  "jmdict": 1429700
+ },
+ {
+  "id": "止まる|とまる",
+  "palabra": "止まる",
+  "lectura": "とまる",
+  "es": [
+   "detenerse",
+   "permanecer",
+   "quedarse"
+  ],
+  "origenEs": "jmdict",
+  "en": "to come to a halt",
+  "jmdict": 1310620
+ },
+ {
+  "id": "友達|ともだち",
+  "palabra": "友達",
+  "lectura": "ともだち",
+  "es": [
+   "amigo",
+   "compañero"
+  ],
+  "origenEs": "jmdict",
+  "en": "friend",
+  "jmdict": 1540170
+ },
+ {
+  "id": "土曜日|どようび",
+  "palabra": "土曜日",
+  "lectura": "どようび",
+  "es": [
+   "sábado"
+  ],
+  "origenEs": "jmdict",
+  "en": "Saturday",
+  "jmdict": 1445590
+ },
+ {
+  "id": "鳥|とり",
+  "palabra": "鳥",
+  "lectura": "とり",
+  "es": [
+   "pájaro",
+   "ave"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pájaro",
+   "ave",
+   "corral"
+  ],
+  "problema": "«corral» incorrecto",
+  "en": "chicken (lit., bird)",
+  "jmdict": 1430250
+ },
+ {
+  "id": "鶏肉|とりにく",
+  "palabra": "鶏肉",
+  "lectura": "とりにく",
+  "es": [
+   "carne de pollo",
+   "carne de gallina"
+  ],
+  "origenEs": "jmdict",
+  "en": "chicken meat",
+  "jmdict": 1253020
+ },
+ {
+  "id": "取る|とる",
+  "palabra": "取る",
+  "lectura": "とる",
+  "es": [
+   "tomar",
+   "coger",
+   "cosechar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to take (a class); to get (a grade)",
+  "jmdict": 1326980
+ },
+ {
+  "id": "撮る|とる",
+  "palabra": "撮る",
+  "lectura": "とる",
+  "es": [
+   "grabar (vídeo, audio, etc.)",
+   "tomar (foto)",
+   "hacer (película)"
+  ],
+  "origenEs": "jmdict",
+  "en": "to take (a photo), to make (a film)",
+  "jmdict": 1298790
+ },
+ {
+  "id": "どれ|どれ",
+  "palabra": "どれ",
+  "lectura": "どれ",
+  "es": [
+   "cuál (3 o más)"
+  ],
+  "origenEs": "jmdict",
+  "en": "which one",
+  "jmdict": 1009290
+ },
+ {
+  "id": "どんな|どんな",
+  "palabra": "どんな",
+  "lectura": "どんな",
+  "es": [
+   "como qué",
+   "qué tipo de"
+  ],
+  "origenEs": "jmdict",
+  "en": "what, what kind of",
+  "jmdict": 1009330
+ },
+ {
+  "id": "ない|ない",
+  "palabra": "ない",
+  "lectura": "ない",
+  "es": [
+   "no hay",
+   "no tiene"
+  ],
+  "origenEs": "jmdict",
+  "en": "there isn't, doesn't have",
+  "jmdict": 1529520
+ },
+ {
+  "id": "ナイフ|ナイフ",
+  "palabra": "ナイフ",
+  "lectura": "ナイフ",
+  "es": [
+   "cuchillo"
+  ],
+  "origenEs": "jmdict",
+  "en": "knife",
+  "jmdict": 1089890
+ },
+ {
+  "id": "中|なか",
+  "palabra": "中",
+  "lectura": "なか",
+  "es": [
+   "adentro",
+   "dentro",
+   "medio"
+  ],
+  "origenEs": "jmdict",
+  "en": "inside, middle, among",
+  "jmdict": 1423310
+ },
+ {
+  "id": "長い|ながい",
+  "palabra": "長い",
+  "lectura": "ながい",
+  "es": [
+   "largo",
+   "mucho tiempo",
+   "prolongado"
+  ],
+  "origenEs": "jmdict",
+  "en": "long, lengthy",
+  "jmdict": 1429750
+ },
+ {
+  "id": "鳴く|なく",
+  "palabra": "鳴く",
+  "lectura": "なく",
+  "es": [
+   "cantar (pájaros)",
+   "maullar",
+   "mugir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to make sound (animal)",
+  "jmdict": 1532870
+ },
+ {
+  "id": "無くす|なくす",
+  "palabra": "無くす",
+  "lectura": "なくす",
+  "es": [
+   "perder algo"
+  ],
+  "origenEs": "jmdict",
+  "en": "to lose something",
+  "jmdict": 1529530
+ },
+ {
+  "id": "なぜ|なぜ",
+  "palabra": "なぜ",
+  "lectura": "なぜ",
+  "es": [
+   "por qué",
+   "cómo"
+  ],
+  "origenEs": "jmdict",
+  "en": "why (same as どうして)",
+  "jmdict": 1577120
+ },
+ {
+  "id": "夏|なつ",
+  "palabra": "夏",
+  "lectura": "なつ",
+  "es": [
+   "verano"
+  ],
+  "origenEs": "jmdict",
+  "en": "summer",
+  "jmdict": 1191320
+ },
+ {
+  "id": "夏休み|なつやすみ",
+  "palabra": "夏休み",
+  "lectura": "なつやすみ",
+  "es": [
+   "vacaciones de verano"
+  ],
+  "origenEs": "jmdict",
+  "en": "summer vacation",
+  "jmdict": 1191420
+ },
+ {
+  "id": "～など|～など",
+  "palabra": "～など",
+  "lectura": "～など",
+  "es": [
+   "etcétera",
+   "etc.",
+   "y otros"
+  ],
+  "origenEs": "jmdict",
+  "en": "et cetera",
+  "jmdict": 1582300
+ },
+ {
+  "id": "七つ|ななつ",
+  "palabra": "七つ",
+  "lectura": "ななつ",
+  "es": [
+   "siete"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "7",
+   "siete"
+  ],
+  "problema": "glosa con dígito",
+  "en": "seven things",
+  "jmdict": 1319220
+ },
+ {
+  "id": "何|なん; なに",
+  "palabra": "何",
+  "lectura": "なん; なに",
+  "es": [
+   "qué"
+  ],
+  "origenEs": "jmdict",
+  "en": "what",
+  "jmdict": 1577100
+ },
+ {
+  "id": "七日|なのか",
+  "palabra": "七日",
+  "lectura": "なのか",
+  "es": [
+   "siete días",
+   "día siete"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "séptimo día del año"
+  ],
+  "problema": "«séptimo día del año» incorrecto",
+  "en": "seven days; seventh day (of the month)",
+  "jmdict": 1579630
+ },
+ {
+  "id": "名前|なまえ",
+  "palabra": "名前",
+  "lectura": "なまえ",
+  "es": [
+   "nombre"
+  ],
+  "origenEs": "jmdict",
+  "en": "name",
+  "jmdict": 1531710
+ },
+ {
+  "id": "習う|ならう",
+  "palabra": "習う",
+  "lectura": "ならう",
+  "es": [
+   "aprender"
+  ],
+  "origenEs": "jmdict",
+  "en": "to learn",
+  "jmdict": 1333070
+ },
+ {
+  "id": "並ぶ|ならぶ",
+  "palabra": "並ぶ",
+  "lectura": "ならぶ",
+  "es": [
+   "hacer fila",
+   "alinearse"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "poner en fila"
+  ],
+  "problema": "«poner en fila» es transitivo",
+  "en": "to line up, to stand in a line (v.i.)",
+  "jmdict": 1508380
+ },
+ {
+  "id": "並べる|ならべる",
+  "palabra": "並べる",
+  "lectura": "ならべる",
+  "es": [
+   "alinear"
+  ],
+  "origenEs": "jmdict",
+  "en": "to put (things) side by side; to line up",
+  "jmdict": 1508390
+ },
+ {
+  "id": "なる|なる",
+  "palabra": "なる",
+  "lectura": "なる",
+  "es": [
+   "convertirse en",
+   "llegar a ser",
+   "ponerse"
+  ],
+  "origenEs": "jmdict",
+  "en": "to become",
+  "jmdict": 1375610
+ },
+ {
+  "id": "何～|なん～",
+  "palabra": "何～",
+  "lectura": "なん～",
+  "es": [
+   "qué"
+  ],
+  "origenEs": "jmdict",
+  "en": "what sort of ~",
+  "jmdict": 2846738
+ },
+ {
+  "id": "二|に",
+  "palabra": "二",
+  "lectura": "に",
+  "es": [
+   "dos"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "dos"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "two",
+  "jmdict": 1461140
+ },
+ {
+  "id": "にぎやか|にぎやか",
+  "palabra": "にぎやか",
+  "lectura": "にぎやか",
+  "es": [
+   "animado",
+   "bullicioso"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "ocupado"
+  ],
+  "problema": "«ocupado» incorrecto",
+  "en": "bustling, busy",
+  "jmdict": 1463480
+ },
+ {
+  "id": "肉|にく",
+  "palabra": "肉",
+  "lectura": "にく",
+  "es": [
+   "carne"
+  ],
+  "origenEs": "jmdict",
+  "en": "meat",
+  "jmdict": 1463520
+ },
+ {
+  "id": "西|にし",
+  "palabra": "西",
+  "lectura": "にし",
+  "es": [
+   "oeste",
+   "occidente",
+   "poniente"
+  ],
+  "origenEs": "jmdict",
+  "en": "west",
+  "jmdict": 1380840
+ },
+ {
+  "id": "～日|～にち",
+  "palabra": "～日",
+  "lectura": "～にち",
+  "es": [
+   "día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "~ day of the month, for ~ days",
+  "jmdict": 2083100
+ },
+ {
+  "id": "日曜日|にちようび",
+  "palabra": "日曜日",
+  "lectura": "にちようび",
+  "es": [
+   "domingo"
+  ],
+  "origenEs": "jmdict",
+  "en": "Sunday",
+  "jmdict": 1464900
+ },
+ {
+  "id": "荷物|にもつ",
+  "palabra": "荷物",
+  "lectura": "にもつ",
+  "es": [
+   "equipaje"
+  ],
+  "origenEs": "jmdict",
+  "en": "luggage; baggage",
+  "jmdict": 1195430
+ },
+ {
+  "id": "ニュース|ニュース",
+  "palabra": "ニュース",
+  "lectura": "ニュース",
+  "es": [
+   "noticias"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "noticias"
+  ],
+  "problema": "nota «(eng: news)»",
+  "en": "news",
+  "jmdict": 1091500
+ },
+ {
+  "id": "庭|にわ",
+  "palabra": "庭",
+  "lectura": "にわ",
+  "es": [
+   "jardín"
+  ],
+  "origenEs": "jmdict",
+  "en": "garden",
+  "jmdict": 1436130
+ },
+ {
+  "id": "～人|～にん",
+  "palabra": "～人",
+  "lectura": "～にん",
+  "es": [
+   "persona (contador para personas)"
+  ],
+  "origenEs": "jmdict",
+  "en": "counter for people",
+  "jmdict": 2149890
+ },
+ {
+  "id": "脱ぐ|ぬぐ",
+  "palabra": "脱ぐ",
+  "lectura": "ぬぐ",
+  "es": [
+   "quitarse (ropa)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "desvestir",
+   "quitar (ropa)"
+  ],
+  "problema": "«desvestir» es otro verbo",
+  "en": "to take off (clothes)",
+  "jmdict": 1416400
+ },
+ {
+  "id": "温い|ぬるい",
+  "palabra": "温い",
+  "lectura": "ぬるい",
+  "es": [
+   "tibio",
+   "templado",
+   "cálido"
+  ],
+  "origenEs": "jmdict",
+  "en": "lukewarm",
+  "jmdict": 1183300
+ },
+ {
+  "id": "ネクタイ|ネクタイ",
+  "palabra": "ネクタイ",
+  "lectura": "ネクタイ",
+  "es": [
+   "corbata"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "corbata"
+  ],
+  "problema": "nota «(eng:)»",
+  "en": "tie, necktie",
+  "jmdict": 1092820
+ },
+ {
+  "id": "猫|ねこ",
+  "palabra": "猫",
+  "lectura": "ねこ",
+  "es": [
+   "gato"
+  ],
+  "origenEs": "jmdict",
+  "en": "cat",
+  "jmdict": 1467640
+ },
+ {
+  "id": "寝る|ねる",
+  "palabra": "寝る",
+  "lectura": "ねる",
+  "es": [
+   "acostarse",
+   "dormir"
+  ],
+  "origenEs": "jmdict",
+  "en": "to sleep; to go to sleep; to go to bed",
+  "jmdict": 1360010
+ },
+ {
+  "id": "～年|～ねん",
+  "palabra": "～年",
+  "lectura": "～ねん",
+  "es": [
+   "años"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "año",
+   "antigüedad",
+   "horas (de oficina)"
+  ],
+  "problema": "«horas (de oficina)» incorrecto",
+  "en": "~ years",
+  "jmdict": 2084840
+ },
+ {
+  "id": "ノート|ノート",
+  "palabra": "ノート",
+  "lectura": "ノート",
+  "es": [
+   "cuaderno"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "libreta",
+   "cuaderno",
+   "(notebook)"
+  ],
+  "problema": "«(notebook)» en la glosa",
+  "en": "notebook",
+  "jmdict": 1093450
+ },
+ {
+  "id": "登る|のぼる",
+  "palabra": "登る",
+  "lectura": "のぼる",
+  "es": [
+   "subir",
+   "escalar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "elevar",
+   "ascender",
+   "subir"
+  ],
+  "problema": "«elevar» raro",
+  "en": "to climb",
+  "jmdict": 1352570
+ },
+ {
+  "id": "飲み物|のみもの",
+  "palabra": "飲み物",
+  "lectura": "のみもの",
+  "es": [
+   "bebida"
+  ],
+  "origenEs": "jmdict",
+  "en": "drink, beverage",
+  "jmdict": 1600430
+ },
+ {
+  "id": "飲む|のむ",
+  "palabra": "飲む",
+  "lectura": "のむ",
+  "es": [
+   "beber",
+   "tomar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tragar",
+   "ingerir",
+   "tragar entero"
+  ],
+  "problema": "«tragar» no es lo principal",
+  "en": "to drink",
+  "jmdict": 1169870
+ },
+ {
+  "id": "乗る|のる",
+  "palabra": "乗る",
+  "lectura": "のる",
+  "es": [
+   "subirse",
+   "entrar (en vehículos)",
+   "abordar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to get on, to ride in, to board",
+  "jmdict": 1355120
+ },
+ {
+  "id": "歯|は",
+  "palabra": "歯",
+  "lectura": "は",
+  "es": [
+   "diente"
+  ],
+  "origenEs": "jmdict",
+  "en": "tooth",
+  "jmdict": 1313000
+ },
+ {
+  "id": "パーティー|パーティー",
+  "palabra": "パーティー",
+  "lectura": "パーティー",
+  "es": [
+   "fiesta"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "fiesta"
+  ],
+  "problema": "nota «(eng: party)»",
+  "en": "a party",
+  "jmdict": 1100760
+ },
+ {
+  "id": "はい|はい",
+  "palabra": "はい",
+  "lectura": "はい",
+  "es": [
+   "sí"
+  ],
+  "origenEs": "claude",
+  "en": "yes",
+  "jmdict": 1010080
+ },
+ {
+  "id": "～杯|～はい",
+  "palabra": "～杯",
+  "lectura": "～はい",
+  "es": [
+   "tazas (contador para tazas)"
+  ],
+  "origenEs": "jmdict",
+  "en": "counter for cupfuls",
+  "jmdict": 2019640
+ },
+ {
+  "id": "灰皿|はいざら",
+  "palabra": "灰皿",
+  "lectura": "はいざら",
+  "es": [
+   "cenicero"
+  ],
+  "origenEs": "jmdict",
+  "en": "ashtray",
+  "jmdict": 1201940
+ },
+ {
+  "id": "入る|はいる",
+  "palabra": "入る",
+  "lectura": "はいる",
+  "es": [
+   "entrar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to enter, to contain, to hold",
+  "jmdict": 1465590
+ },
+ {
+  "id": "葉書|はがき",
+  "palabra": "葉書",
+  "lectura": "はがき",
+  "es": [
+   "postal",
+   "tarjeta postal"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tarjeta"
+  ],
+  "problema": "«tarjeta» ambiguo",
+  "en": "postcard",
+  "jmdict": 1546590
+ },
+ {
+  "id": "はく|はく",
+  "palabra": "はく",
+  "lectura": "はく",
+  "es": [
+   "ponerse (zapatos, pantalón)",
+   "calzarse"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "llevar",
+   "llevar puesto",
+   "vestir"
+  ],
+  "problema": "glosa imprecisa",
+  "en": "to put on (items below your waist)",
+  "jmdict": 1607260
+ },
+ {
+  "id": "箱|はこ",
+  "palabra": "箱",
+  "lectura": "はこ",
+  "es": [
+   "caja",
+   "estuche",
+   "caja con tapa"
+  ],
+  "origenEs": "jmdict",
+  "en": "box",
+  "jmdict": 1585650
+ },
+ {
+  "id": "橋|はし",
+  "palabra": "橋",
+  "lectura": "はし",
+  "es": [
+   "puente"
+  ],
+  "origenEs": "jmdict",
+  "en": "bridge",
+  "jmdict": 1237410
+ },
+ {
+  "id": "箸|はし",
+  "palabra": "箸",
+  "lectura": "はし",
+  "es": [
+   "palillos"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "palitos chinos",
+   "palillos chinos"
+  ],
+  "problema": "«chinos» incorrecto",
+  "en": "chopsticks",
+  "jmdict": 1476410
+ },
+ {
+  "id": "始まる|はじまる",
+  "palabra": "始まる",
+  "lectura": "はじまる",
+  "es": [
+   "comenzar"
+  ],
+  "origenEs": "jmdict",
+  "en": "(something) begins",
+  "jmdict": 1307500
+ },
+ {
+  "id": "初め; 始め|はじめ",
+  "palabra": "初め; 始め",
+  "lectura": "はじめ",
+  "es": [
+   "comienzo",
+   "principio",
+   "origen"
+  ],
+  "origenEs": "jmdict",
+  "en": "beginning, start",
+  "jmdict": 1342540
+ },
+ {
+  "id": "初めて|はじめて",
+  "palabra": "初めて",
+  "lectura": "はじめて",
+  "es": [
+   "por primera vez"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "primera vez"
+  ],
+  "problema": "falta «por»",
+  "en": "for the first time",
+  "jmdict": 1342550
+ },
+ {
+  "id": "走る|はしる",
+  "palabra": "走る",
+  "lectura": "はしる",
+  "es": [
+   "correr"
+  ],
+  "origenEs": "jmdict",
+  "en": "to run",
+  "jmdict": 1402540
+ },
+ {
+  "id": "バス|バス",
+  "palabra": "バス",
+  "lectura": "バス",
+  "es": [
+   "autobús"
+  ],
+  "origenEs": "claude",
+  "en": "bus; bath; bass",
+  "jmdict": 1098390
+ },
+ {
+  "id": "バター|バター",
+  "palabra": "バター",
+  "lectura": "バター",
+  "es": [
+   "mantequilla"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "mantequilla"
+  ],
+  "problema": "nota «(eng: butter)»",
+  "en": "butter",
+  "jmdict": 1098620
+ },
+ {
+  "id": "二十歳|はたち",
+  "palabra": "二十歳",
+  "lectura": "はたち",
+  "es": [
+   "veinte años",
+   "20 años de edad"
+  ],
+  "origenEs": "jmdict",
+  "en": "20 years old",
+  "jmdict": 1600790
+ },
+ {
+  "id": "働く|はたらく",
+  "palabra": "働く",
+  "lectura": "はたらく",
+  "es": [
+   "trabajar",
+   "laborar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to work",
+  "jmdict": 1451150
+ },
+ {
+  "id": "八|はち",
+  "palabra": "八",
+  "lectura": "はち",
+  "es": [
+   "ocho"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "ocho"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "eight",
+  "jmdict": 1583090
+ },
+ {
+  "id": "二十日|はつか",
+  "palabra": "二十日",
+  "lectura": "はつか",
+  "es": [
+   "día 20",
+   "veinteavo (día del mes)"
+  ],
+  "origenEs": "jmdict",
+  "en": "twenty days, twentieth (day of the month)",
+  "jmdict": 1600850
+ },
+ {
+  "id": "花|はな",
+  "palabra": "花",
+  "lectura": "はな",
+  "es": [
+   "flor",
+   "pétalo"
+  ],
+  "origenEs": "jmdict",
+  "en": "flower",
+  "jmdict": 1194500
+ },
+ {
+  "id": "鼻|はな",
+  "palabra": "鼻",
+  "lectura": "はな",
+  "es": [
+   "nariz"
+  ],
+  "origenEs": "jmdict",
+  "en": "nose",
+  "jmdict": 1486720
+ },
+ {
+  "id": "話|はなし",
+  "palabra": "話",
+  "lectura": "はなし",
+  "es": [
+   "conversación",
+   "historia"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "habla",
+   "plática",
+   "conversación"
+  ],
+  "problema": "«habla» incorrecto",
+  "en": "talk (chat), story",
+  "jmdict": 1600900
+ },
+ {
+  "id": "話す|はなす",
+  "palabra": "話す",
+  "lectura": "はなす",
+  "es": [
+   "hablar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to speak",
+  "jmdict": 1562350
+ },
+ {
+  "id": "母|はは",
+  "palabra": "母",
+  "lectura": "はは",
+  "es": [
+   "madre"
+  ],
+  "origenEs": "jmdict",
+  "en": "(my) mother",
+  "jmdict": 1514990
+ },
+ {
+  "id": "早い|はやい",
+  "palabra": "早い",
+  "lectura": "はやい",
+  "es": [
+   "temprano",
+   "pronto"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "rápido",
+   "ágil",
+   "raudo"
+  ],
+  "problema": "glosa copiada de 速い; debe ser «temprano»",
+  "en": "early",
+  "jmdict": 1404975
+ },
+ {
+  "id": "速い|はやい",
+  "palabra": "速い",
+  "lectura": "はやい",
+  "es": [
+   "rápido",
+   "ágil",
+   "raudo"
+  ],
+  "origenEs": "jmdict",
+  "en": "fast, quick",
+  "jmdict": 1404975
+ },
+ {
+  "id": "春|はる",
+  "palabra": "春",
+  "lectura": "はる",
+  "es": [
+   "primavera"
+  ],
+  "origenEs": "jmdict",
+  "en": "spring",
+  "jmdict": 1341000
+ },
+ {
+  "id": "貼る|はる",
+  "palabra": "貼る",
+  "lectura": "はる",
+  "es": [
+   "pegar",
+   "fijar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pegarse",
+   "ponerse",
+   "pegar (estampas"
+  ],
+  "problema": "glosa truncada/incorrecta",
+  "en": "to post; to paste; to attach",
+  "jmdict": 1427900
+ },
+ {
+  "id": "晴れ|はれ",
+  "palabra": "晴れ",
+  "lectura": "はれ",
+  "es": [
+   "buen tiempo",
+   "despejado"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "despejado (cielo)",
+   "calidad excelente",
+   "rendimiento sobresaliente"
+  ],
+  "problema": "glosa rara",
+  "en": "clear (sunny) weather",
+  "jmdict": 1376460
+ },
+ {
+  "id": "晴れる|はれる",
+  "palabra": "晴れる",
+  "lectura": "はれる",
+  "es": [
+   "estar soleado",
+   "despejarse",
+   "parar de llover"
+  ],
+  "origenEs": "jmdict",
+  "en": "to be sunny",
+  "jmdict": 1376470
+ },
+ {
+  "id": "半|はん",
+  "palabra": "半",
+  "lectura": "はん",
+  "es": [
+   "media",
+   "mitad"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "mitad",
+   "medio",
+   "impar"
+  ],
+  "problema": "«impar» incorrecto",
+  "en": "half (e.g., にじはん | half-past two)",
+  "jmdict": 1478750
+ },
+ {
+  "id": "晩|ばん",
+  "palabra": "晩",
+  "lectura": "ばん",
+  "es": [
+   "noche"
+  ],
+  "origenEs": "jmdict",
+  "en": "evening",
+  "jmdict": 1482110
+ },
+ {
+  "id": "～番|～ばん",
+  "palabra": "～番",
+  "lectura": "～ばん",
+  "es": [
+   "número (ordinal)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "guardia",
+   "turno",
+   "encargado"
+  ],
+  "problema": "glosas incorrectas",
+  "en": "~st; ~th best",
+  "jmdict": 2022640
+ },
+ {
+  "id": "パン|パン",
+  "palabra": "パン",
+  "lectura": "パン",
+  "es": [
+   "pan"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "(pt) pan"
+  ],
+  "problema": "nota «(pt)»",
+  "en": "bread",
+  "jmdict": 1103090
+ },
+ {
+  "id": "ハンカチ|ハンカチ",
+  "palabra": "ハンカチ",
+  "lectura": "ハンカチ",
+  "es": [
+   "pañuelo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pañuelo"
+  ],
+  "problema": "nota «(eng:)»",
+  "en": "handkerchief",
+  "jmdict": 1096420
+ },
+ {
+  "id": "番号|ばんごう",
+  "palabra": "番号",
+  "lectura": "ばんごう",
+  "es": [
+   "número"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "números",
+   "serie de dígitos"
+  ],
+  "problema": "plural / glosa imprecisa",
+  "en": "number, series of digits",
+  "jmdict": 1482290
+ },
+ {
+  "id": "晩御飯|ばんごはん",
+  "palabra": "晩御飯",
+  "lectura": "ばんごはん",
+  "es": [
+   "cena"
+  ],
+  "origenEs": "jmdict",
+  "en": "dinner, evening meal",
+  "jmdict": 1601340
+ },
+ {
+  "id": "半分|はんぶん",
+  "palabra": "半分",
+  "lectura": "はんぶん",
+  "es": [
+   "medio",
+   "mitad"
+  ],
+  "origenEs": "jmdict",
+  "en": "half",
+  "jmdict": 1479890
+ },
+ {
+  "id": "東|ひがし",
+  "palabra": "東",
+  "lectura": "ひがし",
+  "es": [
+   "este",
+   "oriente"
+  ],
+  "origenEs": "jmdict",
+  "en": "east",
+  "jmdict": 1447440
+ },
+ {
+  "id": "～匹|～ひき",
+  "palabra": "～匹",
+  "lectura": "～ひき",
+  "es": [
+   "contador para animales pequeños y rollos de tela"
+  ],
+  "origenEs": "jmdict",
+  "en": "counter for small animals",
+  "jmdict": 1583370
+ },
+ {
+  "id": "引く|ひく",
+  "palabra": "引く",
+  "lectura": "ひく",
+  "es": [
+   "jalar",
+   "tirar",
+   "restar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tensar",
+   "estirar",
+   "apretar el gatillo"
+  ],
+  "problema": "glosa rara",
+  "en": "to pull, to draw; subtract",
+  "jmdict": 1169250
+ },
+ {
+  "id": "弾く|ひく",
+  "palabra": "弾く",
+  "lectura": "ひく",
+  "es": [
+   "tocar (un instrumento)"
+  ],
+  "origenEs": "jmdict",
+  "en": "to play (a string instrument or piano)",
+  "jmdict": 1419370
+ },
+ {
+  "id": "低い|ひくい",
+  "palabra": "低い",
+  "lectura": "ひくい",
+  "es": [
+   "bajo",
+   "humilde",
+   "voz grave"
+  ],
+  "origenEs": "jmdict",
+  "en": "short, low",
+  "jmdict": 1434180
+ },
+ {
+  "id": "飛行機|ひこうき",
+  "palabra": "飛行機",
+  "lectura": "ひこうき",
+  "es": [
+   "avión",
+   "aeroplano"
+  ],
+  "origenEs": "jmdict",
+  "en": "airplane",
+  "jmdict": 1485470
+ },
+ {
+  "id": "左|ひだり",
+  "palabra": "左",
+  "lectura": "ひだり",
+  "es": [
+   "izquierda"
+  ],
+  "origenEs": "jmdict",
+  "en": "left hand side",
+  "jmdict": 1290800
+ },
+ {
+  "id": "人|ひと",
+  "palabra": "人",
+  "lectura": "ひと",
+  "es": [
+   "persona",
+   "(sp) las personas"
+  ],
+  "origenEs": "jmdict",
+  "en": "man, person",
+  "jmdict": 1580640
+ },
+ {
+  "id": "一つ|ひとつ",
+  "palabra": "一つ",
+  "lectura": "ひとつ",
+  "es": [
+   "uno"
+  ],
+  "origenEs": "jmdict",
+  "en": "one thing",
+  "jmdict": 1160820
+ },
+ {
+  "id": "一月|ひとつき",
+  "palabra": "一月",
+  "lectura": "ひとつき",
+  "es": [
+   "un mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "one month",
+  "jmdict": 1162130
+ },
+ {
+  "id": "一人|ひとり",
+  "palabra": "一人",
+  "lectura": "ひとり",
+  "es": [
+   "una persona"
+  ],
+  "origenEs": "jmdict",
+  "en": "one person",
+  "jmdict": 1576150
+ },
+ {
+  "id": "暇|ひま",
+  "palabra": "暇",
+  "lectura": "ひま",
+  "es": [
+   "tiempo libre"
+  ],
+  "origenEs": "jmdict",
+  "en": "free time, leisure",
+  "jmdict": 1577280
+ },
+ {
+  "id": "百|ひゃく",
+  "palabra": "百",
+  "lectura": "ひゃく",
+  "es": [
+   "cien"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "100",
+   "cien"
+  ],
+  "problema": "glosa con dígito/nota legal",
+  "en": "hundred",
+  "jmdict": 1488000
+ },
+ {
+  "id": "病院|びょういん",
+  "palabra": "病院",
+  "lectura": "びょういん",
+  "es": [
+   "hospital"
+  ],
+  "origenEs": "jmdict",
+  "en": "hospital",
+  "jmdict": 1490220
+ },
+ {
+  "id": "病気|びょうき",
+  "palabra": "病気",
+  "lectura": "びょうき",
+  "es": [
+   "enfermedad"
+  ],
+  "origenEs": "jmdict",
+  "en": "illness; sickness",
+  "jmdict": 1490230
+ },
+ {
+  "id": "平仮名|ひらがな",
+  "palabra": "平仮名",
+  "lectura": "ひらがな",
+  "es": [
+   "hiragana"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "hiragana",
+   "48 silabas",
+   "silabario cursivo"
+  ],
+  "problema": "glosa recargada",
+  "en": "hiragana",
+  "jmdict": 1507090
+ },
+ {
+  "id": "昼|ひる",
+  "palabra": "昼",
+  "lectura": "ひる",
+  "es": [
+   "mediodía",
+   "día"
+  ],
+  "origenEs": "jmdict",
+  "en": "noon, daytime",
+  "jmdict": 1426250
+ },
+ {
+  "id": "昼御飯|ひるごはん",
+  "palabra": "昼御飯",
+  "lectura": "ひるごはん",
+  "es": [
+   "almuerzo"
+  ],
+  "origenEs": "jmdict",
+  "en": "lunch, midday meal",
+  "jmdict": 1602340
+ },
+ {
+  "id": "広い|ひろい",
+  "palabra": "広い",
+  "lectura": "ひろい",
+  "es": [
+   "espacioso",
+   "vasto",
+   "amplio"
+  ],
+  "origenEs": "jmdict",
+  "en": "spacious; wide; broad",
+  "jmdict": 1278410
+ },
+ {
+  "id": "フィルム|フィルム",
+  "palabra": "フィルム",
+  "lectura": "フィルム",
+  "es": [
+   "película (de fotos)",
+   "rollo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "película",
+   "cinta",
+   "filme"
+  ],
+  "problema": "nota «(eng:)»",
+  "en": "film (roll of)",
+  "jmdict": 1109380
+ },
+ {
+  "id": "封筒|ふうとう",
+  "palabra": "封筒",
+  "lectura": "ふうとう",
+  "es": [
+   "sobre (para cartas)"
+  ],
+  "origenEs": "jmdict",
+  "en": "envelope",
+  "jmdict": 1499690
+ },
+ {
+  "id": "プール|プール",
+  "palabra": "プール",
+  "lectura": "プール",
+  "es": [
+   "piscina",
+   "alberca"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "piscina",
+   "alberca"
+  ],
+  "problema": "nota «(eng:)»",
+  "en": "swimming pool",
+  "jmdict": 1115150
+ },
+ {
+  "id": "フォーク|フォーク",
+  "palabra": "フォーク",
+  "lectura": "フォーク",
+  "es": [
+   "tenedor"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "(eng: folk",
+   "fork) tenedor",
+   "(eng: lit amigo"
+  ],
+  "problema": "glosa errónea «amigo»",
+  "en": "fork",
+  "jmdict": 1110110
+ },
+ {
+  "id": "吹く|ふく",
+  "palabra": "吹く",
+  "lectura": "ふく",
+  "es": [
+   "soplar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to blow (wind, etc.)",
+  "jmdict": 1370760
+ },
+ {
+  "id": "服|ふく",
+  "palabra": "服",
+  "lectura": "ふく",
+  "es": [
+   "ropa (esp. ropa occidental)"
+  ],
+  "origenEs": "jmdict",
+  "en": "clothes",
+  "jmdict": 1500940
+ },
+ {
+  "id": "二つ|ふたつ",
+  "palabra": "二つ",
+  "lectura": "ふたつ",
+  "es": [
+   "dos"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "2",
+   "dos"
+  ],
+  "problema": "glosa con dígito",
+  "en": "two things",
+  "jmdict": 1461160
+ },
+ {
+  "id": "豚肉|ぶたにく",
+  "palabra": "豚肉",
+  "lectura": "ぶたにく",
+  "es": [
+   "puerco",
+   "carne de cerdo"
+  ],
+  "origenEs": "jmdict",
+  "en": "pork",
+  "jmdict": 1457440
+ },
+ {
+  "id": "二人|ふたり",
+  "palabra": "二人",
+  "lectura": "ふたり",
+  "es": [
+   "dos personas",
+   "pareja",
+   "dúo"
+  ],
+  "origenEs": "jmdict",
+  "en": "two people",
+  "jmdict": 1582670
+ },
+ {
+  "id": "二日|ふつか",
+  "palabra": "二日",
+  "lectura": "ふつか",
+  "es": [
+   "segundo día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "two days; second day of the month",
+  "jmdict": 1462900
+ },
+ {
+  "id": "太い|ふとい",
+  "palabra": "太い",
+  "lectura": "ふとい",
+  "es": [
+   "grueso",
+   "gordo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "gordo",
+   "obeso"
+  ],
+  "problema": "«gordo;obeso» es de personas",
+  "en": "fat, thick",
+  "jmdict": 1408180
+ },
+ {
+  "id": "冬|ふゆ",
+  "palabra": "冬",
+  "lectura": "ふゆ",
+  "es": [
+   "invierno"
+  ],
+  "origenEs": "jmdict",
+  "en": "winter",
+  "jmdict": 1446070
+ },
+ {
+  "id": "降る|ふる",
+  "palabra": "降る",
+  "lectura": "ふる",
+  "es": [
+   "caer (lluvia, nieve)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "precipitar",
+   "caer (e.g. lluvia)"
+  ],
+  "problema": "glosa rara",
+  "en": "to precipitate, to fall (e.g., rain, snow, etc.)",
+  "jmdict": 1282790
+ },
+ {
+  "id": "古い|ふるい",
+  "palabra": "古い",
+  "lectura": "ふるい",
+  "es": [
+   "(objetos) viejo",
+   "antiguo",
+   "anticuado"
+  ],
+  "origenEs": "jmdict",
+  "en": "old (in reference to objects, not people), aged, ancient",
+  "jmdict": 1265070
+ },
+ {
+  "id": "～分|～ふん",
+  "palabra": "～分",
+  "lectura": "～ふん",
+  "es": [
+   "minuto"
+  ],
+  "origenEs": "jmdict",
+  "en": "~ minutes",
+  "jmdict": 1502840
+ },
+ {
+  "id": "文章|ぶんしょう",
+  "palabra": "文章",
+  "lectura": "ぶんしょう",
+  "es": [
+   "texto",
+   "escrito"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "frase",
+   "escrito",
+   "composición"
+  ],
+  "problema": "imprecisa",
+  "en": "sentence, text",
+  "jmdict": 1505470
+ },
+ {
+  "id": "ページ|ページ",
+  "palabra": "ページ",
+  "lectura": "ページ",
+  "es": [
+   "página"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "página"
+  ],
+  "problema": "duplicado «(eng:page)»",
+  "en": "a page",
+  "jmdict": 1120410
+ },
+ {
+  "id": "下手|へた",
+  "palabra": "下手",
+  "lectura": "へた",
+  "es": [
+   "torpe"
+  ],
+  "origenEs": "jmdict",
+  "en": "unskillful, poor",
+  "jmdict": 1185200
+ },
+ {
+  "id": "ベッド|ベッド",
+  "palabra": "ベッド",
+  "lectura": "ベッド",
+  "es": [
+   "cama"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cama"
+  ],
+  "problema": "nota «(eng: bed)»",
+  "en": "bed",
+  "jmdict": 1119650
+ },
+ {
+  "id": "ペット|ペット",
+  "palabra": "ペット",
+  "lectura": "ペット",
+  "es": [
+   "mascota"
+  ],
+  "origenEs": "claude",
+  "en": "pet",
+  "jmdict": 1120990
+ },
+ {
+  "id": "部屋|へや",
+  "palabra": "部屋",
+  "lectura": "へや",
+  "es": [
+   "habitación"
+  ],
+  "origenEs": "jmdict",
+  "en": "a room",
+  "jmdict": 1499320
+ },
+ {
+  "id": "辺|へん",
+  "palabra": "辺",
+  "lectura": "へん",
+  "es": [
+   "área",
+   "alrededores"
+  ],
+  "origenEs": "jmdict",
+  "en": "area, vicinity",
+  "jmdict": 1512070
+ },
+ {
+  "id": "ペン|ペン",
+  "palabra": "ペン",
+  "lectura": "ペン",
+  "es": [
+   "bolígrafo",
+   "pluma"
+  ],
+  "origenEs": "jmdict",
+  "en": "pen",
+  "jmdict": 1121380
+ },
+ {
+  "id": "勉強|べんきょう (する)",
+  "palabra": "勉強",
+  "lectura": "べんきょう (する)",
+  "es": [
+   "estudio"
+  ],
+  "origenEs": "jmdict",
+  "en": "study",
+  "jmdict": 1512670
+ },
+ {
+  "id": "便利|べんり",
+  "palabra": "便利",
+  "lectura": "べんり",
+  "es": [
+   "conveniente",
+   "útil"
+  ],
+  "origenEs": "jmdict",
+  "en": "convenient, handy",
+  "jmdict": 1512610
+ },
+ {
+  "id": "帽子|ぼうし",
+  "palabra": "帽子",
+  "lectura": "ぼうし",
+  "es": [
+   "sombrero",
+   "gorra"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "sombrero"
+  ],
+  "problema": "falta «gorra»",
+  "en": "hat; cap",
+  "jmdict": 1519170
+ },
+ {
+  "id": "ボールペン|ボールペン",
+  "palabra": "ボールペン",
+  "lectura": "ボールペン",
+  "es": [
+   "bolígrafo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "bolígrafo",
+   "pluma fuente"
+  ],
+  "problema": "«pluma fuente» incorrecto",
+  "en": "ball-point pen",
+  "jmdict": 1123590
+ },
+ {
+  "id": "外|ほか",
+  "palabra": "外",
+  "lectura": "ほか",
+  "es": [
+   "otro (especialmente gente y materia abstracta)",
+   "otro"
+  ],
+  "origenEs": "jmdict",
+  "en": "other, the rest",
+  "jmdict": 1203260
+ },
+ {
+  "id": "ポケット|ポケット",
+  "palabra": "ポケット",
+  "lectura": "ポケット",
+  "es": [
+   "bolsillo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "bolsillo",
+   "de bolsillo"
+  ],
+  "problema": "glosa recargada",
+  "en": "pocket",
+  "jmdict": 1124970
+ },
+ {
+  "id": "欲しい|ほしい",
+  "palabra": "欲しい",
+  "lectura": "ほしい",
+  "es": [
+   "querer (algo)",
+   "desear"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "deseado",
+   "deseado por",
+   "necesidad de"
+  ],
+  "problema": "participios imprecisos",
+  "en": "to want, in need of",
+  "jmdict": 1547330
+ },
+ {
+  "id": "ポスト|ポスト",
+  "palabra": "ポスト",
+  "lectura": "ポスト",
+  "es": [
+   "buzón"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "correo",
+   "buzón de correo"
+  ],
+  "problema": "glosa confusa",
+  "en": "mailbox; post, position",
+  "jmdict": 1125150
+ },
+ {
+  "id": "細い|ほそい",
+  "palabra": "細い",
+  "lectura": "ほそい",
+  "es": [
+   "delgado",
+   "fino"
+  ],
+  "origenEs": "jmdict",
+  "en": "thin, slender, fine",
+  "jmdict": 1295510
+ },
+ {
+  "id": "ボタン|ボタン",
+  "palabra": "ボタン",
+  "lectura": "ボタン",
+  "es": [
+   "botón"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "botón (por: botão)"
+  ],
+  "problema": "nota «(por:)»",
+  "en": "button",
+  "jmdict": 1123880
+ },
+ {
+  "id": "ホテル|ホテル",
+  "palabra": "ホテル",
+  "lectura": "ホテル",
+  "es": [
+   "hotel"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "hotel"
+  ],
+  "problema": "nota «(eng:)»",
+  "en": "hotel",
+  "jmdict": 1122650
+ },
+ {
+  "id": "本|ほん",
+  "palabra": "本",
+  "lectura": "ほん",
+  "es": [
+   "libro",
+   "volumen"
+  ],
+  "origenEs": "jmdict",
+  "en": "book",
+  "jmdict": 1522150
+ },
+ {
+  "id": "～本|～ほん",
+  "palabra": "～本",
+  "lectura": "～ほん",
+  "es": [
+   "contador de objetos largos"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "libro",
+   "volumen"
+  ],
+  "problema": "glosa incorrecta (libro)",
+  "en": "counter for long cylindrical things",
+  "jmdict": 1522150
+ },
+ {
+  "id": "本棚|ほんだな",
+  "palabra": "本棚",
+  "lectura": "ほんだな",
+  "es": [
+   "estante para libros"
+  ],
+  "origenEs": "jmdict",
+  "en": "bookshelf",
+  "jmdict": 1522980
+ },
+ {
+  "id": "本当|ほんとう",
+  "palabra": "本当",
+  "lectura": "ほんとう",
+  "es": [
+   "real",
+   "verdadero",
+   "cierto"
+  ],
+  "origenEs": "jmdict",
+  "en": "real, true",
+  "jmdict": 1523060
+ },
+ {
+  "id": "～枚|～まい",
+  "palabra": "～枚",
+  "lectura": "～まい",
+  "es": [
+   "contador para objetos delgados (papeles, billetes)"
+  ],
+  "origenEs": "jmdict",
+  "en": "counter for flat things",
+  "jmdict": 1524610
+ },
+ {
+  "id": "毎朝|まいあさ",
+  "palabra": "毎朝",
+  "lectura": "まいあさ",
+  "es": [
+   "cada mañana"
+  ],
+  "origenEs": "jmdict",
+  "en": "every morning",
+  "jmdict": 1524700
+ },
+ {
+  "id": "毎月|まいげつ; まいつき",
+  "palabra": "毎月",
+  "lectura": "まいげつ; まいつき",
+  "es": [
+   "cada mes",
+   "mensualmente"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cada mes",
+   "mensualmente",
+   "cada mes todos los meses"
+  ],
+  "problema": "repetitiva",
+  "en": "every month, monthly",
+  "jmdict": 1584350
+ },
+ {
+  "id": "毎週|まいしゅう",
+  "palabra": "毎週",
+  "lectura": "まいしゅう",
+  "es": [
+   "cada semana"
+  ],
+  "origenEs": "jmdict",
+  "en": "every week",
+  "jmdict": 1524690
+ },
+ {
+  "id": "毎日|まいにち",
+  "palabra": "毎日",
+  "lectura": "まいにち",
+  "es": [
+   "todos los días"
+  ],
+  "origenEs": "jmdict",
+  "en": "every day",
+  "jmdict": 1524720
+ },
+ {
+  "id": "毎年|まいねん; まいとし",
+  "palabra": "毎年",
+  "lectura": "まいねん; まいとし",
+  "es": [
+   "cada año",
+   "anualmente"
+  ],
+  "origenEs": "jmdict",
+  "en": "every year, yearly, annually",
+  "jmdict": 1584360
+ },
+ {
+  "id": "毎晩|まいばん",
+  "palabra": "毎晩",
+  "lectura": "まいばん",
+  "es": [
+   "cada noche",
+   "todas las noches"
+  ],
+  "origenEs": "jmdict",
+  "en": "every night",
+  "jmdict": 1524730
+ },
+ {
+  "id": "前|まえ",
+  "palabra": "前",
+  "lectura": "まえ",
+  "es": [
+   "antes",
+   "delante"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "delante",
+   "antes",
+   "(n-adv,n-t,n-suf) antes"
+  ],
+  "problema": "etiquetas técnicas «(n-adv…)»",
+  "en": "before, in front",
+  "jmdict": 1392580
+ },
+ {
+  "id": "～前|～まえ",
+  "palabra": "～前",
+  "lectura": "～まえ",
+  "es": [
+   "antes",
+   "delante de"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "delante",
+   "antes",
+   "(n-adv,n-t,n-suf) antes"
+  ],
+  "problema": "etiquetas técnicas «(n-adv…)»",
+  "en": "in front of ~",
+  "jmdict": 1392580
+ },
+ {
+  "id": "曲る|まがる",
+  "palabra": "曲る",
+  "lectura": "まがる",
+  "es": [
+   "voltear",
+   "girar",
+   "doblar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to turn, to bend",
+  "jmdict": 1239730
+ },
+ {
+  "id": "まずい|まずい",
+  "palabra": "まずい",
+  "lectura": "まずい",
+  "es": [
+   "malo (de sabor)",
+   "desagradable"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "poco apetitoso",
+   "poco apetecible",
+   "desagradable (sabor"
+  ],
+  "problema": "glosa truncada",
+  "en": "terrible (in reference to food), unappetizing, unpleasant (taste)",
+  "jmdict": 1495000
+ },
+ {
+  "id": "また|また",
+  "palabra": "また",
+  "lectura": "また",
+  "es": [
+   "otra vez",
+   "y"
+  ],
+  "origenEs": "jmdict",
+  "en": "and; furthermore",
+  "jmdict": 1524930
+ },
+ {
+  "id": "まだ|まだ",
+  "palabra": "まだ",
+  "lectura": "まだ",
+  "es": [
+   "aún",
+   "todavía"
+  ],
+  "origenEs": "jmdict",
+  "en": "yet, still, besides",
+  "jmdict": 1527110
+ },
+ {
+  "id": "町|まち",
+  "palabra": "町",
+  "lectura": "まち",
+  "es": [
+   "ciudad",
+   "pueblo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pueblo"
+  ],
+  "problema": "falta «ciudad»",
+  "en": "town; city",
+  "jmdict": 1603990
+ },
+ {
+  "id": "待つ|まつ",
+  "palabra": "待つ",
+  "lectura": "まつ",
+  "es": [
+   "esperar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "esperar de",
+   "tener la esperanza puesta en",
+   "tener expectativas de"
+  ],
+  "problema": "glosa incorrecta",
+  "en": "to wait",
+  "jmdict": 1410590
+ },
+ {
+  "id": "まっすぐ|まっすぐ",
+  "palabra": "まっすぐ",
+  "lectura": "まっすぐ",
+  "es": [
+   "recto",
+   "derecho",
+   "honesto"
+  ],
+  "origenEs": "jmdict",
+  "en": "straight (ahead), direct",
+  "jmdict": 1580600
+ },
+ {
+  "id": "マッチ|マッチ",
+  "palabra": "マッチ",
+  "lectura": "マッチ",
+  "es": [
+   "cerilla",
+   "fósforo"
+  ],
+  "origenEs": "claude",
+  "en": "match",
+  "jmdict": 1128430
+ },
+ {
+  "id": "窓|まど",
+  "palabra": "窓",
+  "lectura": "まど",
+  "es": [
+   "ventana"
+  ],
+  "origenEs": "jmdict",
+  "en": "window",
+  "jmdict": 1401400
+ },
+ {
+  "id": "丸い; 円い|まるい",
+  "palabra": "丸い; 円い",
+  "lectura": "まるい",
+  "es": [
+   "redondo",
+   "circular",
+   "esférico"
+  ],
+  "origenEs": "jmdict",
+  "en": "round, circular",
+  "jmdict": 1604230
+ },
+ {
+  "id": "万|まん",
+  "palabra": "万",
+  "lectura": "まん",
+  "es": [
+   "diez mil",
+   "10,000",
+   "innumerable"
+  ],
+  "origenEs": "jmdict",
+  "en": "ten thousand",
+  "jmdict": 1584460
+ },
+ {
+  "id": "万年筆|まんねんひつ",
+  "palabra": "万年筆",
+  "lectura": "まんねんひつ",
+  "es": [
+   "pluma estilográfica"
+  ],
+  "origenEs": "jmdict",
+  "en": "fountain pen",
+  "jmdict": 1526360
+ },
+ {
+  "id": "磨く|みがく",
+  "palabra": "磨く",
+  "lectura": "みがく",
+  "es": [
+   "cepillarse (los dientes)",
+   "pulir"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pulir",
+   "limar",
+   "lijar"
+  ],
+  "problema": "falta el sentido «cepillarse»",
+  "en": "to brush (teeth); to polish",
+  "jmdict": 1523940
+ },
+ {
+  "id": "右|みぎ",
+  "palabra": "右",
+  "lectura": "みぎ",
+  "es": [
+   "derecha"
+  ],
+  "origenEs": "jmdict",
+  "en": "right hand side",
+  "jmdict": 1171010
+ },
+ {
+  "id": "短い|みじかい",
+  "palabra": "短い",
+  "lectura": "みじかい",
+  "es": [
+   "corto",
+   "breve"
+  ],
+  "origenEs": "jmdict",
+  "en": "short (length)",
+  "jmdict": 1418620
+ },
+ {
+  "id": "水|みず",
+  "palabra": "水",
+  "lectura": "みず",
+  "es": [
+   "agua (fría, fresca)"
+  ],
+  "origenEs": "jmdict",
+  "en": "water",
+  "jmdict": 1371260
+ },
+ {
+  "id": "店|みせ",
+  "palabra": "店",
+  "lectura": "みせ",
+  "es": [
+   "tienda",
+   "comercio",
+   "establecimiento"
+  ],
+  "origenEs": "jmdict",
+  "en": "store, shop",
+  "jmdict": 1582120
+ },
+ {
+  "id": "見せる|みせる",
+  "palabra": "見せる",
+  "lectura": "みせる",
+  "es": [
+   "mostrar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to show, to display",
+  "jmdict": 1259210
+ },
+ {
+  "id": "道|みち",
+  "palabra": "道",
+  "lectura": "みち",
+  "es": [
+   "camino",
+   "calle",
+   "método"
+  ],
+  "origenEs": "jmdict",
+  "en": "road, street; way, directions",
+  "jmdict": 1454080
+ },
+ {
+  "id": "三日|みっか",
+  "palabra": "三日",
+  "lectura": "みっか",
+  "es": [
+   "tercer día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "three days, third day of the month",
+  "jmdict": 1301330
+ },
+ {
+  "id": "三つ|みっつ",
+  "palabra": "三つ",
+  "lectura": "みっつ",
+  "es": [
+   "tres"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "3",
+   "tres"
+  ],
+  "problema": "glosa con dígito",
+  "en": "three things",
+  "jmdict": 1299740
+ },
+ {
+  "id": "緑|みどり",
+  "palabra": "緑",
+  "lectura": "みどり",
+  "es": [
+   "verde"
+  ],
+  "origenEs": "jmdict",
+  "en": "green",
+  "jmdict": 1555300
+ },
+ {
+  "id": "皆さん|みなさん",
+  "palabra": "皆さん",
+  "lectura": "みなさん",
+  "es": [
+   "todos"
+  ],
+  "origenEs": "jmdict",
+  "en": "all of you, everyone",
+  "jmdict": 1202170
+ },
+ {
+  "id": "南|みなみ",
+  "palabra": "南",
+  "lectura": "みなみ",
+  "es": [
+   "sur",
+   "procedente del sur"
+  ],
+  "origenEs": "jmdict",
+  "en": "South",
+  "jmdict": 1459870
+ },
+ {
+  "id": "耳|みみ",
+  "palabra": "耳",
+  "lectura": "みみ",
+  "es": [
+   "oreja"
+  ],
+  "origenEs": "jmdict",
+  "en": "ear",
+  "jmdict": 1317170
+ },
+ {
+  "id": "見る|みる",
+  "palabra": "見る",
+  "lectura": "みる",
+  "es": [
+   "ver",
+   "mirar",
+   "observar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to see, to look",
+  "jmdict": 1259290
+ },
+ {
+  "id": "みんな|みんな",
+  "palabra": "みんな",
+  "lectura": "みんな",
+  "es": [
+   "todos",
+   "todo el mundo",
+   "todas las personas"
+  ],
+  "origenEs": "jmdict",
+  "en": "all, everyone, everybody",
+  "jmdict": 1202150
+ },
+ {
+  "id": "六日|むいか",
+  "palabra": "六日",
+  "lectura": "むいか",
+  "es": [
+   "sexto día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "six days; sixth day of month",
+  "jmdict": 1561470
+ },
+ {
+  "id": "向こう|むこう",
+  "palabra": "向こう",
+  "lectura": "むこう",
+  "es": [
+   "más allá",
+   "por allí",
+   "dirección opuesta"
+  ],
+  "origenEs": "jmdict",
+  "en": "beyond, over there",
+  "jmdict": 1277140
+ },
+ {
+  "id": "難しい|むずかしい",
+  "palabra": "難しい",
+  "lectura": "むずかしい",
+  "es": [
+   "difícil",
+   "complicado"
+  ],
+  "origenEs": "jmdict",
+  "en": "difficult",
+  "jmdict": 1460850
+ },
+ {
+  "id": "六つ|むっつ",
+  "palabra": "六つ",
+  "lectura": "むっつ",
+  "es": [
+   "seis"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "6",
+   "seis"
+  ],
+  "problema": "glosa con dígito",
+  "en": "six things",
+  "jmdict": 1585315
+ },
+ {
+  "id": "村|むら",
+  "palabra": "村",
+  "lectura": "むら",
+  "es": [
+   "aldea",
+   "villa",
+   "pueblo"
+  ],
+  "origenEs": "jmdict",
+  "en": "village",
+  "jmdict": 1406820
+ },
+ {
+  "id": "目|め",
+  "palabra": "目",
+  "lectura": "め",
+  "es": [
+   "ojo"
+  ],
+  "origenEs": "jmdict",
+  "en": "eye(s)",
+  "jmdict": 1604890
+ },
+ {
+  "id": "メートル|メートル",
+  "palabra": "メートル",
+  "lectura": "メートル",
+  "es": [
+   "metro"
+  ],
+  "origenEs": "jmdict",
+  "en": "meter",
+  "jmdict": 1132570
+ },
+ {
+  "id": "眼鏡|めがね",
+  "palabra": "眼鏡",
+  "lectura": "めがね",
+  "es": [
+   "lentes",
+   "anteojos",
+   "gafas"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "gafas",
+   "(am) lentes",
+   "(am) anteojos"
+  ],
+  "problema": "«gafas» es de España",
+  "en": "eye glasses",
+  "jmdict": 1577670
+ },
+ {
+  "id": "もう|もう",
+  "palabra": "もう",
+  "lectura": "もう",
+  "es": [
+   "ya (de algo ya terminado)"
+  ],
+  "origenEs": "jmdict",
+  "en": "already; again; more",
+  "jmdict": 1012480
+ },
+ {
+  "id": "木曜日|もくようび",
+  "palabra": "木曜日",
+  "lectura": "もくようび",
+  "es": [
+   "jueves"
+  ],
+  "origenEs": "jmdict",
+  "en": "Thursday",
+  "jmdict": 1534890
+ },
+ {
+  "id": "もしもし|もしもし",
+  "palabra": "もしもし",
+  "lectura": "もしもし",
+  "es": [
+   "hola (en teléfono)"
+  ],
+  "origenEs": "jmdict",
+  "en": "Hello? (used on the phone)",
+  "jmdict": 1012550
+ },
+ {
+  "id": "持つ|もつ",
+  "palabra": "持つ",
+  "lectura": "もつ",
+  "es": [
+   "llevar",
+   "cargar",
+   "sostener"
+  ],
+  "origenEs": "jmdict",
+  "en": "to hold, to carry; to possess",
+  "jmdict": 1315720
+ },
+ {
+  "id": "もっと|もっと",
+  "palabra": "もっと",
+  "lectura": "もっと",
+  "es": [
+   "(un poco) más",
+   "más aún"
+  ],
+  "origenEs": "jmdict",
+  "en": "more",
+  "jmdict": 1012620
+ },
+ {
+  "id": "物|もの",
+  "palabra": "物",
+  "lectura": "もの",
+  "es": [
+   "cosa",
+   "objeto"
+  ],
+  "origenEs": "jmdict",
+  "en": "thing (concrete object)",
+  "jmdict": 1502390
+ },
+ {
+  "id": "門|もん",
+  "palabra": "門",
+  "lectura": "もん",
+  "es": [
+   "puerta",
+   "verja",
+   "portal"
+  ],
+  "origenEs": "jmdict",
+  "en": "gate",
+  "jmdict": 1584800
+ },
+ {
+  "id": "問題|もんだい",
+  "palabra": "問題",
+  "lectura": "もんだい",
+  "es": [
+   "problema",
+   "pregunta"
+  ],
+  "origenEs": "jmdict",
+  "en": "a problem",
+  "jmdict": 1536010
+ },
+ {
+  "id": "～屋|～や",
+  "palabra": "～屋",
+  "lectura": "～や",
+  "es": [
+   "tienda de…",
+   "…ería"
+  ],
+  "origenEs": "claude",
+  "en": "~ shop",
+  "jmdict": 2082160
+ },
+ {
+  "id": "八百屋|やおや",
+  "palabra": "八百屋",
+  "lectura": "やおや",
+  "es": [
+   "verdulería",
+   "verdulero"
+  ],
+  "origenEs": "jmdict",
+  "en": "greengrocer",
+  "jmdict": 1476960
+ },
+ {
+  "id": "野菜|やさい",
+  "palabra": "野菜",
+  "lectura": "やさい",
+  "es": [
+   "verdura",
+   "hortaliza"
+  ],
+  "origenEs": "jmdict",
+  "en": "vegetable",
+  "jmdict": 1537370
+ },
+ {
+  "id": "易しい|やさしい",
+  "palabra": "易しい",
+  "lectura": "やさしい",
+  "es": [
+   "fácil",
+   "simple",
+   "sencillo"
+  ],
+  "origenEs": "jmdict",
+  "en": "easy, plain, simple",
+  "jmdict": 1157000
+ },
+ {
+  "id": "安い|やすい",
+  "palabra": "安い",
+  "lectura": "やすい",
+  "es": [
+   "barato"
+  ],
+  "origenEs": "jmdict",
+  "en": "inexpensive; cheap (things)",
+  "jmdict": 1153670
+ },
+ {
+  "id": "休み|やすみ",
+  "palabra": "休み",
+  "lectura": "やすみ",
+  "es": [
+   "día libre",
+   "vacaciones",
+   "descanso"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "descanso"
+  ],
+  "problema": "falta «día libre/vacaciones»",
+  "en": "holiday; day off; absence",
+  "jmdict": 1227500
+ },
+ {
+  "id": "休む|やすむ",
+  "palabra": "休む",
+  "lectura": "やすむ",
+  "es": [
+   "descansar",
+   "tener un respiro",
+   "tomarse un día"
+  ],
+  "origenEs": "jmdict",
+  "en": "to rest, to have a break, to get time off",
+  "jmdict": 1227560
+ },
+ {
+  "id": "八つ|やっつ",
+  "palabra": "八つ",
+  "lectura": "やっつ",
+  "es": [
+   "ocho"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "ocho"
+  ],
+  "problema": "glosa con dígito",
+  "en": "eight things",
+  "jmdict": 1583095
+ },
+ {
+  "id": "山|やま",
+  "palabra": "山",
+  "lectura": "やま",
+  "es": [
+   "montaña"
+  ],
+  "origenEs": "jmdict",
+  "en": "mountain",
+  "jmdict": 1302680
+ },
+ {
+  "id": "やる|やる",
+  "palabra": "やる",
+  "lectura": "やる",
+  "es": [
+   "hacer",
+   "dar (a inferiores)"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "hacer",
+   "tener relaciones sexuales",
+   "matar"
+  ],
+  "problema": "glosa inapropiada",
+  "en": "to do; to give (to pets, parents, siblings, etc.)",
+  "jmdict": 1012980
+ },
+ {
+  "id": "夕方|ゆうがた",
+  "palabra": "夕方",
+  "lectura": "ゆうがた",
+  "es": [
+   "atardecer",
+   "tarde"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tarde",
+   "noche"
+  ],
+  "problema": "«noche» incorrecto",
+  "en": "late afternoon (typically just before dinner time), evening",
+  "jmdict": 1542790
+ },
+ {
+  "id": "夕飯|ゆうはん",
+  "palabra": "夕飯",
+  "lectura": "ゆうはん",
+  "es": [
+   "cena"
+  ],
+  "origenEs": "jmdict",
+  "en": "dinner, supper, evening meal",
+  "jmdict": 1584910
+ },
+ {
+  "id": "郵便局|ゆうびんきょく",
+  "palabra": "郵便局",
+  "lectura": "ゆうびんきょく",
+  "es": [
+   "oficina postal",
+   "oficina de correos"
+  ],
+  "origenEs": "jmdict",
+  "en": "post office",
+  "jmdict": 1542430
+ },
+ {
+  "id": "昨夜|ゆうべ",
+  "palabra": "昨夜",
+  "lectura": "ゆうべ",
+  "es": [
+   "anoche"
+  ],
+  "origenEs": "jmdict",
+  "en": "last night",
+  "jmdict": 1542640
+ },
+ {
+  "id": "有名|ゆうめい",
+  "palabra": "有名",
+  "lectura": "ゆうめい",
+  "es": [
+   "famoso"
+  ],
+  "origenEs": "jmdict",
+  "en": "famous",
+  "jmdict": 1541620
+ },
+ {
+  "id": "雪|ゆき",
+  "palabra": "雪",
+  "lectura": "ゆき",
+  "es": [
+   "nieve"
+  ],
+  "origenEs": "jmdict",
+  "en": "snow",
+  "jmdict": 1386500
+ },
+ {
+  "id": "ゆっくりと|ゆっくりと",
+  "palabra": "ゆっくりと",
+  "lectura": "ゆっくりと",
+  "es": [
+   "despacio",
+   "con calma"
+  ],
+  "origenEs": "claude",
+  "en": "slowly, at ease",
+  "jmdict": null
+ },
+ {
+  "id": "八日|ようか",
+  "palabra": "八日",
+  "lectura": "ようか",
+  "es": [
+   "octavo día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "eight days; eighth day of the month",
+  "jmdict": 1476920
+ },
+ {
+  "id": "洋服|ようふく",
+  "palabra": "洋服",
+  "lectura": "ようふく",
+  "es": [
+   "ropa estilo occidental"
+  ],
+  "origenEs": "jmdict",
+  "en": "Western-style clothes",
+  "jmdict": 1546020
+ },
+ {
+  "id": "よく|よく",
+  "palabra": "よく",
+  "lectura": "よく",
+  "es": [
+   "a menudo",
+   "bien"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "bien",
+   "hábilmente",
+   "diestramente"
+  ],
+  "problema": "falta «a menudo»",
+  "en": "frequently, often (much); well, skillfully",
+  "jmdict": 1605870
+ },
+ {
+  "id": "横|よこ",
+  "palabra": "横",
+  "lectura": "よこ",
+  "es": [
+   "lado",
+   "al lado",
+   "ancho"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "junto"
+  ],
+  "problema": "«junto» imprecisa",
+  "en": "beside; side; width",
+  "jmdict": 1180570
+ },
+ {
+  "id": "四日|よっか",
+  "palabra": "四日",
+  "lectura": "よっか",
+  "es": [
+   "cuarto día del mes"
+  ],
+  "origenEs": "jmdict",
+  "en": "four days; fourth day of the month",
+  "jmdict": 1307320
+ },
+ {
+  "id": "四つ|よっつ",
+  "palabra": "四つ",
+  "lectura": "よっつ",
+  "es": [
+   "cuatro"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "4",
+   "cuatro"
+  ],
+  "problema": "glosa con dígito",
+  "en": "four things",
+  "jmdict": 1307040
+ },
+ {
+  "id": "呼ぶ|よぶ",
+  "palabra": "呼ぶ",
+  "lectura": "よぶ",
+  "es": [
+   "llamar",
+   "invitar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "llamar",
+   "llamársele",
+   "vocear"
+  ],
+  "problema": "glosa rara",
+  "en": "to call (one's name); to invite",
+  "jmdict": 1266440
+ },
+ {
+  "id": "読む|よむ",
+  "palabra": "読む",
+  "lectura": "よむ",
+  "es": [
+   "leer"
+  ],
+  "origenEs": "jmdict",
+  "en": "to read",
+  "jmdict": 1456360
+ },
+ {
+  "id": "夜|よる",
+  "palabra": "夜",
+  "lectura": "よる",
+  "es": [
+   "noche"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "tarde",
+   "noche"
+  ],
+  "problema": "«tarde» incorrecto",
+  "en": "evening, night",
+  "jmdict": 1536350
+ },
+ {
+  "id": "弱い|よわい",
+  "palabra": "弱い",
+  "lectura": "よわい",
+  "es": [
+   "débil",
+   "endeble",
+   "delicado"
+  ],
+  "origenEs": "jmdict",
+  "en": "weak",
+  "jmdict": 1324520
+ },
+ {
+  "id": "来月|らいげつ",
+  "palabra": "来月",
+  "lectura": "らいげつ",
+  "es": [
+   "mes entrante",
+   "mes siguiente"
+  ],
+  "origenEs": "jmdict",
+  "en": "next month",
+  "jmdict": 1547900
+ },
+ {
+  "id": "来週|らいしゅう",
+  "palabra": "来週",
+  "lectura": "らいしゅう",
+  "es": [
+   "semana entrante",
+   "semana siguiente"
+  ],
+  "origenEs": "jmdict",
+  "en": "next week",
+  "jmdict": 1548010
+ },
+ {
+  "id": "来年|らいねん",
+  "palabra": "来年",
+  "lectura": "らいねん",
+  "es": [
+   "(el) próximo año",
+   "(el) año que viene"
+  ],
+  "origenEs": "jmdict",
+  "en": "next year",
+  "jmdict": 1548220
+ },
+ {
+  "id": "ラジオ|ラジオ",
+  "palabra": "ラジオ",
+  "lectura": "ラジオ",
+  "es": [
+   "radio"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "radio"
+  ],
+  "problema": "nota «(eng:)»",
+  "en": "radio",
+  "jmdict": 1138860
+ },
+ {
+  "id": "ラジオカセ|ラジオカセ",
+  "palabra": "ラジオカセ",
+  "lectura": "ラジオカセ",
+  "es": [
+   "radiocasete"
+  ],
+  "origenEs": "claude",
+  "en": "radio cassette player",
+  "jmdict": null
+ },
+ {
+  "id": "りっぱ|りっぱ",
+  "palabra": "りっぱ",
+  "lectura": "りっぱ",
+  "es": [
+   "magnífico",
+   "espléndido"
+  ],
+  "origenEs": "jmdict",
+  "en": "splendid, fine",
+  "jmdict": 1551790
+ },
+ {
+  "id": "留学生|りゅうがくせい",
+  "palabra": "留学生",
+  "lectura": "りゅうがくせい",
+  "es": [
+   "estudiante extranjero",
+   "estudiante de intercambio"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "estudiante en el extranjero"
+  ],
+  "problema": "ambigua",
+  "en": "international student",
+  "jmdict": 1552750
+ },
+ {
+  "id": "両親|りょうしん",
+  "palabra": "両親",
+  "lectura": "りょうしん",
+  "es": [
+   "padres (los propios)",
+   "ambos padres"
+  ],
+  "origenEs": "jmdict",
+  "en": "parents (lit., both parents)",
+  "jmdict": 1602710
+ },
+ {
+  "id": "料理|りょうり",
+  "palabra": "料理",
+  "lectura": "りょうり",
+  "es": [
+   "cocina",
+   "arte culinario"
+  ],
+  "origenEs": "jmdict",
+  "en": "cooking; cuisine",
+  "jmdict": 1554310
+ },
+ {
+  "id": "旅行|りょこう",
+  "palabra": "旅行",
+  "lectura": "りょこう",
+  "es": [
+   "viaje",
+   "viajar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "viajar",
+   "viaje"
+  ],
+  "problema": "«viajar» es verbo",
+  "en": "travel, trip",
+  "jmdict": 1553170
+ },
+ {
+  "id": "零|れい",
+  "palabra": "零",
+  "lectura": "れい",
+  "es": [
+   "cero"
+  ],
+  "origenEs": "jmdict",
+  "en": "zero, nought",
+  "jmdict": 1557630
+ },
+ {
+  "id": "冷蔵庫|れいぞうこ",
+  "palabra": "冷蔵庫",
+  "lectura": "れいぞうこ",
+  "es": [
+   "refrigerador",
+   "nevera"
+  ],
+  "origenEs": "jmdict",
+  "en": "refrigerator",
+  "jmdict": 1557110
+ },
+ {
+  "id": "レコード|レコード",
+  "palabra": "レコード",
+  "lectura": "レコード",
+  "es": [
+   "disco",
+   "registro"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "disco de música",
+   "registro",
+   "historial"
+  ],
+  "problema": "glosa recargada",
+  "en": "record",
+  "jmdict": 1144940
+ },
+ {
+  "id": "レストラン|レストラン",
+  "palabra": "レストラン",
+  "lectura": "レストラン",
+  "es": [
+   "restaurante"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "restaurante (fr:)"
+  ],
+  "problema": "nota «(fr:)»",
+  "en": "restaurant",
+  "jmdict": 1145310
+ },
+ {
+  "id": "練習|れんしゅう (する)",
+  "palabra": "練習",
+  "lectura": "れんしゅう (する)",
+  "es": [
+   "ejercitar",
+   "practicar",
+   "ensayar"
+  ],
+  "origenEs": "jmdict",
+  "en": "(to) practice",
+  "jmdict": 1559160
+ },
+ {
+  "id": "廊下|ろうか",
+  "palabra": "廊下",
+  "lectura": "ろうか",
+  "es": [
+   "pasillo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "corredor"
+  ],
+  "problema": "«corredor» poco claro",
+  "en": "corridor",
+  "jmdict": 1560670
+ },
+ {
+  "id": "六|ろく",
+  "palabra": "六",
+  "lectura": "ろく",
+  "es": [
+   "seis"
+  ],
+  "origenEs": "jmdict",
+  "en": "six",
+  "jmdict": 1585310
+ },
+ {
+  "id": "ワイシャツ|ワイシャツ",
+  "palabra": "ワイシャツ",
+  "lectura": "ワイシャツ",
+  "es": [
+   "camisa de vestir",
+   "camisa"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "camisetas"
+  ],
+  "problema": "«camisetas» incorrecto",
+  "en": "shirt (lit: white shirt), business shirt",
+  "jmdict": 1148640
+ },
+ {
+  "id": "若い|わかい",
+  "palabra": "若い",
+  "lectura": "わかい",
+  "es": [
+   "joven"
+  ],
+  "origenEs": "jmdict",
+  "en": "young",
+  "jmdict": 1324300
+ },
+ {
+  "id": "分かる|わかる",
+  "palabra": "分かる",
+  "lectura": "わかる",
+  "es": [
+   "entender"
+  ],
+  "origenEs": "jmdict",
+  "en": "to understand",
+  "jmdict": 1606560
+ },
+ {
+  "id": "忘れる|わすれる",
+  "palabra": "忘れる",
+  "lectura": "わすれる",
+  "es": [
+   "olvidar"
+  ],
+  "origenEs": "jmdict",
+  "en": "to forget",
+  "jmdict": 1519210
+ },
+ {
+  "id": "私|わたし",
+  "palabra": "私",
+  "lectura": "わたし",
+  "es": [
+   "yo"
+  ],
+  "origenEs": "jmdict",
+  "en": "I, myself",
+  "jmdict": 1311110
+ },
+ {
+  "id": "私|わたくし",
+  "palabra": "私",
+  "lectura": "わたくし",
+  "es": [
+   "yo",
+   "mi",
+   "yo mismo"
+  ],
+  "origenEs": "jmdict",
+  "en": "I (formal), myself, private affairs",
+  "jmdict": 2842390
+ },
+ {
+  "id": "渡す|わたす",
+  "palabra": "渡す",
+  "lectura": "わたす",
+  "es": [
+   "entregar",
+   "pasar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "vadear (un río, etc.)",
+   "llevar a través de"
+  ],
+  "problema": "«vadear» incorrecto",
+  "en": "to hand (something) over (v.t.); to get across",
+  "jmdict": 1444610
+ },
+ {
+  "id": "渡る|わたる",
+  "palabra": "渡る",
+  "lectura": "わたる",
+  "es": [
+   "cruzar",
+   "atravesar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "durar",
+   "abarcar",
+   "extenderse"
+  ],
+  "problema": "«durar;abarcar» incorrecto",
+  "en": "to cross over, to go across",
+  "jmdict": 1444680
+ },
+ {
+  "id": "悪い|わるい",
+  "palabra": "悪い",
+  "lectura": "わるい",
+  "es": [
+   "malo",
+   "pobre",
+   "inferior"
+  ],
+  "origenEs": "jmdict",
+  "en": "bad, sinful; inferior",
+  "jmdict": 1151260
+ }
+]

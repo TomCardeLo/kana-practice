@@ -183,10 +183,10 @@ final class KanaUITests: XCTestCase {
         jugarRonda(de: 5, hasta: 3)
         esperarLabel("progreso", "4/5")
         esperarLabel("combo", "Combo de 3")
-        _ = fallarConEnter(el("tarjeta-input"), vidasRestantes: 2)
+        _ = fallarOpcion(vidasRestantes: 2)
         XCTAssertFalse(el("combo").exists, "El combo siguió tras un error (66, 73)")
         esperarLabel("progreso", "5/5")
-        el("tarjeta-input").typeText(romaji(el("tarjeta-kana").label))
+        responder()
         esperarLabel("resumen-titulo", "¡Ronda completada!")
         XCTAssertFalse(el("resumen-mensaje").label.contains("Ronda perfecta"), "Llamó perfecta a una ronda con un error (67)")
         XCTAssertFalse(el("aviso-celebracion").waitForExistence(timeout: 2), "La meta se anunció dos veces el mismo día (64)")
@@ -241,7 +241,7 @@ final class KanaUITests: XCTestCase {
             esperarLabel("progreso", "\(i)/14", timeout: 6)
             let kana = el("tarjeta-kana").label
             vistos.append(kana)
-            if i <= 3 { toca("btn-nolase") } else { el("tarjeta-input").typeText(romaji(kana)) }
+            if i <= 3 { toca("btn-nolase") } else { responder() }
             XCTAssertFalse(el("vidas").exists, "El repaso no tiene vidas (82)")
         }
         XCTAssertEqual(Set(vistos), ["い", "か", "さ", "そ", "う", "え", "お", "き", "く", "け", "こ", "し", "す", "せ"])
@@ -276,46 +276,33 @@ final class KanaUITests: XCTestCase {
     func testTarjetasErroresHastaQuedarseSinVidas() {
         configurarTarjetas(tamano: "10")
         toca("btn-empezar")
-        let campo = el("tarjeta-input")
         esperarLabel("progreso", "1/10")
 
-        // Enter con el campo vacío no resta vida (39).
-        campo.typeText("\n")
-        XCTAssertEqual(el("vidas").label, "Vidas: 3 de 3")
-        XCTAssertEqual(el("progreso").label, "1/10")
-        XCTAssertEqual(el("tarjeta-feedback").label, " ")
-
-        // Una sílaba a medio escribir no avanza ni resta (33).
-        campo.typeText("k")
-        XCTAssertEqual(campo.value as? String, "k")
-        XCTAssertEqual(el("progreso").label, "1/10")
-        XCTAssertEqual(el("vidas").label, "Vidas: 3 de 3")
-        campo.typeText(XCUIKeyboardKey.delete.rawValue)
-
-        // Respuesta mala con Enter: muestra la lectura correcta y resta una vida (34, 35).
-        var errores = [fallarConEnter(campo, vidasRestantes: 2)]
+        // Opción equivocada: muestra la lectura correcta y resta una vida (34); la correcta y la elegida se
+        // distinguen sin color (92).
+        let correcta1 = romaji(el("tarjeta-kana").label)
+        var errores = [fallarOpcion(vidasRestantes: 2)]
+        let marcadas = opciones().map { ($0.label, $0.value as? String ?? "") }
+        XCTAssertEqual(marcadas.first { $0.1 == "correcta" }?.0, correcta1, "No se marca la correcta: \(marcadas)")
+        XCTAssertEqual(marcadas.filter { $0.1 == "tu elección" }.count, 1, "No se marca la elegida: \(marcadas)")
         esperarLabel("progreso", "2/10")
         esperarLabel("tarjeta-feedback", " ")
-        XCTAssertTrue(vacio(campo), "La respuesta mala pasó a la tarjeta siguiente: \(String(describing: campo.value))")
 
-        // «No la sé» resta una vida y lo escrito durante la pausa se descarta al instante (34, 35).
+        // «No la sé» resta una vida; durante la pausa las opciones no se pueden tocar (91).
         let kana2 = el("tarjeta-kana").label
         toca("btn-nolase")
-        campo.typeText("z")
-        let valor = campo.value
-        // Si la lectura ya no está, la pausa terminó antes de comprobarla y la prueba no demuestra nada.
-        XCTAssertEqual(el("tarjeta-feedback").label, "\(kana2) se lee \(romaji(kana2))",
-                       "La pausa terminó antes de comprobarla")
-        XCTAssertTrue(vacio(campo, valor), "Lo escrito durante la pausa no se descartó: \(String(describing: valor))")
+        let activas = opciones().filter(\.isEnabled).count
+        XCTAssertEqual(el("tarjeta-feedback").label, "\(kana2) se lee \(romaji(kana2))", "La pausa terminó antes de comprobarla")
+        XCTAssertEqual(activas, 0, "Las opciones se pueden tocar durante la pausa (91)")
         XCTAssertEqual(el("vidas").label, "Vidas: 1 de 3")
         XCTAssertFalse(el("btn-nolase").isEnabled)
         errores.append(kana2)
         esperarLabel("progreso", "3/10")
-        XCTAssertTrue(vacio(campo), "Lo escrito en la pausa pasó a la tarjeta siguiente")
         XCTAssertEqual(el("vidas").label, "Vidas: 1 de 3")
 
-        // Tercer error: el foco vuelve solo al campo; la lectura se ve antes del resumen.
-        errores.append(fallarConEnter(campo, vidasRestantes: 0))
+        // Tercer error: la lectura se ve antes del resumen.
+        errores.append(fallarOpcion(vidasRestantes: 0))
+        captura("tarjetas-error-opcion")
         esperarLabel("resumen-titulo", "Sin vidas", timeout: 5)
         XCTAssertEqual(el("resumen-aciertos").label, "0/10")
         XCTAssertEqual(el("resumen-record").label, "Completa la ronda para registrar un récord.")
@@ -324,28 +311,35 @@ final class KanaUITests: XCTestCase {
         captura("tarjetas-sin-vidas")
     }
 
-    /// 35: tras un error con Enter el campo conserva el foco durante la pausa (el teclado no baja y sube).
-    func testTarjetasErrorConEnterConservaElTeclado() {
+    /// 91: un doble toque sobre la correcta cuenta una sola respuesta (el segundo toque caería en la tarjeta siguiente).
+    func testTarjetasDobleToqueCuentaUnaVez() {
+        configurarTarjetas(tamano: "10")
         toca("btn-empezar")
         esperarLabel("progreso", "1/10")
-        let campo = el("tarjeta-input")
-        let kana = el("tarjeta-kana").label
-        campo.typeText("x\n")
-        let foco = campo.value(forKey: "hasKeyboardFocus") as? Bool ?? false
-        let teclados = app.keyboards.count
-        XCTAssertEqual(el("tarjeta-feedback").label, "\(kana) se lee \(romaji(kana))",
-                       "La pausa terminó antes de comprobarla")
-        captura("tarjetas-pausa-tras-enter")
-        XCTAssertTrue(foco && teclados > 0,
-                      "Tras Enter con error el campo pierde el foco (teclados: \(teclados)): el teclado baja y sube")
+        let correcta = romaji(el("tarjeta-kana").label)
+        opciones().first { $0.label == correcta }!.doubleTap()
+        esperarLabel("progreso", "2/10")
+        sleep(1)
+        XCTAssertEqual(el("progreso").label, "2/10", "El segundo toque contó como respuesta de la tarjeta siguiente")
+        XCTAssertEqual(el("vidas").label, "Vidas: 3 de 3")
     }
 
-    /// 29, 30, 32: el mazo básico completo de hiragana sale entero, sin repetir, con variantes kunrei.
-    func testTarjetasHiraganaCompletaConVariantes() {
+    /// 29, 30, 87–90: el mazo básico completo sale entero y sin repetir; cada tarjeta tiene 4 opciones distintas con
+    /// una sola válida (nunca una variante como «si» para し), y la correcta no cae siempre en el mismo sitio.
+    func testTarjetasOpcionesDelMazoCompleto() {
         configurarTarjetas(tamano: "Todas (46)")
         toca("btn-empezar")
-        let kanas = jugarRonda(de: 46, variantes: true)
+        var posiciones: Set<Int> = []
+        let kanas = jugarRonda(de: 46) { _ in
+            let kana = self.el("tarjeta-kana").label
+            let etiquetas = self.opciones().map(\.label)
+            XCTAssertEqual(Set(etiquetas).count, 4, "Opciones repetidas o de menos para \(kana): \(etiquetas)")
+            XCTAssertEqual(etiquetas.filter { $0 == self.romaji(kana) }.count, 1, "La correcta no está una vez: \(etiquetas)")
+            if let variante = Self.variantes[kana] { XCTAssertFalse(etiquetas.contains(variante), "\(variante) también vale para \(kana)") }
+            posiciones.insert(etiquetas.firstIndex(of: self.romaji(kana)) ?? -1)
+        }
         XCTAssertEqual(kanas.sorted(), Self.hiragana.map(\.0).sorted(), "El mazo no coincide con los 46 básicos")
+        XCTAssertGreaterThanOrEqual(posiciones.count, 3, "La correcta cae casi siempre en el mismo sitio (90)")
         esperarLabel("resumen-titulo", "¡Ronda completada!")
         XCTAssertEqual(el("resumen-aciertos").label, "46/46")
         captura("tarjetas-mazo-completo")
@@ -571,10 +565,14 @@ final class KanaUITests: XCTestCase {
         configurarTarjetas(tamano: "5")
         toca("btn-empezar")
         captura("ipad-tarjeta-horizontal")
-        // Se espera a que acabe la animación del teclado antes de exigir que kana y campo se vean a la vez.
-        esperar(el("tarjeta-input"), NSPredicate(format: "hittable == true"))
-        XCTAssertTrue(el("tarjeta-kana").isHittable, "El kana no es visible en horizontal con el teclado abierto")
-        jugarRonda(de: 5)
+        esperar(el("opcion-4"), NSPredicate(format: "hittable == true"))
+        XCTAssertTrue(el("tarjeta-kana").isHittable, "El kana no es visible en horizontal junto a las opciones")
+        // Teclado físico: la tecla del número elige esa opción (93).
+        let correcta = romaji(el("tarjeta-kana").label)
+        let numero = opciones().firstIndex { $0.label == correcta }! + 1
+        app.typeKey("\(numero)", modifierFlags: [])
+        esperarLabel("progreso", "2/5")
+        jugarRonda(de: 5, desde: 2)
         esperarLabel("resumen-titulo", "¡Ronda completada!")
         XCTAssertEqual(el("resumen-aciertos").label, "5/5")
         captura("ipad-resumen-horizontal")
@@ -588,7 +586,7 @@ final class KanaUITests: XCTestCase {
     ま ma み mi む mu め me も mo や ya ゆ yu よ yo ら ra り ri る ru れ re ろ ro わ wa を wo ん n
     """.split(separator: " ").chunked2()
 
-    /// Variantes kunrei que la app debe aceptar (32).
+    /// Variantes kunrei: nunca deben salir como opción falsa de su kana (88).
     private static let variantes = ["し": "si", "ち": "ti", "つ": "tu", "ふ": "hu"]
 
     private func romaji(_ kana: String) -> String {
@@ -672,26 +670,34 @@ final class KanaUITests: XCTestCase {
         }
     }
 
+    /// Las 4 opciones de la tarjeta actual, en orden.
+    private func opciones() -> [XCUIElement] { (1 ... 4).map { el("opcion-\($0)") } }
+
+    /// Toca la opción correcta (o una equivocada) de la tarjeta actual.
+    private func responder(bien: Bool = true, file: StaticString = #filePath, line: UInt = #line) {
+        let correcta = romaji(el("tarjeta-kana").label)
+        guard let boton = opciones().first(where: { ($0.label == correcta) == bien }) else {
+            return XCTFail("No hay opción \(bien ? "correcta" : "equivocada") para \(correcta)", file: file, line: line)
+        }
+        boton.tap()
+    }
+
     /// Responde bien las tarjetas `1...hasta` de una ronda de `total`. Devuelve los kana mostrados.
     @discardableResult
-    private func jugarRonda(de total: Int, hasta: Int? = nil, variantes: Bool = false,
-                            antesDeResponder: ((Int) -> Void)? = nil) -> [String] {
-        let campo = el("tarjeta-input")
-        return (1 ... (hasta ?? total)).map { i in
+    private func jugarRonda(de total: Int, desde: Int = 1, hasta: Int? = nil, antesDeResponder: ((Int) -> Void)? = nil) -> [String] {
+        (desde ... (hasta ?? total)).map { i in
             esperarLabel("progreso", "\(i)/\(total)")
             let kana = el("tarjeta-kana").label
             antesDeResponder?(i)
-            let lectura = variantes ? Self.variantes[kana] ?? romaji(kana) : romaji(kana)
-            campo.typeText(lectura)
+            responder()
             return kana
         }
     }
 
-    /// Escribe una respuesta mala y Enter; comprueba la lectura mostrada durante la pausa y la vida restada.
-    private func fallarConEnter(_ campo: XCUIElement, vidasRestantes: Int,
-                                file: StaticString = #filePath, line: UInt = #line) -> String {
+    /// Toca una opción equivocada; comprueba la lectura mostrada durante la pausa y la vida restada.
+    private func fallarOpcion(vidasRestantes: Int, file: StaticString = #filePath, line: UInt = #line) -> String {
         let kana = el("tarjeta-kana").label
-        campo.typeText("x\n")
+        responder(bien: false, file: file, line: line)
         esperarLabel("tarjeta-feedback", "\(kana) se lee \(romaji(kana))", file: file, line: line)
         XCTAssertEqual(el("vidas").label, "Vidas: \(vidasRestantes) de 3", file: file, line: line)
         return kana

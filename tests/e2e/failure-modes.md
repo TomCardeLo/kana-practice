@@ -144,3 +144,34 @@
 83. Al volver de la sesión, «Hoy» sigue mostrando como pendientes los kana ya repasados.
 84. El día del repaso se calcula en UTC y no en la zona local.
 85. El plan se recalcula con cada respuesta guardada durante la ronda y retrasa la tarjeta siguiente.
+
+## Fase 4: Tarjetas de opción múltiple (escritos antes del código)
+87. Una ronda muestra menos de 4 opciones, repite una, o no incluye la correcta.
+88. Dos opciones son lecturas válidas de la misma tarjeta (じ/ぢ son «ji»; し acepta «si»): cualquiera de las
+    dos sería correcta y una se marca mal.
+89. Las opciones falsas son fáciles al azar: deben salir primero kana que se confunden con el mostrado
+    (ぬ/め, シ/ツ, ソ/ン) y luego de su misma fila o columna, siempre del mismo silabario.
+90. La correcta cae siempre en la misma posición.
+91. Un doble toque, o un toque durante la pausa tras un error, cuenta dos respuestas. (El E2E del doble
+    toque pasa también sin la guarda de 150 ms: en el simulador SwiftUI ya cuenta uno; la guarda queda para
+    toques humanos más lentos.)
+92. Tras un error no queda claro cuál era la correcta y cuál se eligió.
+93. Las opciones no se pueden elegir con VoiceOver ni con teclado físico (1–4) en el iPad.
+94. Con opción múltiple se acierta al azar 1 de cada 4: un acierto rápido no puede calificarse «fácil»
+    (mandaría un kana sin aprender una semana fuera de «Hoy»). Rápido = bien, lento = difícil.
+95. Los récords de cuando se escribía la lectura se comparan con los tiempos de tocar una opción.
+(88 hoy no puede darse con los mazos de la app, que solo traen Hepburn; el filtro queda por si el mazo crece.)
+
+## Fase 4b: vocabulario y kanji (escritos antes del código)
+96. Una opción falsa comparte significado con la correcta (青 y 青い son «azul»): habría dos respuestas buenas.
+97. El orden de las palabras nuevas depende del azar o del equipo: iPhone e iPad introducirían palabras distintas.
+    Debe salir de los datos (orden fijo pero mezclado; kanji por número de trazos).
+98. Las palabras nuevas salen todas por la misma sílaba (orden de diccionario: días seguidos de あ…).
+99. El tope de nuevas de kana, vocabulario y kanji se mezcla: cada uno lleva el suyo (10 palabras, 5 kanji al día).
+100. Una respuesta de vocabulario o kanji aparece en las estadísticas de kana, cuenta para los hitos de filas, o
+     rompe el plan de kana. Sí cuenta para la meta diaria de 50.
+101. El servidor rechaza los tipos nuevos (la app se adelanta al despliegue) y las respuestas quedan apartadas
+     para siempre; o una app vieja deja de sincronizar al bajar un tipo que no conoce.
+102. La pregunta no deja claro qué se pregunta: la palabra con kanji sin su lectura, o la lectura no se ve tras
+     responder.
+103. La atribución de JMdict/KANJIDIC2 (CC BY-SA 4.0) no aparece en la app.

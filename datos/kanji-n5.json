@@ -1,0 +1,2375 @@
+[
+ {
+  "kanji": "安",
+  "on": [
+   "アン"
+  ],
+  "kun": [
+   "やす.い",
+   "やす.まる",
+   "やす",
+   "やす.らか"
+  ],
+  "es": [
+   "barato",
+   "tranquilo",
+   "pacífico"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "relax",
+   "cheap",
+   "low"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "一",
+  "on": [
+   "イチ",
+   "イツ"
+  ],
+  "kun": [
+   "ひと-",
+   "ひと.つ"
+  ],
+  "es": [
+   "uno",
+   "1"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "one",
+   "one radical (no.1)"
+  ],
+  "trazos": 1
+ },
+ {
+  "kanji": "飲",
+  "on": [
+   "イン",
+   "オン"
+  ],
+  "kun": [
+   "の.む",
+   "-の.み"
+  ],
+  "es": [
+   "beber"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "drink",
+   "smoke",
+   "take"
+  ],
+  "trazos": 12
+ },
+ {
+  "kanji": "右",
+  "on": [
+   "ウ",
+   "ユウ"
+  ],
+  "kun": [
+   "みぎ"
+  ],
+  "es": [
+   "derecha"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "right"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "雨",
+  "on": [
+   "ウ"
+  ],
+  "kun": [
+   "あめ",
+   "あま-",
+   "-さめ"
+  ],
+  "es": [
+   "lluvia"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "rain"
+  ],
+  "trazos": 8
+ },
+ {
+  "kanji": "駅",
+  "on": [
+   "エキ"
+  ],
+  "kun": [],
+  "es": [
+   "estación"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "station"
+  ],
+  "trazos": 14
+ },
+ {
+  "kanji": "円",
+  "on": [
+   "エン"
+  ],
+  "kun": [
+   "まる.い",
+   "まる",
+   "まど",
+   "まど.か",
+   "まろ.やか"
+  ],
+  "es": [
+   "yen",
+   "círculo",
+   "redondo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "circular",
+   "redondo",
+   "yen"
+  ],
+  "problema": "«circular» primero; lo más común en N5 es yen",
+  "en": [
+   "circle",
+   "yen",
+   "round"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "下",
+  "on": [
+   "カ",
+   "ゲ"
+  ],
+  "kun": [
+   "した",
+   "しも",
+   "もと",
+   "さ.げる",
+   "さ.がる",
+   "くだ.る",
+   "くだ.り",
+   "くだ.す",
+   "-くだ.す",
+   "くだ.さる",
+   "お.ろす",
+   "お.りる"
+  ],
+  "es": [
+   "debajo",
+   "inferior",
+   "debajo de"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "below",
+   "down",
+   "descend"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "何",
+  "on": [
+   "カ"
+  ],
+  "kun": [
+   "なに",
+   "なん",
+   "なに-",
+   "なん-"
+  ],
+  "es": [
+   "qué"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "what"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "火",
+  "on": [
+   "カ"
+  ],
+  "kun": [
+   "ひ",
+   "-び",
+   "ほ-"
+  ],
+  "es": [
+   "fuego",
+   "flama",
+   "llama"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "fire"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "花",
+  "on": [
+   "カ",
+   "ケ"
+  ],
+  "kun": [
+   "はな"
+  ],
+  "es": [
+   "flor"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "flower"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "会",
+  "on": [
+   "カイ",
+   "エ"
+  ],
+  "kun": [
+   "あ.う",
+   "あ.わせる",
+   "あつ.まる"
+  ],
+  "es": [
+   "reunión",
+   "encontrarse",
+   "reunirse"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "asociación",
+   "reunión",
+   "encontrarse con"
+  ],
+  "problema": "«asociación» no es lo principal",
+  "en": [
+   "meeting",
+   "meet",
+   "party"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "外",
+  "on": [
+   "ガイ",
+   "ゲ"
+  ],
+  "kun": [
+   "そと",
+   "ほか",
+   "はず.す",
+   "はず.れる",
+   "と-"
+  ],
+  "es": [
+   "fuera",
+   "exterior",
+   "otro"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "outside"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "学",
+  "on": [
+   "ガク"
+  ],
+  "kun": [
+   "まな.ぶ"
+  ],
+  "es": [
+   "estudio",
+   "aprendizaje",
+   "ciencia"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "study",
+   "learning",
+   "science"
+  ],
+  "trazos": 8
+ },
+ {
+  "kanji": "間",
+  "on": [
+   "カン",
+   "ケン"
+  ],
+  "kun": [
+   "あいだ",
+   "ま",
+   "あい"
+  ],
+  "es": [
+   "intervalo",
+   "entre",
+   "espacio"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "intervalo",
+   "espacio",
+   "habitación"
+  ],
+  "problema": "«habitación» poco común",
+  "en": [
+   "interval",
+   "space"
+  ],
+  "trazos": 12
+ },
+ {
+  "kanji": "気",
+  "on": [
+   "キ",
+   "ケ"
+  ],
+  "kun": [
+   "いき",
+   "き"
+  ],
+  "es": [
+   "ánimo",
+   "energía",
+   "aire"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "espíritu",
+   "mente"
+  ],
+  "problema": "«espíritu» ambiguo",
+  "en": [
+   "spirit",
+   "mind",
+   "air"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "休",
+  "on": [
+   "キュウ"
+  ],
+  "kun": [
+   "やす.む",
+   "やす.まる",
+   "やす.める"
+  ],
+  "es": [
+   "descanso",
+   "descansar",
+   "tomarse un descanso"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "rest",
+   "day off",
+   "retire"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "魚",
+  "on": [
+   "ギョ"
+  ],
+  "kun": [
+   "うお",
+   "さかな",
+   "-ざかな"
+  ],
+  "es": [
+   "pez",
+   "pescado"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "fish"
+  ],
+  "trazos": 11
+ },
+ {
+  "kanji": "金",
+  "on": [
+   "キン",
+   "コン",
+   "ゴン"
+  ],
+  "kun": [
+   "かね",
+   "かな-",
+   "-がね"
+  ],
+  "es": [
+   "dinero",
+   "oro",
+   "metal"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "oro",
+   "dinero",
+   "metal"
+  ],
+  "problema": "en N5 sobresale «dinero»",
+  "en": [
+   "gold"
+  ],
+  "trazos": 8
+ },
+ {
+  "kanji": "九",
+  "on": [
+   "キュウ",
+   "ク"
+  ],
+  "kun": [
+   "ここの",
+   "ここの.つ"
+  ],
+  "es": [
+   "nueve",
+   "9"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "nine"
+  ],
+  "trazos": 2
+ },
+ {
+  "kanji": "空",
+  "on": [
+   "クウ"
+  ],
+  "kun": [
+   "そら",
+   "あ.く",
+   "あ.き",
+   "あ.ける",
+   "から",
+   "す.く",
+   "す.かす",
+   "むな.しい"
+  ],
+  "es": [
+   "cielo",
+   "atmósfera",
+   "vacío"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "empty",
+   "sky",
+   "void"
+  ],
+  "trazos": 8
+ },
+ {
+  "kanji": "月",
+  "on": [
+   "ゲツ",
+   "ガツ"
+  ],
+  "kun": [
+   "つき"
+  ],
+  "es": [
+   "mes",
+   "luna"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "month",
+   "moon"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "見",
+  "on": [
+   "ケン"
+  ],
+  "kun": [
+   "み.る",
+   "み.える",
+   "み.せる"
+  ],
+  "es": [
+   "ver",
+   "mirar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "vista",
+   "ver",
+   "esperanza"
+  ],
+  "problema": "«vista;esperanza» no es lo principal",
+  "en": [
+   "see",
+   "hopes",
+   "chances"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "言",
+  "on": [
+   "ゲン",
+   "ゴン"
+  ],
+  "kun": [
+   "い.う",
+   "こと"
+  ],
+  "es": [
+   "decir",
+   "palabra"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "palabras",
+   "decir"
+  ],
+  "problema": "«palabras» no es lo principal",
+  "en": [
+   "say",
+   "word"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "古",
+  "on": [
+   "コ"
+  ],
+  "kun": [
+   "ふる.い",
+   "ふる-",
+   "-ふる.す"
+  ],
+  "es": [
+   "viejo",
+   "antiguo",
+   "desgastar"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "old"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "五",
+  "on": [
+   "ゴ"
+  ],
+  "kun": [
+   "いつ",
+   "いつ.つ"
+  ],
+  "es": [
+   "cinco",
+   "5"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "five"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "午",
+  "on": [
+   "ゴ"
+  ],
+  "kun": [
+   "うま"
+  ],
+  "es": [
+   "mediodía"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "noon",
+   "sign of the horse",
+   "11AM-1PM"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "後",
+  "on": [
+   "ゴ",
+   "コウ"
+  ],
+  "kun": [
+   "のち",
+   "うし.ろ",
+   "うしろ",
+   "あと",
+   "おく.れる"
+  ],
+  "es": [
+   "después",
+   "atrás",
+   "detrás"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "behind",
+   "back",
+   "later"
+  ],
+  "trazos": 9
+ },
+ {
+  "kanji": "語",
+  "on": [
+   "ゴ"
+  ],
+  "kun": [
+   "かた.る",
+   "かた.らう"
+  ],
+  "es": [
+   "palabra",
+   "discurso",
+   "lenguaje"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "word",
+   "speech",
+   "language"
+  ],
+  "trazos": 14
+ },
+ {
+  "kanji": "口",
+  "on": [
+   "コウ",
+   "ク"
+  ],
+  "kun": [
+   "くち"
+  ],
+  "es": [
+   "boca",
+   "orificio",
+   "apertura"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "mouth"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "校",
+  "on": [
+   "コウ",
+   "キョウ"
+  ],
+  "kun": [],
+  "es": [
+   "escuela",
+   "colegio",
+   "centro docente"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "exam",
+   "school",
+   "printing"
+  ],
+  "trazos": 10
+ },
+ {
+  "kanji": "行",
+  "on": [
+   "コウ",
+   "ギョウ",
+   "アン"
+  ],
+  "kun": [
+   "い.く",
+   "ゆ.く",
+   "-ゆ.き",
+   "-ゆき",
+   "-い.き",
+   "-いき",
+   "おこな.う",
+   "おこ.なう"
+  ],
+  "es": [
+   "ir",
+   "fila",
+   "línea (texto)"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "going",
+   "journey",
+   "carry out"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "高",
+  "on": [
+   "コウ"
+  ],
+  "kun": [
+   "たか.い",
+   "たか",
+   "-だか",
+   "たか.まる",
+   "たか.める"
+  ],
+  "es": [
+   "alto",
+   "caro",
+   "sobresaliente"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "tall",
+   "high",
+   "expensive"
+  ],
+  "trazos": 10
+ },
+ {
+  "kanji": "国",
+  "on": [
+   "コク"
+  ],
+  "kun": [
+   "くに"
+  ],
+  "es": [
+   "país"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "country"
+  ],
+  "trazos": 8
+ },
+ {
+  "kanji": "今",
+  "on": [
+   "コン",
+   "キン"
+  ],
+  "kun": [
+   "いま"
+  ],
+  "es": [
+   "ahora",
+   "momento actual"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "now"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "左",
+  "on": [
+   "サ",
+   "シャ"
+  ],
+  "kun": [
+   "ひだり"
+  ],
+  "es": [
+   "izquierda"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "left"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "三",
+  "on": [
+   "サン",
+   "ゾウ"
+  ],
+  "kun": [
+   "み",
+   "み.つ",
+   "みっ.つ"
+  ],
+  "es": [
+   "tres",
+   "3"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "three"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "山",
+  "on": [
+   "サン",
+   "セン"
+  ],
+  "kun": [
+   "やま"
+  ],
+  "es": [
+   "montaña"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "mountain"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "四",
+  "on": [
+   "シ"
+  ],
+  "kun": [
+   "よ",
+   "よ.つ",
+   "よっ.つ",
+   "よん"
+  ],
+  "es": [
+   "cuatro",
+   "4"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "four"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "子",
+  "on": [
+   "シ",
+   "ス",
+   "ツ"
+  ],
+  "kun": [
+   "こ",
+   "-こ",
+   "ね"
+  ],
+  "es": [
+   "niño",
+   "hijo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "chiquillo",
+   "niño"
+  ],
+  "problema": "«chiquillo» regional/poco neutro",
+  "en": [
+   "child",
+   "sign of the rat",
+   "11PM-1AM"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "時",
+  "on": [
+   "ジ"
+  ],
+  "kun": [
+   "とき",
+   "-どき"
+  ],
+  "es": [
+   "tiempo",
+   "hora",
+   "ocasión"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "time",
+   "hour"
+  ],
+  "trazos": 10
+ },
+ {
+  "kanji": "耳",
+  "on": [
+   "ジ"
+  ],
+  "kun": [
+   "みみ"
+  ],
+  "es": [
+   "oreja",
+   "oído"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "ear"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "七",
+  "on": [
+   "シチ"
+  ],
+  "kun": [
+   "なな",
+   "なな.つ",
+   "なの"
+  ],
+  "es": [
+   "siete",
+   "7"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "seven"
+  ],
+  "trazos": 2
+ },
+ {
+  "kanji": "社",
+  "on": [
+   "シャ"
+  ],
+  "kun": [
+   "やしろ"
+  ],
+  "es": [
+   "compañía",
+   "asociación",
+   "sociedad"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "company",
+   "firm",
+   "office"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "車",
+  "on": [
+   "シャ"
+  ],
+  "kun": [
+   "くるま"
+  ],
+  "es": [
+   "auto",
+   "vehículo",
+   "rueda"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "coche",
+   "vehículo",
+   "rueda"
+  ],
+  "problema": "«coche» es de España",
+  "en": [
+   "car"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "手",
+  "on": [
+   "シュ",
+   "ズ"
+  ],
+  "kun": [
+   "て",
+   "て-",
+   "-て",
+   "た-"
+  ],
+  "es": [
+   "mano"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "hand"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "週",
+  "on": [
+   "シュウ"
+  ],
+  "kun": [],
+  "es": [
+   "semana"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "week"
+  ],
+  "trazos": 11
+ },
+ {
+  "kanji": "十",
+  "on": [
+   "ジュウ",
+   "ジッ",
+   "ジュッ"
+  ],
+  "kun": [
+   "とお",
+   "と",
+   "そ"
+  ],
+  "es": [
+   "diez",
+   "10"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "ten"
+  ],
+  "trazos": 2
+ },
+ {
+  "kanji": "出",
+  "on": [
+   "シュツ",
+   "スイ"
+  ],
+  "kun": [
+   "で.る",
+   "-で",
+   "だ.す",
+   "-だ.す",
+   "い.でる",
+   "い.だす"
+  ],
+  "es": [
+   "salir",
+   "dejar",
+   "sacar"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "exit",
+   "leave",
+   "go out"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "書",
+  "on": [
+   "ショ"
+  ],
+  "kun": [
+   "か.く",
+   "-が.き",
+   "-がき"
+  ],
+  "es": [
+   "escribir",
+   "escritura"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "escritura",
+   "escrito",
+   "escribir"
+  ],
+  "problema": "verbo primero",
+  "en": [
+   "write"
+  ],
+  "trazos": 10
+ },
+ {
+  "kanji": "女",
+  "on": [
+   "ジョ",
+   "ニョ",
+   "ニョウ"
+  ],
+  "kun": [
+   "おんな",
+   "め"
+  ],
+  "es": [
+   "mujer"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "femenino",
+   "mujer"
+  ],
+  "problema": "«femenino» adjetivo",
+  "en": [
+   "woman",
+   "female"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "小",
+  "on": [
+   "ショウ"
+  ],
+  "kun": [
+   "ちい.さい",
+   "こ-",
+   "お-",
+   "さ-"
+  ],
+  "es": [
+   "pequeño",
+   "poco"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "poco",
+   "pequeño"
+  ],
+  "problema": "«poco» no es lo principal",
+  "en": [
+   "little",
+   "small"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "少",
+  "on": [
+   "ショウ"
+  ],
+  "kun": [
+   "すく.ない",
+   "すこ.し"
+  ],
+  "es": [
+   "poco",
+   "pequeño",
+   "un poco"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "few",
+   "little"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "上",
+  "on": [
+   "ジョウ",
+   "ショウ",
+   "シャン"
+  ],
+  "kun": [
+   "うえ",
+   "-うえ",
+   "うわ-",
+   "かみ",
+   "あ.げる",
+   "-あ.げる",
+   "あ.がる",
+   "-あ.がる",
+   "あ.がり",
+   "-あ.がり",
+   "のぼ.る",
+   "のぼ.り",
+   "のぼ.せる",
+   "のぼ.す",
+   "たてまつ.る"
+  ],
+  "es": [
+   "arriba",
+   "encima",
+   "parte superior"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "above",
+   "up"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "食",
+  "on": [
+   "ショク",
+   "ジキ"
+  ],
+  "kun": [
+   "く.う",
+   "く.らう",
+   "た.べる",
+   "は.む"
+  ],
+  "es": [
+   "comer",
+   "comida"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "alimento",
+   "comida",
+   "eclipse"
+  ],
+  "problema": "«eclipse» incorrecto",
+  "en": [
+   "eat",
+   "food"
+  ],
+  "trazos": 9
+ },
+ {
+  "kanji": "新",
+  "on": [
+   "シン"
+  ],
+  "kun": [
+   "あたら.しい",
+   "あら.た",
+   "あら-",
+   "にい-"
+  ],
+  "es": [
+   "nuevo",
+   "fresco"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "new"
+  ],
+  "trazos": 13
+ },
+ {
+  "kanji": "人",
+  "on": [
+   "ジン",
+   "ニン"
+  ],
+  "kun": [
+   "ひと",
+   "-り",
+   "-と"
+  ],
+  "es": [
+   "persona"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "person"
+  ],
+  "trazos": 2
+ },
+ {
+  "kanji": "水",
+  "on": [
+   "スイ"
+  ],
+  "kun": [
+   "みず",
+   "みず-"
+  ],
+  "es": [
+   "agua"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "water"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "生",
+  "on": [
+   "セイ",
+   "ショウ"
+  ],
+  "kun": [
+   "い.きる",
+   "い.かす",
+   "い.ける",
+   "う.まれる",
+   "うま.れる",
+   "う.まれ",
+   "うまれ",
+   "う.む",
+   "お.う",
+   "は.える",
+   "は.やす",
+   "き",
+   "なま",
+   "なま-",
+   "な.る",
+   "な.す",
+   "む.す",
+   "-う"
+  ],
+  "es": [
+   "vida",
+   "nacimiento",
+   "vivir"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "life",
+   "genuine",
+   "birth"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "西",
+  "on": [
+   "セイ",
+   "サイ",
+   "ス"
+  ],
+  "kun": [
+   "にし"
+  ],
+  "es": [
+   "oeste"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "Oeste",
+   "España"
+  ],
+  "problema": "mayúscula innecesaria o glosas incorrectas (España/huir/Turquía)",
+  "en": [
+   "west",
+   "Spain"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "先",
+  "on": [
+   "セン"
+  ],
+  "kun": [
+   "さき",
+   "ま.ず"
+  ],
+  "es": [
+   "antes",
+   "adelante",
+   "previo"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "before",
+   "ahead",
+   "previous"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "千",
+  "on": [
+   "セン"
+  ],
+  "kun": [
+   "ち"
+  ],
+  "es": [
+   "mil",
+   "muchos"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "thousand"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "川",
+  "on": [
+   "セン"
+  ],
+  "kun": [
+   "かわ"
+  ],
+  "es": [
+   "arroyo",
+   "río"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "stream",
+   "river",
+   "river or three-stroke river radical (no. 47)"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "前",
+  "on": [
+   "ゼン"
+  ],
+  "kun": [
+   "まえ",
+   "-まえ"
+  ],
+  "es": [
+   "antes",
+   "delante de"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "in front",
+   "before"
+  ],
+  "trazos": 9
+ },
+ {
+  "kanji": "足",
+  "on": [
+   "ソク"
+  ],
+  "kun": [
+   "あし",
+   "た.りる",
+   "た.る",
+   "た.す"
+  ],
+  "es": [
+   "pie",
+   "pierna",
+   "suficiente"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "pierna",
+   "pie",
+   "ser suficiente"
+  ],
+  "problema": "falta «pie»",
+  "en": [
+   "leg",
+   "foot",
+   "be sufficient"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "多",
+  "on": [
+   "タ"
+  ],
+  "kun": [
+   "おお.い",
+   "まさ.に",
+   "まさ.る"
+  ],
+  "es": [
+   "abundante",
+   "mucho"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "many",
+   "frequent",
+   "much"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "大",
+  "on": [
+   "ダイ",
+   "タイ"
+  ],
+  "kun": [
+   "おお-",
+   "おお.きい",
+   "-おお.いに"
+  ],
+  "es": [
+   "grande",
+   "muy",
+   "mucho"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "large",
+   "big"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "男",
+  "on": [
+   "ダン",
+   "ナン"
+  ],
+  "kun": [
+   "おとこ",
+   "お"
+  ],
+  "es": [
+   "hombre"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "masculino",
+   "hombre"
+  ],
+  "problema": "«masculino» adjetivo",
+  "en": [
+   "male"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "中",
+  "on": [
+   "チュウ"
+  ],
+  "kun": [
+   "なか",
+   "うち",
+   "あた.る"
+  ],
+  "es": [
+   "centro",
+   "dentro",
+   "interior"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "in",
+   "inside",
+   "middle"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "長",
+  "on": [
+   "チョウ"
+  ],
+  "kun": [
+   "なが.い",
+   "おさ"
+  ],
+  "es": [
+   "largo",
+   "jefe",
+   "sobresaliente"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "long",
+   "leader",
+   "superior"
+  ],
+  "trazos": 8
+ },
+ {
+  "kanji": "天",
+  "on": [
+   "テン"
+  ],
+  "kun": [
+   "あまつ",
+   "あめ",
+   "あま-"
+  ],
+  "es": [
+   "cielo",
+   "paraíso"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "paraíso",
+   "cielo",
+   "imperial"
+  ],
+  "problema": "«paraíso» menos común",
+  "en": [
+   "heavens",
+   "sky",
+   "imperial"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "店",
+  "on": [
+   "テン"
+  ],
+  "kun": [
+   "みせ",
+   "たな"
+  ],
+  "es": [
+   "tienda",
+   "establecimiento"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "store",
+   "shop"
+  ],
+  "trazos": 8
+ },
+ {
+  "kanji": "電",
+  "on": [
+   "デン"
+  ],
+  "kun": [],
+  "es": [
+   "electricidad",
+   "eléctrico"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "electricity"
+  ],
+  "trazos": 13
+ },
+ {
+  "kanji": "土",
+  "on": [
+   "ド",
+   "ト"
+  ],
+  "kun": [
+   "つち"
+  ],
+  "es": [
+   "tierra",
+   "suelo"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "suelo",
+   "tierra",
+   "Turquía"
+  ],
+  "problema": "«Turquía» incorrecto",
+  "en": [
+   "soil",
+   "earth",
+   "ground"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "東",
+  "on": [
+   "トウ"
+  ],
+  "kun": [
+   "ひがし"
+  ],
+  "es": [
+   "este"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "Este"
+  ],
+  "problema": "mayúscula innecesaria o glosas incorrectas (España/huir/Turquía)",
+  "en": [
+   "east"
+  ],
+  "trazos": 8
+ },
+ {
+  "kanji": "道",
+  "on": [
+   "ドウ",
+   "トウ"
+  ],
+  "kun": [
+   "みち",
+   "いう"
+  ],
+  "es": [
+   "camino",
+   "razón",
+   "modo"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "road-way",
+   "street",
+   "district"
+  ],
+  "trazos": 12
+ },
+ {
+  "kanji": "読",
+  "on": [
+   "ドク",
+   "トク",
+   "トウ"
+  ],
+  "kun": [
+   "よ.む",
+   "-よ.み"
+  ],
+  "es": [
+   "leer"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "read"
+  ],
+  "trazos": 14
+ },
+ {
+  "kanji": "南",
+  "on": [
+   "ナン",
+   "ナ"
+  ],
+  "kun": [
+   "みなみ"
+  ],
+  "es": [
+   "sur"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "Sur"
+  ],
+  "problema": "mayúscula innecesaria o glosas incorrectas (España/huir/Turquía)",
+  "en": [
+   "south"
+  ],
+  "trazos": 9
+ },
+ {
+  "kanji": "二",
+  "on": [
+   "ニ",
+   "ジ"
+  ],
+  "kun": [
+   "ふた",
+   "ふた.つ",
+   "ふたたび"
+  ],
+  "es": [
+   "dos",
+   "2"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "two",
+   "two radical (no. 7)"
+  ],
+  "trazos": 2
+ },
+ {
+  "kanji": "日",
+  "on": [
+   "ニチ",
+   "ジツ"
+  ],
+  "kun": [
+   "ひ",
+   "-び",
+   "-か"
+  ],
+  "es": [
+   "día",
+   "sol"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "día",
+   "solar",
+   "Japón"
+  ],
+  "problema": "«solar» poco claro",
+  "en": [
+   "day",
+   "sun",
+   "Japan"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "入",
+  "on": [
+   "ニュウ",
+   "ジュ"
+  ],
+  "kun": [
+   "い.る",
+   "-い.る",
+   "-い.り",
+   "い.れる",
+   "-い.れ",
+   "はい.る"
+  ],
+  "es": [
+   "entrar",
+   "insertar",
+   "admitir"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "enter",
+   "insert"
+  ],
+  "trazos": 2
+ },
+ {
+  "kanji": "年",
+  "on": [
+   "ネン"
+  ],
+  "kun": [
+   "とし"
+  ],
+  "es": [
+   "año",
+   "edad"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "year",
+   "counter for years"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "買",
+  "on": [
+   "バイ"
+  ],
+  "kun": [
+   "か.う"
+  ],
+  "es": [
+   "comprar"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "buy"
+  ],
+  "trazos": 12
+ },
+ {
+  "kanji": "白",
+  "on": [
+   "ハク",
+   "ビャク"
+  ],
+  "kun": [
+   "しろ",
+   "しら-",
+   "しろ.い"
+  ],
+  "es": [
+   "blanco"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "white"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "八",
+  "on": [
+   "ハチ",
+   "ハツ"
+  ],
+  "kun": [
+   "や",
+   "や.つ",
+   "やっ.つ",
+   "よう"
+  ],
+  "es": [
+   "ocho",
+   "8"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "eight",
+   "eight radical (no. 12)"
+  ],
+  "trazos": 2
+ },
+ {
+  "kanji": "半",
+  "on": [
+   "ハン"
+  ],
+  "kun": [
+   "なか.ば"
+  ],
+  "es": [
+   "mitad",
+   "medio",
+   "incompleto"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "half",
+   "middle",
+   "odd number"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "百",
+  "on": [
+   "ヒャク",
+   "ビャク"
+  ],
+  "kun": [
+   "もも"
+  ],
+  "es": [
+   "cien",
+   "muchos"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "hundred"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "父",
+  "on": [
+   "フ"
+  ],
+  "kun": [
+   "ちち"
+  ],
+  "es": [
+   "padre"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "father"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "分",
+  "on": [
+   "ブン",
+   "フン",
+   "ブ"
+  ],
+  "kun": [
+   "わ.ける",
+   "わ.け",
+   "わ.かれる",
+   "わ.かる",
+   "わ.かつ"
+  ],
+  "es": [
+   "minuto",
+   "parte",
+   "dividir"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "parte",
+   "segmento",
+   "minuto"
+  ],
+  "problema": "falta «minuto»",
+  "en": [
+   "part",
+   "minute of time",
+   "segment"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "聞",
+  "on": [
+   "ブン",
+   "モン"
+  ],
+  "kun": [
+   "き.く",
+   "き.こえる"
+  ],
+  "es": [
+   "oír",
+   "escuchar",
+   "preguntar"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "preguntar",
+   "escuchar",
+   "rumor"
+  ],
+  "problema": "falta «oír»",
+  "en": [
+   "hear",
+   "ask",
+   "listen"
+  ],
+  "trazos": 14
+ },
+ {
+  "kanji": "母",
+  "on": [
+   "ボ"
+  ],
+  "kun": [
+   "はは",
+   "も"
+  ],
+  "es": [
+   "madre"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "madre",
+   "base",
+   "cimientos"
+  ],
+  "problema": "«base;cimientos» incorrecto",
+  "en": [
+   "mother"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "北",
+  "on": [
+   "ホク"
+  ],
+  "kun": [
+   "きた"
+  ],
+  "es": [
+   "norte"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "Norte",
+   "huir",
+   "perder"
+  ],
+  "problema": "mayúscula innecesaria o glosas incorrectas (España/huir/Turquía)",
+  "en": [
+   "north"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "本",
+  "on": [
+   "ホン"
+  ],
+  "kun": [
+   "もと"
+  ],
+  "es": [
+   "libro",
+   "origen",
+   "base"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "book",
+   "present",
+   "main"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "毎",
+  "on": [
+   "マイ"
+  ],
+  "kun": [
+   "ごと",
+   "-ごと.に"
+  ],
+  "es": [
+   "cada"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "siempre",
+   "cada",
+   "en ese momento"
+  ],
+  "problema": "«siempre» incorrecto",
+  "en": [
+   "every"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "万",
+  "on": [
+   "マン",
+   "バン"
+  ],
+  "kun": [
+   "よろず"
+  ],
+  "es": [
+   "diez mil",
+   "muchos"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "ten thousand",
+   "10,000"
+  ],
+  "trazos": 3
+ },
+ {
+  "kanji": "名",
+  "on": [
+   "メイ",
+   "ミョウ"
+  ],
+  "kun": [
+   "な",
+   "-な"
+  ],
+  "es": [
+   "nombre",
+   "célebre",
+   "distinguido"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "name",
+   "noted",
+   "distinguished"
+  ],
+  "trazos": 6
+ },
+ {
+  "kanji": "木",
+  "on": [
+   "ボク",
+   "モク"
+  ],
+  "kun": [
+   "き",
+   "こ-"
+  ],
+  "es": [
+   "árbol",
+   "madera"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "tree",
+   "wood"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "目",
+  "on": [
+   "モク",
+   "ボク"
+  ],
+  "kun": [
+   "め",
+   "-め",
+   "ま-"
+  ],
+  "es": [
+   "ojo",
+   "mirada",
+   "percepción"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "eye",
+   "class",
+   "look"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "友",
+  "on": [
+   "ユウ"
+  ],
+  "kun": [
+   "とも"
+  ],
+  "es": [
+   "amigo",
+   "compañero"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "friend"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "来",
+  "on": [
+   "ライ",
+   "タイ"
+  ],
+  "kun": [
+   "く.る",
+   "きた.る",
+   "きた.す",
+   "き.たす",
+   "き.たる",
+   "き",
+   "こ"
+  ],
+  "es": [
+   "venir",
+   "llegar",
+   "acercarse"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "come",
+   "due",
+   "next"
+  ],
+  "trazos": 7
+ },
+ {
+  "kanji": "立",
+  "on": [
+   "リツ",
+   "リュウ",
+   "リットル"
+  ],
+  "kun": [
+   "た.つ",
+   "-た.つ",
+   "た.ち-",
+   "た.てる",
+   "-た.てる",
+   "た.て-",
+   "たて-",
+   "-た.て",
+   "-だ.て",
+   "-だ.てる"
+  ],
+  "es": [
+   "levantarse",
+   "alzarse",
+   "ponerse en pie"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "stand up",
+   "rise",
+   "set up"
+  ],
+  "trazos": 5
+ },
+ {
+  "kanji": "六",
+  "on": [
+   "ロク",
+   "リク"
+  ],
+  "kun": [
+   "む",
+   "む.つ",
+   "むっ.つ",
+   "むい"
+  ],
+  "es": [
+   "seis",
+   "6"
+  ],
+  "origenEs": "kanjidic2",
+  "en": [
+   "six"
+  ],
+  "trazos": 4
+ },
+ {
+  "kanji": "話",
+  "on": [
+   "ワ"
+  ],
+  "kun": [
+   "はな.す",
+   "はなし"
+  ],
+  "es": [
+   "hablar",
+   "conversación",
+   "cuento"
+  ],
+  "origenEs": "claude-corrige",
+  "original": [
+   "cuento",
+   "charla",
+   "hablar"
+  ],
+  "problema": "verbo primero",
+  "en": [
+   "tale",
+   "talk"
+  ],
+  "trazos": 13
+ }
+]

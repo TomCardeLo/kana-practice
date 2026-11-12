@@ -18,7 +18,8 @@ struct RondaTarjetas {
         var mazo: Kana.Mazo = .basicos
         var tamano: Tamano = .diez
         /// Clave del récord: cada combinación lleva el suyo (modo de fallo 38).
-        var claveRecord: String { "\(silabario.rawValue)-\(mazo.rawValue)-\(tamano.rawValue)" }
+        /// «-op»: los récords de opción múltiple no se comparan con los de cuando se escribía la lectura.
+        var claveRecord: String { "\(silabario.rawValue)-\(mazo.rawValue)-\(tamano.rawValue)-op" }
     }
 
     struct Contestada { let tarjeta: Tarjeta; let ok: Bool; let ms: Int }
@@ -36,8 +37,8 @@ struct RondaTarjetas {
     /// Aciertos seguidos; se reinicia con cada error y con cada ronda nueva (modo de fallo 66).
     private(set) var combo = 0
     private(set) var mejorCombo = 0
-    /// La tarjeta anterior fue ん: se tolera una "n" sobrante al inicio de esta.
-    private var nSobrante = false
+    /// Las 4 lecturas que se muestran para la tarjeta actual (opción múltiple).
+    private(set) var opciones: [String] = []
 
     static func mazo(_ s: OpcionSilabario, _ m: Kana.Mazo) -> [Tarjeta] {
         switch s {
@@ -53,12 +54,24 @@ struct RondaTarjetas {
         self.config = config
         tarjetas = Array(pool.prefix(cantidad))
         repaso = false
+        prepararOpciones()
     }
 
     init(repaso tarjetas: [Tarjeta]) {
         config = Config()
         self.tarjetas = tarjetas
         repaso = true
+        prepararOpciones()
+    }
+
+    private mutating func prepararOpciones() {
+        guard indice < tarjetas.count else { return opciones = [] }
+        var azar = SystemRandomNumberGenerator()
+        // En el repaso, un kana básico toma las falsas de los básicos (sin «pa» ni «kya» para quien empieza).
+        let basicos = Kana.mazo(actual.silabario, .basicos)
+        let mazo = repaso ? (basicos.contains(actual) ? basicos : Kana.mazo(actual.silabario, .todos))
+                          : Self.mazo(config.silabario, config.mazo)
+        opciones = Opciones.para(actual, mazo: mazo, azar: &azar)
     }
 
     var actual: Tarjeta { tarjetas[indice] }
@@ -68,25 +81,16 @@ struct RondaTarjetas {
         return indice >= tarjetas.count ? .completa : nil
     }
 
-    /// ん se acepta con una "n"; quien escribió "nn" deja la segunda en esta tarjeta ("nka" vale para か).
-    func esCorrecta(_ valor: String) -> Bool {
-        if Check.esLecturaCorrecta(actual.romaji, valor) { return true }
-        let escrito = valor.trimmingCharacters(in: .whitespaces)
-        return nSobrante && escrito.lowercased().hasPrefix("n")
-            && Check.esLecturaCorrecta(actual.romaji, String(escrito.dropFirst()))
-    }
-
     mutating func acertar(ms: Int) {
-        nSobrante = actual.romaji == "n"
         combo += 1
         mejorCombo = max(mejorCombo, combo)
         respuestas.append(Contestada(tarjeta: actual, ok: true, ms: ms))
         indice += 1
+        prepararOpciones()
     }
 
     /// Error o «No la sé»: resta una vida. La vista avanza con `siguiente()` tras mostrar la lectura.
     mutating func fallar(ms: Int) {
-        nSobrante = false
         combo = 0
         respuestas.append(Contestada(tarjeta: actual, ok: false, ms: ms))
         if !repaso { vidas -= 1 }
@@ -94,6 +98,7 @@ struct RondaTarjetas {
 
     mutating func siguiente() {
         if vidas > 0 { indice += 1 }
+        prepararOpciones()
     }
 
     var tiempoTotalMs: Int { respuestas.reduce(0) { $0 + $1.ms } }
