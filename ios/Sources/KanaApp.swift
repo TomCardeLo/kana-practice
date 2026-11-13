@@ -13,6 +13,12 @@ struct KanaApp: App {
         if Self.enPrueba, let dominio = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: dominio)
         }
+        // E2E del recordatorio: hora fija (minutos desde la medianoche) para que la prueba no dependa del reloj.
+        let argumentos = ProcessInfo.processInfo.arguments
+        if Self.enPrueba, let i = argumentos.firstIndex(of: "-uitest-recordatorio-minutos"), i + 1 < argumentos.count,
+           let minutos = Int(argumentos[i + 1]) {
+            UserDefaults.standard.set(minutos, forKey: Recordatorio.claveMinutos)
+        }
         do {
             contenedor = try ModelContainer(for: Intento.self,
                                             configurations: ModelConfiguration(isStoredInMemoryOnly: Self.enPrueba))

@@ -179,3 +179,12 @@
      una llamada ya pagada.
 105. Dos opciones de vocabulario casi iguales («mañana» y «la mañana», «bien» y «estar bien»): la falsa
      también sería correcta.
+
+## Recordatorio diario de la racha (escritos antes del código)
+106. Suena aunque la meta del día ya está cumplida.
+107. Dice cuánto falta con un número viejo: no se reprograma al responder ni al bajar respuestas del otro equipo.
+108. Se acumulan avisos duplicados: cada reprogramación añade sin quitar los anteriores.
+109. Sin permiso de notificaciones el interruptor queda encendido como si funcionara (fallo silencioso).
+110. La hora se interpreta en UTC o el aviso cae en otro día.
+111. Apagarlo no borra los avisos pendientes.
+112. Si no se abre la app durante varios días, no hay aviso (deben quedar programados los próximos 7).

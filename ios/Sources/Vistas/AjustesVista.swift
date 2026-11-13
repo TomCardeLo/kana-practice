@@ -28,6 +28,7 @@ struct AjustesVista: View {
                 Section("Meta diaria") {
                     LabeledContent("Respuestas al día", value: "\(Rachas.metaDiaria)")
                 }
+                SeccionRecordatorio()
                 // Atribución que exige la licencia CC BY-SA 4.0 de JMdict y KANJIDIC2 (modo de fallo 103).
                 Section("Créditos") {
                     Text("Vocabulario y kanji: JMdict y KANJIDIC2, del Electronic Dictionary Research and Development Group (edrdg.org), con licencia CC BY-SA 4.0. Lista JLPT N5 de Jonathan Waller (tanos.co.uk). Los significados en español que faltaban o se corrigieron los preparó Claude.")
@@ -41,5 +42,54 @@ struct AjustesVista: View {
                 ToolbarItem(placement: .confirmationAction) { Button("Listo") { cerrar() } }
             }
         }
+    }
+}
+
+/// Recordatorio diario: interruptor, hora y lo que quedó programado (para ver que funciona, sin esperar al aviso).
+private struct SeccionRecordatorio: View {
+    @AppStorage(Recordatorio.claveActivo) private var activo = false
+    @AppStorage(Recordatorio.claveMinutos) private var minutos = Recordatorio.minutosPorDefecto
+    private let recordatorio = Recordatorio.compartido
+
+    var body: some View {
+        Section {
+            Toggle("Avisarme si no llego a la meta", isOn: Binding(get: { activo }, set: { nuevo in
+                Task { await recordatorio.encender(nuevo) }
+            }))
+            .accessibilityIdentifier("ajuste-recordatorio")
+            if activo {
+                DatePicker("Hora", selection: Binding(get: { hora }, set: { nueva in
+                    let c = Calendar.current.dateComponents([.hour, .minute], from: nueva)
+                    Task { await recordatorio.cambiarHora(minutos: (c.hour ?? 20) * 60 + (c.minute ?? 0)) }
+                }), displayedComponents: .hourAndMinute)
+                .accessibilityIdentifier("ajuste-recordatorio-hora")
+            }
+            Text(textoProximo).font(.subheadline).foregroundStyle(Color.tintaSuave)
+                .accessibilityIdentifier("recordatorio-proximo")
+            if activo {
+                Text("\(recordatorio.programados) avisos en los próximos 7 días").font(.footnote).foregroundStyle(Color.tintaSuave)
+                    .accessibilityIdentifier("recordatorio-cuenta")
+            }
+            if let aviso = recordatorio.aviso {
+                Text(aviso).font(.footnote).foregroundStyle(Color.rojo).accessibilityIdentifier("recordatorio-aviso")
+            }
+        } header: {
+            Text("Recordatorio diario")
+        } footer: {
+            Text("Si a esa hora no has hecho \(Rachas.metaDiaria) respuestas, te avisa cuánto te falta. Si ya cumpliste, ese día no suena.")
+        }
+    }
+
+    private var hora: Date {
+        // Hora de reloj (no minutos transcurridos): el día del cambio de horario se muestra bien (modo de fallo 110).
+        Calendar.current.date(bySettingHour: minutos / 60, minute: minutos % 60, second: 0, of: .now) ?? .now
+    }
+
+    private var textoProximo: String {
+        guard let p = recordatorio.proximo else { return "Sin avisos programados." }
+        let calendario = Calendar.current
+        let dia = calendario.isDateInToday(p.fecha) ? "hoy" : calendario.isDateInTomorrow(p.fecha) ? "mañana"
+            : p.fecha.formatted(.dateTime.weekday(.wide))
+        return "Próximo aviso: \(dia), \(p.fecha.formatted(date: .omitted, time: .shortened)) — \(p.texto)"
     }
 }

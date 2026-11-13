@@ -94,25 +94,29 @@ struct LecturaVista: View {
     private var controles: some View {
         VStack(alignment: .leading, spacing: 20) {
             Seccion(numero: "01", titulo: "Modo") {
-                Segmentado(opciones: [(Modo.azar, "Palabras al azar"), (.texto, "Texto propio")],
-                           seleccion: $modo, identificador: "lectura-modo")
-                if modo == .azar {
-                    Button("Nueva ronda", action: nuevaRonda)
-                        .buttonStyle(.borderedProminent).tint(.verde)
-                        .accessibilityIdentifier("btn-nueva-ronda")
-                } else {
-                    TextField("Escribe o pega un texto en español", text: $textoPropio, axis: .vertical)
-                        .lineLimit(3 ... 8)
-                        .padding(12)
-                        .background(Color.papel2, in: RoundedRectangle(cornerRadius: 12))
-                        .focused($tecladoAbierto)
-                        .accessibilityIdentifier("lectura-texto")
-                    Button("Generar", action: generarTexto)
-                        .buttonStyle(.borderedProminent).tint(.verde)
-                        .accessibilityIdentifier("btn-generar")
+                VStack(alignment: .leading, spacing: 14) {
+                    Segmentado(opciones: [(Modo.azar, "Palabras al azar"), (.texto, "Texto propio")],
+                               seleccion: $modo, identificador: "lectura-modo")
+                    if modo == .azar {
+                        Button("Nueva ronda", action: nuevaRonda)
+                            .buttonStyle(EstiloPrincipal())
+                            .accessibilityIdentifier("btn-nueva-ronda")
+                    } else {
+                        TextField("Escribe o pega un texto en español", text: $textoPropio, axis: .vertical)
+                            .lineLimit(3 ... 8)
+                            .padding(12)
+                            .background(Color.chip, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                            .focused($tecladoAbierto)
+                            .accessibilityIdentifier("lectura-texto")
+                        Button("Generar", action: generarTexto)
+                            .buttonStyle(EstiloPrincipal())
+                            .accessibilityIdentifier("btn-generar")
+                    }
                 }
+                .bloque(relleno: 16)
             }
             Seccion(numero: "02", titulo: "Silabario") {
+                VStack(alignment: .leading, spacing: 12) {
                 Segmentado(opciones: Silabario.allCases.map { ($0, $0.nombre) }, seleccion: $silabario,
                            identificador: "lectura-silabario")
                 DisclosureGroup(isExpanded: $verFiltro) {
@@ -126,6 +130,8 @@ struct LecturaVista: View {
                         .font(.subheadline).foregroundStyle(Color.tintaSuave)
                         .accessibilityIdentifier("lectura-filtro")
                 }
+                }
+                .bloque(relleno: 16)
             }
             if let mensaje {
                 Text(mensaje).foregroundStyle(Color.rojo).accessibilityIdentifier("lectura-mensaje")
@@ -144,7 +150,7 @@ struct LecturaVista: View {
             }
             .frame(minWidth: 44, minHeight: 44)
             .foregroundStyle(activa ? Color.papel : Color.tintaSuave)
-            .background(activa ? Color.verde : Color.papel2, in: RoundedRectangle(cornerRadius: 10))
+            .background(activa ? Color.verde : Color.chip, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(activa ? .isSelected : [])
@@ -230,20 +236,21 @@ struct LecturaVista: View {
 
     private var panelRespuesta: some View {
         Seccion(numero: "04", titulo: "Tu respuesta") {
+            VStack(alignment: .leading, spacing: 14) {
             TextField("Escribe la lectura en romaji", text: $respuesta, axis: .vertical)
                 .campoRomaji()
                 .font(.system(.title3, design: .monospaced))
                 .lineLimit(3 ... 10)
                 .padding(12)
-                .background(Color.papel2, in: RoundedRectangle(cornerRadius: 12))
+                .background(Color.chip, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
                 .focused($tecladoAbierto)
                 .accessibilityIdentifier("lectura-respuesta")
-            HStack {
+            HStack(spacing: 10) {
                 Button("Corregir") { corregir() }
-                    .buttonStyle(.borderedProminent).tint(.verde)
+                    .buttonStyle(EstiloPrincipal())
                     .accessibilityIdentifier("btn-corregir")
                 Button("Mostrar solución") { solucionVisible = true }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(EstiloSecundario())
                     .accessibilityIdentifier("btn-solucion")
             }
             if let correccion {
@@ -254,6 +261,8 @@ struct LecturaVista: View {
             if let animo {
                 Text(animo).foregroundStyle(Color.tintaSuave).accessibilityIdentifier("lectura-animo")
             }
+            }
+            .bloque(relleno: 16)
         }
     }
 

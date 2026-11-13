@@ -270,6 +270,75 @@ final class KanaUITests: XCTestCase {
         XCTAssertEqual(el("progreso-total").label, "0", "Las respuestas de vocabulario cuentan en el total de kana (100)")
     }
 
+    /// 106–108, 111: el recordatorio se programa a la hora elegida con lo que falta; al cumplir la meta, hoy ya no
+    /// suena y no se duplican avisos; apagarlo los borra. Hora fija 23:59 por argumento para no depender del reloj.
+    func testRecordatorioRacha() throws {
+        let ahora = Calendar.current.dateComponents([.hour, .minute], from: .now)
+        try XCTSkipIf((ahora.hour ?? 0) * 60 + (ahora.minute ?? 0) >= 23 * 60 + 55, "Demasiado cerca de las 23:59")
+        app.terminate()
+        app.launchArguments = ["-uitest", "-uitest-racha", "-uitest-recordatorio-minutos", "1439"]
+        app.launch()
+        esperarLabel("racha-dias", "3 días de racha")
+        abrirAjustes()
+        interruptor("ajuste-recordatorio").tap()
+        // iOS pide permiso la primera vez en este simulador.
+        let permitir = XCUIApplication(bundleIdentifier: "com.apple.springboard").alerts.buttons
+            .matching(NSPredicate(format: "label IN %@", ["Allow", "Permitir"])).firstMatch
+        if permitir.waitForExistence(timeout: 5) { permitir.tap() }
+        // La hora la escribe la app con su región (23:59 o 11:59 PM): se compara el día y los dígitos.
+        let aLas2359 = { (dia: String) in
+            NSPredicate(format: "label BEGINSWITH %@ AND (label CONTAINS '23:59' OR label CONTAINS '11:59')", "Próximo aviso: \(dia), ")
+        }
+        esperar(el("recordatorio-proximo"), aLas2359("hoy"), timeout: 10)
+        XCTAssertTrue(el("recordatorio-proximo").label.hasSuffix("Te faltan 5 respuestas para mantener tu racha de 3 días."),
+                      el("recordatorio-proximo").label)
+        verCuenta()
+        esperarLabel("recordatorio-cuenta", "7 avisos en los próximos 7 días")
+        captura("recordatorio-activo")
+        app.buttons["Listo"].tap()
+
+        // Se cumple la meta: hoy ya no suena, quedan los 6 de los próximos días y no se duplican (106–108).
+        irA("Tarjetas")
+        configurarTarjetas(tamano: "5")
+        toca("btn-empezar")
+        jugarRonda(de: 5)
+        esperarLabel("resumen-titulo", "¡Ronda completada!")
+        abrirAjustes()
+        esperar(el("recordatorio-proximo"), aLas2359("mañana"), timeout: 10)
+        verCuenta()
+        esperarLabel("recordatorio-cuenta", "6 avisos en los próximos 7 días")
+
+        // Apagarlo borra todo (111).
+        interruptor("ajuste-recordatorio").tap()
+        esperarLabel("recordatorio-proximo", "Sin avisos programados.", timeout: 10)
+        XCTAssertFalse(el("recordatorio-cuenta").exists)
+        captura("recordatorio-apagado")
+    }
+
+    /// Ajustes es un Form: en el iPad (hoja más pequeña) la fila de la cuenta no existe hasta que se ve.
+    private func verCuenta(file: StaticString = #filePath, line: UInt = #line) {
+        // Se desliza la lista entera (un gesto sobre la última fila visible no la mueve).
+        if !el("recordatorio-cuenta").waitForExistence(timeout: 3) { app.collectionViews.firstMatch.swipeUp() }
+        if !el("recordatorio-cuenta").waitForExistence(timeout: 5) { captura("recordatorio-sin-cuenta") }
+        XCTAssertTrue(el("recordatorio-cuenta").waitForExistence(timeout: 5),
+                      "No aparece la cuenta. Próximo: \(el("recordatorio-proximo").label). Aviso: \(el("recordatorio-aviso").exists ? el("recordatorio-aviso").label : "ninguno")",
+                      file: file, line: line)
+        print("CUENTA:", el("recordatorio-cuenta").label)
+    }
+
+    private func abrirAjustes() {
+        irA("Progreso")
+        toca("btn-ajustes")
+        XCTAssertTrue(el("ajuste-recordatorio").waitForExistence(timeout: 5), "No se abrió Ajustes")
+    }
+
+    /// El interruptor de un Toggle (en iOS 26 hay que tocar el switch, no la fila).
+    private func interruptor(_ id: String) -> XCUIElement {
+        let fila = el(id)
+        let s = fila.switches.firstMatch
+        return s.exists ? s : fila
+    }
+
     /// 81–83: «Hoy» propone los vencidos y 10 nuevos en orden de tabla; fallar no corta la sesión ni quita vidas,
     /// no hay récord, y al volver no queda nada pendiente (lo fallado vuelve mañana).
     func testRepasoHoySinVidasYPlanActualizado() {

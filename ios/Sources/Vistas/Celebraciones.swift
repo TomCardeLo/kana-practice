@@ -13,6 +13,7 @@ extension Intento {
 /// cumplirse en Tarjetas, en Leer o al bajar respuestas del otro equipo.
 struct Celebraciones: View {
     @Query(sort: \Intento.fecha, order: .reverse) private var intentos: [Intento]
+    @Environment(\.scenePhase) private var fase
     @State private var aviso: String?
     @State private var disparo = 0
     @State private var ocultar: Task<Void, Never>?
@@ -42,6 +43,8 @@ struct Celebraciones: View {
         }
         .animation(.spring(duration: 0.4), value: aviso)
         .onChange(of: intentos.count, initial: true) { revisar() }
+        // Al volver a la app: puede ser otro día o haber cambiado el permiso en iOS (recordatorio, modos 106 y 109).
+        .onChange(of: fase) { _, nueva in if nueva == .active { revisar() } }
     }
 
     // ponytail: recorre todos los intentos en cada respuesta guardada (~ms con miles); si se nota en la latencia
@@ -58,6 +61,8 @@ struct Celebraciones: View {
         var sonido: Efectos.Sonido?
 
         let racha = Rachas.calcular(intentos.map(\.fecha), ahora: ahora)
+        // El recordatorio se reprograma con el estado de ahora (respuestas propias o bajadas, modo de fallo 107).
+        Task { await Recordatorio.compartido.actualizar(racha) }
         let metaYaEstaba = !hayRecientes || Rachas.calcular(antes.map(\.fecha), ahora: ahora).metaCumplida
         let dia = Calendar.current.dateComponents([.year, .month, .day], from: ahora)  // día local (modo de fallo 61)
         let hoy = "\(dia.year ?? 0)-\(dia.month ?? 0)-\(dia.day ?? 0)"

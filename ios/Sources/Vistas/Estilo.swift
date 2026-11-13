@@ -36,7 +36,7 @@ extension Font {
     static let etiqueta = Font.system(.caption, design: .monospaced).weight(.semibold)
 }
 
-/// Encabezado numerado de sección, como en la web ("01 · Modo").
+/// Encabezado de sección («MODO», «ERRORES»).
 struct Seccion<Contenido: View>: View {
     let numero: String
     let titulo: String
@@ -44,10 +44,10 @@ struct Seccion<Contenido: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 8) {
-                Text(numero).font(.etiqueta).foregroundStyle(Color.verde)
-                Text(titulo.uppercased()).font(.etiqueta).foregroundStyle(Color.tintaSuave).tracking(1.2)
-            }
+            // Dirección «Matcha»: título de sección en mayúsculas, sin número (el número queda solo como parámetro).
+            Text(titulo.uppercased()).font(.caption.weight(.bold)).foregroundStyle(Color.tintaSuave).tracking(1.4)
+                .padding(.leading, 4)
+                .accessibilityAddTraits(.isHeader)  // VoiceOver salta de sección en sección
             contenido
         }
     }

@@ -30,7 +30,7 @@ struct ProgresoVista: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 16) {
                     ResumenRacha()
                     resumen
                     Segmentado(opciones: Silabario.allCases.map { ($0, $0.nombre) }, seleccion: $silabario,
@@ -42,8 +42,10 @@ struct ProgresoVista: View {
                             .foregroundStyle(Color.tintaSuave)
                             .accessibilityIdentifier("progreso-vacio")
                     } else {
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 84), spacing: 10)], spacing: 10) {
-                            ForEach(filas) { celda($0) }
+                        Seccion(numero: "·", titulo: "Por kana · más fallados primero") {
+                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 84), spacing: 10)], spacing: 10) {
+                                ForEach(filas) { celda($0) }
+                            }
                         }
                     }
                     estadoSincronizacion
@@ -117,8 +119,9 @@ struct ProgresoVista: View {
             Text("\(fila.total)×").font(.caption2.monospacedDigit()).foregroundStyle(Color.tintaSuave)
         }
         .frame(maxWidth: .infinity, minHeight: 100)
-        .background(porcentaje > 0 ? Color.rojoFondo.opacity(min(1, 0.25 + fila.tasaError)) : Color.papel2,
-                    in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .background(porcentaje > 0 ? Color.rojoFondo.opacity(min(1, 0.25 + fila.tasaError)) : Color.superficie,
+                    in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).strokeBorder(Color.linea, lineWidth: porcentaje > 0 ? 0 : 1))
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("progreso-celda")
     }
