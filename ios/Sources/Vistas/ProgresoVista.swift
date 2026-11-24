@@ -21,7 +21,7 @@ struct ProgresoVista: View {
     // pasar a una Query filtrada por silabario y fetchCount (o al resumen que calculará el servidor).
     /// Los silabarios nunca se mezclan (modo de fallo 51); orden por % de error descendente.
     private var ranking: [Fila] {
-        let propios = intentos.filter { $0.silabario == silabario.rawValue }
+        let propios = intentos.filter { $0.silabario == silabario.rawValue && $0.ejercicio != "escritura" }  // 119
         return Dictionary(grouping: propios, by: \.item)
             .map { kana, lista in Fila(kana: kana, ok: lista.filter(\.correcto).count, fallos: lista.filter { !$0.correcto }.count) }
             .sorted { ($0.tasaError, $0.total, $1.kana) > ($1.tasaError, $1.total, $0.kana) }

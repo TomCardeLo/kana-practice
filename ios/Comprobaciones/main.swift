@@ -86,5 +86,7 @@ comprobar(Hitos.dominadas(practicar(filaA, .hiragana, veces: 6) + practicar(["�
     .map { Respuesta(fecha: Date(timeIntervalSince1970: 100), item: $0.item, silabario: $0.silabario, correcto: false, ejercicio: "tarjeta", latenciaMs: nil) }).isEmpty,
           "68: dos errores recientes en う quitan el dominio")
 
-print(fallos == 0 ? "✓ Enganche: todas las comprobaciones pasan" : "✗ \(fallos) comprobaciones fallan")
+comprobarTrazos()
+
+print(fallos == 0 ? "✓ Enganche y trazos: todas las comprobaciones pasan" : "✗ \(fallos) comprobaciones fallan")
 exit(fallos == 0 ? 0 : 1)

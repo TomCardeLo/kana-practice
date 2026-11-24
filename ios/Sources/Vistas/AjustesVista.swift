@@ -29,9 +29,9 @@ struct AjustesVista: View {
                     LabeledContent("Respuestas al día", value: "\(Rachas.metaDiaria)")
                 }
                 SeccionRecordatorio()
-                // Atribución que exige la licencia CC BY-SA 4.0 de JMdict y KANJIDIC2 (modo de fallo 103).
+                // Atribución que exigen las licencias de JMdict y KANJIDIC2 (CC BY-SA 4.0, modo de fallo 103) y KanjiVG (CC BY-SA 3.0, 122).
                 Section("Créditos") {
-                    Text("Vocabulario y kanji: JMdict y KANJIDIC2, del Electronic Dictionary Research and Development Group (edrdg.org), con licencia CC BY-SA 4.0. Lista JLPT N5 de Jonathan Waller (tanos.co.uk). Los significados en español que faltaban o se corrigieron los preparó Claude.")
+                    Text("Vocabulario y kanji: JMdict y KANJIDIC2, del Electronic Dictionary Research and Development Group (edrdg.org), con licencia CC BY-SA 4.0. Lista JLPT N5 de Jonathan Waller (tanos.co.uk). Los significados en español que faltaban o se corrigieron los preparó Claude. Trazos de los kana: KanjiVG, de Ulrich Apel (kanjivg.tagaini.net), con licencia CC BY-SA 3.0.")
                         .font(.footnote).foregroundStyle(Color.tintaSuave)
                         .accessibilityIdentifier("creditos")
                 }

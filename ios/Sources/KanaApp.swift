@@ -120,9 +120,11 @@ struct RaizVista: View {
             Tab("Tarjetas", systemImage: "rectangle.on.rectangle.angled") { TarjetasVista() }
             Tab("Palabras", systemImage: "text.book.closed") { PalabrasVista() }
             Tab("Leer", systemImage: "character.book.closed.ja") { LecturaVista() }
+            Tab("Escribir", systemImage: "pencil.and.scribble") { EscribirVista() }
             Tab("Progreso", systemImage: "chart.bar.xaxis") { ProgresoVista() }
         }
-        .tabViewStyle(.sidebarAdaptable)
+        // Sin `.sidebarAdaptable`: su botón de barra lateral le quitaba sitio a la quinta pestaña (Escribir) y en el
+        // iPad vertical «Progreso» quedaba escondida tras una flecha.
         .tint(.verde)
         .overlay(alignment: .top) { Celebraciones() }
         .sheet(isPresented: $pedirConexion) { ConexionVista() }

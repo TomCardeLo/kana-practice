@@ -2,8 +2,11 @@ import SwiftData
 import SwiftUI
 
 extension Intento {
+    /// Solo lectura de kana. Escribir tarda 5–10 s y rompería el repaso espaciado y los hitos (modo de fallo 119);
+    /// la racha y la meta sí lo cuentan (usan todas las fechas).
     var comoRespuesta: Respuesta? {
-        Silabario(rawValue: silabario).map {
+        guard ejercicio != "escritura" else { return nil }
+        return Silabario(rawValue: silabario).map {
             Respuesta(fecha: fecha, item: item, silabario: $0, correcto: correcto, ejercicio: ejercicio, latenciaMs: latenciaMs)
         }
     }

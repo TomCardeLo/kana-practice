@@ -710,6 +710,58 @@ final class KanaUITests: XCTestCase {
 
     // MARK: - Ayudas
 
+    // MARK: - Escribir (modos de fallo 113–121)
+
+    /// Trazos de エ en coordenadas de KanjiVG (109 × 109), como los haría una persona: rectos y algo corridos.
+    private static let trazosE: [((Double, Double), (Double, Double))] = [((30, 37), (80, 33)), ((54, 39), (53, 72)),
+                                                                          ((18, 76), (92, 74))]
+
+    private func dibujar(_ trazos: [((Double, Double), (Double, Double))]) {
+        let lienzo = el("escribir-lienzo")
+        XCTAssertTrue(lienzo.waitForExistence(timeout: 5), "No aparece el lienzo")
+        for (a, b) in trazos {
+            let desde = lienzo.coordinate(withNormalizedOffset: CGVector(dx: a.0 / 109, dy: a.1 / 109))
+            let hasta = lienzo.coordinate(withNormalizedOffset: CGVector(dx: b.0 / 109, dy: b.1 / 109))
+            desde.press(forDuration: 0.05, thenDragTo: hasta, withVelocity: 600, thenHoldForDuration: 0.05)
+        }
+    }
+
+    /// 113, 115, 117 y 119: エ bien escrita pasa; con el palo primero dice qué trazo va en otro orden; sin dibujo no se
+    /// puede comprobar; las dos revisiones cuentan para la meta del día pero no para las estadísticas de lectura.
+    func testEscribirRevisaTrazosYCuentaParaLaMeta() {
+        app.terminate()
+        app.launchArguments = ["-uitest", "-uitest-escribir", "エ"]
+        app.launch()
+        irA("Escribir")
+        XCTAssertTrue(el("escribir-consigna").waitForExistence(timeout: 5))
+        XCTAssertTrue(el("escribir-consigna").label.contains("e") && el("escribir-consigna").label.contains("katakana"),
+                      el("escribir-consigna").label)
+        XCTAssertFalse(el("btn-comprobar").isEnabled, "Se puede comprobar sin dibujar nada (117)")
+
+        // Orden equivocado: el palo antes que la raya de arriba.
+        dibujar([Self.trazosE[1], Self.trazosE[0], Self.trazosE[2]])
+        captura("escribir-dibujo")
+        toca("btn-comprobar")
+        esperarLabel("escribir-resultado", "エ, El trazo 1 va en otro orden.")
+        XCTAssertEqual(el("escribir-resultado").value as? String, "incorrecto")
+        captura("escribir-orden")
+
+        toca("btn-reintentar")
+        dibujar(Self.trazosE)
+        toca("btn-comprobar")
+        esperarLabel("escribir-resultado", "エ, ¡Bien escrito!")
+        XCTAssertEqual(el("escribir-resultado").value as? String, "correcto")
+        captura("escribir-bien")
+
+        toca("btn-siguiente")
+        XCTAssertFalse(el("escribir-resultado").exists, "El resultado anterior sigue en pantalla")
+        XCTAssertFalse(el("btn-comprobar").isEnabled, "El lienzo no se limpió al pasar al siguiente")
+
+        irA("Progreso")
+        esperarLabel("racha-hoy", "Hoy 2/50")
+        XCTAssertTrue(el("progreso-vacio").exists, "Escribir se coló en las estadísticas de lectura (119)")
+    }
+
     private func el(_ id: String) -> XCUIElement {
         app.descendants(matching: .any).matching(identifier: id).firstMatch
     }

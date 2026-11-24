@@ -188,3 +188,21 @@
 110. La hora se interpreta en UTC o el aviso cae en otro día.
 111. Apagarlo no borra los avisos pendientes.
 112. Si no se abre la app durante varios días, no hay aviso (deben quedar programados los próximos 7).
+
+## Escribir a mano (escritos antes del código)
+El kana escrito se compara trazo a trazo con las plantillas de KanjiVG (Vision no sirve: con letra de imprenta
+reconoció entre 15 y 60 de 96 kana sueltos, 2026-11-24).
+113. Un kana bien escrito sale mal: la plantilla misma, o deformada como la mano (otro tamaño, otra posición, más ancha o
+     inclinada, trazos temblorosos o algo corridos).
+114. Un kana distinto con el mismo número de trazos sale bien (シ/ツ, ソ/ン, ぬ/め, わ/ね/れ, る/ろ, は/ほ…). Se revisan
+     todos los pares; solo se aceptan los que son el mismo dibujo (へ/ヘ).
+115. Los trazos en otro orden, o un trazo al revés, salen bien; o salen mal sin decir qué trazo falló.
+116. Con otro número de trazos se compara igual (índices desalineados, cierre) o sale bien (が sin dakuten).
+117. «Comprobar» sin nada dibujado registra un intento o se cierra; un punto suelto (toque) rompe el remuestreo.
+118. Falta la plantilla de algún kana que se pregunta.
+119. Escribir entra en el repaso espaciado, los hitos de filas o el ranking de errores de lectura (sus tiempos de 5–10 s
+     rompen esas cuentas). Solo cuenta para la racha y la meta del día.
+120. El servidor rechaza «escritura» y los intentos quedan apartados: se despliega antes la migración y Deepy.
+121. El lienzo no dibuja con el dedo después de usar el Apple Pencil, o un desplazamiento le roba el trazo.
+122. La atribución de KanjiVG (CC BY-SA 3.0) no aparece en la app.
+123. Un kana pequeño o descentrado en la cuadrícula sale mal (se normaliza por el recuadro del dibujo).

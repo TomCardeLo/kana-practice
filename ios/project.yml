@@ -17,6 +17,9 @@ targets:
         buildPhase: resources
       - path: ../datos/kanji-n5.json
         buildPhase: resources
+      # Trazos de los kana para «Escribir»: se generan con scripts/trazos/construir.mjs (KanjiVG, CC BY-SA 3.0).
+      - path: ../datos/trazos-kana.json
+        buildPhase: resources
     info:
       path: Info.plist
       properties:

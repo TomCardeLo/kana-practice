@@ -10,7 +10,7 @@ final class Intento {
     @Attribute(.unique) var id: UUID
     var fecha: Date
     var dispositivo: String
-    /// "tarjeta" o "lectura" (kana), "vocabulario" o "kanji".
+    /// "tarjeta", "lectura" o "escritura" (kana), "vocabulario" o "kanji".
     var ejercicio: String
     /// Kana: tal como se mostró (か, キャ). Vocabulario: «palabra|lectura» (会う|あう). Kanji: el kanji.
     var item: String
