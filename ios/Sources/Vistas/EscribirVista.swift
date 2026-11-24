@@ -70,10 +70,11 @@ struct EscribirVista: View {
 
             ZStack {
                 Cuadricula()
+                LienzoKana(dibujo: $dibujo, activo: veredicto == nil)
+                // Encima de la tinta y translúcida: con el mismo grosor, debajo quedaba tapada con sus números.
                 if let veredicto {
                     Modelo(plantilla: plantilla, fallo: veredicto.trazoFallido)
                 }
-                LienzoKana(dibujo: $dibujo, activo: veredicto == nil)
             }
             .aspectRatio(1, contentMode: .fit)
             .bloque(relleno: 0)
@@ -217,6 +218,8 @@ private struct Modelo: View {
     let fallo: Int?
     /// Lado del recuadro de KanjiVG.
     private static let lado = 109.0
+    /// El mismo de la tinta: el trazo propio y la muestra se comparan a simple vista.
+    static let grosor: CGFloat = 14
 
     var body: some View {
         GeometryReader { geo in
@@ -225,8 +228,8 @@ private struct Modelo: View {
                 ForEach(plantilla.indices, id: \.self) { i in
                     let puntos = plantilla[i].map { CGPoint(x: $0.x * f, y: $0.y * f) }
                     Path { $0.addLines(puntos) }
-                        .stroke(i + 1 == fallo ? Color.rojo.opacity(0.7) : Color.verde.opacity(0.3),
-                                style: StrokeStyle(lineWidth: 14, lineCap: .round, lineJoin: .round))
+                        .stroke(i + 1 == fallo ? Color.rojo.opacity(0.6) : Color.verde.opacity(0.45),
+                                style: StrokeStyle(lineWidth: Self.grosor, lineCap: .round, lineJoin: .round))
                     if let p = puntos.first {
                         Text("\(i + 1)").font(.caption.weight(.black)).foregroundStyle(Color.papel)
                             .frame(width: 22, height: 22)
@@ -250,8 +253,10 @@ private struct LienzoKana: UIViewRepresentable {
         let lienzo = PKCanvasView()
         lienzo.drawingPolicy = .anyInput
         // Color de tinta en claro: PencilKit lo invierte solo en modo oscuro.
-        lienzo.tool = PKInkingTool(.pen, color: UIColor(red: 0x0E / 255, green: 0x1C / 255, blue: 0x32 / 255, alpha: 1),
-                                   width: 12)
+        // Monoline: grosor fijo (sin presión ni velocidad), igual al de la muestra. Con .pen y 12 salía mucho más fino;
+        // monoline pinta al doble del ancho que se le pasa (medido en captura: 14 → ~28 pt), de ahí la mitad.
+        lienzo.tool = PKInkingTool(.monoline, color: UIColor(red: 0x0E / 255, green: 0x1C / 255, blue: 0x32 / 255, alpha: 1),
+                                   width: Modelo.grosor / 2)
         lienzo.backgroundColor = .clear
         lienzo.isOpaque = false
         lienzo.isScrollEnabled = false
