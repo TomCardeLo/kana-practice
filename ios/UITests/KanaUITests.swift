@@ -752,6 +752,13 @@ final class KanaUITests: XCTestCase {
         esperarLabel("escribir-resultado", "エ, ¡Bien escrito!")
         XCTAssertEqual(el("escribir-resultado").value as? String, "correcto")
         captura("escribir-bien")
+        if esIPad {  // sin ScrollView: en horizontal la cuadrícula, el resultado y el botón tienen que caber
+            XCUIDevice.shared.orientation = .landscapeLeft
+            XCTAssertTrue(el("btn-siguiente").waitForExistence(timeout: 5) && el("btn-siguiente").isHittable,
+                          "En horizontal, «Siguiente» queda fuera de la pantalla")
+            captura("escribir-ipad-horizontal")
+            XCUIDevice.shared.orientation = .portrait
+        }
 
         toca("btn-siguiente")
         XCTAssertFalse(el("escribir-resultado").exists, "El resultado anterior sigue en pantalla")
