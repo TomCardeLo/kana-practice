@@ -200,8 +200,8 @@ reconoció entre 15 y 60 de 96 kana sueltos, 2026-11-24).
 116. Con otro número de trazos se compara igual (índices desalineados, cierre) o sale bien (が sin dakuten).
 117. «Comprobar» sin nada dibujado registra un intento o se cierra; un punto suelto (toque) rompe el remuestreo.
 118. Falta la plantilla de algún kana que se pregunta.
-119. Escribir entra en el repaso espaciado, los hitos de filas o el ranking de errores de lectura (sus tiempos de 5–10 s
-     rompen esas cuentas). Solo cuenta para la racha y la meta del día.
+119. Escribir cuenta para la racha, la meta, el progreso, el repaso o los hitos. Por ahora no guarda intentos
+     (decisión del usuario, 2026-11-24); si se activa, nunca para el repaso ni los hitos (sus 5–10 s los rompen).
 120. El servidor rechaza «escritura» y los intentos quedan apartados: se despliega antes la migración y Deepy.
 121. El lienzo no dibuja con el dedo después de usar el Apple Pencil, o un desplazamiento le roba el trazo.
 122. La atribución de KanjiVG (CC BY-SA 3.0) no aparece en la app.

@@ -4,16 +4,14 @@ import SwiftUI
 
 /// Escribir a mano: sale un kana en romaji, se escribe en la cuadrícula (dedo o Apple Pencil) y se revisa trazo a trazo
 /// contra su plantilla de KanjiVG: número, orden, dirección y forma de cada trazo (modos de fallo 113–123).
-/// Cada revisión es un intento «escritura»: cuenta para la racha y la meta, no para el repaso ni los hitos (119).
+/// No guarda intentos: por decisión del usuario (2026-11-24), escribir no cuenta para la racha, la meta ni el
+/// progreso hasta que lo pida (119). El servidor ya acepta el ejercicio «escritura» para cuando se active.
 struct EscribirVista: View {
-    @Environment(\.modelContext) private var contexto
     @State private var silabario = Silabario.hiragana
     @State private var cola: [Tarjeta] = []
     @State private var actual: Tarjeta?
     @State private var dibujo = PKDrawing()
     @State private var veredicto: Trazos.Veredicto?
-    @State private var inicio = Date.now
-    @State private var errorGuardado: String?
 
     /// Sin plantillas no se puede revisar nada: se dice en pantalla, no se finge (sin fallbacks silenciosos).
     private static let plantillas: Result<[String: [Trazos.Trazo]], Error> = Result {
@@ -57,11 +55,6 @@ struct EscribirVista: View {
             guard actual?.silabario != nuevo else { return }
             cola = []
             siguiente()
-        }
-        .alert("No se pudo guardar el progreso", isPresented: .constant(errorGuardado != nil)) {
-            Button("Entendido") { errorGuardado = nil }
-        } message: {
-            Text(errorGuardado ?? "")
         }
     }
 
@@ -169,11 +162,10 @@ struct EscribirVista: View {
     private func limpiar() {
         dibujo = PKDrawing()
         veredicto = nil
-        inicio = .now
     }
 
     private func comprobar(_ plantilla: [Trazos.Trazo]) {
-        guard let actual, veredicto == nil, !dibujo.strokes.isEmpty else { return }
+        guard veredicto == nil, !dibujo.strokes.isEmpty else { return }
         let trazos = dibujo.strokes.map { s in
             s.path.interpolatedPoints(by: .distance(2)).map {
                 let p = $0.location.applying(s.transform)
@@ -183,14 +175,6 @@ struct EscribirVista: View {
         let v = Trazos.revisar(trazos, contra: plantilla)
         withAnimation(.easeOut(duration: 0.2)) { veredicto = v }
         Efectos.compartidos.reproducir(v == .bien ? .acierto(combo: 0) : .error)
-        do {
-            try Progreso.registrar([Intento(ejercicio: "escritura", item: actual.kana, silabario: actual.silabario,
-                                            correcto: v == .bien, respuesta: v.codigo,
-                                            latenciaMs: Int(Date.now.timeIntervalSince(inicio) * 1000),
-                                            dispositivo: Progreso.dispositivo)], en: contexto)
-        } catch {
-            errorGuardado = error.localizedDescription
-        }
     }
 }
 
@@ -210,17 +194,6 @@ extension Trazos.Veredicto {
         case let .orden(n): "El trazo \(n) va en otro orden."
         case let .alReves(n): "El trazo \(n) va en la otra dirección."
         case let .forma(n): "El trazo \(n) no tiene la forma correcta."
-        }
-    }
-
-    /// Lo que se guarda como respuesta del intento (el tutor de Deepy ve qué falló).
-    var codigo: String? {
-        switch self {
-        case .bien: nil
-        case let .cantidad(esperados, dibujados): "\(dibujados) de \(esperados) trazos"
-        case let .orden(n): "trazo \(n): orden"
-        case let .alReves(n): "trazo \(n): dirección"
-        case let .forma(n): "trazo \(n): forma"
         }
     }
 }

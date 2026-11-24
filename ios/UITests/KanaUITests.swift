@@ -727,7 +727,7 @@ final class KanaUITests: XCTestCase {
     }
 
     /// 113, 115, 117 y 119: エ bien escrita pasa; con el palo primero dice qué trazo va en otro orden; sin dibujo no se
-    /// puede comprobar; las dos revisiones cuentan para la meta del día pero no para las estadísticas de lectura.
+    /// puede comprobar; las revisiones no cuentan para la meta, la racha ni el progreso.
     func testEscribirRevisaTrazosYCuentaParaLaMeta() {
         app.terminate()
         app.launchArguments = ["-uitest", "-uitest-escribir", "エ"]
@@ -765,8 +765,8 @@ final class KanaUITests: XCTestCase {
         XCTAssertFalse(el("btn-comprobar").isEnabled, "El lienzo no se limpió al pasar al siguiente")
 
         irA("Progreso")
-        esperarLabel("racha-hoy", "Hoy 2/50")
-        XCTAssertTrue(el("progreso-vacio").exists, "Escribir se coló en las estadísticas de lectura (119)")
+        esperarLabel("racha-hoy", "Hoy 0/50")
+        XCTAssertTrue(el("progreso-vacio").exists, "Escribir se coló en el progreso (119)")
     }
 
     private func el(_ id: String) -> XCUIElement {
